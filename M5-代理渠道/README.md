@@ -16,9 +16,9 @@ updated: 2026-07-26
 **做什么**:流量来源(渠道)与分销体系(代理)。归因 + 分佣。
 
 **不做什么**
-- ❌ 不做佣金入账(算完调 M3 写账变)
-- ❌ 不做渠道报表(归 M1,本模块只提供归因数据)
-- ❌ 不管玩家账号本身(归 M2)
+- 不做佣金入账(算完调 M3 写账变)
+- 不做渠道报表(归 M1,本模块只提供归因数据)
+- 不管玩家账号本身(归 M2)
 
 **铁律**:**渠道/代理归属在注册瞬间绑定,之后不可变** —— 事后改归属会让所有历史报表和佣金失真。
 
@@ -52,13 +52,13 @@ updated: 2026-07-26
 
 | 表 | 说明 | 现状 |
 |---|---|---|
-| `Agent` / `AgentUser` | 代理与代理-用户关系 | ✅ |
-| `AgentConfig` | 代理配置(分佣比例) | ✅ |
-| `AgentCommissionRecord` | 佣金流水 | ✅ |
-| `Channel` | 渠道 | ✅ |
-| `Promoter` | 推广员 | ✅ |
-| `AgentSettlement` | 结算单(含负余额结转) | ❌ 新增 |
-| `ThirdPartyPostback` | 三方转化回传配置 | ❌ 新增 |
+| `Agent` / `AgentUser` | 代理与代理-用户关系 | 已有 |
+| `AgentConfig` | 代理配置(分佣比例) | 已有 |
+| `AgentCommissionRecord` | 佣金流水 | 已有 |
+| `Channel` | 渠道 | 已有 |
+| `Promoter` | 推广员 | 已有 |
+| `AgentSettlement` | 结算单(含负余额结转) | 新增 |
+| `ThirdPartyPostback` | 三方转化回传配置 | 新增 |
 
 详见 `表设计.prisma`
 
@@ -76,19 +76,19 @@ updated: 2026-07-26
 
 | 编号 | 页面 | 路由 | 优先级 | 现状 | 人日 |
 |---|---|---|---|---|---|
-| 5.1 | 代理管理 | `/agent/list` | **P0** | ✅ | 2 |
-| 5.2 | 佣金结算 | `/agent/settlement` | **P0** | 🟡 口径待定 | 10 |
-| 5.3 | 渠道管理 | `/channel/list` | **P0** | ✅ | 2 |
-| 5.4 | 三方上报 | `/channel/postback` | P1 | ❌ | 5 |
-| 5.5 | PWA 推广 | `/channel/pwa` | P2 | ❌ | 8 |
+| 5.1 | 代理管理 | `/agent/list` | **P0** | 已有 | 2 |
+| 5.2 | 佣金结算 | `/agent/settlement` | **P0** | 需改造 · 口径待定 | 10 |
+| 5.3 | 渠道管理 | `/channel/list` | **P0** | 已有 | 2 |
+| 5.4 | 三方上报 | `/channel/postback` | P1 | 缺失 | 5 |
+| 5.5 | PWA 推广 | `/channel/pwa` | P2 | 缺失 | 8 |
 
 ## 6. 权限点汇总
 
 | 权限码 | 名称 | 页面 | 二次确认 |
 |---|---|---|---|
 | `agent:list:view` | 查看代理 | 5.1 | — |
-| `agent:config:edit` | 编辑代理配置 | 5.1 | ✅ |
+| `agent:config:edit` | 编辑代理配置 | 5.1 | 是 |
 | `agent:settlement:view` | 查看结算 | 5.2 | — |
-| `agent:settlement:confirm` | **确认发放佣金** | 5.2 | ✅ |
+| `agent:settlement:confirm` | **确认发放佣金** | 5.2 | 是 |
 | `channel:list:view` | 查看渠道 | 5.3 | — |
 | `channel:edit` | 编辑渠道 | 5.3 | — |

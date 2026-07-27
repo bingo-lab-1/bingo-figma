@@ -24,9 +24,9 @@ estimate_days: 3
 |---|---|---|
 | Key | text | 唯一标识 |
 | 值 | 随 valueType 渲染 | |
-| **值类型** | select | string/number/boolean/json ← ❌ 待新增 |
-| **分组** | select | system/risk/wager/other ← ❌ 待新增 |
-| **描述** | text | 给运营看的说明 ← ❌ 待新增 |
+| **值类型** | select | string/number/boolean/json ← 待新增 |
+| **分组** | select | system/risk/wager/other ← 待新增 |
+| **描述** | text | 给运营看的说明 ← 待新增 |
 | 最后修改人/时间 | 只读 | |
 
 **表格列**:`Key | 描述 | 当前值 | 类型 | 分组 | 最后修改人 | 修改时间 | 操作`
@@ -34,8 +34,8 @@ estimate_days: 3
 **放这里 vs 建专表的判断**
 | 场景 | 归属 |
 |---|---|
-| 被代码直接读取的单值 | ✅ `Kv` |
-| 有结构、要列表展示、要审核 | ❌ 建专表(如 `WithdrawConfig`) |
+| 被代码直接读取的单值 | 已有 · `Kv` |
+| 有结构、要列表展示、要审核 | 缺失 · 建专表(如 `WithdrawConfig`) |
 
 ## 4. 需求清单
 
@@ -50,7 +50,7 @@ estimate_days: 3
 加载 / 正常 / 保存中 / 保存成功 / 校验错误 / 无权限(只读)
 
 ## 6. 交互流程
-保存即生效(⬜ 是否需发布流程待定),变更强制写 `OperationLog`。
+保存即生效( 是否需发布流程待定),变更强制写 `OperationLog`。
 
 ## 7. 涉及表
 `Kv`(owner,建议补分组/类型/描述字段)→ `../表设计.prisma`

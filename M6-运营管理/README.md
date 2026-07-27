@@ -16,9 +16,9 @@ updated: 2026-07-26
 **做什么**:面向玩家的内容位与消息触达。
 
 **不做什么**
-- ❌ 不含活动逻辑 —— 展示位只**引用**活动 ID,活动规则在 M4
-- ❌ 不做用户分层 —— 定向用 M2 的 `UserTag`,本模块不自建标签
-- ❌ 不做客服工单系统(仅意见反馈收集)
+- 不含活动逻辑 —— 展示位只**引用**活动 ID,活动规则在 M4
+- 不做用户分层 —— 定向用 M2 的 `UserTag`,本模块不自建标签
+- 不做客服工单系统(仅意见反馈收集)
 
 **铁律**:**活动与展示解耦** —— 展示位引用活动 ID,不复制活动逻辑。
 
@@ -47,15 +47,15 @@ updated: 2026-07-26
 
 | 表 | 说明 | 现状 |
 |---|---|---|
-| `Notification` | 站内信/通知 | ✅ |
-| `Language` | 多语言文案 | ✅ |
-| `Banner` | Banner/悬浮窗/侧边栏 | ❌ 新增 |
-| `Popup` | 弹窗 | ❌ 新增 |
-| `PopupStrategy` | 触发策略与频控 | ❌ 新增 |
-| `Material` | 素材中心 | ❌ 新增 |
-| `RedeemCodeBatch` / `RedeemCode` | 兑换码 | ❌ 新增 |
-| `PushTask` | 推送任务 | ❌ 新增 |
-| `Feedback` | 意见反馈 | ❌ 新增 |
+| `Notification` | 站内信/通知 | 已有 |
+| `Language` | 多语言文案 | 已有 |
+| `Banner` | Banner/悬浮窗/侧边栏 | 新增 |
+| `Popup` | 弹窗 | 新增 |
+| `PopupStrategy` | 触发策略与频控 | 新增 |
+| `Material` | 素材中心 | 新增 |
+| `RedeemCodeBatch` / `RedeemCode` | 兑换码 | 新增 |
+| `PushTask` | 推送任务 | 新增 |
+| `Feedback` | 意见反馈 | 新增 |
 
 详见 `表设计.prisma`
 
@@ -77,14 +77,14 @@ updated: 2026-07-26
 
 | 编号 | 页面 | 路由 | 优先级 | 现状 | 人日 |
 |---|---|---|---|---|---|
-| 6.1 | 站内信 | `/ops/notification` | **P0** | ✅ | 2 |
-| 6.2 | 展示位管理 | `/ops/banner` | **P0** | ❌ | 6 |
-| 6.3 | 素材中心 | `/ops/material` | P1 | 🟡 有 upload | 4 |
-| 6.4 | 弹窗策略 | `/ops/popup-strategy` | P1 | ❌ | 6 |
-| 6.5 | 兑换码 | `/ops/redeem-code` | P1 | ❌ | 5 |
-| 6.6 | 多语言 | `/ops/language` | P1 | ✅ | 2 |
-| 6.7 | 推送 | `/ops/push` | P2 | ❌ | 8 |
-| 6.8 | 意见反馈 | `/ops/feedback` | P2 | ❌ | 3 |
+| 6.1 | 站内信 | `/ops/notification` | **P0** | 已有 | 2 |
+| 6.2 | 展示位管理 | `/ops/banner` | **P0** | 缺失 | 6 |
+| 6.3 | 素材中心 | `/ops/material` | P1 | 需改造 · 有 upload | 4 |
+| 6.4 | 弹窗策略 | `/ops/popup-strategy` | P1 | 缺失 | 6 |
+| 6.5 | 兑换码 | `/ops/redeem-code` | P1 | 缺失 | 5 |
+| 6.6 | 多语言 | `/ops/language` | P1 | 已有 | 2 |
+| 6.7 | 推送 | `/ops/push` | P2 | 缺失 | 8 |
+| 6.8 | 意见反馈 | `/ops/feedback` | P2 | 缺失 | 3 |
 
 ## 6. 权限点汇总
 

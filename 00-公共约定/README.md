@@ -209,3 +209,31 @@ frontmatter: page / route / module / priority / status / estimate_days / spec_ve
 ## 权限码
 格式 `模块:对象:动作`,如 `user:list:view` `user:ban` `finance:withdraw:review`
 每个页面 README 声明自己的权限码,模块 README 汇总,M7 据此生成 seed。
+
+---
+
+# 四、工具与完成标准
+
+## 能自动生成的不手写
+| 产物 | 工具 | 说明 |
+|---|---|---|
+| ERD | `prisma-erd-generator` | 从 `表设计.prisma` 生成,不手画 |
+| 数据字典 | `prisma-docs-generator` | 注释即文档 |
+| API 契约 | `spectaql` / `graphql-markdown` | 从 GraphQL schema 生成 |
+| 流程图 | mermaid(手写)+ CI 语法校验 | 逻辑需人判断,但语法机器管 |
+
+手写的必然与代码分叉。**CI 应校验 schema 变更与文档同步。**
+
+## 完成的定义(DoD)
+开发拿到文档后能直接转成 **schema diff + issue + 测试用例**,
+不用回来问"这个字段什么意思""这条规则阈值多少"。达不到即未完成。
+
+## 现在不写的东西(避免提前铺目录)
+| 项 | 原因 | 何时补 |
+|---|---|---|
+| API 契约文档 | 从 GraphQL 自动生成 | 02/03 稳定后 |
+| 验收标准 Gherkin | 需求清单的验收标准已可转测试 | 功能定稿后逐个补 |
+| RBAC 权限矩阵 | 代码里 `Role/Permission` 已较完整 | 权限点收齐后 |
+| 业务规则数值 | 缺带数据的实盘账号 | 拿到账号后 |
+
+**有内容才建文件,不为"体系完整"预先占位。** 目录结构应是内容长出来的结果。

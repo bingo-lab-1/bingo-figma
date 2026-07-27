@@ -20,11 +20,11 @@ estimate_days: 3
 ## 3. 字段清单
 | 字段 | 类型 | 必填 | 说明 |
 |---|---|---|---|
-| 币种 | select | ✅ | 每币种一套配置 |
-| 最低提现金额 | number | ✅ | |
+| 币种 | select | 是 | 每币种一套配置 |
+| 最低提现金额 | number | 是 | |
 | 最高提现金额 | number | — | 空=不限 |
-| 手续费类型 | radio | ✅ | 固定值 / 百分比 |
-| 手续费值 | number | ✅ | |
+| 手续费类型 | radio | 是 | 固定值 / 百分比 |
+| 手续费值 | number | 是 | |
 | 每日提现次数上限 | number | — | 空=不限 |
 | 提现短信验证 | switch | — | |
 | **需打码达标才可提现** | switch | — | 关键风控开关 |
@@ -44,7 +44,7 @@ estimate_days: 3
 加载 / 正常 / 保存中 / 保存成功 / 校验错误 / 无权限(表单只读)
 
 ## 6. 交互流程
-保存即生效(⬜ 是否需要发布流程待定)。变更写 `OperationLog`。
+保存即生效( 是否需要发布流程待定)。变更写 `OperationLog`。
 
 ## 7. 涉及表
 `WithdrawConfig`(owner)· `CryptoCoins`/`FiatCurrency`(M8 只读) → `../表设计.prisma`

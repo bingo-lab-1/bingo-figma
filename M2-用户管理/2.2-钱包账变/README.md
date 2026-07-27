@@ -26,8 +26,8 @@ estimate_days: 3
 |---|---|---|
 | 真金 | `balance` | 可直接提现 |
 | 彩金 | `bonusBalance` | 需打码达标 |
-| **冻结** | `frozenBalance` | ❌ 字段待新增 |
-| **待打码** | `WagerRequirement` 汇总 | ❌ 表待新增 |
+| **冻结** | `frozenBalance` | 缺失 · 字段待新增 |
+| **待打码** | `WagerRequirement` 汇总 | 缺失 · 表待新增 |
 
 **表格列**:`序号 | 时间 | 账变类型 | 币种 | 变动金额 | 变动前余额 | 变动后余额 | 账户(真金/彩金) | 关联单据 | 备注`
 

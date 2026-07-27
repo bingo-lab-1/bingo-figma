@@ -16,9 +16,9 @@ updated: 2026-07-26
 **做什么**:玩家账号的查询、干预、分层。**`User` 的唯一写入方。**
 
 **不做什么**
-- ❌ 不做资金操作(充值/提现/上下分归 M3,本模块只读展示)
-- ❌ 不做后台账号管理(那是 M7 的 `Account`)
-- ❌ 不做风控规则引擎(只提供档案数据,规则判定另议)
+- 不做资金操作(充值/提现/上下分归 M3,本模块只读展示)
+- 不做后台账号管理(那是 M7 的 `Account`)
+- 不做风控规则引擎(只提供档案数据,规则判定另议)
 
 **铁律**:封禁/解封/调级/打标等干预操作**必须**留痕(`M7 OperationLog`)。
 
@@ -47,7 +47,7 @@ updated: 2026-07-26
 - `M6-运营管理`:`UserTag`(弹窗/推送定向)
 - `M1-数据中心`:`User` `LoginRecord`(拉新/留存)
 
-> ⚠️ **`User` 和 `UserTag` 是全仓被引用最多的表**,改结构影响面最大。
+> **`User` 和 `UserTag` 是全仓被引用最多的表**,改结构影响面最大。
 
 ## 4. 数据模型
 
@@ -55,17 +55,17 @@ updated: 2026-07-26
 
 | 表 | 说明 | 现状 |
 |---|---|---|
-| `User` | 玩家主表 | ✅ |
-| `UserKyc` | 实名认证 | ✅ |
-| `Tag` / `UserTag` | 标签与打标 | ✅ |
-| `Level` / `VipLevel` | 等级/VIP | 🟡 双轨待定 |
-| `LoginRecord` | 登录记录 | ✅ |
-| `RegisterIpRecord` / `RegisterDeviceRecord` | 注册 IP/设备 | ✅ |
-| `UserIdentity*`(3 张) | 身份体系 | 🟡 与 KYC/Tag 重叠 |
-| `WithdrawalAccount` / `UserFiatAccount` / `UserCryptoAccount` | 收款账户 | ✅ |
-| `UserFundSecurity` / `UserFundsSummary` | 资金安全/汇总 | ✅ |
-| `UserBanRecord` | 封禁记录 | ❌ 新增 |
-| `PointControlRecord` | 点控记录 | ❌ 新增 |
+| `User` | 玩家主表 | 已有 |
+| `UserKyc` | 实名认证 | 已有 |
+| `Tag` / `UserTag` | 标签与打标 | 已有 |
+| `Level` / `VipLevel` | 等级/VIP | 需改造 · 双轨待定 |
+| `LoginRecord` | 登录记录 | 已有 |
+| `RegisterIpRecord` / `RegisterDeviceRecord` | 注册 IP/设备 | 已有 |
+| `UserIdentity*`(3 张) | 身份体系 | 需改造 · 与 KYC/Tag 重叠 |
+| `WithdrawalAccount` / `UserFiatAccount` / `UserCryptoAccount` | 收款账户 | 已有 |
+| `UserFundSecurity` / `UserFundsSummary` | 资金安全/汇总 | 已有 |
+| `UserBanRecord` | 封禁记录 | 新增 |
+| `PointControlRecord` | 点控记录 | 新增 |
 
 **只读引用**:`Wallet` `Transaction` `BetRecords`(owner 见 M3/M4)
 详见 `表设计.prisma`
@@ -87,15 +87,15 @@ updated: 2026-07-26
 
 | 编号 | 页面 | 路由 | 优先级 | 现状 | 人日 |
 |---|---|---|---|---|---|
-| 2.1 | 用户列表与详情 | `/user/list` | **P0** | ✅ | 3 |
-| 2.2 | 钱包账变 | `/user/wallet` | **P0** | 🟡 缺彩金/冻结 | 3 |
-| 2.3 | 投注明细 | `/user/bet-record` | **P0** | ✅ | 2 |
-| 2.4 | 封禁管理 | `/user/ban` | **P0** | ❌ | 5 |
-| 2.5 | 用户标签 | `/user/tag` | **P0** | ✅ | 2.5 |
-| 2.6 | VIP 管理 | `/user/vip` | P1 | 🟡 双轨待定 | 5 |
-| 2.7 | 风控档案 | `/user/risk` | P1 | 🟡 有表无分析 | 5 |
-| 2.8 | 点控记录 | `/user/point-control` | P2 | ❌ | 3 |
-| 2.9 | 玩家排行榜 | `/user/rank` | P2 | ❌ | 3 |
+| 2.1 | 用户列表与详情 | `/user/list` | **P0** | 已有 | 3 |
+| 2.2 | 钱包账变 | `/user/wallet` | **P0** | 需改造 · 缺彩金/冻结 | 3 |
+| 2.3 | 投注明细 | `/user/bet-record` | **P0** | 已有 | 2 |
+| 2.4 | 封禁管理 | `/user/ban` | **P0** | 缺失 | 5 |
+| 2.5 | 用户标签 | `/user/tag` | **P0** | 已有 | 2.5 |
+| 2.6 | VIP 管理 | `/user/vip` | P1 | 需改造 · 双轨待定 | 5 |
+| 2.7 | 风控档案 | `/user/risk` | P1 | 需改造 · 有表无分析 | 5 |
+| 2.8 | 点控记录 | `/user/point-control` | P2 | 缺失 | 3 |
+| 2.9 | 玩家排行榜 | `/user/rank` | P2 | 缺失 | 3 |
 
 ## 6. 权限点汇总
 

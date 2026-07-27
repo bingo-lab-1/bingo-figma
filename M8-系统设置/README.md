@@ -16,8 +16,8 @@ updated: 2026-07-26
 **做什么**:全局参数、域名、币种汇率等平台级配置。
 
 **不做什么**
-- ❌ 不放业务配置 —— 提现规则归 M3、活动配置归 M4,**别把 Kv 变成配置垃圾桶**
-- ❌ 不做后台账号/权限(归 M7)
+- 不放业务配置 —— 提现规则归 M3、活动配置归 M4,**别把 Kv 变成配置垃圾桶**
+- 不做后台账号/权限(归 M7)
 
 **铁律**:配置变更**必须**留痕 —— 全局参数改错的影响面是全站。
 
@@ -46,11 +46,11 @@ updated: 2026-07-26
 
 | 表 | 说明 | 现状 |
 |---|---|---|
-| `Kv` | 全局键值配置 | ✅(建议加分组/类型) |
-| `Domain` | 域名管理 | ✅ |
-| `CryptoCoins` / `ChainNetwork` / `CryptoCoinsChainNetwork` | 加密币种与链 | ✅ |
-| `CodingMultiple` | 打码倍数通用配置 | ✅ |
-| `FiatCurrency` | 法币与汇率 | ❌ 新增 |
+| `Kv` | 全局键值配置 | 已有 · (建议加分组/类型) |
+| `Domain` | 域名管理 | 已有 |
+| `CryptoCoins` / `ChainNetwork` / `CryptoCoinsChainNetwork` | 加密币种与链 | 已有 |
+| `CodingMultiple` | 打码倍数通用配置 | 已有 |
+| `FiatCurrency` | 法币与汇率 | 新增 |
 
 详见 `表设计.prisma`
 
@@ -65,15 +65,15 @@ updated: 2026-07-26
 
 | 编号 | 页面 | 路由 | 优先级 | 现状 | 人日 |
 |---|---|---|---|---|---|
-| 8.1 | 数值配置 | `/system/config` | **P0** | ✅ 有 `Kv` | 3 |
-| 8.2 | 域名管理 | `/system/domain` | P1 | ✅ | 2 |
-| 8.3 | 币种与汇率 | `/system/currency` | P1 | 🟡 仅加密币 | 4 |
+| 8.1 | 数值配置 | `/system/config` | **P0** | 已有 · 有 `Kv` | 3 |
+| 8.2 | 域名管理 | `/system/domain` | P1 | 已有 | 2 |
+| 8.3 | 币种与汇率 | `/system/currency` | P1 | 需改造 · 仅加密币 | 4 |
 
 ## 6. 权限点汇总
 
 | 权限码 | 名称 | 页面 | 二次确认 |
 |---|---|---|---|
 | `system:config:view` | 查看全局配置 | 8.1 | — |
-| `system:config:edit` | **编辑全局配置** | 8.1 | ✅ |
-| `system:domain:edit` | 编辑域名 | 8.2 | ✅ |
-| `system:currency:edit` | 编辑币种汇率 | 8.3 | ✅ |
+| `system:config:edit` | **编辑全局配置** | 8.1 | 是 |
+| `system:domain:edit` | 编辑域名 | 8.2 | 是 |
+| `system:currency:edit` | 编辑币种汇率 | 8.3 | 是 |

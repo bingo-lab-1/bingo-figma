@@ -16,9 +16,9 @@ updated: 2026-07-26
 **做什么**:钱的进出与审核。`Wallet` / `Transaction` / 各类订单的唯一写入方。
 
 **不做什么**
-- ❌ 不判断"这笔钱因为哪个活动而发" —— 活动逻辑在 M4,本模块只认一笔账变
-- ❌ 不做报表聚合(归 M1)
-- ❌ 不做代理佣金计算(归 M5,M5 算完调本模块入账)
+- 不判断"这笔钱因为哪个活动而发" —— 活动逻辑在 M4,本模块只认一笔账变
+- 不做报表聚合(归 M1)
+- 不做代理佣金计算(归 M5,M5 算完调本模块入账)
 
 **铁律**
 1. 任何写操作**必须**留痕(`M7 OperationLog`)
@@ -56,22 +56,22 @@ updated: 2026-07-26
 
 | 表 | 说明 | 现状 |
 |---|---|---|
-| `Wallet` | 四分账余额 | 🟡 需加 `frozenBalance` |
-| `Transaction` | 账变总账 | ✅ |
-| `RechargeOrder` | 充值订单 | ❌ 新增 |
-| `WithdrawOrder` | 提现订单 | ❌ 新增 |
-| `WithdrawReviewRule` | 审核规则 | ❌ 新增 |
-| `WithdrawConfig` | 提现全局配置 | ❌ 新增 |
-| `ManualAdjustment` | 人工上下分 | ❌ 新增 |
-| `WagerRequirement` ★ | 打码进度 | ❌ 新增 |
-| `FreezeRecord` ★ | 冻结/解冻流水 | ❌ 新增 |
-| `RechargeProduct` | 充值商品 SKU | ❌ 新增 |
-| `PaymentChannel` | 支付/提现通道 | 🟡 仅加密 |
+| `Wallet` | 四分账余额 | 需改造 · 需加 `frozenBalance` |
+| `Transaction` | 账变总账 | 已有 |
+| `RechargeOrder` | 充值订单 | 新增 |
+| `WithdrawOrder` | 提现订单 | 新增 |
+| `WithdrawReviewRule` | 审核规则 | 新增 |
+| `WithdrawConfig` | 提现全局配置 | 新增 |
+| `ManualAdjustment` | 人工上下分 | 新增 |
+| `WagerRequirement`  | 打码进度 | 新增 |
+| `FreezeRecord`  | 冻结/解冻流水 | 新增 |
+| `RechargeProduct` | 充值商品 SKU | 新增 |
+| `PaymentChannel` | 支付/提现通道 | 需改造 · 仅加密 |
 
 **只读引用**:`User` `UserTag`(M2)· `Channel`(M5)· `CodingMultiple`(M8)
 详见 `表设计.prisma`
 
-### 🔴 两个必补字段(全库 grep 命中 0)
+### 两个必补字段(全库 grep 命中 0)
 | 缺口 | 后果 |
 |---|---|
 | `Wallet.frozenBalance` | 提现拒绝后冻不住钱,多路径解冻无处落地 |
@@ -97,16 +97,16 @@ updated: 2026-07-26
 
 | 编号 | 页面 | 路由 | 优先级 | 现状 | 人日 |
 |---|---|---|---|---|---|
-| 3.1 | 充值订单 | `/finance/recharge/order` | **P0** | ❌ | 5 |
-| 3.2 | 提现订单与审核 | `/finance/withdraw/order` | **P0** | ❌ | 8 |
-| 3.3 | 审核规则 | `/finance/withdraw/rule` | **P0** | ❌ | 8 |
-| 3.4 | 提现配置 | `/finance/withdraw/config` | **P0** | ❌ | 3 |
-| 3.5 | 人工充值/扣款 | `/finance/manual-adjust` | **P0** | ❌ | 4 |
-| 3.6 | 冻结与解冻 ★ | `/finance/freeze` | **P0** | ❌ | 6 |
-| 3.7 | 打码核销 ★ | `/finance/wagering` | **P0** | ❌ | 8 |
-| 3.8 | 充值商品配置 | `/finance/recharge/product` | P1 | ❌ | 5 |
-| 3.9 | 通道管理 | `/finance/channel` | P1 | 🟡 仅加密 | 5 |
-| 3.10 | 对账 | `/finance/reconciliation` | P2 | ❌ | 10 |
+| 3.1 | 充值订单 | `/finance/recharge/order` | **P0** | 缺失 | 5 |
+| 3.2 | 提现订单与审核 | `/finance/withdraw/order` | **P0** | 缺失 | 8 |
+| 3.3 | 审核规则 | `/finance/withdraw/rule` | **P0** | 缺失 | 8 |
+| 3.4 | 提现配置 | `/finance/withdraw/config` | **P0** | 缺失 | 3 |
+| 3.5 | 人工充值/扣款 | `/finance/manual-adjust` | **P0** | 缺失 | 4 |
+| 3.6 | 冻结与解冻  | `/finance/freeze` | **P0** | 缺失 | 6 |
+| 3.7 | 打码核销  | `/finance/wagering` | **P0** | 缺失 | 8 |
+| 3.8 | 充值商品配置 | `/finance/recharge/product` | P1 | 缺失 | 5 |
+| 3.9 | 通道管理 | `/finance/channel` | P1 | 需改造 · 仅加密 | 5 |
+| 3.10 | 对账 | `/finance/reconciliation` | P2 | 缺失 | 10 |
 
 ## 6. 权限点汇总
 
@@ -114,11 +114,11 @@ updated: 2026-07-26
 |---|---|---|---|
 | `finance:recharge:view` | 查看充值订单 | 3.1 | — |
 | `finance:withdraw:view` | 查看提现订单 | 3.2 | — |
-| `finance:withdraw:review` | **审核提现** | 3.2 | ✅ |
-| `finance:withdraw:batch-review` | **批量审核** | 3.2 | ✅ |
-| `finance:rule:edit` | 编辑审核规则 | 3.3 | ✅ |
-| `finance:config:edit` | 编辑提现配置 | 3.4 | ✅ |
-| `finance:manual:adjust` | **人工上下分** | 3.5 | ✅ |
-| `finance:freeze:manage` | 冻结/解冻 | 3.6 | ✅ |
-| `finance:wager:clear` | **清空打码** | 3.7 | ✅ |
+| `finance:withdraw:review` | **审核提现** | 3.2 | 是 |
+| `finance:withdraw:batch-review` | **批量审核** | 3.2 | 是 |
+| `finance:rule:edit` | 编辑审核规则 | 3.3 | 是 |
+| `finance:config:edit` | 编辑提现配置 | 3.4 | 是 |
+| `finance:manual:adjust` | **人工上下分** | 3.5 | 是 |
+| `finance:freeze:manage` | 冻结/解冻 | 3.6 | 是 |
+| `finance:wager:clear` | **清空打码** | 3.7 | 是 |
 | `finance:export` | 导出财务数据 | 全部 | — |
