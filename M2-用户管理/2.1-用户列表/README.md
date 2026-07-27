@@ -115,13 +115,35 @@ updated: 2026-07-27
 ## 7. 数据流向与系统串接
 
 **数据流向**(用户端输入 → 后端处理 → 最终显示)
+
+```mermaid
+flowchart TD
+    subgraph FE[前端]
+        A[筛选表单] --> B[格式即时提示]
+        B --> C[发起 GraphQL Query]
+        M[表格渲染] --> N[URL 同步筛选态]
+    end
+    subgraph BE[后端]
+        C --> D{条件合法?}
+        D -- 否 --> E[400 定位到字段]
+        D -- 是 --> F[未指定时间则注入近 90 天]
+        F --> G[(PostgreSQL<br/>User + 关联表)]
+        G --> H{超时 3s?}
+        H -- 是 --> I[中断并返回可读提示]
+        H -- 否 --> J[敏感字段脱敏]
+        J --> K[权限与数据范围过滤]
+        K --> M
+    end
+    E --> A
+    I --> A
+
+    style E fill:#fdd,stroke:#c33
+    style I fill:#fdd,stroke:#c33
+    style J fill:#ffd,stroke:#c90
 ```
-筛选表单 → GraphQL Query(条件校验/默认时间窗)
-          → PostgreSQL(User 主表 + 关联表 join)
-          → 脱敏层(手机/证件/收款账号)
-          → 权限过滤(数据范围)
-          → 前端表格渲染
-```
+
+> 红色为错误分支,黄色为安全关键步骤(脱敏,见 E6)。
+
 - **写入**:本页仅列设置写入(按账号存储),其余均为读
 - **缓存**:不缓存用户数据(实时性优先);筛选下拉的枚举项(渠道/标签)可缓存 5 分钟
 

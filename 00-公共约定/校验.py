@@ -210,6 +210,32 @@ for f in pages:
         err(f"{rel}: 含 emoji {hits} — 需求文档不使用 emoji")
 
 
+# ─────────────────────── mermaid 结构检查 ───────────────────────
+# 语法错误会在 GitHub 上渲染成红色报错框,比没有图更糟。
+# 这里做结构性快检;完整语法解析由 CI 的 mermaid-cli 步骤负责。
+MERMAID_TYPES = ("flowchart", "graph", "stateDiagram", "sequenceDiagram",
+                 "erDiagram", "mindmap", "classDiagram", "journey",
+                 "gantt", "pie", "gitGraph", "timeline")
+
+for f in sorted(BASE.rglob("*.md")):
+    if ".git" in f.parts:
+        continue
+    rel = f.relative_to(BASE)
+    lines = f.read_text(encoding="utf-8").splitlines()
+    open_at = None
+    for i, ln in enumerate(lines, 1):
+        s = ln.strip()
+        if open_at is None and s == "```mermaid":
+            open_at = i
+            head = lines[i].strip() if i < len(lines) else ""
+            if not head.startswith(MERMAID_TYPES):
+                err(f"{rel}:{i+1}: mermaid 首行不是已知图型 → {head[:40]!r}")
+        elif open_at is not None and s == "```":
+            open_at = None
+    if open_at is not None:
+        err(f"{rel}:{open_at}: mermaid 代码块未闭合")
+
+
 # ─────────────────────── 其他 ───────────────────────
 SKIP_DIRS = {".git", ".github", "node_modules", "__pycache__", ".venv"}
 for d in BASE.rglob("*"):

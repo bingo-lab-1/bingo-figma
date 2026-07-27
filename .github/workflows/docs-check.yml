@@ -8,6 +8,7 @@ on:
 
 jobs:
   spec:
+    name: 文档结构
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,3 +19,44 @@ jobs:
         run: python3 00-公共约定/校验.py
       # 全部页面迁移到 v3 后,把上一步换成:
       #   run: python3 00-公共约定/校验.py --strict
+
+  mermaid:
+    name: 流程图语法
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: 逐张解析 mermaid
+        run: |
+          set -euo pipefail
+          npm i -g @mermaid-js/mermaid-cli@11 >/dev/null 2>&1
+          mkdir -p /tmp/mmd
+          # 抽出每个 ```mermaid 块为独立文件
+          python3 - <<'PY'
+          import pathlib, re, os
+          base = pathlib.Path(".")
+          n = 0
+          idx = []
+          for f in sorted(base.rglob("*.md")):
+              if ".git" in f.parts:
+                  continue
+              for m in re.finditer(r"```mermaid\n(.*?)```", f.read_text(encoding="utf-8"), re.S):
+                  n += 1
+                  p = f"/tmp/mmd/{n}.mmd"
+                  pathlib.Path(p).write_text(m.group(1), encoding="utf-8")
+                  idx.append(f"{n}\t{f}")
+          pathlib.Path("/tmp/mmd/index.tsv").write_text("\n".join(idx), encoding="utf-8")
+          print(f"抽出 {n} 张图")
+          PY
+          fail=0
+          while IFS=$'\t' read -r num src; do
+            if ! mmdc -i "/tmp/mmd/${num}.mmd" -o "/tmp/mmd/${num}.svg" >/tmp/mmd/${num}.log 2>&1; then
+              echo "::error file=${src}::mermaid 语法错误(第 ${num} 张)"
+              tail -15 "/tmp/mmd/${num}.log"
+              fail=1
+            fi
+          done < /tmp/mmd/index.tsv
+          [ "$fail" -eq 0 ] && echo "全部 mermaid 图语法正确"
+          exit $fail
