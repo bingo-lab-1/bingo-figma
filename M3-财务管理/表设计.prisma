@@ -15,7 +15,7 @@ model Wallet {
   id            String   @id @default(cuid())
   userId        String   @map("user_id")        // FK → M2-user.User.id
   currency      String
-  /// 真金余额(可直接提现)
+  /// 真金余额(充值进来的钱,打码满 1 倍后可提现)
   balance       Decimal  @default(0) @db.Decimal(20, 8)
   /// 彩金余额(需打码达标才能转真金)
   bonusBalance  Decimal  @default(0) @map("bonus_balance") @db.Decimal(20, 8)
@@ -29,7 +29,8 @@ model Wallet {
 
 // ============ 2. 打码核销 ★ ============
 
-/// 每笔彩金一条打码要求,达标后彩金转真金
+/// 每笔充值或彩金各一条打码要求,达标后解除提现限制
+/// 充值真金固定 1 倍;彩金倍数随活动配置
 model WagerRequirement {
   id            String    @id @default(cuid())
   userId        String    @map("user_id")           // FK → M2-user.User.id

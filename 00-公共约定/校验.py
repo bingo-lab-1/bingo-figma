@@ -110,6 +110,11 @@ for f in pages:
     if nums != list(range(1, len(nums) + 1)):
         err(f"{rel}: 段落编号不连续 {nums}")
 
+    # 1b) 不允许无编号的二级标题 —— 会打乱段落结构且不易察觉
+    for m in re.finditer(r"^## (?!\d+\.)(.+)$", text, re.M):
+        err(f"{rel}: 二级标题「{m.group(1).strip()}」没有段号,"
+            f"要么并入某段(降为 ###),要么给它编号")
+
     # 2) 禁用段落
     for banned in BANNED_SECTIONS:
         if banned in titles:
