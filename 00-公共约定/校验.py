@@ -205,7 +205,7 @@ for f in pages:
         err(f"{rel}: 第 7 段缺「系统串接」(无外部系统也要显式声明)")
 
     # 11) 涉及表与职责
-    if "后端" not in section_body(text, "涉及表与职责"):
+    if "服务端" not in section_body(text, "涉及表与职责"):
         err(f"{rel}: 涉及表与职责缺前后端职责划分")
 
     # 12) 禁用 emoji

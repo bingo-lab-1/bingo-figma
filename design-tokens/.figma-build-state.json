@@ -15,7 +15,7 @@
     "effectStyles": 3,
     "componentSets": 4,
     "standaloneComponents": 2,
-    "screens": 2
+    "screens": 4
   },
   "pages": {
     "Cover": "0:1",
@@ -35,7 +35,11 @@
   "screens": {
     "M2.1 User List Default": "16:2",
     "M2.1 User List Detail Drawer": "22:145",
+    "M2.1 User List Async Export": "36:292",
+    "M2.1 State Reference": "37:433",
     "User Detail Drawer": "24:287",
     "Drawer Overlay": "24:286"
-  }
+  },
+  "lastSynced": "2026-07-27",
+  "sourceSpec": "M2-用户管理/2.1-用户列表/README.md"
 }
