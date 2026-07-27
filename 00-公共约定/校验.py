@@ -186,6 +186,17 @@ for f in pages:
     bg = section_body(text, "背景与目标")
     if "不做什么" not in bg:
         err(f"{rel}: 背景与目标缺「不做什么」边界声明")
+
+    # 9b) 第 1 段面向所有人(含老板),不得出现代码/路径/接口
+    for pat, why in (
+        (r"\.(ts|tsx|js|py|go|prisma)\b", "文件名"),
+        (r"\b\w+/\w+/\w+\.", "文件路径"),
+        (r"\b(resolver|GraphQL|SQL|API|endpoint|schema)\b", "技术名词"),
+    ):
+        m = re.search(pat, bg, re.I)
+        if m:
+            err(f"{rel}: 背景与目标出现{why}「{m.group()}」— "
+                f"第 1 段面向所有人,不写代码细节")
     if "适用范围" not in bg:
         err(f"{rel}: 背景与目标缺「适用范围」")
     else:
