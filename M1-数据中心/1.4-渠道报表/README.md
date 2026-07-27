@@ -1,0 +1,37 @@
+---
+page: 1.4
+name: 渠道报表
+route: /analytics/channel
+module: M1
+permission: analytics:report:view
+priority: P1
+status: 缺失
+estimate_days: 5
+---
+
+# 1.4 · 渠道报表
+
+> ⚠️ P1 页面,当前为精简规格。排期时按 10 段模板补全。
+
+## 1. 用途
+分渠道看拉新、充提、ROI。**投放决策的主要依据。**
+
+## 2. 入口
+菜单:数据中心 → 渠道报表 · 跳入:渠道管理「效果数据」
+
+## 3. 字段清单(草案)
+**表格列**:`渠道 | 注册数 | 首充人数 | 首充率 | 充值金额 | 提现金额 | 净充值 | GGR | 彩金成本 | **ROI** | 人均LTV`
+
+> **ROI 与 LTV 是投放的核心口径**,必须和财务/投放团队对齐定义。
+
+## 4. 操作与权限
+`analytics:report:view` 查看 · `analytics:export` 导出
+
+## 5. 状态清单
+空 / 加载 / 错误 / 无权限 / 渠道已停用(仍显示历史数据)
+
+## 6. 涉及表
+`ChannelDailySummary`(只读)· 只读 `Channel`(M5)→ `../表设计.prisma`
+
+## 7. 关联页面
+渠道管理(M5.3)· 代理佣金结算(M5.2)· 大盘概览(1.1)

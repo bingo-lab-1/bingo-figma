@@ -1,0 +1,229 @@
+// M3 · 财务管理 · 表设计提案
+// ⚠️ 这是设计提案。实现后以 bingo-backend/prisma/models/*.prisma 为准,本文件只保留 diff 说明。
+//
+// ── 外部引用(不在本模块定义)────────────────────────────
+//   User        → owner: M2-user
+//   UserTag     → owner: M2-user
+//   Channel     → owner: M5-agent-channel
+//   Activity    → owner: M4-game   (仅作元数据 ID 传入,禁止建立编译期依赖)
+//   ReviewStatus / CurrencyKind / EnableStatus → 00-shared
+// ────────────────────────────────────────────────────
+
+// ============ 1. 钱包(改造:补 frozenBalance)============
+
+model Wallet {
+  id            String   @id @default(cuid())
+  userId        String   @map("user_id")        // FK → M2-user.User.id
+  currency      String
+  /// 真金余额(可直接提现)
+  balance       Decimal  @default(0) @db.Decimal(20, 8)
+  /// 彩金余额(需打码达标才能转真金)
+  bonusBalance  Decimal  @default(0) @map("bonus_balance") @db.Decimal(20, 8)
+  /// ★ 新增:冻结余额(提现审核拒绝、风控冻结)
+  frozenBalance Decimal  @default(0) @map("frozen_balance") @db.Decimal(20, 8)
+  createdAt     DateTime @default(now()) @map("created_at")
+
+  @@unique([userId, currency])
+  @@map("wallet")
+}
+
+// ============ 2. 打码核销 ★ ============
+
+/// 每笔彩金一条打码要求,达标后彩金转真金
+model WagerRequirement {
+  id            String    @id @default(cuid())
+  userId        String    @map("user_id")           // FK → M2-user.User.id
+  currency      String
+  /// 来源:活动ID / VIP / 人工(元数据,不建外键 → 保持 M3 不依赖 M4)
+  sourceType    String    @map("source_type")
+  sourceId      String?   @map("source_id")
+  /// 发放的彩金本金
+  bonusAmount   Decimal   @map("bonus_amount") @db.Decimal(20, 8)
+  /// 打码倍数(来自 CodingMultiple 配置)
+  multiplier    Decimal   @db.Decimal(10, 2)
+  /// 需完成流水 = bonusAmount * multiplier
+  requiredWager Decimal   @map("required_wager") @db.Decimal(20, 8)
+  /// 已完成流水(投注时累加)
+  currentWager  Decimal   @default(0) @map("current_wager") @db.Decimal(20, 8)
+  status        WagerStatus @default(active)
+  completedAt   DateTime? @map("completed_at")
+  expiredAt     DateTime? @map("expired_at")
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  @@index([userId, status])
+  @@map("wager_requirement")
+}
+
+enum WagerStatus {
+  active     // 打码中
+  completed  // 已达标,彩金已转真金
+  expired    // 过期作废
+  cleared    // 后台清空(对应竞品 action_type 45 打码清空)
+}
+
+// ============ 3. 冻结与解冻 ★ ============
+
+model FreezeRecord {
+  id           String        @id @default(cuid())
+  userId       String        @map("user_id")        // FK → M2-user.User.id
+  currency     String
+  amount       Decimal       @db.Decimal(20, 8)
+  reason       FreezeReason
+  /// 关联单据(如提现单号)
+  refId        String?       @map("ref_id")
+  status       FreezeStatus  @default(frozen)
+  unfreezeBy   UnfreezeTrigger? @map("unfreeze_by")
+  operatorId   String?       @map("operator_id")    // 后台操作人,FK → M7 Account.id
+  frozenAt     DateTime      @default(now()) @map("frozen_at")
+  unfrozenAt   DateTime?     @map("unfrozen_at")
+
+  @@index([userId, status])
+  @@map("freeze_record")
+}
+
+enum FreezeReason {
+  withdrawRejected  // 提现审核拒绝并冻结
+  riskControl       // 风控冻结
+  manual            // 后台人工冻结
+}
+
+/// 解冻触发路径(参考竞品 action_type 98-101)
+enum UnfreezeTrigger {
+  recharge          // 充值解冻
+  login             // 登录解冻
+  subordinateRecharge // 直属下级充值解冻
+  manual            // 后台解冻
+}
+
+enum FreezeStatus {
+  frozen
+  unfrozen
+}
+
+// ============ 4. 提现订单 ============
+
+model WithdrawOrder {
+  id           String       @id @default(cuid())
+  orderNo      String       @unique @map("order_no")
+  userId       String       @map("user_id")         // FK → M2-user.User.id
+  channelId    String?      @map("channel_id")      // FK → M5.Channel.id
+  currency     String
+  /// 用户申请金额
+  amount       Decimal      @db.Decimal(20, 8)
+  /// 手续费
+  fee          Decimal      @default(0) @db.Decimal(20, 8)
+  /// 实际到账 = amount - fee
+  actualAmount Decimal      @map("actual_amount") @db.Decimal(20, 8)
+  status       ReviewStatus @default(pending)
+  /// 是否首次提现(风控用)
+  isFirst      Boolean      @default(false) @map("is_first")
+  /// 命中的审核规则
+  matchedRuleId String?     @map("matched_rule_id")
+  /// 收款账户快照(避免用户改绑后对不上)
+  payeeSnapshot Json?       @map("payee_snapshot")
+  paymentChannelId String?  @map("payment_channel_id")
+  reviewerId   String?      @map("reviewer_id")     // FK → M7 Account.id
+  rejectReason String?      @map("reject_reason")
+  remark       String?
+  appliedAt    DateTime     @default(now()) @map("applied_at")
+  reviewedAt   DateTime?    @map("reviewed_at")
+  completedAt  DateTime?    @map("completed_at")
+
+  @@index([status, appliedAt])
+  @@index([userId])
+  @@map("withdraw_order")
+}
+
+// ============ 5. 审核规则 ============
+
+/// 自动过审 / 转人工的规则,按 priority 从小到大匹配,命中即止
+model WithdrawReviewRule {
+  id            String   @id @default(cuid())
+  name          String
+  priority      Int      @default(100)
+  enabled       Boolean  @default(true)
+  /// 条件(JSON):金额区间、VIP等级、是否首提、打码是否达标、标签、渠道…
+  conditions    Json
+  /// 命中后动作
+  action        ReviewAction
+  createdAt     DateTime @default(now()) @map("created_at")
+  updatedAt     DateTime @updatedAt @map("updated_at")
+
+  @@map("withdraw_review_rule")
+}
+
+enum ReviewAction {
+  autoPass    // 自动过审
+  toManual    // 转人工
+  autoReject  // 自动拒绝
+}
+
+// ============ 6. 提现全局配置 ============
+
+model WithdrawConfig {
+  id             String   @id @default(cuid())
+  currency       String   @unique
+  minAmount      Decimal  @map("min_amount") @db.Decimal(20, 8)
+  maxAmount      Decimal? @map("max_amount") @db.Decimal(20, 8)
+  /// 手续费:固定值或百分比
+  feeType        String   @map("fee_type")
+  feeValue       Decimal  @map("fee_value") @db.Decimal(20, 8)
+  /// 每日次数上限
+  dailyLimitCount Int?    @map("daily_limit_count")
+  smsVerifyRequired Boolean @default(false) @map("sms_verify_required")
+  /// 需打码达标才可提现
+  wagerRequired  Boolean  @default(true) @map("wager_required")
+  updatedAt      DateTime @updatedAt @map("updated_at")
+
+  @@map("withdraw_config")
+}
+
+// ============ 7. 充值订单 ============
+
+model RechargeOrder {
+  id            String       @id @default(cuid())
+  orderNo       String       @unique @map("order_no")
+  userId        String       @map("user_id")        // FK → M2-user.User.id
+  channelId     String?      @map("channel_id")     // FK → M5.Channel.id
+  productId     String?      @map("product_id")     // FK → RechargeProduct.id
+  currency      String
+  amount        Decimal      @db.Decimal(20, 8)
+  status        RechargeStatus @default(pending)
+  isFirst       Boolean      @default(false) @map("is_first")
+  isGuest       Boolean      @default(false) @map("is_guest")
+  paymentChannelId String?   @map("payment_channel_id")
+  /// 三方支付流水号
+  externalTradeNo String?    @map("external_trade_no")
+  createdAt     DateTime     @default(now()) @map("created_at")
+  paidAt        DateTime?    @map("paid_at")
+
+  @@index([status, createdAt])
+  @@index([userId])
+  @@map("recharge_order")
+}
+
+enum RechargeStatus {
+  pending
+  paid
+  failed
+  expired
+  refunded
+}
+
+// ============ 8. 人工上下分 ============
+
+model ManualAdjustment {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")          // FK → M2-user.User.id
+  operatorId String   @map("operator_id")      // FK → M7 Account.id
+  currency   String
+  /// 正数上分,负数扣款
+  amount     Decimal  @db.Decimal(20, 8)
+  /// 加真金还是彩金
+  toBonus    Boolean  @default(false) @map("to_bonus")
+  reason     String
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([userId])
+  @@map("manual_adjustment")
+}

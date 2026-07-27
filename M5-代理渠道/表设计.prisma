@@ -1,0 +1,60 @@
+// M5 · 代理与渠道 · 表设计提案(仅列新增部分)
+// ⚠️ 设计提案。现有表见 bingo-backend/prisma/models/{agent,promotion}.prisma
+//
+// ── 外部引用(不在本模块定义)────────────────────────────
+//   User → owner: M2-用户管理
+//   Transaction / RechargeOrder → owner: M3-财务管理
+// ────────────────────────────────────────────────────
+
+/// 佣金结算单:按周期汇总代理佣金,处理负余额结转
+model AgentSettlement {
+  id            String   @id @default(cuid())
+  agentId       String   @map("agent_id")       // FK → Agent.id
+  currency      String
+  periodStart   DateTime @map("period_start")
+  periodEnd     DateTime @map("period_end")
+
+  /// 本期各口径佣金(⬜ 口径待探讨)
+  rechargeCommission Decimal @default(0) @map("recharge_commission") @db.Decimal(20, 8)
+  betCommission      Decimal @default(0) @map("bet_commission") @db.Decimal(20, 8)
+  /// 输赢分成,可能为负
+  profitShare        Decimal @default(0) @map("profit_share") @db.Decimal(20, 8)
+  bonusReward        Decimal @default(0) @map("bonus_reward") @db.Decimal(20, 8)
+
+  /// 上期结转(负余额结转开启时为负数)
+  carryoverIn   Decimal  @default(0) @map("carryover_in") @db.Decimal(20, 8)
+  /// 本期应结 = 各口径合计 + carryoverIn
+  payable       Decimal  @default(0) @db.Decimal(20, 8)
+  /// 结转到下期(payable < 0 且开启结转时)
+  carryoverOut  Decimal  @default(0) @map("carryover_out") @db.Decimal(20, 8)
+
+  status        SettlementStatus @default(pending)
+  settledAt     DateTime? @map("settled_at")
+  operatorId    String?   @map("operator_id")   // FK → M7.Account.id
+  createdAt     DateTime  @default(now()) @map("created_at")
+
+  @@unique([agentId, currency, periodStart])
+  @@map("agent_settlement")
+}
+
+enum SettlementStatus {
+  pending    // 待结算
+  confirmed  // 已确认
+  paid       // 已发放
+  carried    // 负数,结转下期
+}
+
+/// 三方转化回传配置(FB / Google / Kwai / TikTok)
+model ThirdPartyPostback {
+  id         String   @id @default(cuid())
+  channelId  String   @map("channel_id")   // FK → Channel.id
+  provider   String                        // facebook | google | kwai | tiktok
+  /// 回传事件映射:{ register: "CompleteRegistration", ftd: "Purchase", ... }
+  eventMap   Json     @map("event_map")
+  credential Json     // pixel id / access token(加密存储)
+  enabled    Boolean  @default(true)
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@unique([channelId, provider])
+  @@map("third_party_postback")
+}

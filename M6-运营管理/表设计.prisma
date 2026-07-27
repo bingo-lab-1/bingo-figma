@@ -1,0 +1,145 @@
+// M6 · 运营管理 · 表设计提案(仅列新增部分)
+// ⚠️ 设计提案。现有表见 bingo-backend/prisma/models/cms.prisma
+//
+// ── 外部引用(不在本模块定义)────────────────────────────
+//   UserTag / VipLevel → owner: M2-用户管理
+//   Activity           → owner: M4-玩法中心(仅引用 ID)
+// ────────────────────────────────────────────────────
+
+/// 展示位:Banner / 悬浮窗 / 侧边栏
+model Banner {
+  id         String     @id @default(cuid())
+  slot       BannerSlot
+  title      String
+  /// 多语言图片与文案 { "pt-BR": {img, text}, "en": {...} }
+  content    Json
+  /// 点击跳转:活动 / 游戏 / 外链
+  linkType   String     @map("link_type")
+  /// 活动 ID(元数据引用 M4.Activity.id,不建外键)
+  linkTarget String?    @map("link_target")
+  sortOrder  Int        @default(0) @map("sort_order")
+  enabled    Boolean    @default(true)
+  startAt    DateTime?  @map("start_at")
+  endAt      DateTime?  @map("end_at")
+  updatedAt  DateTime   @updatedAt @map("updated_at")
+
+  @@index([slot, enabled])
+  @@map("banner")
+}
+
+enum BannerSlot {
+  homeBanner   // 首页轮播
+  floatWindow  // 悬浮窗
+  sidebar      // 侧边栏
+}
+
+/// 弹窗
+model Popup {
+  id         String   @id @default(cuid())
+  name       String
+  content    Json     // 多语言图文
+  linkType   String   @map("link_type")
+  linkTarget String?  @map("link_target")
+  strategyId String?  @map("strategy_id")
+  enabled    Boolean  @default(true)
+  startAt    DateTime? @map("start_at")
+  endAt      DateTime? @map("end_at")
+  updatedAt  DateTime @updatedAt @map("updated_at")
+
+  @@map("popup")
+}
+
+/// 弹窗触发策略与频控(⬜ 触发类型待探讨)
+model PopupStrategy {
+  id           String   @id @default(cuid())
+  name         String
+  /// 触发时机:login | deposit | balanceLow | bigWin | ...
+  trigger      String
+  /// 受众:{ userTags:[], vipMin, vipMax, registerDays, ... }
+  audience     Json?
+  /// 频控:{ maxPerDay, maxTotal, cooldownHours }
+  frequency    Json
+  /// 冲突时的优先级,小者先弹
+  priority     Int      @default(100)
+  enabled      Boolean  @default(true)
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("popup_strategy")
+}
+
+/// 素材中心
+model Material {
+  id         String   @id @default(cuid())
+  name       String
+  url        String
+  mimeType   String   @map("mime_type")
+  size       Int
+  tags       String[]
+  uploaderId String   @map("uploader_id")   // FK → M7.Account.id
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("material")
+}
+
+/// 兑换码批次
+model RedeemCodeBatch {
+  id          String   @id @default(cuid())
+  name        String
+  /// 奖励内容 { type: cash|bonus, amount, wagerMultiplier }
+  reward      Json
+  /// 通用码(所有人同一个)还是一人一码
+  isUniversal Boolean  @default(false) @map("is_universal")
+  totalCount  Int      @map("total_count")
+  usedCount   Int      @default(0) @map("used_count")
+  /// 领取限制 { perUser, userTags, vipMin }
+  limits      Json?
+  startAt     DateTime? @map("start_at")
+  endAt       DateTime? @map("end_at")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  codes       RedeemCode[]
+  @@map("redeem_code_batch")
+}
+
+model RedeemCode {
+  id        String   @id @default(cuid())
+  batchId   String   @map("batch_id")
+  code      String   @unique
+  usedBy    String?  @map("used_by")      // FK → M2.User.id
+  usedAt    DateTime? @map("used_at")
+
+  batch     RedeemCodeBatch @relation(fields: [batchId], references: [id])
+  @@index([batchId, usedAt])
+  @@map("redeem_code")
+}
+
+/// 推送任务
+model PushTask {
+  id         String   @id @default(cuid())
+  title      String
+  content    Json
+  /// 受众定向
+  audience   Json?
+  channel    String   // jpush | webpush | inbox
+  scheduleAt DateTime? @map("schedule_at")
+  status     String   @default("draft")
+  sentCount  Int      @default(0) @map("sent_count")
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@map("push_task")
+}
+
+/// 意见反馈
+model Feedback {
+  id         String   @id @default(cuid())
+  userId     String   @map("user_id")
+  content    String
+  images     String[]
+  status     String   @default("open")
+  replyBy    String?  @map("reply_by")
+  reply      String?
+  createdAt  DateTime @default(now()) @map("created_at")
+
+  @@index([status, createdAt])
+  @@map("feedback")
+}

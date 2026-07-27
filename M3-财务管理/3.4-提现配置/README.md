@@ -1,0 +1,53 @@
+---
+page: 3.4
+name: 提现配置
+route: /finance/withdraw/config
+module: M3
+permission: finance:config:edit
+priority: P0
+status: 缺失
+estimate_days: 3
+---
+
+# 3.4 · 提现配置
+
+## 1. 用途
+提现的全局参数:限额、手续费、验证要求。**按币种分别配置。**
+
+## 2. 入口
+菜单:财务管理 → 提现 → 提现配置
+
+## 3. 字段清单
+| 字段 | 类型 | 必填 | 说明 |
+|---|---|---|---|
+| 币种 | select | ✅ | 每币种一套配置 |
+| 最低提现金额 | number | ✅ | |
+| 最高提现金额 | number | — | 空=不限 |
+| 手续费类型 | radio | ✅ | 固定值 / 百分比 |
+| 手续费值 | number | ✅ | |
+| 每日提现次数上限 | number | — | 空=不限 |
+| 提现短信验证 | switch | — | |
+| **需打码达标才可提现** | switch | — | 关键风控开关 |
+| 收款账号黑名单 | textarea | — | 一行一个 |
+
+## 4. 需求清单
+
+| ID | 需求 | 验收标准 | 权限码 | 人日 |
+|---|---|---|---|---|
+| 3.4-R1 | 按币种配置 | 每币种一套配置,切换 tab 加载对应值 | `finance:withdraw:view` | 0.5 |
+| 3.4-R2 | 限额与手续费 | 最低/最高金额、手续费(固定或百分比)可配并校验合法性 | `finance:config:edit` | 1 |
+| 3.4-R3 | 风控开关 | 短信验证、需打码达标、每日次数上限可配 | `finance:config:edit` | 0.5 |
+| 3.4-R4 | 收款账号黑名单 | 一行一个;命中黑名单的提现自动拒绝 | `finance:config:edit` | 0.5 |
+| 3.4-R5 | 保存与留痕 | 二次确认显示变更 diff;保存即生效;写 `OperationLog` | `finance:config:edit` | 0.5 |
+
+## 5. 状态清单
+加载 / 正常 / 保存中 / 保存成功 / 校验错误 / 无权限(表单只读)
+
+## 6. 交互流程
+保存即生效(⬜ 是否需要发布流程待定)。变更写 `OperationLog`。
+
+## 7. 涉及表
+`WithdrawConfig`(owner)· `CryptoCoins`/`FiatCurrency`(M8 只读) → `../表设计.prisma`
+
+## 8. 关联页面
+跳出:审核规则(3.3)· 币种管理(M8.3)

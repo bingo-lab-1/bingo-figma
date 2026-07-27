@@ -1,0 +1,132 @@
+// M4 · 玩法中心 · 表设计提案(重点:活动引擎重构)
+// ⚠️ 设计提案。现有表见 bingo-backend/prisma/models/{activity,game}.prisma
+//
+// ── 外部引用(不在本模块定义)────────────────────────────
+//   User / UserTag / VipLevel → owner: M2-用户管理
+//   Channel / Agent           → owner: M5-代理渠道
+//   Wallet / Transaction / WagerRequirement → owner: M3-财务管理
+// ────────────────────────────────────────────────────
+
+// ============ 活动引擎(替代现有 9 张一活动一表)============
+
+/// 活动主表:一张表覆盖所有活动类型,靠 JSON 配置差异化
+model Activity {
+  id           String        @id @default(cuid())
+  /// 业务编码,唯一(如 accountFirstRecharge / rain / dailySign)
+  code         String        @unique
+  category     ActivityCategory
+  name         String
+  /// 侧边栏简称
+  shortName    String?       @map("short_name")
+  enabled      Boolean       @default(false)
+
+  // ── ① 资格圈人 ──
+  /// { operators:[], channels:[], agentIds:[], userTags:[], vipMin, vipMax, registerAfter, ... }
+  eligibility  Json?
+
+  // ── ② 时间周期 ──
+  /// { resetType: once|daily|weekly, cyclic, cooldownDays, periodDays, resetTime, startAt, endAt }
+  schedule     Json?
+
+  // ── ③ 奖励结构(多态)──
+  rewardKind   RewardKind    @map("reward_kind")
+  /// 结构随 rewardKind 变化,见下方说明
+  rewardRules  Json          @map("reward_rules")
+
+  // ── ④ 打码要求 ──
+  /// 发放彩金的打码倍数,交给 M3.WagerRequirement 执行
+  wagerMultiplier Decimal?   @map("wager_multiplier") @db.Decimal(10, 2)
+
+  // ── ⑤ 领取限制 ──
+  /// { dailyClaims, totalClaims, perDayCount, minRecharge, maxRecharge, forceMinRecharge }
+  limits       Json?
+
+  // ── ⑥ 付费变体(通行证类)──
+  /// { buyAmount, paidTrack: true }
+  paidConfig   Json?         @map("paid_config")
+
+  // ── ⑦ 展示(引用 M6 的展示位,解耦)──
+  /// { bannerId, floatWindowId, sidebarId, descOn, desc, countdown }
+  display      Json?
+
+  createdAt    DateTime      @default(now()) @map("created_at")
+  updatedAt    DateTime      @updatedAt @map("updated_at")
+
+  claims       ActivityClaim[]
+
+  @@index([category, enabled])
+  @@map("activity")
+}
+
+enum ActivityCategory {
+  recharge   // 充值类
+  retention  // 留存类
+  recall     // 召回类
+  wagering   // 打码类
+  fission    // 裂变类
+}
+
+/// 奖励结构类型(决定 rewardRules 的 JSON 形态)
+enum RewardKind {
+  /// 档位表:[{ threshold, rewardRate, wagerMultiplier }]  —— 如账号首充
+  TIER
+  /// 矩阵:[{ vipMin, vipMax, amountMin, amountMax, rechargeRate, lossRate }] —— 如红包雨
+  MATRIX
+  /// 日历:[{ day, reward, wagerReq, depositReq, betReq }] —— 如每日签到
+  CALENDAR
+  /// 里程碑:[{ condition, requirement, freeReward, paidReward }] —— 如通行证
+  MILESTONE
+}
+
+/// 活动领取记录(统一,替代每活动一张记录表)
+/// 用途:对账 + ROI 核算(M1.ActivityRoiDaily 由此聚合)
+model ActivityClaim {
+  id           String   @id @default(cuid())
+  activityId   String   @map("activity_id")
+  activityCode String   @map("activity_code")   // 冗余,便于报表
+  userId       String   @map("user_id")         // FK → M2.User.id
+  currency     String
+  /// 发放金额(彩金)
+  amount       Decimal  @db.Decimal(20, 8)
+  /// 触发时的上下文快照(充值额、亏损额、VIP等级…)便于事后追溯
+  context      Json?
+  /// 关联的打码要求(M3 创建后回填)
+  wagerId      String?  @map("wager_id")
+  claimedAt    DateTime @default(now()) @map("claimed_at")
+
+  activity     Activity @relation(fields: [activityId], references: [id])
+
+  @@index([userId, claimedAt])
+  @@index([activityCode, claimedAt])
+  @@map("activity_claim")
+}
+
+// ============ 大厅编排 ============
+
+/// 首页分类/推荐位布局
+model LobbyLayout {
+  id        String   @id @default(cuid())
+  /// 分类 / 推荐位标识
+  slot      String
+  title     String
+  sortOrder Int      @default(0) @map("sort_order")
+  enabled   Boolean  @default(true)
+  /// 关联游戏列表(gameCode 数组)或规则
+  config    Json
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("lobby_layout")
+}
+
+// ============ 迁移说明(⬜ 待探讨)============
+//
+// 现有 9 张表 → Activity.rewardRules 映射:
+//   FirstRechargeConfig        → TIER
+//   RainAmountConfig+RainRewardConfig+RainTimeConfig → MATRIX + schedule
+//   DailyRechargeRewardConfig  → TIER
+//   WeeklyRechargeRewardConfig → TIER
+//   RechargeLotteryConfig      → TIER(待确认)
+//   ProvidentFundPlan(Config)  → MILESTONE(待确认)
+//
+// 待定:JSON vs 子表。JSON 灵活但无 DB 级约束,子表安全但加类型要改 schema。
+// 建议先用 JSON + 应用层 zod 校验 + rewardKind 判别,跑通后视情况下沉。

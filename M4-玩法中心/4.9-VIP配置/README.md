@@ -1,0 +1,38 @@
+---
+page: 4.9
+name: VIP 配置
+route: /game/vip
+module: M4
+permission: game:vip:edit
+priority: P1
+status: 需改造
+estimate_days: 8
+---
+
+# 4.9 · VIP 配置
+
+> ⚠️ **P1 页面,当前为精简规格。** 排期时按 10 段模板补全(见 `00-公共约定/README.md`)。
+
+## 1. 用途
+配置 VIP 等级门槛与权益发放。**双 VIP(充值VIP/投注VIP)决策未定前无法定稿。**
+
+## 2. 入口
+菜单:玩法中心 → VIP 配置
+
+## 3. 字段清单
+⬜ 待补
+
+## 4. 操作与权限
+主权限码 `game:vip:edit`;完整权限点见 `../README.md` 第 6 段。
+
+## 5. 状态清单
+空 / 加载 / 错误 / 无权限 —— 特殊态 ⬜ 待补
+
+## 6. 交互流程
+⬜ 待补
+
+## 7. 涉及表
+`Level` `VipLevel`(M2 owner,本页只配置规则) → `../表设计.prisma`
+
+## 8. 关联页面
+VIP 管理(M2.6)· 活动引擎(4.1)

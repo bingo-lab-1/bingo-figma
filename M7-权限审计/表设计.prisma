@@ -1,0 +1,42 @@
+// M7 · 权限与审计 · 表设计提案(仅列改造部分)
+// ⚠️ 设计提案。现有表见 bingo-backend/prisma/models/{user,common}.prisma
+//    Account / Session / Role / Permission / RolePermission / OperationLog / Audit 均已存在。
+//
+// ── 外部引用 ────────────────────────────────────────
+//   无。本模块是基础设施,被所有模块引用,不引用任何业务模块。
+// ────────────────────────────────────────────────────
+
+// ============ 改造 1:后台账号补测试标记 ============
+//
+// model Account {
+//   ... 现有字段
+//   /// ★ 新增:测试账号。测试流水不进真实报表
+//   isTestAccount Boolean @default(false) @map("is_test_account")
+//   /// ★ 新增:账号类型(平台运营 / 代理 / 客服)
+//   accountType   String  @default("operator") @map("account_type")
+// }
+
+// ============ 改造 2:操作日志确保可追溯 ============
+//
+// model OperationLog {
+//   ... 现有字段
+//   /// 确保包含:操作者 / 路径 / 接口描述 / 请求参数 / IP / 耗时 / 结果
+//   /// 竞品筛选维度:操作者·路径·请求参数关键字·接口描述·活动类型·时间
+// }
+
+// ============ ⬜ 待探讨:数据权限(行级)============
+//
+// 若代理账号只能看自己线上数据,需要引入数据范围概念:
+//
+// model DataScope {
+//   id        String @id @default(cuid())
+//   accountId String @map("account_id")
+//   /// all | ownAgentLine | ownChannel | custom
+//   scopeType String @map("scope_type")
+//   /// custom 时的具体范围 { agentIds:[], channelIds:[] }
+//   scopeValue Json?
+//   @@map("data_scope")
+// }
+//
+// ⚠️ 行级权限会侵入所有查询,复杂度远高于菜单权限。
+//    先确认业务是否真的需要,再决定是否引入。

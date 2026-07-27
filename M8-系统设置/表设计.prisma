@@ -1,0 +1,42 @@
+// M8 · 系统设置 · 表设计提案(仅列新增/改造部分)
+// ⚠️ 设计提案。现有表见 bingo-backend/prisma/models/{common,finance}.prisma
+//    Kv / Domain / CryptoCoins / ChainNetwork / CodingMultiple 均已存在。
+//
+// ── 外部引用 ────────────────────────────────────────
+//   无。基础设施模块,被所有模块读取。
+// ────────────────────────────────────────────────────
+
+/// 法币与汇率(⬜ 是否需要待探讨:竞品主打 BRL)
+model FiatCurrency {
+  id           String   @id @default(cuid())
+  code         String   @unique          // BRL / USD / ...
+  symbol       String                    // R$ / $
+  /// 对基准币的汇率
+  rate         Decimal  @db.Decimal(20, 8)
+  /// 汇率来源:manual | api
+  rateSource   String   @default("manual") @map("rate_source")
+  decimals     Int      @default(2)
+  enabled      Boolean  @default(true)
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  @@map("fiat_currency")
+}
+
+// ============ 改造提案:Kv 加分组与类型 ============
+//
+// 现有 Kv 是裸键值,建议补:
+// model Kv {
+//   ... 现有字段
+//   /// ★ 分组:withdraw | activity | risk | system
+//   group      String?
+//   /// ★ 值类型:string | number | boolean | json,用于后台表单渲染与校验
+//   valueType  String?  @map("value_type")
+//   /// ★ 描述,后台显示给运营看
+//   description String?
+//   /// ★ 最后修改人,配合 OperationLog
+//   updatedBy  String?  @map("updated_by")
+// }
+//
+// ⬜ 待探讨:哪些参数放 Kv,哪些值得建专表?
+//    经验规则:被代码直接读取的单值 → Kv;
+//              有结构、要列表展示、要审核 → 专表(如 WithdrawConfig 就该是专表)

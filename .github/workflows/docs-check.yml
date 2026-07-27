@@ -1,0 +1,21 @@
+name: 文档规范校验
+
+on:
+  pull_request:
+    paths: ['bingo-figma/**']
+  push:
+    branches: [main]
+    paths: ['bingo-figma/**']
+
+jobs:
+  spec:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 校验文档规范
+        run: python3 bingo-figma/00-公共约定/校验.py
+      # 全部页面迁移到 v2 后,把上一步换成:
+      #   run: python3 bingo-figma/00-公共约定/校验.py --strict
