@@ -33,6 +33,8 @@ jobs:
           set -euo pipefail
           npm i -g @mermaid-js/mermaid-cli@11 >/dev/null 2>&1
           mkdir -p /tmp/mmd
+          # GitHub runner 上 Chromium 无可用 sandbox,需显式关闭
+          echo '{"args":["--no-sandbox","--disable-setuid-sandbox"]}' > /tmp/mmd/pptr.json
           # 抽出每个 ```mermaid 块为独立文件
           python3 - <<'PY'
           import pathlib, re, os
@@ -52,11 +54,20 @@ jobs:
           PY
           fail=0
           while IFS=$'\t' read -r num src; do
-            if ! mmdc -i "/tmp/mmd/${num}.mmd" -o "/tmp/mmd/${num}.svg" >/tmp/mmd/${num}.log 2>&1; then
-              echo "::error file=${src}::mermaid 语法错误(第 ${num} 张)"
-              tail -15 "/tmp/mmd/${num}.log"
-              fail=1
+            if mmdc -p /tmp/mmd/pptr.json \
+                    -i "/tmp/mmd/${num}.mmd" \
+                    -o "/tmp/mmd/${num}.svg" >"/tmp/mmd/${num}.log" 2>&1; then
+              continue
             fi
+            # 区分环境失败与真正的语法错误,否则误导排查方向
+            if grep -q "Failed to launch the browser" "/tmp/mmd/${num}.log"; then
+              echo "::error::mermaid-cli 环境失败(浏览器无法启动),非文档问题"
+              tail -10 "/tmp/mmd/${num}.log"
+              exit 2
+            fi
+            echo "::error file=${src}::mermaid 语法错误"
+            sed -n '1,20p' "/tmp/mmd/${num}.log"
+            fail=1
           done < /tmp/mmd/index.tsv
           [ "$fail" -eq 0 ] && echo "全部 mermaid 图语法正确"
           exit $fail
