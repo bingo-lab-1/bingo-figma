@@ -211,8 +211,14 @@ for f in pages:
 
 
 # ─────────────────────── 其他 ───────────────────────
+SKIP_DIRS = {".git", ".github", "node_modules", "__pycache__", ".venv"}
 for d in BASE.rglob("*"):
-    if d.is_dir() and not any(d.iterdir()):
+    if not d.is_dir():
+        continue
+    rel_parts = d.relative_to(BASE).parts
+    if any(p in SKIP_DIRS for p in rel_parts):
+        continue
+    if not any(d.iterdir()):
         err(f"空目录: {d.relative_to(BASE)}")
 
 
