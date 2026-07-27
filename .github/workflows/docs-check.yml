@@ -2,10 +2,9 @@ name: 文档规范校验
 
 on:
   pull_request:
-    paths: ['bingo-figma/**']
   push:
     branches: [main]
-    paths: ['bingo-figma/**']
+  workflow_dispatch:
 
 jobs:
   spec:
@@ -16,6 +15,6 @@ jobs:
         with:
           python-version: '3.12'
       - name: 校验文档规范
-        run: python3 bingo-figma/00-公共约定/校验.py
-      # 全部页面迁移到 v2 后,把上一步换成:
-      #   run: python3 bingo-figma/00-公共约定/校验.py --strict
+        run: python3 00-公共约定/校验.py
+      # 全部页面迁移到 v3 后,把上一步换成:
+      #   run: python3 00-公共约定/校验.py --strict
