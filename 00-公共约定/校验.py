@@ -20,7 +20,6 @@ V3_SECTIONS = [
 # 适用范围必须覆盖的维度(自检案例:本地化 / 用户场景未定义)
 SCOPE_KEYS = ["终端", "响应式", "语言", "时区"]
 BANNED_SECTIONS = {"待探讨", "页面结构"}
-VALID_CURRENT = {"已有", "改造", "新增"}
 
 # emoji 与装饰性符号(需求文档靠结构表达轻重,不靠图标)
 EMOJI = re.compile(
@@ -130,6 +129,12 @@ for f in pages:
         if not rid.startswith(page_no + "-R"):
             err(f"{rel}: 需求编号 {rid} 与页面编号 {page_no} 不符")
 
+    # 5) 需求详述里展开的编号,必须在需求清单中存在
+    listed = {r.strip().strip("|").split("|")[0].strip() for r in rows}
+    for m in re.finditer(r"^### (\S+)", section_body(text, "需求详述"), re.M):
+        if listed and m.group(1) not in listed:
+            err(f"{rel}: 需求详述展开了 {m.group(1)},但需求清单中没有这条")
+
     # ── v3 专属检查 ──
     if not v3:
         if STRICT:
@@ -143,30 +148,18 @@ for f in pages:
         err(f"{rel}: 段落不符 v3 模板\n"
             f"      期望 {V3_SECTIONS}\n      实际 {titles}")
 
-    # 6) 需求表 7 列(含触发条件)且现状合法
-    heavy = []          # 需展开的复杂需求
+    # 6) 需求表 5 列(ID/需求/触发条件/验收/权限),触发条件必填
     for r in rows:
         cells = [c.strip() for c in r.strip().strip("|").split("|")]
-        if len(cells) != 7:
-            err(f"{rel}: 需求行应 7 列"
-                f"(ID/需求/触发条件/验收/现状/权限/人日) → {cells[0]}")
+        if len(cells) != 5:
+            err(f"{rel}: 需求行应 5 列"
+                f"(ID/需求/触发条件/验收标准/权限码) → {cells[0]}")
             continue
-        if cells[4] not in VALID_CURRENT:
-            err(f"{rel}: {cells[0]} 现状值非法「{cells[4]}」,应为 {VALID_CURRENT}")
         if not cells[2]:
             err(f"{rel}: {cells[0]} 缺触发条件")
-        try:
-            if float(cells[6]) >= 1:
-                heavy.append(cells[0])
-        except ValueError:
-            pass
 
-    # 7) 复杂需求必须在「需求详述」展开,且 7 栏齐全
+    # 7) 「需求详述」展开的每一条须 6 栏齐全 + 正逆向测试
     detail = section_body(text, "需求详述")
-    for rid in heavy:
-        if rid not in detail:
-            err(f"{rel}: {rid} 人日>=1 但未在「需求详述」展开")
-    # 逐条检查每个展开块,而非全段出现过即可
     for m in re.finditer(r"^### (\S+)[^\n]*\n(.*?)(?=^### |\Z)",
                          detail, re.M | re.S):
         rid, blk = m.group(1), m.group(2)
@@ -259,41 +252,23 @@ for d in BASE.rglob("*"):
         err(f"空目录: {d.relative_to(BASE)}")
 
 
-# ─────────────────────── 人日汇总与守恒 ───────────────────────
-# 人日的唯一出处是**模块 README 的页面索引表**,页面 frontmatter 不重复声明。
-# 已写需求清单的页面,其需求人日之和须与索引一致(守恒)。
+# ─────────────────────── 人日汇总 ───────────────────────
+# 人日的唯一出处是**模块 README 的页面索引表**。
+# 页面 README 不写人日 —— 需求文档面向所有读者,排期信息归模块索引。
 by_pri: dict[str, float] = {}
 for mod in modules:
     mtext = (mod / "README.md").read_text(encoding="utf-8")
     for m in re.finditer(
             r"^\| (\d+\.\d+) \|[^|]*\|[^|]*\|\s*\**(P\d)\**\s*\|[^|]*\|\s*([\d.]+)\s*\|",
             mtext, re.M):
-        no, pri, days = m.group(1), m.group(2), float(m.group(3))
-        by_pri[pri] = by_pri.get(pri, 0) + days
-        # 若该页已有需求清单,核对守恒
-        cand = [p for p in mod.glob(f"{no}-*/README.md")]
-        if not cand:
-            continue
-        ptext = cand[0].read_text(encoding="utf-8")
-        rws = table_rows(section_body(ptext, "需求清单"),
-                         r"^\|\s*\d+\.\d+-R\d+\s*\|")
-        if not rws:
-            continue
-        try:
-            s = sum(float(r.strip().strip("|").split("|")[-1].strip()) for r in rws)
-        except ValueError:
-            err(f"{cand[0].relative_to(BASE)}: 需求表人日列解析失败")
-            continue
-        if abs(s - days) > 1e-6:
-            err(f"{cand[0].relative_to(BASE)}: 人日不守恒 — "
-                f"模块索引 {days:g},需求合计 {s:g}")
+        by_pri[m.group(2)] = by_pri.get(m.group(2), 0) + float(m.group(3))
 
 
 # ─────────────────────── 输出 ───────────────────────
 print(f"页面 {len(pages)} 个 · 已迁移 v3: {migrated} · 待迁移: {len(pages) - migrated}")
 if by_pri:
     parts = " · ".join(f"{k} {v:g}" for k, v in sorted(by_pri.items()))
-    print(f"人日(由需求表汇总): {parts} · 合计 {sum(by_pri.values()):g}")
+    print(f"人日(由模块索引汇总): {parts} · 合计 {sum(by_pri.values()):g}")
 if warns and not STRICT:
     print(f"\n⚠️  {len(warns)} 个页面待迁移(非阻断)")
 if errors:
