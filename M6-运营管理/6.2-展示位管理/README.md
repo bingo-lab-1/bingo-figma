@@ -1,12 +1,10 @@
 ---
-page: 6.2
-name: 展示位管理
-route: /ops/banner
-module: M6
-permission: ops:banner:edit
-priority: P0
-status: 缺失
-estimate_days: 6
+名称: 展示位管理
+路由: /ops/banner
+模块: M6
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 6.2 · 展示位管理

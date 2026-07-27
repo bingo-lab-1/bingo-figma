@@ -1,12 +1,10 @@
 ---
-page: 4.4
-name: 游戏列表与品牌
-route: /game/list
-module: M4
-permission: game:list:view
-priority: P0
-status: 已有
-estimate_days: 2
+名称: 游戏列表与品牌
+路由: /game/list
+模块: M4
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 4.4 · 游戏列表与品牌

@@ -1,13 +1,10 @@
 ---
-page: 2.1
-name: 用户列表与详情
-route: /user/list
-module: M2
-priority: P0
-status: 已有
-estimate_days: 3
-spec_version: 3
-updated: 2026-07-27
+名称: 用户列表与详情
+路由: /user/list
+模块: M2
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 2.1 · 用户列表与详情

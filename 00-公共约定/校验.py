@@ -99,9 +99,13 @@ for f in pages:
     secs = sections(text)
     titles = [t for _, t in secs]
     nums = [n for n, _ in secs]
-    v3 = fm.get("spec_version") == "3"
+    # 是否已迁移:由段落结构本身判定,不靠人工标记
+    v3 = titles == V3_SECTIONS
     if v3:
         migrated += 1
+
+    # 页面编号从文件夹名推导,不在 frontmatter 重复
+    page_no = f.parent.name.split("-")[0]
 
     # 1) 段落编号连续
     if nums != list(range(1, len(nums) + 1)):
@@ -112,29 +116,24 @@ for f in pages:
         if banned in titles:
             err(f"{rel}: 含禁用段落「{banned}」")
 
-    # 3) frontmatter 必填
-    for k in ("page", "route", "module", "priority", "status", "estimate_days"):
+    # 3) frontmatter 必填(中文键,仅 6 项)
+    for k in ("名称", "路由", "模块", "优先级", "状态", "更新"):
         if k not in fm:
-            err(f"{rel}: frontmatter 缺 {k}")
+            err(f"{rel}: frontmatter 缺「{k}」")
 
     body_req = section_body(text, "需求清单")
     rows = table_rows(body_req, r"^\|\s*\d+\.\d+-R\d+\s*\|")
 
-    # 4) 人日守恒
-    if rows:
-        try:
-            total = sum(float(r.strip().strip("|").split("|")[-1].strip())
-                        for r in rows)
-            decl = float(fm.get("estimate_days", "nan"))
-            if abs(total - decl) > 1e-6:
-                err(f"{rel}: 人日不守恒 — 声明 {decl},需求合计 {total}")
-        except ValueError:
-            err(f"{rel}: 需求表人日列解析失败")
+    # 4) 需求编号须与文件夹编号一致
+    for r in rows:
+        rid = r.strip().strip("|").split("|")[0].strip()
+        if not rid.startswith(page_no + "-R"):
+            err(f"{rel}: 需求编号 {rid} 与页面编号 {page_no} 不符")
 
     # ── v3 专属检查 ──
     if not v3:
         if STRICT:
-            err(f"{rel}: 未迁移到 spec_version 3")
+            err(f"{rel}: 段落结构未迁移到 v3 模板")
         else:
             warn(f"{rel}: 待迁移到 v3")
         continue
@@ -249,8 +248,41 @@ for d in BASE.rglob("*"):
         err(f"空目录: {d.relative_to(BASE)}")
 
 
+# ─────────────────────── 人日汇总与守恒 ───────────────────────
+# 人日的唯一出处是**模块 README 的页面索引表**,页面 frontmatter 不重复声明。
+# 已写需求清单的页面,其需求人日之和须与索引一致(守恒)。
+by_pri: dict[str, float] = {}
+for mod in modules:
+    mtext = (mod / "README.md").read_text(encoding="utf-8")
+    for m in re.finditer(
+            r"^\| (\d+\.\d+) \|[^|]*\|[^|]*\|\s*\**(P\d)\**\s*\|[^|]*\|\s*([\d.]+)\s*\|",
+            mtext, re.M):
+        no, pri, days = m.group(1), m.group(2), float(m.group(3))
+        by_pri[pri] = by_pri.get(pri, 0) + days
+        # 若该页已有需求清单,核对守恒
+        cand = [p for p in mod.glob(f"{no}-*/README.md")]
+        if not cand:
+            continue
+        ptext = cand[0].read_text(encoding="utf-8")
+        rws = table_rows(section_body(ptext, "需求清单"),
+                         r"^\|\s*\d+\.\d+-R\d+\s*\|")
+        if not rws:
+            continue
+        try:
+            s = sum(float(r.strip().strip("|").split("|")[-1].strip()) for r in rws)
+        except ValueError:
+            err(f"{cand[0].relative_to(BASE)}: 需求表人日列解析失败")
+            continue
+        if abs(s - days) > 1e-6:
+            err(f"{cand[0].relative_to(BASE)}: 人日不守恒 — "
+                f"模块索引 {days:g},需求合计 {s:g}")
+
+
 # ─────────────────────── 输出 ───────────────────────
 print(f"页面 {len(pages)} 个 · 已迁移 v3: {migrated} · 待迁移: {len(pages) - migrated}")
+if by_pri:
+    parts = " · ".join(f"{k} {v:g}" for k, v in sorted(by_pri.items()))
+    print(f"人日(由需求表汇总): {parts} · 合计 {sum(by_pri.values()):g}")
 if warns and not STRICT:
     print(f"\n⚠️  {len(warns)} 个页面待迁移(非阻断)")
 if errors:

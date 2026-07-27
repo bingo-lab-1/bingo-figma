@@ -1,12 +1,10 @@
 ---
-page: 4.5
-name: 留存类活动
-route: /game/activity/retention
-module: M4
-permission: game:activity:edit
-priority: P1
-status: 缺失
-estimate_days: 8
+名称: 留存类活动
+路由: /game/activity/retention
+模块: M4
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 4.5 · 留存类活动

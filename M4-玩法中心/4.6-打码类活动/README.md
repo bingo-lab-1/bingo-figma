@@ -1,12 +1,10 @@
 ---
-page: 4.6
-name: 打码类活动
-route: /game/activity/wagering
-module: M4
-permission: game:activity:edit
-priority: P1
-status: 需改造
-estimate_days: 5
+名称: 打码类活动
+路由: /game/activity/wagering
+模块: M4
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 4.6 · 打码类活动

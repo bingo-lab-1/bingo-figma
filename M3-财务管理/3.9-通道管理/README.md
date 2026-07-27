@@ -1,12 +1,10 @@
 ---
-page: 3.9
-name: 通道管理
-route: /finance/channel
-module: M3
-permission: finance:channel:edit
-priority: P1
-status: 需改造
-estimate_days: 5
+名称: 通道管理
+路由: /finance/channel
+模块: M3
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 3.9 · 通道管理

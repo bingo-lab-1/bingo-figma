@@ -1,12 +1,10 @@
 ---
-page: 1.1
-name: 大盘概览
-route: /analytics
-module: M1
-permission: analytics:overview:view
-priority: P0
-status: 部分
-estimate_days: 8
+名称: 大盘概览
+路由: /analytics
+模块: M1
+优先级: P0
+状态: 部分
+更新: 2026-07-27
 ---
 
 # 1.1 · 大盘概览

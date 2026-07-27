@@ -1,12 +1,10 @@
 ---
-page: 2.2
-name: 钱包与账变
-route: /user/wallet
-module: M2
-permission: user:wallet:view
-priority: P0
-status: 需改造
-estimate_days: 3
+名称: 钱包与账变
+路由: /user/wallet
+模块: M2
+优先级: P0
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 2.2 · 钱包与账变

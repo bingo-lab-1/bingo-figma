@@ -1,12 +1,10 @@
 ---
-page: 6.5
-name: 兑换码
-route: /ops/redeem-code
-module: M6
-permission: ops:redeem:create
-priority: P1
-status: 缺失
-estimate_days: 5
+名称: 兑换码
+路由: /ops/redeem-code
+模块: M6
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 6.5 · 兑换码

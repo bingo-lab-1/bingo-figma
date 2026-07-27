@@ -1,12 +1,9 @@
 ---
-module: M5
-name: 代理渠道
-owner: 待定
-status: 设计中
-pages: 5
-p0: 3
-estimate_days: 14
-updated: 2026-07-26
+模块: M5
+名称: 代理渠道
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M5 · 代理与渠道

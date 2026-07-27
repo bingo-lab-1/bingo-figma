@@ -1,12 +1,10 @@
 ---
-page: 1.3
-name: 月度报表
-route: /analytics/monthly
-module: M1
-permission: analytics:report:view
-priority: P1
-status: 缺失
-estimate_days: 3
+名称: 月度报表
+路由: /analytics/monthly
+模块: M1
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 1.3 · 月度报表

@@ -1,12 +1,10 @@
 ---
-page: 4.11
-name: 道具卡配置
-route: /game/item-card
-module: M4
-permission: game:item:edit
-priority: P2
-status: 缺失
-estimate_days: 5
+名称: 道具卡配置
+路由: /game/item-card
+模块: M4
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 4.11 · 道具卡配置

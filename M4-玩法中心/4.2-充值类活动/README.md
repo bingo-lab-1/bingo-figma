@@ -1,12 +1,10 @@
 ---
-page: 4.2
-name: 充值类活动
-route: /game/activity/recharge
-module: M4
-permission: game:activity:edit
-priority: P0
-status: 需改造
-estimate_days: 8
+名称: 充值类活动
+路由: /game/activity/recharge
+模块: M4
+优先级: P0
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 4.2 · 充值类活动

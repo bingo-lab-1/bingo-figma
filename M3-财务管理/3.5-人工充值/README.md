@@ -1,12 +1,10 @@
 ---
-page: 3.5
-name: 人工充值与扣款
-route: /finance/manual-adjust
-module: M3
-permission: finance:manual:adjust
-priority: P0
-status: 缺失
-estimate_days: 4
+名称: 人工充值与扣款
+路由: /finance/manual-adjust
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.5 · 人工充值与扣款

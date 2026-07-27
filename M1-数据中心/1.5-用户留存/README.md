@@ -1,12 +1,10 @@
 ---
-page: 1.5
-name: 用户留存
-route: /analytics/retention
-module: M1
-permission: analytics:report:view
-priority: P1
-status: 缺失
-estimate_days: 5
+名称: 用户留存
+路由: /analytics/retention
+模块: M1
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 1.5 · 用户留存

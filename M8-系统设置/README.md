@@ -1,12 +1,9 @@
 ---
-module: M8
-name: 系统设置
-owner: 待定
-status: 设计中
-pages: 3
-p0: 1
-estimate_days: 3
-updated: 2026-07-26
+模块: M8
+名称: 系统设置
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M8 · 系统设置

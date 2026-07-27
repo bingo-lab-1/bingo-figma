@@ -1,12 +1,10 @@
 ---
-page: 3.7
-name: 打码核销
-route: /finance/wagering
-module: M3
-permission: finance:wager:view
-priority: P0
-status: 缺失
-estimate_days: 8
+名称: 打码核销
+路由: /finance/wagering
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.7 · 打码核销

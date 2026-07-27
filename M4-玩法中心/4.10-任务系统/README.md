@@ -1,12 +1,10 @@
 ---
-page: 4.10
-name: 任务系统
-route: /game/task
-module: M4
-permission: game:task:edit
-priority: P2
-status: 缺失
-estimate_days: 10
+名称: 任务系统
+路由: /game/task
+模块: M4
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 4.10 · 任务系统

@@ -1,12 +1,10 @@
 ---
-page: 6.1
-name: 站内信
-route: /ops/notification
-module: M6
-permission: ops:notification:send
-priority: P0
-status: 已有
-estimate_days: 2
+名称: 站内信
+路由: /ops/notification
+模块: M6
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 6.1 · 站内信

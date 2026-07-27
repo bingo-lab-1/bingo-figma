@@ -1,12 +1,10 @@
 ---
-page: 3.8
-name: 充值商品配置
-route: /finance/recharge/product
-module: M3
-permission: finance:product:edit
-priority: P1
-status: 缺失
-estimate_days: 5
+名称: 充值商品配置
+路由: /finance/recharge/product
+模块: M3
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.8 · 充值商品配置

@@ -1,12 +1,9 @@
 ---
-module: M1
-name: 数据中心
-owner: 待定
-status: 设计中
-pages: 7
-p0: 1
-estimate_days: 8
-updated: 2026-07-26
+模块: M1
+名称: 数据中心
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M1 · 数据中心

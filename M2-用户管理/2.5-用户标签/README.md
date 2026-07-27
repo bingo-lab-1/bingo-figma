@@ -1,12 +1,10 @@
 ---
-page: 2.5
-name: 用户标签
-route: /user/tag
-module: M2
-permission: user:tag:edit
-priority: P0
-status: 已有
-estimate_days: 2.5
+名称: 用户标签
+路由: /user/tag
+模块: M2
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 2.5 · 用户标签

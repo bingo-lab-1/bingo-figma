@@ -1,12 +1,10 @@
 ---
-page: 4.9
-name: VIP 配置
-route: /game/vip
-module: M4
-permission: game:vip:edit
-priority: P1
-status: 需改造
-estimate_days: 8
+名称: VIP 配置
+路由: /game/vip
+模块: M4
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 4.9 · VIP 配置

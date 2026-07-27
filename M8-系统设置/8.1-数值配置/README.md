@@ -1,12 +1,10 @@
 ---
-page: 8.1
-name: 数值配置
-route: /system/config
-module: M8
-permission: system:config:view
-priority: P0
-status: 已有
-estimate_days: 3
+名称: 数值配置
+路由: /system/config
+模块: M8
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 8.1 · 数值配置

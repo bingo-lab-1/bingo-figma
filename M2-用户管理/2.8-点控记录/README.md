@@ -1,12 +1,10 @@
 ---
-page: 2.8
-name: 点控记录
-route: /user/point-control
-module: M2
-permission: user:point-control:view
-priority: P2
-status: 缺失
-estimate_days: 3
+名称: 点控记录
+路由: /user/point-control
+模块: M2
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 2.8 · 点控记录

@@ -1,12 +1,9 @@
 ---
-module: M3
-name: 财务管理
-owner: 待定
-status: 设计中
-pages: 10
-p0: 7
-estimate_days: 42
-updated: 2026-07-26
+模块: M3
+名称: 财务管理
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M3 · 财务管理

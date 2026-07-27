@@ -1,12 +1,10 @@
 ---
-page: 3.2
-name: 提现订单与审核
-route: /finance/withdraw/order
-module: M3
-permission: finance:withdraw:view
-priority: P0
-status: 缺失
-estimate_days: 8
+名称: 提现订单与审核
+路由: /finance/withdraw/order
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.2 · 提现订单与审核

@@ -1,12 +1,10 @@
 ---
-page: 5.4
-name: 三方上报
-route: /channel/postback
-module: M5
-permission: channel:postback:edit
-priority: P1
-status: 缺失
-estimate_days: 5
+名称: 三方上报
+路由: /channel/postback
+模块: M5
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 5.4 · 三方上报

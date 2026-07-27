@@ -1,12 +1,10 @@
 ---
-page: 7.1
-name: 后台账号
-route: /system/account
-module: M7
-permission: system:account:view
-priority: P0
-status: 需改造
-estimate_days: 2
+名称: 后台账号
+路由: /system/account
+模块: M7
+优先级: P0
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 7.1 · 后台账号

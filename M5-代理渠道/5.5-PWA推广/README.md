@@ -1,12 +1,10 @@
 ---
-page: 5.5
-name: PWA 推广
-route: /channel/pwa
-module: M5
-permission: channel:pwa:edit
-priority: P2
-status: 缺失
-estimate_days: 8
+名称: PWA 推广
+路由: /channel/pwa
+模块: M5
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 5.5 · PWA 推广

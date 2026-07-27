@@ -1,12 +1,10 @@
 ---
-page: 6.8
-name: 意见反馈
-route: /ops/feedback
-module: M6
-permission: ops:feedback:view
-priority: P2
-status: 缺失
-estimate_days: 3
+名称: 意见反馈
+路由: /ops/feedback
+模块: M6
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 6.8 · 意见反馈

@@ -1,12 +1,10 @@
 ---
-page: 5.2
-name: 佣金结算
-route: /agent/settlement
-module: M5
-permission: agent:settlement:view
-priority: P0
-status: 需改造
-estimate_days: 10
+名称: 佣金结算
+路由: /agent/settlement
+模块: M5
+优先级: P0
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 5.2 · 佣金结算

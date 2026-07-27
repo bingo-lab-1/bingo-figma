@@ -1,12 +1,10 @@
 ---
-page: 8.3
-name: 币种与汇率
-route: /system/currency
-module: M8
-permission: system:currency:edit
-priority: P1
-status: 需改造
-estimate_days: 4
+名称: 币种与汇率
+路由: /system/currency
+模块: M8
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 8.3 · 币种与汇率

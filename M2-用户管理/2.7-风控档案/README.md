@@ -1,12 +1,10 @@
 ---
-page: 2.7
-name: 风控档案
-route: /user/risk
-module: M2
-permission: user:risk:view
-priority: P1
-status: 需改造
-estimate_days: 5
+名称: 风控档案
+路由: /user/risk
+模块: M2
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 2.7 · 风控档案

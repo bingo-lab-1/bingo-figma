@@ -1,12 +1,9 @@
 ---
-module: M4
-name: 玩法中心
-owner: 待定
-status: 设计中
-pages: 11
-p0: 4
-estimate_days: 29
-updated: 2026-07-26
+模块: M4
+名称: 玩法中心
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M4 · 玩法中心

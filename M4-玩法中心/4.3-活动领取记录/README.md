@@ -1,12 +1,10 @@
 ---
-page: 4.3
-name: 活动领取记录
-route: /game/activity/claim
-module: M4
-permission: game:claim:view
-priority: P0
-status: 缺失
-estimate_days: 4
+名称: 活动领取记录
+路由: /game/activity/claim
+模块: M4
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 4.3 · 活动领取记录

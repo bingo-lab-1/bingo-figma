@@ -1,12 +1,10 @@
 ---
-page: 2.9
-name: 玩家排行榜
-route: /user/rank
-module: M2
-permission: user:rank:view
-priority: P2
-status: 缺失
-estimate_days: 3
+名称: 玩家排行榜
+路由: /user/rank
+模块: M2
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 2.9 · 玩家排行榜

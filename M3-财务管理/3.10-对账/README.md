@@ -1,12 +1,10 @@
 ---
-page: 3.10
-name: 对账
-route: /finance/reconciliation
-module: M3
-permission: finance:reconcile:view
-priority: P2
-status: 缺失
-estimate_days: 10
+名称: 对账
+路由: /finance/reconciliation
+模块: M3
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.10 · 对账

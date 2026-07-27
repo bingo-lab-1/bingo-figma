@@ -1,12 +1,10 @@
 ---
-page: 6.6
-name: 多语言
-route: /ops/language
-module: M6
-permission: ops:language:edit
-priority: P1
-status: 已有
-estimate_days: 2
+名称: 多语言
+路由: /ops/language
+模块: M6
+优先级: P1
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 6.6 · 多语言

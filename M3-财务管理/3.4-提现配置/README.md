@@ -1,12 +1,10 @@
 ---
-page: 3.4
-name: 提现配置
-route: /finance/withdraw/config
-module: M3
-permission: finance:config:edit
-priority: P0
-status: 缺失
-estimate_days: 3
+名称: 提现配置
+路由: /finance/withdraw/config
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.4 · 提现配置

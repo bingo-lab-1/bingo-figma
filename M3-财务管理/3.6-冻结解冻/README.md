@@ -1,12 +1,10 @@
 ---
-page: 3.6
-name: 冻结与解冻
-route: /finance/freeze
-module: M3
-permission: finance:freeze:manage
-priority: P0
-status: 缺失
-estimate_days: 6
+名称: 冻结与解冻
+路由: /finance/freeze
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.6 · 冻结与解冻

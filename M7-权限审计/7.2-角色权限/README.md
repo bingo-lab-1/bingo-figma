@@ -1,12 +1,10 @@
 ---
-page: 7.2
-name: 角色权限
-route: /system/role
-module: M7
-permission: system:role:view
-priority: P0
-status: 已有
-estimate_days: 2
+名称: 角色权限
+路由: /system/role
+模块: M7
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 7.2 · 角色权限

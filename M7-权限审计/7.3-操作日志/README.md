@@ -1,12 +1,10 @@
 ---
-page: 7.3
-name: 操作日志
-route: /system/log
-module: M7
-permission: system:log:view
-priority: P0
-status: 已有
-estimate_days: 1
+名称: 操作日志
+路由: /system/log
+模块: M7
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 7.3 · 操作日志

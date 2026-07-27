@@ -1,12 +1,9 @@
 ---
-module: M7
-name: 权限审计
-owner: 待定
-status: 设计中
-pages: 3
-p0: 3
-estimate_days: 5
-updated: 2026-07-26
+模块: M7
+名称: 权限审计
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M7 · 权限与审计

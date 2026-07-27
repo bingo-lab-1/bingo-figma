@@ -1,12 +1,10 @@
 ---
-page: 5.3
-name: 渠道管理
-route: /channel/list
-module: M5
-permission: channel:list:view
-priority: P0
-status: 已有
-estimate_days: 2
+名称: 渠道管理
+路由: /channel/list
+模块: M5
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 5.3 · 渠道管理

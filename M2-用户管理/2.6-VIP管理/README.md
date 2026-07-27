@@ -1,12 +1,10 @@
 ---
-page: 2.6
-name: VIP 管理
-route: /user/vip
-module: M2
-permission: user:vip:adjust
-priority: P1
-status: 需改造
-estimate_days: 5
+名称: VIP 管理
+路由: /user/vip
+模块: M2
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 2.6 · VIP 管理

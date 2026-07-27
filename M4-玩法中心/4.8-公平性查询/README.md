@@ -1,12 +1,10 @@
 ---
-page: 4.8
-name: 公平性查询
-route: /game/fairness
-module: M4
-permission: game:fairness:view
-priority: P1
-status: 已有
-estimate_days: 2
+名称: 公平性查询
+路由: /game/fairness
+模块: M4
+优先级: P1
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 4.8 · 公平性查询

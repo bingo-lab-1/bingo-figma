@@ -1,12 +1,10 @@
 ---
-page: 1.6
-name: 用户流失
-route: /analytics/churn
-module: M1
-permission: analytics:report:view
-priority: P1
-status: 缺失
-estimate_days: 3
+名称: 用户流失
+路由: /analytics/churn
+模块: M1
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 1.6 · 用户流失

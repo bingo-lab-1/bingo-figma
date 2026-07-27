@@ -1,12 +1,10 @@
 ---
-page: 6.4
-name: 弹窗策略
-route: /ops/popup-strategy
-module: M6
-permission: ops:popup:edit
-priority: P1
-status: 缺失
-estimate_days: 6
+名称: 弹窗策略
+路由: /ops/popup-strategy
+模块: M6
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 6.4 · 弹窗策略

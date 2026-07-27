@@ -1,12 +1,10 @@
 ---
-page: 4.1
-name: 活动引擎配置
-route: /game/activity/engine
-module: M4
-permission: game:activity:edit
-priority: P0
-status: 重构
-estimate_days: 15
+名称: 活动引擎配置
+路由: /game/activity/engine
+模块: M4
+优先级: P0
+状态: 重构
+更新: 2026-07-27
 ---
 
 # 4.1 · 活动引擎配置

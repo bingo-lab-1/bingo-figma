@@ -1,12 +1,10 @@
 ---
-page: 2.3
-name: 投注明细
-route: /user/bet-record
-module: M2
-permission: user:bet:view
-priority: P0
-status: 已有
-estimate_days: 2
+名称: 投注明细
+路由: /user/bet-record
+模块: M2
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 2.3 · 投注明细

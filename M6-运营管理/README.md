@@ -1,12 +1,9 @@
 ---
-module: M6
-name: 运营管理
-owner: 待定
-status: 设计中
-pages: 8
-p0: 2
-estimate_days: 8
-updated: 2026-07-26
+模块: M6
+名称: 运营管理
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M6 · 运营管理

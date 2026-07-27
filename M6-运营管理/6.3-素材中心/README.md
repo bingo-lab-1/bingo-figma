@@ -1,12 +1,10 @@
 ---
-page: 6.3
-name: 素材中心
-route: /ops/material
-module: M6
-permission: ops:material:upload
-priority: P1
-status: 需改造
-estimate_days: 4
+名称: 素材中心
+路由: /ops/material
+模块: M6
+优先级: P1
+状态: 需改造
+更新: 2026-07-27
 ---
 
 # 6.3 · 素材中心

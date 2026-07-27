@@ -1,12 +1,10 @@
 ---
-page: 2.4
-name: 封禁管理
-route: /user/ban
-module: M2
-permission: user:ban
-priority: P0
-status: 缺失
-estimate_days: 5
+名称: 封禁管理
+路由: /user/ban
+模块: M2
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 2.4 · 封禁管理

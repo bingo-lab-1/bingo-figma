@@ -1,12 +1,10 @@
 ---
-page: 8.2
-name: 域名管理
-route: /system/domain
-module: M8
-permission: system:domain:edit
-priority: P1
-status: 已有
-estimate_days: 2
+名称: 域名管理
+路由: /system/domain
+模块: M8
+优先级: P1
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 8.2 · 域名管理

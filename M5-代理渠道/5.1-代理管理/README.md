@@ -1,12 +1,10 @@
 ---
-page: 5.1
-name: 代理管理
-route: /agent/list
-module: M5
-permission: agent:list:view
-priority: P0
-status: 已有
-estimate_days: 2
+名称: 代理管理
+路由: /agent/list
+模块: M5
+优先级: P0
+状态: 已有
+更新: 2026-07-27
 ---
 
 # 5.1 · 代理管理

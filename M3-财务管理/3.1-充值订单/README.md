@@ -1,12 +1,10 @@
 ---
-page: 3.1
-name: 充值订单
-route: /finance/recharge/order
-module: M3
-permission: finance:recharge:view
-priority: P0
-status: 缺失
-estimate_days: 5
+名称: 充值订单
+路由: /finance/recharge/order
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.1 · 充值订单

@@ -1,12 +1,10 @@
 ---
-page: 1.2
-name: 每日报表
-route: /analytics/daily
-module: M1
-permission: analytics:report:view
-priority: P1
-status: 缺失
-estimate_days: 5
+名称: 每日报表
+路由: /analytics/daily
+模块: M1
+优先级: P1
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 1.2 · 每日报表

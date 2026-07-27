@@ -1,12 +1,10 @@
 ---
-page: 6.7
-name: 推送
-route: /ops/push
-module: M6
-permission: ops:push:send
-priority: P2
-status: 缺失
-estimate_days: 8
+名称: 推送
+路由: /ops/push
+模块: M6
+优先级: P2
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 6.7 · 推送

@@ -1,12 +1,10 @@
 ---
-page: 3.3
-name: 审核规则
-route: /finance/withdraw/rule
-module: M3
-permission: finance:rule:edit
-priority: P0
-status: 缺失
-estimate_days: 8
+名称: 审核规则
+路由: /finance/withdraw/rule
+模块: M3
+优先级: P0
+状态: 缺失
+更新: 2026-07-27
 ---
 
 # 3.3 · 提现审核规则

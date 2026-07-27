@@ -1,12 +1,9 @@
 ---
-module: M2
-name: 用户管理
-owner: 待定
-status: 设计中
-pages: 9
-p0: 5
-estimate_days: 15.5
-updated: 2026-07-26
+模块: M2
+名称: 用户管理
+负责人: 待定
+状态: 设计中
+更新: 2026-07-27
 ---
 
 # M2 · 用户管理
