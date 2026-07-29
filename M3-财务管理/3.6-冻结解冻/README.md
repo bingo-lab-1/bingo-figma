@@ -26,7 +26,7 @@
 |---|---|---|---|---|
 | 3.6-R1 | 冻结记录列表 | 按冻结时间倒序;区分冻结中/已解冻 | `finance:freeze:view` | 0.5 |
 | 3.6-R2 | 冻结扣减 | 冻结时从 `balance` 转入 `frozenBalance`,两者之和不变 | — | 1 |
-| 3.6-R3 | 手动冻结/解冻 | 原因必填;二次确认;写 `OperationLog` | `finance:freeze:manage` | 1 |
+| 3.6-R3 | 手动冻结/解冻 | 原因必填;二次确认;写 操作日志 | `finance:freeze:manage` | 1 |
 | 3.6-R4 | 四条自动解冻路径 | 充值/登录/直属下级充值/后台 各自触发并记录 `unfreezeBy` | — | 2 |
 | 3.6-R5 | 解冻规则配置 | 各路径开关与门槛可配;保存写日志 | `finance:config:edit` | 1 |
 | 3.6-R6 | 筛选 | 用户/原因/状态/币种/时间/关联单据均生效 | `finance:freeze:view` | 0.5 |
@@ -50,7 +50,7 @@ stateDiagram-v2
 `withdrawRejected` 冻结 → `recharge` / `login` / `subordinateRecharge` / `manual` 解冻
 
 ## 7. 涉及表
-`FreezeRecord`(owner,新增)· `Wallet.frozenBalance`(新增字段)· `Transaction` → `../表设计.prisma`
+冻结记录(owner,新增)· 钱包的冻结余额(新增字段)· 账变记录
 
 ## 8. 关联页面
 跳出:提现订单(3.2)· 用户详情(M2.1)· 操作日志(M7.3)

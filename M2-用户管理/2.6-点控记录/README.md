@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`PointControlRecord`(owner,新增) → `../表设计.prisma`
+点控记录(owner,新增)
 
 ## 8. 关联页面
 用户列表(2.1)· 投注明细(2.3)

@@ -30,7 +30,7 @@ provably fair 种子查询与验证,处理玩家公平性质疑。**这是产品
  待补
 
 ## 7. 涉及表
-`Fairness` `FairnessHistory`(owner) → `../表设计.prisma`
+公平性记录 公平性历史(owner)
 
 ## 8. 关联页面
 投注明细(M2.3)· 游戏列表(4.4)

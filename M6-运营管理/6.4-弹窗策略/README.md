@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`Popup` `PopupStrategy`(owner,新增)· 只读 `UserTag`(M2) → `../表设计.prisma`
+弹窗 弹窗策略(owner,新增)· 只读 用户标签(M2)
 
 ## 8. 关联页面
 展示位管理(6.2)· 用户标签(M2.5)

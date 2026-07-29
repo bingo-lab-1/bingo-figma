@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`Activity` `ActivityClaim`(owner) → `../表设计.prisma`
+活动 活动领取记录(owner)
 
 ## 8. 关联页面
 活动引擎(4.1)· 领取记录(4.3)

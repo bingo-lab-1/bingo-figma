@@ -37,8 +37,8 @@
 | 5.2-R3 | 充值返佣计算 | 下级充值额 × 比例;金额与明细可核对 | — | 1.5 |
 | 5.2-R4 | 下注/输赢分成计算 | 下级投注额或 GGR × 比例;**输赢分成可为负** | — | 2 |
 | 5.2-R5 | 负余额结转 | `payable<0` 且开启结转时写 `carryoverOut` 并转入下期 `carryoverIn`;关闭时清零 | — | 1.5 |
-| 5.2-R6 | 确认发放 | 二次确认显示总额;发放调 M3 写 `Transaction`;状态转 `paid` | `agent:settlement:confirm` | 1.5 |
-| 5.2-R7 | 重算 | 二次确认;仅 `pending` 可重算;写 `OperationLog` | `agent:settlement:recalc` | 1 |
+| 5.2-R6 | 确认发放 | 二次确认显示总额;发放调 M3 写 账变记录;状态转 `paid` | `agent:settlement:confirm` | 1.5 |
+| 5.2-R7 | 重算 | 二次确认;仅 `pending` 可重算;写 操作日志 | `agent:settlement:recalc` | 1 |
 
 ## 5. 状态清单
 空 / 加载 / 错误 / 无权限 / 计算中 / 待确认 / 已发放(只读)/ 负数结转(黄标)
@@ -56,7 +56,7 @@ stateDiagram-v2
 **负余额结转**:`payable < 0` 时,若开启结转则写 `carryoverOut` 转下期;否则清零。
 
 ## 7. 涉及表
-`AgentSettlement`(owner,新增)· `AgentCommissionRecord` · 只读 `Transaction` `BetRecords` → `../表设计.prisma`
+佣金结算单(owner,新增)· 代理佣金记录 · 只读 账变记录 投注记录
 
 ## 8. 关联页面
 跳出:代理管理(5.1)· 钱包账变(M2.2)· 渠道报表(M1.4)

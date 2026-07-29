@@ -32,10 +32,10 @@
 ## 3. 依赖关系
 
 **上游依赖(我引用)** —— 全部只读
-- `M2-用户管理`:`User` `LoginRecord`
-- `M3-财务管理`:`Transaction` `RechargeOrder` `WithdrawOrder`
-- `M4-玩法中心`:`BetRecords` `ActivityClaim`
-- `M5-代理渠道`:`Channel` `Promoter`
+- `M2-用户管理`:用户 登录记录
+- `M3-财务管理`:账变记录 充值订单 提现订单
+- `M4-玩法中心`:投注记录 活动领取记录
+- `M5-代理渠道`:渠道 推广员
 
 **下游被依赖(谁引用我)**
 - 无。本模块是终端消费者。
@@ -46,14 +46,12 @@
 
 | 表 | 说明 | 现状 |
 |---|---|---|
-| `DashboardTimeSummary` | 分时汇总 | 已有 |
-| `DailySummary` | 全站每日汇总 | 新增 |
-| `ChannelDailySummary` | 分渠道每日 | 新增 |
-| `GameDailySummary` | 分游戏每日 | 新增 |
-| `UserRetentionFact` | 留存事实表 | 新增 |
-| `ActivityRoiDaily` | 活动 ROI 日报 | 新增 |
-
-详见 `表设计.prisma`
+| 大盘分时汇总 | 大盘按小时切片 | 已有 |
+| 每日汇总 | 全站每日汇总 | 新增 |
+| 渠道每日汇总 | 分渠道每日 | 新增 |
+| 游戏每日汇总 | 分游戏每日 | 新增 |
+| 留存事实 | 某日注册用户在第 N 日的回访 | 新增 |
+| 活动ROI日报 | 发放成本对比带来的存款 | 新增 |
 
 ## 5. 菜单结构与页面索引
 

@@ -42,7 +42,7 @@
 纯查询页。点击关联账变 → 跳 M2.2;点击打码状态 → 跳 M3.7。
 
 ## 7. 涉及表
-`ActivityClaim`(owner,新增)· 只读 `Transaction` `WagerRequirement`(M3) → `../表设计.prisma`
+活动领取记录(owner,新增)· 只读 账变记录 打码进度(M3)
 
 ## 8. 关联页面
 跳出:钱包账变(M2.2)· 打码核销(M3.7)· 活动 ROI 报表(M1.7)

@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`PaymentChannel`(owner)· `CryptoCoins` `ChainNetwork`(M8 只读) → `../表设计.prisma`
+支付通道(owner)· 加密币种 链网络(M8 只读)
 
 ## 8. 关联页面
 充值订单(3.1)· 提现订单(3.2)· 币种汇率(M8.3)

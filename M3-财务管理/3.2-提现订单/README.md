@@ -46,7 +46,7 @@
 | 3.2-R2 | 12 项组合筛选 | 订单号/用户/状态/金额/币种/渠道/通道/首提/时间/收款账号均生效 | `finance:withdraw:view` | 1 |
 | 3.2-R3 | 订单详情抽屉 | 显示用户资料、四分账余额、打码进度、收款账户快照、命中规则 | `finance:withdraw:view` | 1 |
 | 3.2-R4 | 申请即扣款 | 用户提交时立即扣减 `balance`,防重复提现;失败回滚 | — | 1 |
-| 3.2-R5 | 单条审核通过 | 二次确认 → 状态转 `paying` → 提交通道 → 写 `OperationLog` | `finance:withdraw:review` | 1 |
+| 3.2-R5 | 单条审核通过 | 二次确认 → 状态转 `paying` → 提交通道 → 写 操作日志 | `finance:withdraw:review` | 1 |
 | 3.2-R6 | 单条审核拒绝 | 原因必填;可勾选「拒绝并冻结」→ 退回 `balance` 或转 `frozenBalance` | `finance:withdraw:review` | 1.5 |
 | 3.2-R7 | 批量审核 | 勾选多单;确认框显示笔数与总额;返回成功N/失败M 明细 | `finance:withdraw:batch-review` | 1.5 |
 | 3.2-R8 | 打码校验 | `wagerRequired=true` 时未达标订单标红,通过按钮禁用 | — | 0.5 |
@@ -81,12 +81,11 @@ stateDiagram-v2
 
 **关键规则**
 - 申请时**立即扣减** `balance`,不是审核通过才扣 —— 防重复提现
-- 提现前校验 `WagerRequirement` 是否达标(受 `WithdrawConfig.wagerRequired` 控制)
+- 提现前校验 打码进度 是否达标(受 提现配置的打码要求 控制)
 - 首提 / 大额 / 命中风控标签 → 强制转人工(阈值见 3.3)
 
 ## 7. 涉及表
-`WithdrawOrder`(owner)· `Wallet` · `WithdrawReviewRule` · `WithdrawConfig` · `FreezeRecord` · `Transaction`
-→ `../表设计.prisma`
+提现订单(owner)· 钱包 · 提现审核规则 · 提现配置 · 冻结记录 · 账变记录
 
 ## 8. 关联页面
 - 跳出:用户详情(M2.1)· 审核规则(3.3)· 冻结记录(3.6)· 打码核销(3.7)

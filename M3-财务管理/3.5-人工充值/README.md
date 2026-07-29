@@ -34,7 +34,7 @@
 |---|---|---|---|---|
 | 3.5-R1 | 用户校验与余额预览 | 输入用户ID后实时显示四分账余额;用户不存在时报错 | `finance:manual:view` | 0.5 |
 | 3.5-R2 | 上分/扣款 | 正数上分负数扣款;可选加真金或彩金;扣款不得使余额为负 | `finance:manual:adjust` | 1.5 |
-| 3.5-R3 | 加彩金挂打码 | 选彩金时打码倍数必填,提交后自动创建 `WagerRequirement` | `finance:manual:adjust` | 0.5 |
+| 3.5-R3 | 加彩金挂打码 | 选彩金时打码倍数必填,提交后自动创建 打码进度 | `finance:manual:adjust` | 0.5 |
 | 3.5-R4 | 二次确认 | 确认框显示调整后余额预览;原因必填 | `finance:manual:adjust` | 0.5 |
 | 3.5-R5 | 操作记录列表 | 显示历史调整,含操作人与原因,不可编辑删除 | `finance:manual:view` | 1 |
 
@@ -44,13 +44,13 @@
 ## 6. 交互流程
 1. 输入用户 → 实时显示当前四分账余额
 2. 填写金额与账户类型 → 显示调整后余额预览
-3. 二次确认 → 写 `ManualAdjustment` + `Transaction` + `OperationLog`
-4. 加彩金时同步创建 `WagerRequirement`(→ 3.7)
+3. 二次确认 → 写 人工上下分记录 + 账变记录 + 操作日志
+4. 加彩金时同步创建 打码进度(→ 3.7)
 
 **关键规则**:扣款不得使余额为负;加彩金必须挂打码要求。
 
 ## 7. 涉及表
-`ManualAdjustment`(owner)· `Transaction` · `Wallet` · `WagerRequirement` → `../表设计.prisma`
+人工上下分记录(owner)· 账变记录 · 钱包 · 打码进度
 
 ## 8. 关联页面
 跳出:用户详情(M2.1)· 打码核销(3.7)· 操作日志(M7.3)

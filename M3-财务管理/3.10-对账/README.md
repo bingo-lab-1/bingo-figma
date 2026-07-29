@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`Transaction` `RechargeOrder` `WithdrawOrder`(owner) → `../表设计.prisma`
+账变记录 充值订单 提现订单(owner)
 
 ## 8. 关联页面
 充值订单(3.1)· 提现订单(3.2)· 通道管理(3.9)

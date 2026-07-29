@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`Activity` `ActivityClaim`(owner)· `CodingMultiple`(M8) → `../表设计.prisma`
+活动 活动领取记录(owner)· 打码倍数配置(M8)
 
 ## 8. 关联页面
 活动引擎(4.1)· 打码核销(M3.7)

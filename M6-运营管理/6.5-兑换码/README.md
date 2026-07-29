@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`RedeemCodeBatch` `RedeemCode`(owner,新增) → `../表设计.prisma`
+兑换码批次 兑换码(owner,新增)
 
 ## 8. 关联页面
 站内信(6.1)· 活动领取记录(M4.3)

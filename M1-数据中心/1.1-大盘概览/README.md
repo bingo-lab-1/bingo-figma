@@ -61,8 +61,8 @@
 点击指标卡 → 下钻到对应明细页(充值→M3.1,提现→M3.2,投注→M2.3)。
 
 ## 7. 涉及表
-`DailySummary` `ChannelDailySummary` `DashboardTimeSummary`(owner)
-**只读**:不直连 `Transaction`/`BetRecords` → `../表设计.prisma`
+每日汇总 渠道每日汇总 大盘分时汇总(owner)
+**只读**:不直连 账变记录/投注记录
 
 ## 8. 关联页面
 下钻:充值订单(M3.1)· 提现订单(M3.2)· 投注明细(M2.3)· 渠道报表(1.4)

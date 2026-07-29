@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`LobbyLayout`(owner,新增)· `GameHot` `SubGame` → `../表设计.prisma`
+大厅布局(owner,新增)· 游戏热度 游戏
 
 ## 8. 关联页面
 游戏列表(4.4)· 展示位管理(M6.2)

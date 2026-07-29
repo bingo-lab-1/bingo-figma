@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`ThirdPartyPostback`(owner,新增)· `Channel` → `../表设计.prisma`
+三方回传配置(owner,新增)· 渠道
 
 ## 8. 关联页面
 渠道管理(5.3)· 渠道报表(M1.4)

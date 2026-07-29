@@ -30,7 +30,7 @@
  待补
 
 ## 7. 涉及表
-`CryptoCoins` `ChainNetwork` `FiatCurrency`(owner,新增) → `../表设计.prisma`
+加密币种 链网络 法币汇率(owner,新增)
 
 ## 8. 关联页面
 通道管理(M3.9)· 提现配置(M3.4)

@@ -71,7 +71,7 @@
 | A5 | 导出链接有效期 | 24 小时 | 假设 | 防止累计过多文件在S3 |
 | A6 | 在线状态判定窗口 | 近 5 分钟内有活动 | 假设 | 取决于玩家端多久上报一次,需确认 |
 
-## 5. 表格字段清单
+## 5. 字段清单
 
 **表格列**
 
@@ -311,9 +311,8 @@ flowchart TD
 
 ## 11. 涉及表与职责
 
-**拥有**(owner=M2):`User` `UserTag` `VipLevel` `UserKyc`
-**只读**:`Wallet` `Transaction`(owner=M3)· `BetRecords`(owner=M4)· `Channel`(owner=M5)
-→ `../表设计.prisma`
+**拥有**(owner=M2):用户 用户标签 VIP等级 实名认证
+**只读**:钱包 账变记录(owner=M3)· 投注记录(owner=M4)· 渠道(owner=M5)
 
 | 事项 | 归属 |
 |---|---|

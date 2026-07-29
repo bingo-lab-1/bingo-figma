@@ -27,7 +27,7 @@
 |---|---|---|---|---|
 | 3.3-R1 | 规则列表 | 按 priority 升序展示;显示条件摘要与动作 | `finance:withdraw:view` | 0.5 |
 | 3.3-R2 | 条件构建器 | 支持金额/币种/VIP/首提/打码/标签/渠道/次数/注册天数组合 | `finance:rule:edit` | 3 |
-| 3.3-R3 | 规则 CRUD | 新增/编辑/删除;名称唯一;写 `OperationLog` | `finance:rule:edit` | 1 |
+| 3.3-R3 | 规则 CRUD | 新增/编辑/删除;名称唯一;写 操作日志 | `finance:rule:edit` | 1 |
 | 3.3-R4 | 优先级调整 | 拖拽排序即时保存;优先级唯一 | `finance:rule:edit` | 1 |
 | 3.3-R5 | 启用/停用 | 二次确认;停用后不参与匹配 | `finance:rule:edit` | 0.5 |
 | 3.3-R6 | 匹配引擎 | 按 priority 升序命中即止;无命中默认 `toManual` | — | 1 |
@@ -40,7 +40,7 @@
 规则按 `priority` 升序匹配,**命中即止**。无规则命中 → 默认 `toManual`(安全兜底)。
 
 ## 7. 涉及表
-`WithdrawReviewRule`(owner)· `WithdrawOrder` → `../表设计.prisma`
+提现审核规则(owner)· 提现订单
 
 ## 8. 关联页面
 跳出:提现订单(3.2)· 提现配置(3.4)
