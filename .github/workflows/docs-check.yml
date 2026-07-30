@@ -16,9 +16,8 @@ jobs:
         with:
           python-version: '3.12'
       - name: 校验文档规范
-        run: python3 00-公共约定/校验.py
-      # 全部页面迁移到 v3 后,把上一步换成:
-      #   run: python3 00-公共约定/校验.py --strict
+        # 已开工页面全部迁移到 v3,严格模式:未迁移即失败
+        run: python3 00-公共约定/校验.py --strict
 
   mermaid:
     name: 流程图语法
