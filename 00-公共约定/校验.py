@@ -250,14 +250,18 @@ for f in sorted(BASE.rglob("*.md")):
 
 # ─────────────────────── 其他 ───────────────────────
 SKIP_DIRS = {".git", ".github", "node_modules", "__pycache__", ".venv"}
+# 空的页面目录是允许的:git 不跟踪空目录,所以它只存在于本地,
+# 是「这一页我要开工了」的个人标记,远端与 CI 都看不到。
+# 其余位置的空目录仍然报错 —— 那通常是误删或建错的残留。
+PAGE_DIR = re.compile(r"^M\d-[^/]+/\d+\.\d+-")
 for d in BASE.rglob("*"):
     if not d.is_dir():
         continue
-    rel_parts = d.relative_to(BASE).parts
-    if any(p in SKIP_DIRS for p in rel_parts):
+    rel = d.relative_to(BASE)
+    if any(p in SKIP_DIRS for p in rel.parts):
         continue
-    if not any(d.iterdir()):
-        err(f"空目录: {d.relative_to(BASE)}")
+    if not any(d.iterdir()) and not PAGE_DIR.match(rel.as_posix() + "/"):
+        err(f"空目录: {rel}")
 
 
 # ─────────────────────── 人日汇总 ───────────────────────
@@ -265,7 +269,10 @@ for d in BASE.rglob("*"):
 # 页面 README 不写人日 —— 需求文档面向所有读者,排期信息归模块索引。
 by_pri: dict[str, float] = {}
 for mod in modules:
-    mtext = (mod / "README.md").read_text(encoding="utf-8")
+    readme = mod / "README.md"
+    if not readme.exists():
+        continue          # 缺 README 已在模块级检查报错,这里跳过,不要抛栈
+    mtext = readme.read_text(encoding="utf-8")
     for m in re.finditer(
             r"^\| (\d+\.\d+) \|[^|]*\|[^|]*\|\s*\**(P\d)\**\s*\|[^|]*\|\s*([\d.]+)\s*\|",
             mtext, re.M):
