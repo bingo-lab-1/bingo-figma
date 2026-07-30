@@ -32,6 +32,7 @@ EMOJI = re.compile(
 
 errors: list[str] = []
 warns: list[str] = []
+unstarted: list[str] = []   # 索引里有、还没开工的页面(无文件夹),不是错误
 
 
 def err(msg): errors.append(msg)
@@ -77,8 +78,10 @@ for mod in modules:
     listed = set(re.findall(r"^\| (\d+\.\d+) \|", text, re.M))
     exists = {p.name.split("-")[0] for p in mod.iterdir()
               if p.is_dir() and re.match(r"^\d+\.\d+-", p.name)}
-    for x in sorted(listed - exists):
-        err(f"{mod.name}: README 列了 {x} 但无文件夹")
+    # 索引里有、文件夹还没建 —— 页面尚未开工的正常状态,不建空占位目录。
+    # 页面索引表是页面存在与否的唯一出处;文件夹只在开始写的时候才建。
+    unstarted.extend(f"{mod.name} {x}" for x in sorted(listed - exists))
+    # 反向必须报错:野文件夹绕过了索引表,规模就统计不到了
     for x in sorted(exists - listed):
         err(f"{mod.name}: 有文件夹 {x} 但 README 未列")
 
@@ -270,7 +273,9 @@ for mod in modules:
 
 
 # ─────────────────────── 输出 ───────────────────────
-print(f"页面 {len(pages)} 个 · 已迁移 v3: {migrated} · 待迁移: {len(pages) - migrated}")
+total = len(pages) + len(unstarted)
+print(f"页面 {total} 个(索引口径)· 已开工 {len(pages)} · 未开工 {len(unstarted)}")
+print(f"已开工中 v3: {migrated} · 待迁移: {len(pages) - migrated}")
 if by_pri:
     parts = " · ".join(f"{k} {v:g}" for k, v in sorted(by_pri.items()))
     print(f"人日(由模块索引汇总): {parts} · 合计 {sum(by_pri.values()):g}")
