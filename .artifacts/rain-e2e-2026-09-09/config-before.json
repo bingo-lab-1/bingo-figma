@@ -1,0 +1,44 @@
+{
+  "enabled": true,
+  "version": 1,
+  "complete": true,
+  "completeness": 100,
+  "name": "rain",
+  "shortName": "rain",
+  "participationHelpEnabled": false,
+  "participationHelp": null,
+  "activityDescription": null,
+  "inactiveMessage": null,
+  "dailyClaimLimit": 1,
+  "codingMultiple": "1.00",
+  "countdownEnabled": false,
+  "currencyCode": "usdc",
+  "targetTagIds": [],
+  "timeSlots": [
+    {
+      "startTime": "11:00:00",
+      "endTime": "12:00:00",
+      "__typename": "RedPacketRainTimeSlotView"
+    }
+  ],
+  "vipTiers": [
+    {
+      "minVipLevel": 0,
+      "maxVipLevel": 4,
+      "minRewardAmount": "1.00",
+      "maxRewardAmount": "4.00",
+      "__typename": "RedPacketRainVipTierView"
+    }
+  ],
+  "defaultBonusTiers": [
+    {
+      "rechargeAmount": "1.00",
+      "rechargeRewardRate": "1.0",
+      "lossAmount": "1.00",
+      "lossRewardRate": "1.0",
+      "__typename": "RedPacketRainBonusTierView"
+    }
+  ],
+  "bonusGroups": [],
+  "__typename": "RedPacketRainConfigView"
+}

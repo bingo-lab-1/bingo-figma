@@ -1,0 +1,2813 @@
+[
+  {
+    "source": "06-field-results.json",
+    "id": "name-empty",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": null,
+    "errors": [
+      {
+        "message": "活动完整名称必填且不能超过 20 个字符",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "活动完整名称必填且不能超过 20 个字符",
+      "活动完整名称必填且不能超过 20 个字符"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "06-field-results.json",
+    "id": "name-21",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": null,
+    "errors": [
+      {
+        "message": "只能选择已启用的奖励币种",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "只能选择已启用的奖励币种",
+      "活动完整名称必填且不能超过 20 个字符",
+      "活动完整名称必填且不能超过 20 个字符",
+      "只能选择已启用的奖励币种"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "06-field-results.json",
+    "id": "short-11",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": null,
+    "errors": [
+      {
+        "message": "只能选择已启用的奖励币种",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "只能选择已启用的奖励币种",
+      "只能选择已启用的奖励币种",
+      "活动完整名称必填且不能超过 20 个字符",
+      "活动完整名称必填且不能超过 20 个字符",
+      "只能选择已启用的奖励币种",
+      "只能选择已启用的奖励币种"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "06-field-results.json",
+    "id": "coding-negative",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": null,
+    "errors": [
+      {
+        "message": "打码倍数必须大于等于 0，最多 2 位小数",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "打码倍数必须大于等于 0，最多 2 位小数",
+      "打码倍数必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "06-field-results.json",
+    "id": "coding-3-decimals",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": null,
+    "errors": [
+      {
+        "message": "打码倍数必须大于等于 0，最多 2 位小数",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "打码倍数必须大于等于 0，最多 2 位小数",
+      "打码倍数必须大于等于 0，最多 2 位小数",
+      "打码倍数必须大于等于 0，最多 2 位小数",
+      "打码倍数必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "07-unchanged-save-error.json",
+    "id": "07-unchanged-save-error",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "usdc",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "只能选择已启用的奖励币种",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": null,
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "08-select-usdc-save.json",
+    "id": "08-select-usdc-save",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 2,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": null,
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-bonus-all-zero.json",
+    "id": "09-bonus-all-zero",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表至少一档系数必须大于 0",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表至少一档系数必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "红包金额第 1 行 VIP 区间不合法",
+      "VIP 0～0 没有配置金额，请补齐",
+      "红包金额第 1 行 VIP 区间不合法",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "默认加成表至少一档系数必须大于 0"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-bonus-negative.json",
+    "id": "09-bonus-negative",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "-1",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数",
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-bonus-rate-precision.json",
+    "id": "09-bonus-rate-precision",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.23",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "红包金额第 1 行 VIP 区间不合法",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-coding-above5-valid-restore.json",
+    "id": "09-coding-above5-valid-restore",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 6,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-coding-above5-valid.json",
+    "id": "09-coding-above5-valid",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "6.25",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 5,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "6.25",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效",
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-coding-zero-valid-restore.json",
+    "id": "09-coding-zero-valid-restore",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 4,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效",
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数",
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-coding-zero-valid.json",
+    "id": "09-coding-zero-valid",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "0",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 3,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "0.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数",
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "默认加成表至少一档系数必须大于 0",
+      "默认加成表第 1 行充值系数必须大于等于 0，最多 1 位小数",
+      "默认加成表第 1 行充值门槛必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-daily-fraction.json",
+    "id": "09-daily-fraction",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": true,
+    "messages": [
+      "每日领取次数必须是正整数且不能大于场次数",
+      "每日领取次数必须是正整数且不能大于场次数"
+    ],
+    "invalid": [
+      {
+        "value": "1.5",
+        "message": "Value must be 1."
+      }
+    ],
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-daily-over-slots.json",
+    "id": "09-daily-over-slots",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": true,
+    "messages": [
+      "每日领取次数必须是正整数且不能大于场次数",
+      "每日领取次数必须是正整数且不能大于场次数"
+    ],
+    "invalid": [
+      {
+        "value": "2",
+        "message": "Value must be 1."
+      }
+    ],
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-daily-zero.json",
+    "id": "09-daily-zero",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": true,
+    "messages": [
+      "每日领取次数必须是正整数且不能大于场次数"
+    ],
+    "invalid": [
+      {
+        "value": "0",
+        "message": "Value must be 1."
+      }
+    ],
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-vip-all-zero.json",
+    "id": "09-vip-all-zero",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "0",
+          "maxRewardAmount": "0"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "至少一档红包最大金额必须大于 0",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "红包金额第 1 行 VIP 区间不合法",
+      "VIP 0～0 没有配置金额，请补齐",
+      "VIP 0～0 没有配置金额，请补齐",
+      "红包金额第 1 行 VIP 区间不合法",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "至少一档红包最大金额必须大于 0"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-vip-amount-inverted.json",
+    "id": "09-vip-amount-inverted",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "5",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "红包金额第 1 行最小金额不能大于最大金额",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "红包金额第 1 行 VIP 区间不合法",
+      "VIP 0～0 没有配置金额，请补齐",
+      "VIP 0～0 没有配置金额，请补齐",
+      "红包金额第 1 行 VIP 区间不合法",
+      "红包金额第 1 行最小金额不能大于最大金额"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-vip-amount-precision.json",
+    "id": "09-vip-amount-precision",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.234",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "红包金额第 1 行 VIP 区间不合法",
+      "VIP 0～0 没有配置金额，请补齐",
+      "VIP 0～0 没有配置金额，请补齐",
+      "红包金额第 1 行 VIP 区间不合法",
+      "红包金额第 1 行最小金额不能大于最大金额",
+      "至少一档红包最大金额必须大于 0",
+      "红包金额第 1 行最小金额必须大于等于 0，最多 2 位小数"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-vip-gap-zero.json",
+    "id": "09-vip-gap-zero",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 1,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "VIP 0～0 没有配置金额，请补齐",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "VIP 0～0 没有配置金额，请补齐",
+      "每日领取次数必须是正整数且不能大于场次数",
+      "VIP 0～0 没有配置金额，请补齐"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "09-vip-inverted.json",
+    "id": "09-vip-inverted",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 5,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "红包金额第 1 行 VIP 区间不合法",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "红包金额第 1 行 VIP 区间不合法",
+      "VIP 0～0 没有配置金额，请补齐",
+      "VIP 0～0 没有配置金额，请补齐",
+      "红包金额第 1 行 VIP 区间不合法"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "10-group-empty.json",
+    "id": "10-group-empty",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": true,
+    "messages": [
+      "标签加成分组必须填写名称、标签和至少一行加成"
+    ],
+    "invalid": [],
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "10-group-no-tag.json",
+    "id": "10-group-no-tag",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": true,
+    "messages": [
+      "标签加成分组必须填写名称、标签和至少一行加成",
+      "标签加成分组必须填写名称、标签和至少一行加成"
+    ],
+    "invalid": [],
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "10-group-valid.json",
+    "id": "10-group-valid",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": [
+        {
+          "name": "E2E组A",
+          "tagIds": [
+            "cmszlr280000007j4t9y8r47g"
+          ],
+          "tiers": [
+            {
+              "rechargeAmount": "0.00",
+              "rechargeRewardRate": "10.0",
+              "lossAmount": "0.00",
+              "lossRewardRate": "0.0"
+            }
+          ]
+        }
+      ]
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 7,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [
+          {
+            "name": "E2E组A",
+            "tagIds": [
+              "cmszlr280000007j4t9y8r47g"
+            ],
+            "tiers": [
+              {
+                "rechargeAmount": "0.00",
+                "rechargeRewardRate": "10.0",
+                "lossAmount": "0.00",
+                "lossRewardRate": "0.0",
+                "__typename": "RedPacketRainBonusTierView"
+              }
+            ],
+            "__typename": "RedPacketRainBonusGroupView"
+          }
+        ],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "分组「E2E组A」至少一档系数必须大于 0",
+      "分组「E2E组A」至少一档系数必须大于 0"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "10-group-zero.json",
+    "id": "10-group-zero",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": [
+        {
+          "name": "E2E组A",
+          "tagIds": [
+            "cmszlr280000007j4t9y8r47g"
+          ],
+          "tiers": [
+            {
+              "rechargeAmount": "0.00",
+              "rechargeRewardRate": "0.0",
+              "lossAmount": "0.00",
+              "lossRewardRate": "0.0"
+            }
+          ]
+        }
+      ]
+    },
+    "errors": [
+      {
+        "message": "分组「E2E组A」至少一档系数必须大于 0",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "分组「E2E组A」至少一档系数必须大于 0",
+      "分组「E2E组A」至少一档系数必须大于 0"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "11-groups-roundtrip.json",
+    "id": "11-groups-roundtrip",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": false,
+    "messages": null,
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": {
+      "count": 10,
+      "addDisabled": true
+    },
+    "beforeOrder": [
+      "E2E组A",
+      "E2E组B"
+    ],
+    "afterOrder": [
+      "E2E组B",
+      "E2E组A"
+    ]
+  },
+  {
+    "source": "12-time-initial.json",
+    "id": "12-time-initial",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": true,
+    "messages": [
+      "请填写所有红包雨场次的开始和结束时间"
+    ],
+    "invalid": [],
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "13-time-results.json",
+    "id": "13-touching-endpoints",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        },
+        {
+          "startTime": "12:00:00",
+          "endTime": "13:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "第 1 场与第 2 场时间重叠，请调整",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "第 1 场与第 2 场时间重叠，请调整",
+      "第 1 场与第 2 场时间重叠，请调整"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "13-time-results.json",
+    "id": "13-overlap",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        },
+        {
+          "startTime": "11:30:00",
+          "endTime": "13:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "第 1 场与第 2 场时间重叠，请调整",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "第 1 场与第 2 场时间重叠，请调整",
+      "第 1 场与第 2 场时间重叠，请调整",
+      "第 1 场与第 2 场时间重叠，请调整",
+      "第 1 场与第 2 场时间重叠，请调整"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "13-time-results.json",
+    "id": "13-inverted",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        },
+        {
+          "startTime": "14:00:00",
+          "endTime": "13:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "第 2 场开始时间必须早于结束时间",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "第 2 场开始时间必须早于结束时间",
+      "第 1 场与第 2 场时间重叠，请调整",
+      "第 1 场与第 2 场时间重叠，请调整",
+      "第 2 场开始时间必须早于结束时间"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "13-time-results.json",
+    "id": "13-cross-midnight",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        },
+        {
+          "startTime": "23:00:00",
+          "endTime": "00:30:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "第 2 场开始时间必须早于结束时间",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "第 2 场开始时间必须早于结束时间"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "13-time-results.json",
+    "id": "13-valid-seconds",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        },
+        {
+          "startTime": "23:50:00",
+          "endTime": "23:59:59"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 9,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          },
+          {
+            "startTime": "23:50:00",
+            "endTime": "23:59:59",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "第 2 场开始时间必须早于结束时间"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "13-time-results.json",
+    "id": "13-time-restore",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 10,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-vip-touching-endpoints",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 2,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        },
+        {
+          "minVipLevel": 2,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "VIP 3～1 没有配置金额，请补齐",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "VIP 3～1 没有配置金额，请补齐",
+      "VIP 3～1 没有配置金额，请补齐"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-vip-two-tiers-valid",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 2,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        },
+        {
+          "minVipLevel": 3,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 11,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 2,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          },
+          {
+            "minVipLevel": 3,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "VIP 3～1 没有配置金额，请补齐",
+      "VIP 3～1 没有配置金额，请补齐"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-vip-restore",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 12,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-recharge-threshold-descending",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        },
+        {
+          "rechargeAmount": "0.50",
+          "rechargeRewardRate": "2.0",
+          "lossAmount": "2.00",
+          "lossRewardRate": "2.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表门槛必须严格递增",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表门槛必须严格递增",
+      "默认加成表门槛必须严格递增"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-recharge-rate-descending",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        },
+        {
+          "rechargeAmount": "2.00",
+          "rechargeRewardRate": "0.5",
+          "lossAmount": "2.00",
+          "lossRewardRate": "2.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表系数不能随门槛降低",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增",
+      "默认加成表门槛必须严格递增"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-loss-threshold-descending",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        },
+        {
+          "rechargeAmount": "2.00",
+          "rechargeRewardRate": "2.0",
+          "lossAmount": "0.50",
+          "lossRewardRate": "2.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表门槛必须严格递增",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表门槛必须严格递增",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-loss-rate-descending",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        },
+        {
+          "rechargeAmount": "2.00",
+          "rechargeRewardRate": "2.0",
+          "lossAmount": "2.00",
+          "lossRewardRate": "0.5"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [
+      {
+        "message": "默认加成表系数不能随门槛降低",
+        "code": 400
+      }
+    ],
+    "data": null,
+    "clientOnly": false,
+    "messages": [
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-bonus-two-tiers-valid",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        },
+        {
+          "rechargeAmount": "2.00",
+          "rechargeRewardRate": "2.0",
+          "lossAmount": "2.00",
+          "lossRewardRate": "2.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 13,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          },
+          {
+            "rechargeAmount": "2.00",
+            "rechargeRewardRate": "2.0",
+            "lossAmount": "2.00",
+            "lossRewardRate": "2.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增",
+      "默认加成表系数不能随门槛降低"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "14-table-results.json",
+    "id": "14-bonus-restore",
+    "operation": "saveRedPacketRainConfigPage",
+    "input": {
+      "name": "rain",
+      "shortName": "rain",
+      "participationHelpEnabled": false,
+      "dailyClaimLimit": 1,
+      "codingMultiple": "1.00",
+      "countdownEnabled": false,
+      "currencyCode": "USDC",
+      "targetTagIds": [],
+      "timeSlots": [
+        {
+          "startTime": "11:00:00",
+          "endTime": "12:00:00"
+        }
+      ],
+      "vipTiers": [
+        {
+          "minVipLevel": 0,
+          "maxVipLevel": 4,
+          "minRewardAmount": "1.00",
+          "maxRewardAmount": "4.00"
+        }
+      ],
+      "defaultBonusTiers": [
+        {
+          "rechargeAmount": "1.00",
+          "rechargeRewardRate": "1.0",
+          "lossAmount": "1.00",
+          "lossRewardRate": "1.0"
+        }
+      ],
+      "bonusGroups": []
+    },
+    "errors": [],
+    "data": {
+      "saveRedPacketRainConfig": {
+        "enabled": true,
+        "version": 14,
+        "complete": true,
+        "completeness": 100,
+        "name": "rain",
+        "shortName": "rain",
+        "participationHelpEnabled": false,
+        "participationHelp": null,
+        "activityDescription": null,
+        "inactiveMessage": null,
+        "dailyClaimLimit": 1,
+        "codingMultiple": "1.00",
+        "countdownEnabled": false,
+        "currencyCode": "USDC",
+        "targetTagIds": [],
+        "timeSlots": [
+          {
+            "startTime": "11:00:00",
+            "endTime": "12:00:00",
+            "__typename": "RedPacketRainTimeSlotView"
+          }
+        ],
+        "vipTiers": [
+          {
+            "minVipLevel": 0,
+            "maxVipLevel": 4,
+            "minRewardAmount": "1.00",
+            "maxRewardAmount": "4.00",
+            "__typename": "RedPacketRainVipTierView"
+          }
+        ],
+        "defaultBonusTiers": [
+          {
+            "rechargeAmount": "1.00",
+            "rechargeRewardRate": "1.0",
+            "lossAmount": "1.00",
+            "lossRewardRate": "1.0",
+            "__typename": "RedPacketRainBonusTierView"
+          }
+        ],
+        "bonusGroups": [],
+        "__typename": "RedPacketRainConfigView"
+      }
+    },
+    "clientOnly": false,
+    "messages": [
+      "红包雨配置已保存，规则从下一场开始生效",
+      "红包雨配置已保存，规则从下一场开始生效",
+      "默认加成表系数不能随门槛降低",
+      "默认加成表门槛必须严格递增",
+      "默认加成表系数不能随门槛降低"
+    ],
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "15-switch-results.json",
+    "id": "15-disable",
+    "operation": "toggleRedPacketRainPage",
+    "input": null,
+    "errors": [],
+    "data": {
+      "toggleRedPacketRain": false
+    },
+    "clientOnly": false,
+    "messages": null,
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "15-switch-results.json",
+    "id": "15-restore-enabled",
+    "operation": "toggleRedPacketRainPage",
+    "input": null,
+    "errors": [],
+    "data": {
+      "toggleRedPacketRain": true
+    },
+    "clientOnly": false,
+    "messages": null,
+    "invalid": null,
+    "loading": null,
+    "failure": null,
+    "actualEnabled": null,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  },
+  {
+    "source": "16-loading-results.json",
+    "id": "16-loading-results",
+    "operation": null,
+    "input": null,
+    "errors": [],
+    "data": null,
+    "clientOnly": false,
+    "messages": null,
+    "invalid": null,
+    "loading": {
+      "text": "红包雨配置\n已关闭\n配置完整度 0%\n活动开关\n保存全部配置",
+      "saveDisabled": false,
+      "switchDisabled": true,
+      "switchChecked": "false",
+      "notifications": []
+    },
+    "failure": {
+      "text": "红包雨配置\n已关闭\n配置完整度 0%\n活动开关\n保存全部配置\n基础设置\n活动完整名称\n侧边栏简称\n奖励币种\nBRL\n玩家每日领取次数\n打码倍数\n悬浮窗入口显示倒计时\n参与用户标签\n说明开关\n参与说明\n活动说明\n未开启状态提示\n红包雨时间配置\n红包雨每天次数\n1\n\n修改场次数会清空所有时段，请重新填写。\n\n第1 场\n选择时间\n至\n选择时间\n新增一场\n红包金额配置\n\nVIP 等级必须从 0 到系统最高等级连续覆盖。\n\n新增档位\n序号\tVIP 最小等级\tVIP 最大等级\t最小金额\t最大金额\t操作\n1\t\n\t\n\t\n\t\n\t删除\n默认充值 / 亏损加成\n序号\t今日充值 ≥\t充值系数 %\t今日亏损 ≥\t亏损系数 %\t操作\n1\t\n\t\n\t\n\t\n\t删除\n新增一行\n标签加成分组\n\n从上到下按优先级匹配第一个命中的分组，最多 10 组。\n\n新增标签分组\n未配置标签分组，所有玩家使用默认加成表。",
+      "saveDisabled": false,
+      "switchDisabled": true,
+      "switchChecked": "false",
+      "notifications": [
+        "Network error"
+      ]
+    },
+    "actualEnabled": true,
+    "cap": null,
+    "beforeOrder": null,
+    "afterOrder": null
+  }
+]
