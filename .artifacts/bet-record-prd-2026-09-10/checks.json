@@ -1,0 +1,668 @@
+{
+  "collectedOn": "2026-09-10",
+  "page": "https://dev-app.bingox.io/admin/users/bet-record",
+  "browserTimezone": "Asia/Hong_Kong",
+  "purpose": "Read-only website observations supporting PRD 2.3; not a full backend acceptance report.",
+  "privacy": "Account fragments are replaced. No user IDs, round IDs, seed values, credentials or complete player records are retained.",
+  "observations": [
+    {
+      "id": "only-wins-100",
+      "checkedAt": "2026-09-10T15:26:59.018Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "type": "onlyWins"
+        }
+      },
+      "total": 353,
+      "returned": 100,
+      "graphqlError": false,
+      "games": [
+        "limbo",
+        "dice"
+      ],
+      "currencies": [
+        "usdc",
+        "USD",
+        "usdt"
+      ],
+      "multipliers": {
+        "min": 1.98,
+        "max": 9.9
+      },
+      "netNegativeCount": 0,
+      "descendingTime": true,
+      "allPositiveMultiplier": true
+    },
+    {
+      "id": "pagination-after-100",
+      "checkedAt": "2026-09-10T15:26:59.126Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "仅赢▼",
+        "全部币种▼",
+        "100▼"
+      ],
+      "rowCount": 100,
+      "pagination": [
+        "显示第 1–100 条，共 353 条记录"
+      ],
+      "empty": 0
+    },
+    {
+      "id": "plinko-only-wins",
+      "checkedAt": "2026-09-10T15:27:01.363Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "game": "plinko",
+          "type": "onlyWins"
+        }
+      },
+      "total": 24,
+      "returned": 20,
+      "graphqlError": false,
+      "games": [
+        "plinko"
+      ],
+      "currencies": [
+        "usdc",
+        "usdt"
+      ],
+      "multipliers": {
+        "min": 0.3,
+        "max": 3
+      },
+      "netNegativeCount": 8,
+      "descendingTime": true,
+      "allPositiveMultiplier": true,
+      "netNegativeExamples": [
+        {
+          "amount": "2",
+          "payout": "1.4",
+          "multiplier": "0.7"
+        },
+        {
+          "amount": "2",
+          "payout": "1.4",
+          "multiplier": "0.7"
+        }
+      ]
+    },
+    {
+      "id": "filter-resets-size",
+      "checkedAt": "2026-09-10T15:27:01.428Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "plinko▼",
+        "仅赢▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 24 条记录"
+      ],
+      "empty": 0
+    },
+    {
+      "id": "dice-high-wins",
+      "checkedAt": "2026-09-10T15:27:44.166Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "game": "dice",
+          "type": "luckyWins"
+        }
+      },
+      "total": 129,
+      "returned": 20,
+      "graphqlError": false,
+      "games": [
+        "dice"
+      ],
+      "currencies": [
+        "USD",
+        "usdt"
+      ],
+      "multipliers": {
+        "min": 9.9,
+        "max": 9.9
+      },
+      "netNegativeCount": 0,
+      "descendingTime": true,
+      "allMultiplierAtLeastFour": true
+    },
+    {
+      "id": "currency-USDC",
+      "checkedAt": "2026-09-10T15:27:47.367Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "currency": "USDC"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false,
+      "games": [],
+      "currencies": [],
+      "multipliers": null,
+      "netNegativeCount": 0,
+      "descendingTime": true
+    },
+    {
+      "id": "currency-USDC-ui",
+      "checkedAt": "2026-09-10T15:27:47.425Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "全部▼",
+        "USDC▼"
+      ],
+      "rowCount": 0,
+      "pagination": [],
+      "empty": 1
+    },
+    {
+      "id": "currency-USD",
+      "checkedAt": "2026-09-10T15:27:48.420Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "currency": "USD"
+        }
+      },
+      "total": 14,
+      "returned": 14,
+      "graphqlError": false,
+      "games": [
+        "roulette",
+        "dice"
+      ],
+      "currencies": [
+        "USD"
+      ],
+      "multipliers": {
+        "min": 0,
+        "max": 9.9
+      },
+      "netNegativeCount": 13,
+      "descendingTime": true
+    },
+    {
+      "id": "reset-baseline",
+      "checkedAt": "2026-09-10T15:27:49.660Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 1743 条记录"
+      ],
+      "empty": 0,
+      "headers": [
+        "序号",
+        "局号",
+        "用户ID",
+        "会员账号",
+        "游戏厂商",
+        "游戏",
+        "投注金额",
+        "派彩金额",
+        "输赢",
+        "币种",
+        "投注时间"
+      ]
+    },
+    {
+      "id": "baseline-next-page",
+      "checkedAt": "2026-09-10T15:27:50.626Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 20,
+          "limit": 20
+        },
+        "where": {}
+      },
+      "total": 1743,
+      "returned": 20,
+      "graphqlError": false,
+      "games": [
+        "limbo",
+        "roulette",
+        "dice"
+      ],
+      "currencies": [
+        "usdc",
+        "USD",
+        "usdt"
+      ],
+      "multipliers": {
+        "min": 0,
+        "max": 9.9
+      },
+      "netNegativeCount": 19,
+      "descendingTime": true
+    },
+    {
+      "id": "baseline-next-page-ui",
+      "checkedAt": "2026-09-10T15:27:50.681Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 21–40 条，共 1743 条记录"
+      ],
+      "empty": 0,
+      "firstSerial": "21"
+    },
+    {
+      "id": "baseline-page-size-50",
+      "checkedAt": "2026-09-10T15:28:42.163Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 50
+        },
+        "where": {}
+      },
+      "total": 1743,
+      "returned": 50,
+      "graphqlError": false,
+      "games": [
+        "limbo",
+        "roulette",
+        "dice"
+      ],
+      "currencies": [
+        "usdc",
+        "USD",
+        "usdt"
+      ],
+      "multipliers": {
+        "min": 0,
+        "max": 9.9
+      },
+      "netNegativeCount": 41,
+      "descendingTime": true
+    },
+    {
+      "id": "page-size-50-ui",
+      "checkedAt": "2026-09-10T15:28:42.427Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "全部▼",
+        "全部币种▼",
+        "50▼"
+      ],
+      "rowCount": 50,
+      "pagination": [
+        "显示第 1–50 条，共 1743 条记录"
+      ],
+      "empty": 0,
+      "firstSerial": "1"
+    },
+    {
+      "id": "member-fragment-game-ui",
+      "checkedAt": "2026-09-10T15:29:35.468Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "limbo▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 38 条记录"
+      ],
+      "empty": 0,
+      "allNamesMatchCaseInsensitiveFragment": true,
+      "games": [
+        "Limbo"
+      ],
+      "source": "live-browser-only"
+    },
+    {
+      "id": "draft-staging-after",
+      "checkedAt": "2026-09-10T15:29:35.571Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "limbo▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 38 条记录"
+      ],
+      "empty": 0
+    },
+    {
+      "id": "member-game-one-local-day",
+      "checkedAt": "2026-09-10T15:29:39.159Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "username": "[account fragment]",
+          "game": "limbo",
+          "startDate": "2026-09-07T16:00:00.000Z",
+          "endDate": "2026-09-08T15:59:59.999Z"
+        }
+      },
+      "total": 21,
+      "returned": 20,
+      "graphqlError": false,
+      "games": [
+        "limbo"
+      ],
+      "currencies": [
+        "usdc"
+      ],
+      "multipliers": {
+        "min": 0,
+        "max": 2
+      },
+      "netNegativeCount": 12,
+      "descendingTime": true,
+      "allDatesInRange": true,
+      "submittedTrimmed": true,
+      "allNamesMatchCaseInsensitiveFragment": true,
+      "timezone": "Asia/Hong_Kong"
+    },
+    {
+      "id": "fairness-dialog",
+      "checkedAt": "2026-09-10T15:29:39.397Z",
+      "visibleLabels": [
+        "局详情 / 公平性",
+        "局号",
+        "用户ID",
+        "游戏",
+        "投注金额",
+        "派彩金额",
+        "nonce",
+        "clientSeed",
+        "serverSeed",
+        "serverSeedHash"
+      ],
+      "redactedOccurrences": 2,
+      "copyButtons": 5,
+      "buttonLabels": [
+        {
+          "text": "关闭",
+          "aria": null
+        },
+        {
+          "text": "",
+          "aria": "复制"
+        },
+        {
+          "text": "",
+          "aria": "复制"
+        },
+        {
+          "text": "",
+          "aria": "复制"
+        },
+        {
+          "text": "",
+          "aria": "复制"
+        },
+        {
+          "text": "",
+          "aria": "复制"
+        }
+      ],
+      "inputCount": 0,
+      "tabCount": 0
+    },
+    {
+      "id": "dialog-close-settled",
+      "checkedAt": "2026-09-10T15:30:31.030Z",
+      "visibleDialogs": 0,
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "limbo▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 21 条记录"
+      ],
+      "empty": 0
+    },
+    {
+      "id": "filter-options",
+      "checkedAt": "2026-09-10T15:30:32.473Z",
+      "options": {
+        "game": [
+          "全部游戏",
+          "Dice",
+          "Crash",
+          "Limbo",
+          "Plinko",
+          "Roulette",
+          "Mines",
+          "Baccarat",
+          "Blackjack"
+        ],
+        "result": [
+          "全部",
+          "仅赢",
+          "高倍赢(≥4x)"
+        ],
+        "currency": [
+          "全部币种",
+          "USDT (USDT)",
+          "USD (USD)",
+          "USDC (USDC)"
+        ],
+        "pageSize": [
+          "20 条",
+          "50 条",
+          "100 条"
+        ]
+      }
+    },
+    {
+      "id": "collapse-filters",
+      "checkedAt": "2026-09-10T15:30:32.839Z",
+      "memberInputVisible": false,
+      "queryVisible": true,
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 21 条记录"
+      ],
+      "empty": 0
+    },
+    {
+      "id": "expand-filters",
+      "checkedAt": "2026-09-10T15:30:33.167Z",
+      "memberInputVisible": true,
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "limbo▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 21 条记录"
+      ],
+      "empty": 0
+    },
+    {
+      "id": "nonexistent-member",
+      "checkedAt": "2026-09-10T15:30:34.505Z",
+      "source": "live-browser-and-response",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "username": "[account fragment]",
+          "game": "limbo",
+          "startDate": "2026-09-07T16:00:00.000Z",
+          "endDate": "2026-09-08T15:59:59.999Z"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false,
+      "games": [],
+      "currencies": [],
+      "multipliers": null,
+      "netNegativeCount": 0,
+      "descendingTime": true
+    },
+    {
+      "id": "empty-result-ui",
+      "checkedAt": "2026-09-10T15:30:34.625Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "limbo▼",
+        "全部▼",
+        "全部币种▼"
+      ],
+      "rowCount": 0,
+      "pagination": [],
+      "empty": 1
+    },
+    {
+      "id": "same-filter-query-size",
+      "checkedAt": "2026-09-10T15:30:37.338Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "全部▼",
+        "全部币种▼",
+        "50▼"
+      ],
+      "rowCount": 50,
+      "pagination": [
+        "显示第 1–50 条，共 1743 条记录"
+      ],
+      "empty": 0,
+      "memberInputEmpty": true
+    },
+    {
+      "id": "final-restored-and-amounts",
+      "checkedAt": "2026-09-10T15:33:44.899Z",
+      "url": "https://dev-app.bingox.io/admin/users/bet-record",
+      "combos": [
+        "全部游戏▼",
+        "全部▼",
+        "全部币种▼",
+        "20▼"
+      ],
+      "rowCount": 20,
+      "pagination": [
+        "显示第 1–20 条，共 1743 条记录"
+      ],
+      "empty": 0,
+      "memberInputEmpty": true,
+      "dateButtonsEmpty": true,
+      "visibleDialogs": 0,
+      "allDisplayedNetsEqualPayoutMinusAmount": true,
+      "amountsHaveEightDecimals": true,
+      "visibleCurrencies": [
+        "usdc"
+      ],
+      "firstSerial": "1",
+      "listLinks": 0,
+      "actionLabels": [
+        "重置筛选条件",
+        "收起筛选",
+        "查询",
+        "开始日期",
+        "结束日期",
+        "上一页",
+        "第 1 页",
+        "第 2 页",
+        "第 3 页",
+        "第 4 页",
+        "第 5 页",
+        "第 88 页",
+        "下一页"
+      ]
+    }
+  ],
+  "knownDefects": [
+    {
+      "id": "currency-case-mismatch",
+      "observed": true,
+      "evidenceIds": [
+        "currency-USDC",
+        "currency-USDC-ui",
+        "currency-USD",
+        "final-restored-and-amounts"
+      ],
+      "description": "USDC selection returns zero although the unfiltered list contains usdc records."
+    }
+  ],
+  "notExecuted": [
+    "Permission and channel isolation checks",
+    "All game types",
+    "Single-ended date queries",
+    "Request failure and retry",
+    "Missing historical seeds or hash values",
+    "Clipboard success or denial",
+    "Bet settlement, ledger posting and wagering requirement consumption"
+  ]
+}
