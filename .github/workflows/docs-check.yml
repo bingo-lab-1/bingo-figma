@@ -16,7 +16,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: 校验文档规范
-        # 已开工页面全部迁移到 v3,严格模式:未迁移即失败
+        # 检查所有页面的六部分结构、确定规则、编号和链接
         run: python3 00-公共约定/校验.py --strict
 
   mermaid:
@@ -48,7 +48,7 @@ jobs:
                   p = f"/tmp/mmd/{n}.mmd"
                   pathlib.Path(p).write_text(m.group(1), encoding="utf-8")
                   idx.append(f"{n}\t{f}")
-          pathlib.Path("/tmp/mmd/index.tsv").write_text("\n".join(idx), encoding="utf-8")
+          pathlib.Path("/tmp/mmd/index.tsv").write_text("\n".join(idx) + "\n", encoding="utf-8")
           print(f"抽出 {n} 张图")
           PY
           fail=0

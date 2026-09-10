@@ -3,22 +3,21 @@
 
 用法:
     python3 00-公共约定/校验.py
-    python3 00-公共约定/校验.py --strict   # 要求所有页面都已迁移到 v3
+    python3 00-公共约定/校验.py --strict   # 检查所有页面的六部分结构(默认同样严格)
 """
 import re
 import sys
 import pathlib
+from urllib.parse import unquote, urlsplit
 
 BASE = pathlib.Path(__file__).resolve().parent.parent
-STRICT = "--strict" in sys.argv
 
-V3_SECTIONS = [
-    "背景与目标", "入口", "术语", "关键参数与假设", "字段清单",
-    "需求清单", "需求详述", "数据流向与系统串接", "异常与边界",
-    "状态清单", "涉及表与职责", "关联页面",
-]
-# 适用范围必须覆盖的维度(自检案例:本地化 / 用户场景未定义)
-SCOPE_KEYS = ["终端", "响应式", "语言", "时区"]
+TEMPLATES = {
+    "活动": ["活动介绍", "运营配置", "参与和领奖规则", "特殊情况", "验收场景", "相关资料"],
+    "查询": ["用途", "查询条件", "结果字段", "操作规则", "验收场景", "相关资料"],
+    "配置": ["用途", "配置项", "操作规则", "特殊情况", "验收场景", "相关资料"],
+    "业务处理": ["用途", "查询与处理信息", "处理规则", "特殊情况", "验收场景", "相关资料"],
+}
 BANNED_SECTIONS = {"待探讨", "页面结构"}
 
 # emoji 与装饰性符号(需求文档靠结构表达轻重,不靠图标)
@@ -31,24 +30,10 @@ EMOJI = re.compile(
 )
 
 errors: list[str] = []
-warns: list[str] = []
 unstarted: list[str] = []   # 索引里有、还没开工的页面(无文件夹),不是错误
 
 
 def err(msg): errors.append(msg)
-def warn(msg): warns.append(msg)
-
-
-def frontmatter(text):
-    m = re.match(r"^---\n(.*?)\n---\n", text, re.S)
-    if not m:
-        return {}
-    out = {}
-    for line in m.group(1).splitlines():
-        if ":" in line:
-            k, v = line.split(":", 1)
-            out[k.strip()] = v.strip()
-    return out
 
 
 def sections(text):
@@ -64,6 +49,24 @@ def section_body(text, title):
 
 def table_rows(body, pattern):
     return [l for l in body.splitlines() if re.match(pattern, l.strip())]
+
+
+# 未解决的合并标记会让同一页同时携带两种状态,在正文检查前拦截。
+UNRESOLVED_RULE = re.compile(
+    r"待确认|待定|暂定|待评审|待拍板|待决策|待产品确认|待技术评估|待查|"
+    r"尚待|尚需明确|规则未明确|未确定的业务|未验证假设|剩余假设|明确假设|"
+    r"业务假设|关键参数与假设|枚举未取全|待验证点|尚未定稿|仍需收敛"
+)
+CONFLICT_MARKER = re.compile(r"^(?:<{7}(?: .*)?|={7}|>{7}(?: .*)?|\|{7}(?: .*)?)$")
+for f in sorted(BASE.rglob("*.md")):
+    rel = f.relative_to(BASE)
+    if any(part in {".git", "node_modules", ".venv", ".gstack"} for part in rel.parts):
+        continue
+    for line_no, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
+        if UNRESOLVED_RULE.search(line):
+            err(f"{rel}:{line_no}: 需求必须给出确定的执行结论")
+        if CONFLICT_MARKER.fullmatch(line):
+            err(f"{rel}:{line_no}: 含未解决的合并冲突标记")
 
 
 # ─────────────────────── 模块级检查 ───────────────────────
@@ -92,134 +95,57 @@ for mod in modules:
 
 # ─────────────────────── 页面级检查 ───────────────────────
 pages = sorted(BASE.glob("M[0-9]-*/*/README.md"))
-migrated = 0
+by_template = {name: 0 for name in TEMPLATES}
 
 for f in pages:
     rel = f.relative_to(BASE)
     text = f.read_text(encoding="utf-8")
-    fm = frontmatter(text)
-    secs = sections(text)
+    # 代码块中的示例不是页面章节;旧链接兼容锚点也不算正文。
+    body = re.sub(r"^```[^\n]*\n.*?^```\s*$", "", text, flags=re.M | re.S)
+    secs = sections(body)
     titles = [t for _, t in secs]
     nums = [n for n, _ in secs]
-    # 是否已迁移:由段落结构本身判定,不靠人工标记
-    v3 = titles == V3_SECTIONS
-    if v3:
-        migrated += 1
-
-    # 页面编号从文件夹名推导,不在 frontmatter 重复
     page_no = f.parent.name.split("-")[0]
-
-    # 1) 段落编号连续
-    if nums != list(range(1, len(nums) + 1)):
-        err(f"{rel}: 段落编号不连续 {nums}")
-
-    # 1b) 不允许无编号的二级标题 —— 会打乱段落结构且不易察觉
-    for m in re.finditer(r"^## (?!\d+\.)(.+)$", text, re.M):
-        err(f"{rel}: 二级标题「{m.group(1).strip()}」没有段号,"
-            f"要么并入某段(降为 ###),要么给它编号")
-
-    # 2) 禁用段落
-    for banned in BANNED_SECTIONS:
-        if banned in titles:
-            err(f"{rel}: 含禁用段落「{banned}」")
-
-    # 3) frontmatter 必填(中文键,仅 6 项)
-    for k in ("名称", "路由", "模块", "优先级", "状态", "更新"):
-        if k not in fm:
-            err(f"{rel}: frontmatter 缺「{k}」")
-
-    body_req = section_body(text, "需求清单")
-    rows = table_rows(body_req, r"^\|\s*\d+\.\d+-R\d+\s*\|")
-
-    # 4) 需求编号须与文件夹编号一致
-    for r in rows:
-        rid = r.strip().strip("|").split("|")[0].strip()
-        if not rid.startswith(page_no + "-R"):
-            err(f"{rel}: 需求编号 {rid} 与页面编号 {page_no} 不符")
-
-    # 5) 需求详述里展开的编号,必须在需求清单中存在
-    listed = {r.strip().strip("|").split("|")[0].strip() for r in rows}
-    for m in re.finditer(r"^### (\S+)", section_body(text, "需求详述"), re.M):
-        if listed and m.group(1) not in listed:
-            err(f"{rel}: 需求详述展开了 {m.group(1)},但需求清单中没有这条")
-
-    # ── v3 专属检查 ──
-    if not v3:
-        if STRICT:
-            err(f"{rel}: 段落结构未迁移到 v3 模板")
-        else:
-            warn(f"{rel}: 待迁移到 v3")
+    if nums != list(range(1, 7)):
+        err(f"{rel}: 页面必须恰有连续编号的六部分,实际为 {nums}")
+    for m in re.finditer(r"^## (?!\d+\.)(.+)$", body, re.M):
+        err(f"{rel}: 二级标题「{m.group(1).strip()}」没有段号")
+    if not re.match(r"^# " + re.escape(page_no) + r" · \S[^\n]*\n", text):
+        err(f"{rel}: 页面须直接从编号及名称标题开始")
+    kind = next((name for name, expected in TEMPLATES.items() if titles == expected), None)
+    if kind is None:
+        err(f"{rel}: 章节须使用活动、查询、配置或业务处理六部分模板")
         continue
-
-    # 5) 段落名与顺序
-    if titles != V3_SECTIONS:
-        err(f"{rel}: 段落不符 v3 模板\n"
-            f"      期望 {V3_SECTIONS}\n      实际 {titles}")
-
-    # 6) 需求表 5 列(ID/需求/触发条件/验收/权限),触发条件必填
-    for r in rows:
-        cells = [c.strip() for c in r.strip().strip("|").split("|")]
-        if len(cells) != 5:
-            err(f"{rel}: 需求行应 5 列"
-                f"(ID/需求/触发条件/验收标准/权限码) → {cells[0]}")
+    by_template[kind] += 1
+    for title in titles:
+        contents = section_body(text, title)
+        contents = re.sub(r"<!--.*?-->|<a\s+id=[^>]+></a>", "", contents, flags=re.S)
+        contents = re.sub(r"^#{3,6} .*?$", "", contents, flags=re.M)
+        if not contents.strip():
+            err(f"{rel}: 「{title}」内容为空")
+    cases = table_rows(section_body(text, "验收场景"), r"^\|\s*\d+\.\d+-R\d+\s*\|")
+    if not cases:
+        err(f"{rel}: 验收场景缺少带需求编号的场景")
+    listed_ids = set()
+    for row in cases:
+        cells = [c.strip() for c in row.strip().strip("|").split("|")]
+        if len(cells) != 3 or not all(cells):
+            err(f"{rel}: 验收行须为需求编号/场景与操作/预期结果三列且非空")
             continue
-        if not cells[2]:
-            err(f"{rel}: {cells[0]} 缺触发条件")
-
-    # 7) 「需求详述」展开的每一条须 6 栏齐全 + 正逆向测试
-    detail = section_body(text, "需求详述")
-    for m in re.finditer(r"^### (\S+)[^\n]*\n(.*?)(?=^### |\Z)",
-                         detail, re.M | re.S):
-        rid, blk = m.group(1), m.group(2)
-        for col in ("触发条件", "可输入数据", "功能范围",
-                    "处理逻辑", "错误处理", "测试案例"):
-            if col not in blk:
-                err(f"{rel}: {rid} 详述缺栏位「{col}」")
-        if "正向" not in blk or "逆向" not in blk:
-            err(f"{rel}: {rid} 测试案例须含正向与逆向各至少一例")
-
-    # 8) 异常与边界 ≥ 3 条
-    edge = table_rows(section_body(text, "异常与边界"), r"^\|\s*E\d+\s*\|")
-    if len(edge) < 3:
-        err(f"{rel}: 异常与边界仅 {len(edge)} 条,至少 3 条(正反流程都要想)")
-
-    # 9) 背景与目标须含「不做什么」+ 适用范围各维度
-    bg = section_body(text, "背景与目标")
-    if "不做什么" not in bg:
-        err(f"{rel}: 背景与目标缺「不做什么」边界声明")
-
-    # 9b) 第 1 段面向所有人(含老板),不得出现代码/路径/接口
-    for pat, why in (
-        (r"\.(ts|tsx|js|py|go|prisma)\b", "文件名"),
-        (r"\b\w+/\w+/\w+\.", "文件路径"),
-        (r"\b(resolver|GraphQL|SQL|API|endpoint|schema)\b", "技术名词"),
-    ):
-        m = re.search(pat, bg, re.I)
-        if m:
-            err(f"{rel}: 背景与目标出现{why}「{m.group()}」— "
-                f"第 1 段面向所有人,不写代码细节")
-    if "适用范围" not in bg:
-        err(f"{rel}: 背景与目标缺「适用范围」")
-    else:
-        for k in SCOPE_KEYS:
-            if k not in bg:
-                err(f"{rel}: 适用范围缺「{k}」维度")
-
-    # 10) 数据流向与系统串接
-    flow = section_body(text, "数据流向与系统串接")
-    if "数据流向" not in flow:
-        err(f"{rel}: 第 7 段缺「数据流向」")
-    if "系统串接" not in flow:
-        err(f"{rel}: 第 7 段缺「系统串接」(无外部系统也要显式声明)")
-
-    # 11) 涉及表与职责
-    if "服务端" not in section_body(text, "涉及表与职责"):
-        err(f"{rel}: 涉及表与职责缺前后端职责划分")
-
-    # 12) 禁用 emoji
-    hits = sorted({m.group() for m in EMOJI.finditer(text)})
-    if hits:
-        err(f"{rel}: 含 emoji {hits} — 需求文档不使用 emoji")
+        if not re.fullmatch(re.escape(page_no) + r"-R\d+", cells[0]):
+            err(f"{rel}: 需求编号 {cells[0]} 与页面编号不符")
+        listed_ids.add(cells[0])
+    mentioned_ids = set(re.findall(r"(?<![\d.])" + re.escape(page_no) + r"-R\d+\b", body))
+    for rid in mentioned_ids - listed_ids:
+        err(f"{rel}: {rid} 没有对应验收场景")
+    if re.search(r"\*\*(触发条件|可输入数据|功能范围|处理逻辑|错误处理|测试案例)\*\*", body):
+        err(f"{rel}: 请将操作、异常和验收分别写入相应章节,不使用旧六栏详述")
+    if re.search(r"<页面编号>|<活动名称>|<页面名称>|<查询页面名>", body):
+        err(f"{rel}: 正文仍含模板占位符")
+    if re.search(r"^\s*\|\s*$|^输入信息：\|", body, re.M):
+        err(f"{rel}: 残留不完整表格,请改成完整表格或普通段落")
+    if EMOJI.search(body):
+        err(f"{rel}: 含emoji")
 
 
 # ─────────────────────── mermaid 结构检查 ───────────────────────
@@ -248,6 +174,22 @@ for f in sorted(BASE.rglob("*.md")):
         err(f"{rel}:{open_at}: mermaid 代码块未闭合")
 
 
+# 检查普通Markdown文件/图片链接的本地目标;不验证远端URL和锚点。
+# 去掉代码块和行内代码,避免把文档里的示例路径当作真实引用。
+for f in sorted(BASE.rglob("*.md")):
+    rel = f.relative_to(BASE)
+    if any(part in {".git", "node_modules", ".venv", ".gstack"} for part in rel.parts):
+        continue
+    body = re.sub(r"^```[^\n]*\n.*?^```\s*$", "", f.read_text(encoding="utf-8"), flags=re.M | re.S)
+    body = re.sub(r"`[^`\n]+`", "", body)
+    for match in re.finditer(r"\]\((<[^>]+>|[^\s)]+)(?:\s+\"[^\"]*\")?\)", body):
+        target = match.group(1).strip("<>")
+        parsed = urlsplit(target)
+        if parsed.scheme or parsed.netloc or not parsed.path:
+            continue
+        if not (f.parent / unquote(parsed.path)).exists():
+            err(f"{rel}: 本地链接不存在 → {target}")
+
 # ─────────────────────── 其他 ───────────────────────
 SKIP_DIRS = {".git", ".github", "node_modules", "__pycache__", ".venv"}
 # 空的页面目录是允许的:git 不跟踪空目录,所以它只存在于本地,
@@ -264,30 +206,10 @@ for d in BASE.rglob("*"):
         err(f"空目录: {rel}")
 
 
-# ─────────────────────── 人日汇总 ───────────────────────
-# 人日的唯一出处是**模块 README 的页面索引表**。
-# 页面 README 不写人日 —— 需求文档面向所有读者,排期信息归模块索引。
-by_pri: dict[str, float] = {}
-for mod in modules:
-    readme = mod / "README.md"
-    if not readme.exists():
-        continue          # 缺 README 已在模块级检查报错,这里跳过,不要抛栈
-    mtext = readme.read_text(encoding="utf-8")
-    for m in re.finditer(
-            r"^\| (\d+\.\d+) \|[^|]*\|[^|]*\|\s*\**(P\d)\**\s*\|[^|]*\|\s*([\d.]+)\s*\|",
-            mtext, re.M):
-        by_pri[m.group(2)] = by_pri.get(m.group(2), 0) + float(m.group(3))
-
-
 # ─────────────────────── 输出 ───────────────────────
 total = len(pages) + len(unstarted)
-print(f"页面 {total} 个(索引口径)· 已开工 {len(pages)} · 未开工 {len(unstarted)}")
-print(f"已开工中 v3: {migrated} · 待迁移: {len(pages) - migrated}")
-if by_pri:
-    parts = " · ".join(f"{k} {v:g}" for k, v in sorted(by_pri.items()))
-    print(f"人日(由模块索引汇总): {parts} · 合计 {sum(by_pri.values()):g}")
-if warns and not STRICT:
-    print(f"\n⚠️  {len(warns)} 个页面待迁移(非阻断)")
+print(f"页面 {total} 个(索引口径)· 已有文档 {len(pages)} · 仅登记 {len(unstarted)}")
+print("六部分结构: " + " · ".join(f"{name} {count}" for name, count in by_template.items()) + f" · 不符合 {len(pages) - sum(by_template.values())}")
 if errors:
     print(f"\n❌ {len(errors)} 个错误\n")
     for e in errors:

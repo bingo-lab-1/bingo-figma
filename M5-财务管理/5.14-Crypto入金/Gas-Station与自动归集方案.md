@@ -1,10 +1,3 @@
----
-名称: Gas Station与自动归集方案
-归属: 5.14 Crypto入金
-状态: 方案设计
-更新: 2026-08-10
----
-
 # Gas Station 与自动归集方案
 
 ## 1. 目标与结论
@@ -52,7 +45,7 @@ MVP 采用 **Gas Station + 自动归集**：
 | Treasury/Cold Wallet | 长期保管平台主要资产 | 定期接收 Collection Wallet 资金 | 不参与高频补 Gas 和逐用户归集，不暴露给业务服务 |
 
 同一个 EVM 地址格式可跨多条 EVM 链使用，但余额、Nonce、Gas、归集记录和配置必须按
-`chainNetworkId` 隔离。生产环境建议每条链使用独立 Collection Wallet 和 Gas Station。
+`chainNetworkId` 隔离。生产环境每条链使用独立 Collection Wallet 和 Gas Station。
 
 ## 4. 总体架构
 
@@ -241,7 +234,7 @@ stateDiagram-v2
 状态进入 `补Gas确认中` 或 `归集确认中` 后，必须优先查询已有交易，不得直接重新发送。链上交易不存在且
 确认需要替换时，必须使用同一 Nonce 和明确的提价策略。
 
-## 11. 建议数据对象
+## 11. 数据对象
 
 以下为职责与字段语义，不要求直接采用同名物理表。
 
