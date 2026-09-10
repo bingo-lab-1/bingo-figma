@@ -1,0 +1,271 @@
+[
+  {
+    "name": "重置后默认查询",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": [],
+    "rowTypes": [
+      "withdrawalDebit",
+      "betPayout",
+      "betDebit"
+    ],
+    "currencies": [
+      "USDC"
+    ],
+    "descending": true
+  },
+  {
+    "name": "币种输入转大写",
+    "value": "USDC"
+  },
+  {
+    "name": "用户+币种+关联单据组合查询",
+    "httpStatus": 200,
+    "where": {
+      "userId": "[测试用户ID]",
+      "refId": "[测试关联单据ID]",
+      "currencyCode": "USDC"
+    },
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 1,
+    "returned": 1,
+    "errors": [],
+    "rowTypes": [
+      "withdrawalDebit"
+    ],
+    "currencies": [
+      "USDC"
+    ],
+    "descending": true
+  },
+  {
+    "name": "组合查询结果核对",
+    "allMatch": true
+  },
+  {
+    "name": "不存在的关联单据",
+    "httpStatus": 200,
+    "where": {
+      "userId": "[测试用户ID]",
+      "refId": "[测试关联单据ID]",
+      "currencyCode": "USDC"
+    },
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 0,
+    "returned": 0,
+    "errors": [],
+    "rowTypes": [],
+    "currencies": [],
+    "descending": true
+  },
+  {
+    "name": "空结果页面",
+    "text": "筛选条件\n收起筛选\n查询\n用户 ID\n账变类型\n全部类型\n币种\n关联单据 ID\n日期\n开始日期\n结束日期\n暂无数据\n调整筛选条件后再试。"
+  },
+  {
+    "name": "清空条件恢复列表",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": [],
+    "rowTypes": [
+      "withdrawalDebit",
+      "betPayout",
+      "betDebit"
+    ],
+    "currencies": [
+      "USDC"
+    ],
+    "descending": true
+  },
+  {
+    "name": "下一页",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 20,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": [],
+    "rowTypes": [
+      "betPayout",
+      "betDebit",
+      "bonusCredit",
+      "manualCredit",
+      "wagerAdjustment"
+    ],
+    "currencies": [
+      "USDC",
+      "USDT",
+      "USD"
+    ],
+    "descending": true
+  },
+  {
+    "name": "每页50条",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 50
+    },
+    "total": 2147,
+    "returned": 50,
+    "errors": [],
+    "rowTypes": [
+      "withdrawalDebit",
+      "betPayout",
+      "betDebit",
+      "bonusCredit",
+      "manualCredit",
+      "wagerAdjustment"
+    ],
+    "currencies": [
+      "USDC",
+      "USDT",
+      "USD"
+    ],
+    "descending": true
+  },
+  {
+    "name": "恢复每页20条",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": [],
+    "rowTypes": [
+      "withdrawalDebit",
+      "betPayout",
+      "betDebit"
+    ],
+    "currencies": [
+      "USDC"
+    ],
+    "descending": true
+  },
+  {
+    "name": "查询2026-09-08自然日",
+    "httpStatus": 200,
+    "where": {
+      "createdAtStart": "2026-09-07T16:00:00.000Z",
+      "createdAtEnd": "2026-09-08T15:59:59.999Z"
+    },
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 32,
+    "returned": 20,
+    "errors": []
+  },
+  {
+    "name": "日期结果核对",
+    "allInRange": true
+  },
+  {
+    "name": "日期清空",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": []
+  },
+  {
+    "name": "关联单据ID片段匹配",
+    "httpStatus": 200,
+    "where": {
+      "refId": "[关联单据ID片段]"
+    },
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 1,
+    "returned": 1,
+    "errors": []
+  },
+  {
+    "name": "包含匹配核对",
+    "allContain": true
+  },
+  {
+    "name": "清空单据条件",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": []
+  },
+  {
+    "name": "打码量变动类型",
+    "httpStatus": 200,
+    "where": {
+      "reasonType": "wagerAdjustment"
+    },
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 15,
+    "returned": 15,
+    "errors": []
+  },
+  {
+    "name": "打码量变动样本",
+    "sample": {
+      "amount": "0",
+      "wagerBefore": "510",
+      "wagerAmount": "-500",
+      "wagerAfter": "10"
+    }
+  },
+  {
+    "name": "最后恢复默认查询",
+    "httpStatus": 200,
+    "where": {},
+    "paging": {
+      "offset": 0,
+      "limit": 20
+    },
+    "total": 2147,
+    "returned": 20,
+    "errors": []
+  },
+  {
+    "name": "收起筛选",
+    "inputsVisible": false,
+    "queryVisible": true
+  }
+]
