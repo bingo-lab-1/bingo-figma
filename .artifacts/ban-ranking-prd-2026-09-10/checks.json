@@ -1,0 +1,822 @@
+{
+  "collectedOn": "2026-09-10",
+  "collectionTimezone": "Asia/Hong_Kong",
+  "pages": {
+    "ban": "https://dev-app.bingox.io/admin/users/ban",
+    "ranking": "https://dev-app.bingox.io/admin/users/user-ranking"
+  },
+  "scope": "Read-only website PRD collection plus empty mandatory-field validation; no real ban, unban, session removal or financial mutations.",
+  "privacy": "No player IDs, usernames, full financial rows, credentials or user-detail contents retained. Selected account and channel values are replaced.",
+  "observations": [
+    {
+      "id": "ban-form-and-initial-state",
+      "checkedAt": "2026-09-10T15:44:52.767Z",
+      "source": "live-browser",
+      "filterLabels": [
+        "用户ID",
+        "会员账号",
+        "用户昵称",
+        "状态",
+        "封禁时间"
+      ],
+      "initialStatus": "全部",
+      "initialEmpty": true,
+      "initialHeaderCount": 0,
+      "formLabels": [
+        "用户ID",
+        "封禁限制",
+        "到期时间（留空表示永久）",
+        "踢出当前登录",
+        "封禁原因"
+      ],
+      "restrictionOrder": [
+        "资金冻结",
+        "游戏冻结",
+        "登录冻结"
+      ],
+      "restrictionSelected": [
+        false,
+        false,
+        true
+      ],
+      "kickSessionDefault": true,
+      "userIdAndReasonEmpty": true
+    },
+    {
+      "id": "ban-status-options",
+      "checkedAt": "2026-09-10T15:46:46.020Z",
+      "options": [
+        "全部",
+        "封禁中",
+        "已解封"
+      ]
+    },
+    {
+      "id": "ban-active-query",
+      "checkedAt": "2026-09-10T15:46:50.241Z",
+      "source": "live-browser-and-response",
+      "operation": "userBanRecords",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "where": {
+          "isActive": true
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ban-account-query",
+      "checkedAt": "2026-09-10T15:46:50.984Z",
+      "source": "live-browser-and-response",
+      "operation": "userBanRecords",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "where": {
+          "username": "[selected username]",
+          "isActive": true
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false,
+      "submittedTrimmed": true
+    },
+    {
+      "id": "ban-date-selected",
+      "checkedAt": "2026-09-10T15:48:37.159Z",
+      "visibleDialogs": 0,
+      "dateButtonLabels": [
+        "",
+        "收起筛选",
+        "查询",
+        "封禁用户",
+        "2026-09-08 ~ 2026-09-09"
+      ]
+    },
+    {
+      "id": "ban-date-query",
+      "checkedAt": "2026-09-10T15:48:39.958Z",
+      "source": "live-browser-and-response",
+      "operation": "userBanRecords",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "where": {
+          "username": "[selected username]",
+          "isActive": true,
+          "bannedAtStart": "2026-09-07T16:00:00.000Z",
+          "bannedAtEnd": "2026-09-09T15:59:59.999Z"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ban-empty-submit-validation",
+      "checkedAt": "2026-09-10T15:48:41.454Z",
+      "validationVisible": true,
+      "banMutationRequests": 0,
+      "dialogRemainsOpen": true
+    },
+    {
+      "id": "ban-restored",
+      "checkedAt": "2026-09-10T15:48:41.985Z",
+      "visibleDialogs": 0,
+      "inputsEmpty": true,
+      "status": "全部",
+      "dateEmpty": 1,
+      "empty": 1
+    },
+    {
+      "id": "ranking-initial",
+      "checkedAt": "2026-09-10T15:48:43.909Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "statsAtStart": "2026-09-09T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-10T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalDepositAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-day-20260908",
+      "checkedAt": "2026-09-10T15:49:36.249Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "statsAtStart": "2026-09-07T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-08T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalDepositAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-bet-day",
+      "checkedAt": "2026-09-10T15:49:37.180Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "statsAtStart": "2026-09-07T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-08T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalBetAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false,
+      "balancePositiveCount": 0
+    },
+    {
+      "id": "ranking-profit-day",
+      "checkedAt": "2026-09-10T15:49:37.954Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "statsAtStart": "2026-09-07T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-08T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false,
+      "zeroNetCount": 0,
+      "negativeNetCount": 0
+    },
+    {
+      "id": "ranking-profit-all-time",
+      "checkedAt": "2026-09-10T15:51:02.412Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false,
+      "descending": true,
+      "zeroNetCount": 0,
+      "negativeNetCount": 1,
+      "lastOnlineMissing": 0
+    },
+    {
+      "id": "ranking-all-time-ui",
+      "checkedAt": "2026-09-10T15:51:02.513Z",
+      "headers": [
+        "会员账号",
+        "用户ID",
+        "用户余额",
+        "渠道",
+        "封禁状态",
+        "邀请人数",
+        "用户标签",
+        "当日充值金额",
+        "当日提现金额",
+        "当日赠送金额",
+        "当日佣金",
+        "当日充值次数",
+        "总提现笔数",
+        "总投注金额",
+        "总投注笔数",
+        "总输赢",
+        "在线状态",
+        "最近在线时间",
+        "操作"
+      ],
+      "rows": 3,
+      "combos": [
+        "Asia/Hong_Kong▼",
+        "全部渠道▼",
+        "全部标签▼",
+        "全部等级▼",
+        "20▼"
+      ],
+      "invalidDateVisible": 0
+    },
+    {
+      "id": "ranking-deposit-all-time",
+      "checkedAt": "2026-09-10T15:51:03.382Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalDepositAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 1,
+      "returned": 1,
+      "graphqlError": false,
+      "descending": true
+    },
+    {
+      "id": "ranking-bet-all-time",
+      "checkedAt": "2026-09-10T15:51:04.244Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalBetAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false,
+      "descending": true
+    },
+    {
+      "id": "ranking-visible-fields-verified",
+      "checkedAt": "2026-09-10T15:53:34.064Z",
+      "headers": [
+        "会员账号",
+        "用户ID",
+        "用户余额",
+        "渠道",
+        "封禁状态",
+        "邀请人数",
+        "用户标签",
+        "当日充值金额",
+        "当日提现金额",
+        "当日赠送金额",
+        "当日佣金",
+        "当日充值次数",
+        "总提现笔数",
+        "总投注金额",
+        "总投注笔数",
+        "总输赢",
+        "在线状态",
+        "最近在线时间",
+        "操作"
+      ],
+      "rowCount": 2,
+      "allAmountsTwoDecimals": true,
+      "banStates": [
+        "正常"
+      ],
+      "onlineStates": [
+        "离线"
+      ],
+      "dateValuesShown": true,
+      "currencyHeaderPresent": false
+    },
+    {
+      "id": "ranking-filter-options",
+      "checkedAt": "2026-09-10T15:53:35.495Z",
+      "choices": {
+        "channel": {
+          "defaultOption": "全部渠道",
+          "otherOptionCount": 1
+        },
+        "tag": {
+          "defaultOption": "全部标签",
+          "otherOptionCount": 5
+        },
+        "vip": {
+          "defaultOption": "全部等级",
+          "otherOptionCount": 0
+        },
+        "pageSize": [
+          "20 条",
+          "50 条",
+          "100 条"
+        ]
+      }
+    },
+    {
+      "id": "ranking-bet-50",
+      "checkedAt": "2026-09-10T15:53:38.594Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 50
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalBetAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-user-detail",
+      "checkedAt": "2026-09-10T15:53:39.538Z",
+      "dialogVisible": true,
+      "tabs": [
+        "账号概览",
+        "代理详情",
+        "钱包",
+        "打码任务",
+        "第三方钱包",
+        "法币账号",
+        "虚拟币账号",
+        "提现账号",
+        "充值记录",
+        "提款记录",
+        "资产变动",
+        "登录设备",
+        "风控数据"
+      ],
+      "selectedTabs": [
+        "账号概览"
+      ]
+    },
+    {
+      "id": "ranking-detail-closed",
+      "checkedAt": "2026-09-10T15:53:39.981Z",
+      "visibleDialogs": 0,
+      "rows": 3,
+      "pageSize": "50"
+    },
+    {
+      "id": "ranking-profit-50",
+      "checkedAt": "2026-09-10T15:53:40.526Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 50
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-profit-100",
+      "checkedAt": "2026-09-10T15:53:41.310Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-account-fragment",
+      "checkedAt": "2026-09-10T15:56:17.315Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "username": "[selected username]",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 1,
+      "returned": 1,
+      "graphqlError": false,
+      "allNamesContainFragment": true
+    },
+    {
+      "id": "ranking-account-spaces",
+      "checkedAt": "2026-09-10T15:56:19.592Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "username": "[selected username]",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false,
+      "spacesRetained": true
+    },
+    {
+      "id": "ranking-invalid-range",
+      "checkedAt": "2026-09-10T15:56:27.021Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "statsAtStart": "2026-09-09T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-08T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "graphqlError": true,
+      "serverDateError": true,
+      "serverErrorCodes": [
+        400
+      ]
+    },
+    {
+      "id": "ranking-valid-before-error",
+      "checkedAt": "2026-09-10T15:58:33.794Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-invalid-after-data",
+      "checkedAt": "2026-09-10T15:58:37.339Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "statsAtStart": "2026-09-09T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-09T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "graphqlError": true,
+      "serverErrorCodes": [
+        400
+      ],
+      "serverDateError": true
+    },
+    {
+      "id": "ranking-invalid-retains-data",
+      "checkedAt": "2026-09-10T15:58:37.467Z",
+      "previousRows": 2,
+      "currentRows": 2,
+      "oldRowsUnchanged": true,
+      "errorToastVisible": true,
+      "errorMessage": "统计日期结束时间必须晚于开始时间（同日应为 [当日00:00, 次日00:00)）",
+      "retryButtons": 0
+    },
+    {
+      "id": "ranking-corrected-after-error",
+      "checkedAt": "2026-09-10T15:58:40.642Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-channel-query",
+      "checkedAt": "2026-09-10T15:58:42.248Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "channelId": "[selected channelId]",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-reset-with-channel",
+      "checkedAt": "2026-09-10T15:58:43.083Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "channelId": "[selected channelId]",
+          "statsAtStart": "2026-09-09T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-10T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-reset-channel-ui",
+      "checkedAt": "2026-09-10T15:58:43.208Z",
+      "channelPreserved": true,
+      "usernameEmpty": true,
+      "dateLabels": [
+        "2026年9月10日",
+        "2026年9月10日"
+      ]
+    },
+    {
+      "id": "ranking-clear-channel-and-date",
+      "checkedAt": "2026-09-10T15:58:47.359Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 100
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-restore-size-20",
+      "checkedAt": "2026-09-10T15:58:48.764Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalProfitLoss",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 2,
+      "returned": 2,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-restore-deposit",
+      "checkedAt": "2026-09-10T15:58:49.635Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalDepositAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 1,
+      "returned": 1,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-final-today",
+      "checkedAt": "2026-09-10T15:58:50.664Z",
+      "source": "live-browser-and-response",
+      "operation": "userRanking",
+      "httpStatus": 200,
+      "variables": {
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "where": {
+          "statsAtStart": "2026-09-09T16:00:00.000Z",
+          "statsAtEndExclusive": "2026-09-10T16:00:00.000Z",
+          "timeZone": "Asia/Hong_Kong",
+          "orderBy": "totalDepositAmount",
+          "orderDirection": "desc"
+        }
+      },
+      "total": 0,
+      "returned": 0,
+      "graphqlError": false
+    },
+    {
+      "id": "ranking-final-ui",
+      "checkedAt": "2026-09-10T15:58:50.900Z",
+      "usernameEmpty": true,
+      "combos": [
+        "Asia/Hong_Kong▼",
+        "全部渠道▼",
+        "全部标签▼",
+        "全部等级▼"
+      ],
+      "dateLabels": [
+        "2026年9月10日",
+        "2026年9月10日"
+      ],
+      "visibleDialogs": 0,
+      "visibleRows": 0,
+      "visibleEmpty": 1
+    }
+  ],
+  "confirmedDefects": [
+    {
+      "id": "ranking-stale-rows-after-invalid-date",
+      "evidenceIds": [
+        "ranking-valid-before-error",
+        "ranking-invalid-after-data",
+        "ranking-invalid-retains-data",
+        "ranking-corrected-after-error"
+      ],
+      "description": "The server rejects the date range and an error toast is shown, but the previous successful rows remain and no retry button appears."
+    }
+  ],
+  "coverageLimits": [
+    "Ban table was empty; populated rows, paging and unban form verified in source only.",
+    "No real ban or unban mutations, session removal, or player-side restriction enforcement tests.",
+    "Ranking sample has at most two rows; page-size changes verified but not cross-page navigation.",
+    "No available concrete VIP option; tag options inspected without applying a tag filter.",
+    "No permission or cross-channel isolation tests.",
+    "No full ledger reconciliation or fixtures for missing FX rates/valuations, missing last-online times, cross-day settlement or equal-amount ties."
+  ]
+}
