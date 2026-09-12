@@ -1,0 +1,133 @@
+[
+  {
+    "sample": 3,
+    "bet_ledger_count": 920,
+    "unique_ledger_count": 920,
+    "currency_counts": {
+      "USD": 10,
+      "USDC": 4,
+      "USDT": 906
+    },
+    "missing_conversion_count": 0,
+    "available_standard_amount_sum": "115075.73046812",
+    "displayed_total_bet_amount": "115076.37",
+    "summary_bet_count": 920,
+    "conversion_currencies": [
+      "USD"
+    ],
+    "conversion_statuses": [
+      "completed"
+    ]
+  },
+  {
+    "sample": 4,
+    "bet_ledger_count": 3,
+    "unique_ledger_count": 3,
+    "currency_counts": {
+      "USDT": 3
+    },
+    "missing_conversion_count": 0,
+    "available_standard_amount_sum": "1001.34366",
+    "displayed_total_bet_amount": "1001.35",
+    "summary_bet_count": 3,
+    "conversion_currencies": [
+      "USD"
+    ],
+    "conversion_statuses": [
+      "completed"
+    ]
+  },
+  {
+    "sample": 6,
+    "bet_ledger_count": 365,
+    "unique_ledger_count": 365,
+    "currency_counts": {
+      "USDT": 365
+    },
+    "missing_conversion_count": 362,
+    "available_standard_amount_sum": "0.00023979",
+    "displayed_total_bet_amount": "26888.5",
+    "summary_bet_count": 365,
+    "conversion_currencies": [
+      "USD"
+    ],
+    "conversion_statuses": [
+      "completed"
+    ]
+  },
+  {
+    "sample": 8,
+    "bet_ledger_count": 49,
+    "unique_ledger_count": 49,
+    "currency_counts": {
+      "USDC": 21,
+      "USDT": 28
+    },
+    "missing_conversion_count": 28,
+    "available_standard_amount_sum": "2399.90628528",
+    "displayed_total_bet_amount": "2503.97",
+    "summary_bet_count": 47,
+    "conversion_currencies": [
+      "USD"
+    ],
+    "conversion_statuses": [
+      "completed",
+      "pending"
+    ]
+  },
+  {
+    "sample": 9,
+    "bet_ledger_count": 415,
+    "unique_ledger_count": 415,
+    "currency_counts": {
+      "USDT": 415
+    },
+    "missing_conversion_count": 415,
+    "available_standard_amount_sum": "0",
+    "displayed_total_bet_amount": "27771.72",
+    "summary_bet_count": 402,
+    "conversion_currencies": [],
+    "conversion_statuses": []
+  },
+  {
+    "sample": 10,
+    "bet_ledger_count": 6,
+    "unique_ledger_count": 6,
+    "currency_counts": {
+      "USD": 4,
+      "USDC": 2
+    },
+    "missing_conversion_count": 2,
+    "available_standard_amount_sum": "0.00016",
+    "displayed_total_bet_amount": "226.12",
+    "summary_bet_count": 6,
+    "conversion_currencies": [
+      "USD"
+    ],
+    "conversion_statuses": [
+      "completed"
+    ]
+  },
+  {
+    "single_currency_proof": [
+      {
+        "original_currency": "USDT",
+        "original_debit": "-1",
+        "usd_debit": "-0.999296",
+        "rate": "0.999296"
+      },
+      {
+        "original_currency": "USDT",
+        "original_debit": "-1",
+        "usd_debit": "-0.999364",
+        "rate": "0.999364"
+      },
+      {
+        "original_currency": "USDT",
+        "original_debit": "-1000",
+        "usd_debit": "-999.345",
+        "rate": "0.999345"
+      }
+    ]
+  }
+]

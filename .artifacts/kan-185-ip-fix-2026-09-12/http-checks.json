@@ -1,0 +1,38 @@
+[
+  {
+    "url": "https://dev.bingox.io/en",
+    "before": 200,
+    "after": 200,
+    "pass": true
+  },
+  {
+    "url": "https://dev-app.bingox.io/admin/users/list",
+    "before": 200,
+    "after": 200,
+    "pass": true
+  },
+  {
+    "url": "https://dev-casino.bingox.io/api/auth/get-session",
+    "before": 200,
+    "after": 200,
+    "pass": true
+  },
+  {
+    "url": "https://dev-adminapi.bingox.io/api/auth/get-session",
+    "before": 200,
+    "after": 200,
+    "pass": true
+  },
+  {
+    "url": "https://bingox.io",
+    "before": 200,
+    "after": 200,
+    "pass": true
+  },
+  {
+    "url": "https://app.bingox.io",
+    "before": 200,
+    "after": 200,
+    "pass": true
+  }
+]

@@ -1,0 +1,82 @@
+{
+  "username": "qa_ip_fix_1789217170049",
+  "referenceIp": "[公网出口 IP 已脱敏]",
+  "registration": {
+    "registerIp": "[公网出口 IP 已脱敏]",
+    "registerDomain": "dev.bingox.io",
+    "login": {
+      "ipAddress": "[公网出口 IP 已脱敏]",
+      "domain": "dev.bingox.io",
+      "clientType": "PC",
+      "browser": "Chrome",
+      "os": "macOS",
+      "createdAt": "2026-09-12T12:46:10.781Z",
+      "__typename": "LoginRecord"
+    }
+  },
+  "cases": [
+    {
+      "name": "normal",
+      "status": 200,
+      "login": {
+        "ipAddress": "[公网出口 IP 已脱敏]",
+        "domain": "dev.bingox.io",
+        "clientType": "PC",
+        "browser": "Chrome",
+        "os": "macOS",
+        "createdAt": "2026-09-12T12:47:23.925Z",
+        "__typename": "LoginRecord"
+      },
+      "ipMatches": true,
+      "recordUnchanged": false
+    },
+    {
+      "name": "forged-xff",
+      "status": 200,
+      "login": {
+        "ipAddress": "[公网出口 IP 已脱敏]",
+        "domain": "dev.bingox.io",
+        "clientType": "PC",
+        "browser": "Chrome",
+        "os": "macOS",
+        "createdAt": "2026-09-12T12:47:35.662Z",
+        "__typename": "LoginRecord"
+      },
+      "ipMatches": true,
+      "recordUnchanged": false
+    },
+    {
+      "name": "mobile",
+      "status": 200,
+      "login": {
+        "ipAddress": "[公网出口 IP 已脱敏]",
+        "domain": "dev.bingox.io",
+        "clientType": "Mobile",
+        "browser": "Safari",
+        "os": "iOS",
+        "createdAt": "2026-09-12T12:47:47.632Z",
+        "__typename": "LoginRecord"
+      },
+      "ipMatches": true,
+      "recordUnchanged": false
+    },
+    {
+      "name": "wrong-password",
+      "status": 401,
+      "message": "Invalid email or password",
+      "login": {
+        "ipAddress": "[公网出口 IP 已脱敏]",
+        "domain": "dev.bingox.io",
+        "clientType": "Mobile",
+        "browser": "Safari",
+        "os": "iOS",
+        "createdAt": "2026-09-12T12:47:47.632Z",
+        "__typename": "LoginRecord"
+      },
+      "ipMatches": true,
+      "recordUnchanged": true
+    }
+  ],
+  "referenceIpIsPublic": true,
+  "registrationMatchesReference": true
+}

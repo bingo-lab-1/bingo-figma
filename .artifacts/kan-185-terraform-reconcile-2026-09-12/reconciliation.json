@@ -1,0 +1,12 @@
+{
+  "helmRevision": 4,
+  "status": "deployed",
+  "planHelmAndLiveConfigEqual": true,
+  "configKeys": [
+    "compute-full-forwarded-for",
+    "enable-real-ip",
+    "forwarded-for-header",
+    "proxy-real-ip-cidr",
+    "use-forwarded-headers"
+  ]
+}

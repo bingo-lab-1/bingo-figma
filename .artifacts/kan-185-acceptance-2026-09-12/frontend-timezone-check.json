@@ -1,0 +1,58 @@
+[
+  {
+    "zone": "UTC",
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-11 00:10:00",
+    "actual": "2026-09-11 00:10:00",
+    "pass": true
+  },
+  {
+    "zone": "Asia/Kolkata",
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-11 05:40:00",
+    "actual": "2026-09-11 05:40:00",
+    "pass": true
+  },
+  {
+    "zone": "Asia/Kathmandu",
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-11 05:55:00",
+    "actual": "2026-09-11 05:55:00",
+    "pass": true
+  },
+  {
+    "zone": "America/Mexico_City",
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-10 18:10:00",
+    "actual": "2026-09-10 18:10:00",
+    "pass": true
+  },
+  {
+    "zone": "Australia/Sydney",
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-11 10:10:00",
+    "actual": "2026-09-11 10:10:00",
+    "pass": true
+  },
+  {
+    "zone": "Australia/Sydney",
+    "input": "2026-12-11T00:10:00Z",
+    "expected": "2026-12-11 11:10:00",
+    "actual": "2026-12-11 11:10:00",
+    "pass": true
+  },
+  {
+    "zone": "Invalid/Zone",
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-11 00:10:00",
+    "actual": "2026-09-11 00:10:00",
+    "pass": true
+  },
+  {
+    "zone": null,
+    "input": "2026-09-11T00:10:00Z",
+    "expected": "2026-09-11 00:10:00",
+    "actual": "2026-09-11 00:10:00",
+    "pass": true
+  }
+]

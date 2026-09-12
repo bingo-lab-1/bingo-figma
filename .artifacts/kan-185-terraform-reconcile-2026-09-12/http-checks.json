@@ -1,0 +1,32 @@
+[
+  {
+    "url": "https://dev.bingox.io/en",
+    "status": 200,
+    "pass": true
+  },
+  {
+    "url": "https://dev-app.bingox.io/admin/users/list",
+    "status": 200,
+    "pass": true
+  },
+  {
+    "url": "https://dev-casino.bingox.io/api/auth/get-session",
+    "status": 200,
+    "pass": true
+  },
+  {
+    "url": "https://dev-adminapi.bingox.io/api/auth/get-session",
+    "status": 200,
+    "pass": true
+  },
+  {
+    "url": "https://bingox.io",
+    "status": 200,
+    "pass": true
+  },
+  {
+    "url": "https://app.bingox.io",
+    "status": 200,
+    "pass": true
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "registeredAt": "2026-09-12T01:19:22.311Z",
+  "status": 200,
+  "testUsername": "qa_ip_1789175959293",
+  "registerDomain": "dev.bingox.io",
+  "registerIpRecord": {
+    "ipAddress": "10.0.6.27",
+    "region": "unknown",
+    "registerCount": 1,
+    "__typename": "RegisterIpRecord"
+  },
+  "lastLoginRecord": {
+    "ipAddress": "10.0.6.27",
+    "domain": "dev.bingox.io",
+    "clientType": "PC",
+    "browser": "Chrome",
+    "os": "macOS",
+    "createdAt": "2026-09-12T01:19:21.982Z",
+    "__typename": "LoginRecord"
+  }
+}

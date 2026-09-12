@@ -1,0 +1,24 @@
+[
+  {
+    "sample": 3,
+    "count": 920,
+    "every_ledger_has_exactly_one_conversion": true,
+    "every_conversion_completed": true,
+    "no_superseded_or_backfilled_conversion": true,
+    "sum_stored_usd_amounts": "115075.73046812",
+    "sum_rounding_each_to_two_decimals": "115076.37",
+    "backend_total": "115076.37",
+    "rounded_each_matches_backend": true
+  },
+  {
+    "sample": 4,
+    "count": 3,
+    "every_ledger_has_exactly_one_conversion": true,
+    "every_conversion_completed": true,
+    "no_superseded_or_backfilled_conversion": true,
+    "sum_stored_usd_amounts": "1001.343660",
+    "sum_rounding_each_to_two_decimals": "1001.35",
+    "backend_total": "1001.35",
+    "rounded_each_matches_backend": true
+  }
+]
