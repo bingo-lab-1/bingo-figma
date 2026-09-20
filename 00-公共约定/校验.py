@@ -4,13 +4,22 @@
 用法:
     python3 00-公共约定/校验.py
     python3 00-公共约定/校验.py --strict   # 检查所有页面的六部分结构(默认同样严格)
+    python3 00-公共约定/校验.py --include-artifacts   # 额外审计历史归档
 """
+import argparse
 import re
 import sys
 import pathlib
 from urllib.parse import unquote, urlsplit
 
+from doc_scope import find_documents
+
 BASE = pathlib.Path(__file__).resolve().parent.parent
+parser = argparse.ArgumentParser(description="校验当前文档,默认排除根目录 .artifacts 历史归档")
+parser.add_argument("--strict", action="store_true", help="兼容已有命令;默认同样严格检查全部页面")
+parser.add_argument("--include-artifacts", action="store_true", help="额外按现行通用规则审计历史归档")
+args = parser.parse_args()
+documents, directories = find_documents(BASE, include_artifacts=args.include_artifacts)
 
 TEMPLATES = {
     "活动": ["活动介绍", "运营配置", "参与和领奖规则", "特殊情况", "验收场景", "相关资料"],
@@ -58,10 +67,8 @@ UNRESOLVED_RULE = re.compile(
     r"业务假设|关键参数与假设|枚举未取全|待验证点|尚未定稿|仍需收敛"
 )
 CONFLICT_MARKER = re.compile(r"^(?:<{7}(?: .*)?|={7}|>{7}(?: .*)?|\|{7}(?: .*)?)$")
-for f in sorted(BASE.rglob("*.md")):
+for f in documents:
     rel = f.relative_to(BASE)
-    if any(part in {".git", "node_modules", ".venv", ".gstack"} for part in rel.parts):
-        continue
     for line_no, line in enumerate(f.read_text(encoding="utf-8").splitlines(), 1):
         if UNRESOLVED_RULE.search(line):
             err(f"{rel}:{line_no}: 需求必须给出确定的执行结论")
@@ -155,9 +162,7 @@ MERMAID_TYPES = ("flowchart", "graph", "stateDiagram", "sequenceDiagram",
                  "erDiagram", "mindmap", "classDiagram", "journey",
                  "gantt", "pie", "gitGraph", "timeline")
 
-for f in sorted(BASE.rglob("*.md")):
-    if ".git" in f.parts:
-        continue
+for f in documents:
     rel = f.relative_to(BASE)
     lines = f.read_text(encoding="utf-8").splitlines()
     open_at = None
@@ -176,10 +181,8 @@ for f in sorted(BASE.rglob("*.md")):
 
 # 检查普通Markdown文件/图片链接的本地目标;不验证远端URL和锚点。
 # 去掉代码块和行内代码,避免把文档里的示例路径当作真实引用。
-for f in sorted(BASE.rglob("*.md")):
+for f in documents:
     rel = f.relative_to(BASE)
-    if any(part in {".git", "node_modules", ".venv", ".gstack"} for part in rel.parts):
-        continue
     body = re.sub(r"^```[^\n]*\n.*?^```\s*$", "", f.read_text(encoding="utf-8"), flags=re.M | re.S)
     body = re.sub(r"`[^`\n]+`", "", body)
     for match in re.finditer(r"\]\((<[^>]+>|[^\s)]+)(?:\s+\"[^\"]*\")?\)", body):
@@ -191,16 +194,13 @@ for f in sorted(BASE.rglob("*.md")):
             err(f"{rel}: 本地链接不存在 → {target}")
 
 # ─────────────────────── 其他 ───────────────────────
-SKIP_DIRS = {".git", ".github", "node_modules", "__pycache__", ".venv"}
 # 空的页面目录是允许的:git 不跟踪空目录,所以它只存在于本地,
 # 是「这一页我要开工了」的个人标记,远端与 CI 都看不到。
 # 其余位置的空目录仍然报错 —— 那通常是误删或建错的残留。
 PAGE_DIR = re.compile(r"^M\d-[^/]+/\d+\.\d+-")
-for d in BASE.rglob("*"):
-    if not d.is_dir():
-        continue
+for d in directories:
     rel = d.relative_to(BASE)
-    if any(p in SKIP_DIRS for p in rel.parts):
+    if ".github" in rel.parts:
         continue
     if not any(d.iterdir()) and not PAGE_DIR.match(rel.as_posix() + "/"):
         err(f"空目录: {rel}")
@@ -208,6 +208,7 @@ for d in BASE.rglob("*"):
 
 # ─────────────────────── 输出 ───────────────────────
 total = len(pages) + len(unstarted)
+print("校验范围: 当前文档" + (" + 历史归档(.artifacts)" if args.include_artifacts else "（排除根目录 .artifacts）"))
 print(f"页面 {total} 个(索引口径)· 已有文档 {len(pages)} · 仅登记 {len(unstarted)}")
 print("六部分结构: " + " · ".join(f"{name} {count}" for name, count in by_template.items()) + f" · 不符合 {len(pages) - sum(by_template.values())}")
 if errors:
