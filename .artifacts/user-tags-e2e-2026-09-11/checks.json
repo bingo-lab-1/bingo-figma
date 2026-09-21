@@ -1,0 +1,587 @@
+{
+  "schema_version": 1,
+  "date": "2026-09-11",
+  "target": "https://dev-app.bingox.io/admin/users/tag",
+  "overall": "fails_current_prd",
+  "prd": [
+    "M2-用户管理/2.5-用户标签/README.md",
+    "M2-用户管理/2.5-用户标签/条件模型.md"
+  ],
+  "prd_sha256": {
+    "README.md": "4590239ce138678a014ecbb71b2ce73c6927348c8341c1d61c3b107113c2217c",
+    "条件模型.md": "889a642846da91b99dfb602be098da97e499ef06f871d8d6d55753d4e0e02590"
+  },
+  "browser": {
+    "connection": "existing_authenticated_context",
+    "isolated_tab": true,
+    "original_tab_operated": false,
+    "timezone": "Australia/Sydney",
+    "header_timezone_label": "GMT+11(澳洲)",
+    "observed_history_evaluation_timezone": "Asia/Shanghai",
+    "current_system_business_timezone_verified": false,
+    "isolated_tab_closed_after_test": true
+  },
+  "source_boundary": {
+    "frontend_read_ref": "origin/main@6913f029dc40be901579d626bbf875dd90905b08",
+    "deployment_commit_verified": false,
+    "deployment_observations_override_old_source_inferences": true
+  },
+  "isolation": {
+    "only_created_tag_name": "E2E标签0911A",
+    "existing_tags_modified": false,
+    "existing_activities_modified": false,
+    "player_funds_modified": false,
+    "player_accounts_modified": false,
+    "raw_data_location": "/tmp/bingo-user-tags-e2e/",
+    "secrets_or_pii_committed": false
+  },
+  "cleanup": {
+    "method": "real_authenticated_graphql_after_ui_delete_failed",
+    "delete_impact": {
+      "blocked": false,
+      "user_count": 0,
+      "activity_references": 0,
+      "popup_references": 0,
+      "withdrawal_rule_references": 0
+    },
+    "delete_succeeded": true,
+    "remaining_test_prefix_count": 0,
+    "test_tag_history_count": 0,
+    "initial_existing_count": 7,
+    "final_existing_count": 7,
+    "same_original_id_set": true,
+    "same_original_fields": true,
+    "compared_fields": [
+      "id",
+      "name",
+      "description",
+      "group",
+      "color",
+      "enabled",
+      "status",
+      "version",
+      "matchedCount",
+      "lastCalculatedAt",
+      "disabledAt",
+      "userCount",
+      "updatedId",
+      "updatedAt",
+      "conditions"
+    ],
+    "nonempty_history_preservation_verified": false
+  },
+  "checks": [
+    {
+      "id": "C01",
+      "status": "pass",
+      "method": "ui",
+      "actual": "独立页签进入；默认列表 7 条，limit=50。",
+      "issues": []
+    },
+    {
+      "id": "C02",
+      "status": "pass",
+      "method": "ui",
+      "actual": "名称首尾空格被清除；状态、基础标签筛选真实请求返回自己的标签。",
+      "issues": []
+    },
+    {
+      "id": "C03",
+      "status": "fail",
+      "method": "ui",
+      "actual": "缺更新时间筛选、最近重算时间列、停用时间和列表时间就地时区标注。",
+      "issues": [
+        "TAG-E2E-08"
+      ]
+    },
+    {
+      "id": "C04",
+      "status": "pass",
+      "method": "ui",
+      "actual": "名称输入截断到 20 字，备注截断到 200 字；单条件不可删除，10 条后增加按钮禁用。",
+      "issues": []
+    },
+    {
+      "id": "C05",
+      "status": "pass",
+      "method": "api_supplement",
+      "actual": "自己的隔离规则通过真实 previewTag 提交 11 条，后端拒绝条件行数。",
+      "issues": []
+    },
+    {
+      "id": "C06",
+      "status": "fail",
+      "method": "ui",
+      "actual": "无 AND/OR、时间范围、最近 N 天或指标/属性分类；渠道单选，VIP 数字输入，缺绑定手机，仍有旧清单项。",
+      "issues": [
+        "TAG-E2E-03"
+      ]
+    },
+    {
+      "id": "C07",
+      "status": "partial",
+      "method": "ui",
+      "actual": "充值金额 -1 与 0.001 被后端拒绝；表单无错误提示。净输赢 -500 允许并试算成功。",
+      "issues": [
+        "TAG-E2E-05"
+      ]
+    },
+    {
+      "id": "C08",
+      "status": "fail",
+      "method": "ui",
+      "actual": "提现次数 = 投注次数可选且试算成功返回 5 人，违反该左值仅常量白名单。",
+      "issues": [
+        "TAG-E2E-04"
+      ]
+    },
+    {
+      "id": "C09",
+      "status": "partial",
+      "method": "ui",
+      "actual": "正常只读试算返回 0、1、11 人；11 人对应 11 样本；正常响应在 10 秒内。未做数据库写追踪或 20 样本以上/超时压力测试。",
+      "issues": []
+    },
+    {
+      "id": "C10",
+      "status": "fail",
+      "method": "ui",
+      "actual": "试算 1 人后改为极大阈值，旧 1 人结果保留且无重新试算提示。",
+      "issues": [
+        "TAG-E2E-05"
+      ]
+    },
+    {
+      "id": "C11",
+      "status": "fail",
+      "method": "ui",
+      "actual": "createTag 报 Internal server error，但后查询测试标签存在，enabled=true/status=pending/version=1/userCount=0。",
+      "issues": [
+        "TAG-E2E-01"
+      ]
+    },
+    {
+      "id": "C12",
+      "status": "partial",
+      "method": "ui",
+      "actual": "自己的标签停用成功，影响人数 0；启停无二次确认。",
+      "issues": [
+        "TAG-E2E-02"
+      ]
+    },
+    {
+      "id": "C13",
+      "status": "fail",
+      "method": "ui",
+      "actual": "启用报 Internal server error，UI 保留旧停用行，刷新后已启用且待重算，人数 0。",
+      "issues": [
+        "TAG-E2E-02"
+      ]
+    },
+    {
+      "id": "C14",
+      "status": "pass",
+      "method": "ui",
+      "actual": "再次停用并编辑极大阈值成功；返回停用、人数 0、版本 2。",
+      "issues": []
+    },
+    {
+      "id": "C15",
+      "status": "partial",
+      "method": "ui",
+      "actual": "同名新建后端拒绝“标签名称已存在”，UI 保留草稿但只提示“创建失败”。",
+      "issues": [
+        "TAG-E2E-05"
+      ]
+    },
+    {
+      "id": "C16",
+      "status": "fail",
+      "method": "ui",
+      "actual": "互斥 AND 条件保存成功到版本 3，无警示；未把不阻断保存本身列为缺陷。",
+      "issues": [
+        "TAG-E2E-06"
+      ]
+    },
+    {
+      "id": "C17",
+      "status": "partial",
+      "method": "api_supplement",
+      "actual": "UI 双编辑链路未完整取证；对自己的标签提交旧版本 1，服务端拒绝“标签已被其他人修改，请刷新后重试”。",
+      "issues": []
+    },
+    {
+      "id": "C18",
+      "status": "pass",
+      "method": "ui",
+      "actual": "自己的零人数链接跳会员列表，URL 包含自己的标签 ID，并显示空结果。非空命中未验证。",
+      "issues": []
+    },
+    {
+      "id": "C19",
+      "status": "fail",
+      "method": "ui",
+      "actual": "自己的空历史和既有 10 条非空历史均可打开；列含用户 ID、方向、原因、判定值快照、时间，无玩家或时间筛选。",
+      "issues": [
+        "TAG-E2E-08"
+      ]
+    },
+    {
+      "id": "C20",
+      "status": "fail",
+      "method": "ui",
+      "actual": "点击自己的标签删除，无 tagDeleteImpact 请求、确认框或错误提示。",
+      "issues": [
+        "TAG-E2E-07"
+      ]
+    },
+    {
+      "id": "C21",
+      "status": "pass",
+      "method": "api_supplement",
+      "actual": "同会话仅对自己的测试标签预检：blocked=false、人数 0、三类引用均空。",
+      "issues": []
+    },
+    {
+      "id": "C22",
+      "status": "pass",
+      "method": "api_supplement",
+      "actual": "deleteTag 成功；测试前缀查询 total=0；自己标签历史 total=0。不能证明非空历史保留。",
+      "issues": []
+    },
+    {
+      "id": "C23",
+      "status": "pass",
+      "method": "ui",
+      "actual": "每页 50 改为 20 条，真实请求 limit=20，total=7。数据不足一页，未验证下一页。",
+      "issues": []
+    },
+    {
+      "id": "C24",
+      "status": "pass",
+      "method": "ui_network_comparison",
+      "actual": "最终原 7 个标签与初始集合及配置/状态/版本/人数/时间字段完全相同，测试标签无残留。",
+      "issues": []
+    },
+    {
+      "id": "C25",
+      "status": "blocked",
+      "method": "ui",
+      "actual": "自己的启用重算失败，没有自己的非空命中和进出流水，无法完成停用摘标、重启重建及删除后非空历史验证。",
+      "issues": [
+        "TAG-E2E-02"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "id": "2.5-R1",
+      "status": "partial",
+      "checks": [
+        "C01",
+        "C02",
+        "C03",
+        "C23"
+      ],
+      "explanation": "列表基础筛选可用，字段缺项。"
+    },
+    {
+      "id": "2.5-R2",
+      "status": "fail",
+      "checks": [
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C11",
+        "C14",
+        "C15",
+        "C16",
+        "C17"
+      ],
+      "explanation": "模型、默认停用、保存结果与警示不符。"
+    },
+    {
+      "id": "2.5-R3",
+      "status": "partial",
+      "checks": [
+        "C07",
+        "C09",
+        "C10"
+      ],
+      "explanation": "正常试算可用；失败提示、结果失效处理不符；超时和大样本上限未验证。"
+    },
+    {
+      "id": "2.5-R4",
+      "status": "fail",
+      "checks": [
+        "C12",
+        "C13",
+        "C25"
+      ],
+      "explanation": "缺二次确认，启用失败且先改变状态。"
+    },
+    {
+      "id": "2.5-R5",
+      "status": "fail",
+      "checks": [
+        "C20",
+        "C21",
+        "C22",
+        "C25"
+      ],
+      "explanation": "UI 入口阻断；API 清理不代替 UI 验收。"
+    },
+    {
+      "id": "2.5-R6",
+      "status": "blocked",
+      "checks": [
+        "C13",
+        "C19",
+        "C25"
+      ],
+      "explanation": "新标签重算被启用错误阻断；既有流水只证明历史存在。"
+    },
+    {
+      "id": "2.5-R7",
+      "status": "partial",
+      "checks": [
+        "C18"
+      ],
+      "explanation": "零命中链接和参数通过；非空集合被重算失败阻断。"
+    },
+    {
+      "id": "2.5-R8",
+      "status": "fail",
+      "checks": [
+        "C19"
+      ],
+      "explanation": "流水可见但缺玩家及时间筛选。"
+    },
+    {
+      "id": "A1",
+      "status": "pass",
+      "checks": [
+        "C04",
+        "C05"
+      ],
+      "explanation": "界面 1–10 条限制及后端 11 条拒绝。"
+    },
+    {
+      "id": "A2",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "不创建 50 个标签占用公共环境。"
+    },
+    {
+      "id": "A3",
+      "status": "partial",
+      "checks": [
+        "C04",
+        "C15"
+      ],
+      "explanation": "界面长度、后端重名拒绝已验证；后端超长边界未单独提交。"
+    },
+    {
+      "id": "A4",
+      "status": "blocked",
+      "checks": [
+        "C13",
+        "C25"
+      ],
+      "explanation": "未成功建立测试集合，未制造资金/登录事件或等待每日全量。"
+    },
+    {
+      "id": "A5",
+      "status": "blocked",
+      "checks": [
+        "C12",
+        "C13",
+        "C25"
+      ],
+      "explanation": "零人数停用成功，非空摘标及重新建立集合未完成。"
+    },
+    {
+      "id": "A6",
+      "status": "partial",
+      "checks": [
+        "C21",
+        "C22"
+      ],
+      "explanation": "无引用预检成功；未新增活动/弹窗/审核规则引用验证阻删。"
+    },
+    {
+      "id": "A7",
+      "status": "partial",
+      "checks": [
+        "C07"
+      ],
+      "explanation": "金额精度、普通金额负数拒绝、净输赢负数允许已验证；整数和 N 边界未覆盖。"
+    },
+    {
+      "id": "A8",
+      "status": "fail",
+      "checks": [
+        "C06"
+      ],
+      "explanation": "界面没有独立时间范围，不能完成该配置验收。"
+    },
+    {
+      "id": "A9",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "界面写 USD；未构造逐笔汇率、待补算和 NULL 可控数据，不推断全部口径正确。"
+    },
+    {
+      "id": "A10",
+      "status": "pass",
+      "checks": [
+        "C01",
+        "C23"
+      ],
+      "explanation": "默认 limit=50；可切换 20。"
+    },
+    {
+      "id": "A11",
+      "status": "partial",
+      "checks": [
+        "C09"
+      ],
+      "explanation": "正常响应在 10 秒内；超时中断未验证。"
+    },
+    {
+      "id": "A12",
+      "status": "fail",
+      "checks": [
+        "C08"
+      ],
+      "explanation": "不在白名单的提现次数与投注次数比较被接受。"
+    },
+    {
+      "id": "A13",
+      "status": "partial",
+      "checks": [
+        "C03",
+        "C19"
+      ],
+      "explanation": "读取运营时区 Australia/Sydney 及部分历史判定时区 Asia/Shanghai；未核实当前系统设置或变更。"
+    },
+    {
+      "id": "A14",
+      "status": "fail",
+      "checks": [
+        "C06"
+      ],
+      "explanation": "只提供固定 AND，无 OR。"
+    },
+    {
+      "id": "E1",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "没有低权限会话；不修改账号权限。"
+    },
+    {
+      "id": "E2",
+      "status": "partial",
+      "checks": [
+        "C17"
+      ],
+      "explanation": "后端旧版本拒绝已补证，双编辑 UI 全链路未完成。"
+    },
+    {
+      "id": "E3",
+      "status": "fail",
+      "checks": [
+        "C16"
+      ],
+      "explanation": "互斥 AND 保存前没有警示。"
+    },
+    {
+      "id": "E4",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "未构造无记录与取数失败数据，不能证明 0/NULL 区分。"
+    },
+    {
+      "id": "E5",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "不在公共环境注入重算超时。"
+    },
+    {
+      "id": "E6",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "不修改汇总或制造批量摘标。"
+    },
+    {
+      "id": "E7",
+      "status": "not_tested",
+      "checks": [
+        "C21"
+      ],
+      "explanation": "只验证无引用，不修改已有业务配置制造引用。"
+    },
+    {
+      "id": "E8",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "不下线指标或属性。"
+    },
+    {
+      "id": "E9",
+      "status": "blocked",
+      "checks": [
+        "C13",
+        "C25"
+      ],
+      "explanation": "重启返回错误，无法验证按当前数据重建非空集合。"
+    },
+    {
+      "id": "E10",
+      "status": "not_tested",
+      "checks": [
+        "C19"
+      ],
+      "explanation": "新旧历史快照并存不等于迁移流程验证。"
+    },
+    {
+      "id": "E11",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "不修改公共业务时区。"
+    },
+    {
+      "id": "E12",
+      "status": "not_tested",
+      "checks": [],
+      "explanation": "不停用或删除公共渠道。"
+    }
+  ],
+  "git_commit_created": false,
+  "jira_created": false,
+  "prd_sha256_scope": "采集开始时的验收文件；不包含根代理后续对每页条数交叉说明及证据链接的调整",
+  "prd_issues": [
+    {
+      "id": "PRD-01",
+      "issue": "投注次数与充值次数的允许示例，与其余左值仅常量的白名单描述冲突",
+      "test_handling": "以提现次数=投注次数验证无歧义的禁止组合，不用矛盾示例判缺陷"
+    },
+    {
+      "id": "PRD-02",
+      "issue": "README概述只提VIP和渠道，正式属性表另有已绑定手机",
+      "test_handling": "按正式属性表保留绑定手机要求"
+    },
+    {
+      "id": "PRD-03",
+      "issue": "R6/E6要求先阈值保护，流程图却先摘标后判断",
+      "test_handling": "未注入批量摘标，不据冲突流程图判部署通过或失败"
+    },
+    {
+      "id": "PRD-04",
+      "issue": "R6未唯一指定重算期间继续使用新规则还是旧规则",
+      "test_handling": "不自行选择期间策略判缺陷，保留最终全量收敛要求"
+    }
+  ]
+}

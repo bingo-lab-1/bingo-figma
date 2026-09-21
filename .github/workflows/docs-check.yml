@@ -16,8 +16,10 @@ jobs:
         with:
           python-version: '3.12'
       - name: 校验文档规范
-        # 检查所有页面的六部分结构、确定规则、编号和链接
+        # 默认检查当前文档,历史归档另用 --include-artifacts 显式审计
         run: python3 00-公共约定/校验.py --strict
+      - name: 校验范围回归检查
+        run: python3 -m unittest discover -s 00-公共约定 -p 'test_validation.py'
 
   mermaid:
     name: 流程图语法
@@ -34,21 +36,22 @@ jobs:
           mkdir -p /tmp/mmd
           # GitHub runner 上 Chromium 无可用 sandbox,需显式关闭
           echo '{"args":["--no-sandbox","--disable-setuid-sandbox"]}' > /tmp/mmd/pptr.json
-          # 抽出每个 ```mermaid 块为独立文件
+          # 与本地校验共用范围,只抽取当前文档的 mermaid 块
           python3 - <<'PY'
-          import pathlib, re, os
+          import pathlib, re, sys
+          sys.path.insert(0, str(pathlib.Path("00-公共约定").resolve()))
+          from doc_scope import find_documents
           base = pathlib.Path(".")
           n = 0
           idx = []
-          for f in sorted(base.rglob("*.md")):
-              if ".git" in f.parts:
-                  continue
+          documents, _ = find_documents(base)
+          for f in documents:
               for m in re.finditer(r"```mermaid\n(.*?)```", f.read_text(encoding="utf-8"), re.S):
                   n += 1
                   p = f"/tmp/mmd/{n}.mmd"
                   pathlib.Path(p).write_text(m.group(1), encoding="utf-8")
-                  idx.append(f"{n}\t{f}")
-          pathlib.Path("/tmp/mmd/index.tsv").write_text("\n".join(idx) + "\n", encoding="utf-8")
+                  idx.append(f"{n}\t{f.relative_to(base.resolve())}")
+          pathlib.Path("/tmp/mmd/index.tsv").write_text("".join(row + "\n" for row in idx), encoding="utf-8")
           print(f"抽出 {n} 张图")
           PY
           fail=0
