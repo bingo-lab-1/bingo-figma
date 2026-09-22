@@ -1,0 +1,639 @@
+{
+  "date": "2026-09-11",
+  "site": "https://dev-app.bingox.io/admin/users/list",
+  "browserTimezone": "Australia/Sydney",
+  "operation": "usersPaging",
+  "recordType": "observations; not an assertion that every requirement passed",
+  "ui": [
+    {
+      "name": "用户",
+      "options": [
+        "会员ID",
+        "会员账号",
+        "用户名"
+      ]
+    },
+    {
+      "name": "在线状态",
+      "options": [
+        "全部",
+        "在线",
+        "离线"
+      ]
+    },
+    {
+      "name": "账号状态",
+      "options": [
+        "全部",
+        "正常",
+        "封禁"
+      ]
+    },
+    {
+      "name": "注册平台",
+      "options": [
+        "全部",
+        "网页",
+        "PWA",
+        "APK"
+      ]
+    },
+    {
+      "name": "是否充值",
+      "options": [
+        "全部",
+        "是",
+        "否"
+      ]
+    },
+    {
+      "name": "时间",
+      "options": [
+        "不限",
+        "注册时间",
+        "最后登录时间",
+        "首充时间",
+        "最后存款时间",
+        "最后投注时间"
+      ]
+    },
+    {
+      "name": "每页条数",
+      "options": [
+        "10 条",
+        "20 条",
+        "50 条"
+      ]
+    },
+    {
+      "name": "表头",
+      "headers": [
+        "会员ID",
+        "会员账号",
+        "用户名",
+        "邮箱",
+        "真实姓名",
+        "手机号",
+        "推广渠道",
+        "会员标签",
+        "账号状态",
+        "在线状态",
+        "VIP等级",
+        "注册时间",
+        "充值次数",
+        "充值总额",
+        "提现次数",
+        "提现总额",
+        "充提差总额",
+        "最后登录时间",
+        "操作"
+      ]
+    },
+    {
+      "name": "收起筛选",
+      "visibleInputs": [
+        null,
+        null
+      ]
+    },
+    {
+      "name": "测试账号表单",
+      "buttons": [
+        "关闭",
+        "取消",
+        "确定"
+      ],
+      "labels": [
+        "修改原因"
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "name": "无查询参数自动加载",
+      "requests": 1,
+      "last": {
+        "where": {
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "total": 11,
+        "rows": 11
+      },
+      "empty": false
+    },
+    {
+      "name": "输入条件未点查询",
+      "requests": 0,
+      "empty": false
+    },
+    {
+      "name": "不存在的会员ID",
+      "requests": 1,
+      "last": {
+        "where": {
+          "id": "[脱敏测试输入]",
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "total": 0,
+        "rows": 0
+      },
+      "empty": true
+    },
+    {
+      "name": "重置查询",
+      "requests": 1,
+      "last": {
+        "where": {
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "total": 11,
+        "rows": 11
+      },
+      "empty": false
+    },
+    {
+      "name": "账号片段精确匹配",
+      "requests": 1,
+      "last": {
+        "where": {
+          "username": "[脱敏测试输入]",
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "total": 0,
+        "rows": 0
+      },
+      "empty": true
+    },
+    {
+      "name": "完整账号加首尾空格",
+      "requests": 1,
+      "last": {
+        "where": {
+          "username": "[脱敏测试输入]",
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 20
+        },
+        "total": 1,
+        "rows": 1
+      },
+      "empty": false
+    },
+    {
+      "name": "回车触发查询",
+      "requests": 0,
+      "empty": false
+    },
+    {
+      "name": "改为每页10条",
+      "requests": 1,
+      "last": {
+        "where": {
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "total": 11,
+        "rows": 10
+      },
+      "empty": false
+    },
+    {
+      "name": "翻下一页",
+      "requests": 1,
+      "last": {
+        "where": {
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 10,
+          "limit": 10
+        },
+        "total": 11,
+        "rows": 1
+      },
+      "empty": false
+    },
+    {
+      "name": "翻页后查询回第一页",
+      "requests": 1,
+      "last": {
+        "where": {
+          "hasDeposited": true,
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "total": 4,
+        "rows": 4
+      },
+      "empty": false
+    },
+    {
+      "name": "是否充值为否",
+      "requests": 1,
+      "last": {
+        "where": {
+          "hasDeposited": false,
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "total": 7,
+        "rows": 7
+      },
+      "empty": false
+    },
+    {
+      "name": "充值金额区间1000至5000",
+      "requests": 1,
+      "last": {
+        "where": {
+          "depositAmountMin": 1000,
+          "depositAmountMax": 5000,
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "total": 2,
+        "rows": 2
+      },
+      "empty": false
+    },
+    {
+      "name": "充值金额上下限颠倒",
+      "requests": 1,
+      "last": {
+        "where": {
+          "depositAmountMin": 5000,
+          "depositAmountMax": 1000,
+          "timeField": "createdAt",
+          "timeStart": "2026-06-12T14:00:00.000Z",
+          "timeEnd": "2026-09-11T13:59:59.999Z"
+        },
+        "paging": {
+          "offset": 0,
+          "limit": 10
+        },
+        "total": 0,
+        "rows": 0
+      },
+      "empty": true
+    },
+    {
+      "name": "重新载入默认列表",
+      "requests": 1,
+      "where": {
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 11,
+      "rows": 11,
+      "empty": false
+    },
+    {
+      "name": "不限选项切换",
+      "requests": 0,
+      "empty": false
+    },
+    {
+      "name": "不限制时间的分享链接",
+      "requests": 1,
+      "where": {},
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 11,
+      "rows": 11,
+      "empty": false
+    },
+    {
+      "name": "封禁状态查询",
+      "requests": 1,
+      "where": {
+        "accountStatus": "banned"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 0,
+      "rows": 0,
+      "empty": true
+    },
+    {
+      "name": "完整用户名",
+      "requests": 1,
+      "where": {
+        "name": "[脱敏测试输入]",
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 2,
+      "rows": 2,
+      "empty": false
+    },
+    {
+      "name": "在线查询",
+      "requests": 1,
+      "where": {
+        "online": true,
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 1,
+      "rows": 1,
+      "empty": false
+    },
+    {
+      "name": "注册平台网页",
+      "requests": 1,
+      "where": {
+        "registerClientType": "web",
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 4,
+      "rows": 4,
+      "empty": false
+    },
+    {
+      "name": "VIP无效ID",
+      "requests": 1,
+      "where": {
+        "vipLevelId": "[脱敏测试输入]",
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 0,
+      "rows": 0,
+      "empty": true
+    },
+    {
+      "name": "两个现有标签任一匹配",
+      "requests": 1,
+      "where": {
+        "tagIds": [
+          "[标签A]",
+          "[标签B]"
+        ],
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 8,
+      "rows": 8,
+      "empty": false
+    },
+    {
+      "name": "手机去空格查询",
+      "requests": 1,
+      "where": {
+        "phone": "[脱敏测试输入]",
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 0,
+      "rows": 0,
+      "empty": true
+    },
+    {
+      "name": "注册IP查询",
+      "requests": 1,
+      "where": {
+        "registerIp": "[脱敏测试输入]",
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 0,
+      "rows": 0,
+      "empty": true
+    },
+    {
+      "name": "时间维度-最后登录时间",
+      "requests": 1,
+      "where": {
+        "timeField": "lastOnlineAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 10,
+      "rows": 10,
+      "empty": false
+    },
+    {
+      "name": "时间维度-首充时间",
+      "requests": 1,
+      "where": {
+        "timeField": "firstDepositAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 4,
+      "rows": 4,
+      "empty": false
+    },
+    {
+      "name": "时间维度-最后存款时间",
+      "requests": 1,
+      "where": {
+        "timeField": "lastDepositAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 4,
+      "rows": 4,
+      "empty": false
+    },
+    {
+      "name": "时间维度-最后投注时间",
+      "requests": 1,
+      "where": {
+        "timeField": "lastBetAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 20
+      },
+      "total": 6,
+      "rows": 6,
+      "empty": false
+    },
+    {
+      "name": "改为每页50条",
+      "requests": 1,
+      "where": {
+        "timeField": "createdAt",
+        "timeStart": "2026-06-12T14:00:00.000Z",
+        "timeEnd": "2026-09-11T13:59:59.999Z"
+      },
+      "paging": {
+        "offset": 0,
+        "limit": 50
+      },
+      "total": 11,
+      "rows": 11,
+      "empty": false
+    },
+    {
+      "name": "保留页长重置",
+      "requests": 0,
+      "empty": false
+    },
+    {
+      "name": "测试账号缺原因",
+      "mutations": 0,
+      "dialogRemains": true,
+      "messageVerification": "见 additionalChecks 的测试账号空原因提示复核"
+    }
+  ],
+  "verificationLimits": [
+    "No successful test-account mutation",
+    "No deposit, withdrawal, balance adjustment or historical reconciliation",
+    "No low-permission or cross-channel account test"
+  ],
+  "additionalChecks": [
+    {
+      "name": "后退查询与输入同步",
+      "firstTotal": 1,
+      "secondTotal": 0,
+      "backTotal": 1,
+      "backRequest": true,
+      "visibleRows": 2,
+      "urlIsFirst": true,
+      "inputStillSecond": true
+    },
+    {
+      "name": "具体渠道查询",
+      "total": 0
+    },
+    {
+      "name": "在线人数快捷入口",
+      "queryParams": {
+        "online": "\"true\"",
+        "timeField": ""
+      },
+      "rows": 2,
+      "timeLabel": "时间\n注册时间\n2026-06-13 ~ 2026-09-11"
+    },
+    {
+      "name": "模拟列表网络失败",
+      "errorVisible": true,
+      "retryButtons": 1
+    },
+    {
+      "name": "解除模拟故障后重试",
+      "total": 0,
+      "errorHidden": true
+    },
+    {
+      "name": "测试账号空原因提示复核",
+      "mutations": 0,
+      "dialogRemains": true,
+      "messages": [
+        "请输入修改原因",
+        "修改原因"
+      ]
+    }
+  ]
+}
