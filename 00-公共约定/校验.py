@@ -101,7 +101,10 @@ for mod in modules:
 
 
 # ─────────────────────── 页面级检查 ───────────────────────
-pages = sorted(BASE.glob("M[0-9]-*/*/README.md"))
+pages = sorted([
+    *BASE.glob("M[0-9]-*/*/README.md"),
+    *BASE.glob("玩家端/*/README.md"),
+])
 by_template = {name: 0 for name in TEMPLATES}
 
 for f in pages:
@@ -112,7 +115,9 @@ for f in pages:
     secs = sections(body)
     titles = [t for _, t in secs]
     nums = [n for n, _ in secs]
-    page_no = f.parent.name.split("-")[0]
+    # 后台沿用数字页面编号;玩家端以页面目录名为标识,导航 README 不在 pages 中。
+    is_player_page = rel.parts[0] == "玩家端"
+    page_no = f.parent.name if is_player_page else f.parent.name.split("-")[0]
     if nums != list(range(1, 7)):
         err(f"{rel}: 页面必须恰有连续编号的六部分,实际为 {nums}")
     for m in re.finditer(r"^## (?!\d+\.)(.+)$", body, re.M):
@@ -130,7 +135,7 @@ for f in pages:
         contents = re.sub(r"^#{3,6} .*?$", "", contents, flags=re.M)
         if not contents.strip():
             err(f"{rel}: 「{title}」内容为空")
-    cases = table_rows(section_body(text, "验收场景"), r"^\|\s*\d+\.\d+-R\d+\s*\|")
+    cases = table_rows(section_body(text, "验收场景"), r"^\|\s*[^|\s]+-R\d+\s*\|")
     if not cases:
         err(f"{rel}: 验收场景缺少带需求编号的场景")
     listed_ids = set()
@@ -142,7 +147,8 @@ for f in pages:
         if not re.fullmatch(re.escape(page_no) + r"-R\d+", cells[0]):
             err(f"{rel}: 需求编号 {cells[0]} 与页面编号不符")
         listed_ids.add(cells[0])
-    mentioned_ids = set(re.findall(r"(?<![\d.])" + re.escape(page_no) + r"-R\d+\b", body))
+    id_boundary = r"(?<![A-Za-z0-9_.-])" if is_player_page else r"(?<![\d.])"
+    mentioned_ids = set(re.findall(id_boundary + re.escape(page_no) + r"-R\d+\b", body))
     for rid in mentioned_ids - listed_ids:
         err(f"{rel}: {rid} 没有对应验收场景")
     if re.search(r"\*\*(触发条件|可输入数据|功能范围|处理逻辑|错误处理|测试案例)\*\*", body):

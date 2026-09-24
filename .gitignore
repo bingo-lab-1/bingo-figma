@@ -1,5 +1,19 @@
+# 系统与编辑器临时文件
 .DS_Store
+._*
 *.swp
+*.swo
+*~
+
+# 本地依赖与工具环境
 node_modules/
 .gstack/
+.venv/
+
+# Python 运行缓存
 __pycache__/
+*.py[cod]
+
+# 本地审计、截图、测试结果、Jira 快照及临时文档副本
+# 已追踪的历史证据继续随 Git 保存;新增正式需求与附件放在对应业务目录。
+/.artifacts/
