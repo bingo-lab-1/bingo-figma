@@ -1,4 +1,4 @@
-name: 文档规范校验
+name: Documentation checks
 
 on:
   pull_request:
@@ -6,37 +6,50 @@ on:
     branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   spec:
-    name: 文档结构
-    runs-on: ubuntu-latest
+    name: Document structure
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97  # v7.0.0
         with:
           python-version: '3.12'
-      - name: 校验文档规范
-        # 默认检查当前文档,历史归档另用 --include-artifacts 显式审计
+      - name: Validate current documents
+        # Historical artifacts are audited separately with --include-artifacts.
         run: python3 00-公共约定/校验.py --strict
-      - name: 校验范围回归检查
+      - name: Test document selection
         run: python3 -m unittest discover -s 00-公共约定 -p 'test_validation.py'
 
   mermaid:
-    name: 流程图语法
-    runs-on: ubuntu-latest
+    name: Diagram syntax
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1  # v7.0.1
         with:
-          node-version: '20'
-      - name: 逐张解析 mermaid
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38  # v6
+        with:
+          node-version: '22'
+      - name: Parse every Mermaid diagram
         run: |
           set -euo pipefail
           npm i -g @mermaid-js/mermaid-cli@11 >/dev/null 2>&1
           mkdir -p /tmp/mmd
-          # GitHub runner 上 Chromium 无可用 sandbox,需显式关闭
+          # Chromium requires this configuration on the hosted runner.
           echo '{"args":["--no-sandbox","--disable-setuid-sandbox"]}' > /tmp/mmd/pptr.json
-          # 与本地校验共用范围,只抽取当前文档的 mermaid 块
+          # Use the same current-document selection as local validation.
           python3 - <<'PY'
           import pathlib, re, sys
           sys.path.insert(0, str(pathlib.Path("00-公共约定").resolve()))
@@ -52,7 +65,7 @@ jobs:
                   pathlib.Path(p).write_text(m.group(1), encoding="utf-8")
                   idx.append(f"{n}\t{f.relative_to(base.resolve())}")
           pathlib.Path("/tmp/mmd/index.tsv").write_text("".join(row + "\n" for row in idx), encoding="utf-8")
-          print(f"抽出 {n} 张图")
+          print(f"Extracted {n} diagrams")
           PY
           fail=0
           while IFS=$'\t' read -r num src; do
@@ -61,15 +74,15 @@ jobs:
                     -o "/tmp/mmd/${num}.svg" >"/tmp/mmd/${num}.log" 2>&1; then
               continue
             fi
-            # 区分环境失败与真正的语法错误,否则误导排查方向
-            if grep -q "Failed to launch the browser" "/tmp/mmd/${num}.log"; then
-              echo "::error::mermaid-cli 环境失败(浏览器无法启动),非文档问题"
+            # Report browser startup errors separately from diagram syntax errors.
+            if rg -q "Failed to launch the browser" "/tmp/mmd/${num}.log"; then
+              echo "::error::Mermaid browser startup failed"
               tail -10 "/tmp/mmd/${num}.log"
               exit 2
             fi
-            echo "::error file=${src}::mermaid 语法错误"
+            echo "::error file=${src}::Invalid Mermaid syntax"
             sed -n '1,20p' "/tmp/mmd/${num}.log"
             fail=1
           done < /tmp/mmd/index.tsv
-          [ "$fail" -eq 0 ] && echo "全部 mermaid 图语法正确"
+          [ "$fail" -eq 0 ] && echo "All Mermaid diagrams parsed successfully"
           exit $fail
