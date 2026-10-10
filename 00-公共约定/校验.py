@@ -26,6 +26,7 @@ TEMPLATES = {
     "查询": ["用途", "查询条件", "结果字段", "操作规则", "验收场景", "相关资料"],
     "配置": ["用途", "配置项", "操作规则", "特殊情况", "验收场景", "相关资料"],
     "业务处理": ["用途", "查询与处理信息", "处理规则", "特殊情况", "验收场景", "相关资料"],
+    "字段字典": ["分类与底色", "字段定义"],
 }
 BANNED_SECTIONS = {"待探讨", "页面结构"}
 
@@ -118,15 +119,18 @@ for f in pages:
     # 后台沿用数字页面编号;玩家端以页面目录名为标识,导航 README 不在 pages 中。
     is_player_page = rel.parts[0] == "玩家端"
     page_no = f.parent.name if is_player_page else f.parent.name.split("-")[0]
-    if nums != list(range(1, 7)):
+    kind = next((name for name, expected in TEMPLATES.items() if titles == expected), None)
+    if kind == "字段字典":
+        if nums != [1, 2]:
+            err(f"{rel}: 字段字典必须恰有连续编号的两部分,实际为 {nums}")
+    elif nums != list(range(1, 7)):
         err(f"{rel}: 页面必须恰有连续编号的六部分,实际为 {nums}")
     for m in re.finditer(r"^## (?!\d+\.)(.+)$", body, re.M):
         err(f"{rel}: 二级标题「{m.group(1).strip()}」没有段号")
     if not re.match(r"^# " + re.escape(page_no) + r" · \S[^\n]*\n", text):
         err(f"{rel}: 页面须直接从编号及名称标题开始")
-    kind = next((name for name, expected in TEMPLATES.items() if titles == expected), None)
     if kind is None:
-        err(f"{rel}: 章节须使用活动、查询、配置或业务处理六部分模板")
+        err(f"{rel}: 章节须使用活动、查询、配置或业务处理六部分模板,或字段字典两部分模板")
         continue
     by_template[kind] += 1
     for title in titles:
@@ -135,6 +139,40 @@ for f in pages:
         contents = re.sub(r"^#{3,6} .*?$", "", contents, flags=re.M)
         if not contents.strip():
             err(f"{rel}: 「{title}」内容为空")
+    if re.search(r"\*\*(触发条件|可输入数据|功能范围|处理逻辑|错误处理|测试案例)\*\*", body):
+        err(f"{rel}: 请将操作、异常和验收分别写入相应章节,不使用旧六栏详述")
+    if re.search(r"<页面编号>|<活动名称>|<页面名称>|<查询页面名>", body):
+        err(f"{rel}: 正文仍含模板占位符")
+    if re.search(r"^\s*\|\s*$|^输入信息：\|", body, re.M):
+        err(f"{rel}: 残留不完整表格,请改成完整表格或普通段落")
+    if EMOJI.search(body):
+        err(f"{rel}: 含emoji")
+    if kind == "字段字典":
+        palette = {}
+        for row in table_rows(section_body(text, "分类与底色"), r"^\|"):
+            cells = [c.strip().strip("`") for c in row.strip().strip("|").split("|")]
+            if len(cells) == 2 and re.fullmatch(r"#[0-9A-Fa-f]{6}", cells[1]):
+                palette[cells[0]] = cells[1].upper()
+        if not palette:
+            err(f"{rel}: 字段字典缺少分类及六位十六进制底色")
+        rows = table_rows(section_body(text, "字段定义"), r"^\|\s*[^|\s]+-M\d+\s*\|")
+        if not rows:
+            err(f"{rel}: 字段字典缺少带指标编号的字段定义")
+        fields = set()
+        for i, row in enumerate(rows, 1):
+            cells = [c.strip().strip("`") for c in row.strip().strip("|").split("|")]
+            if len(cells) != 6 or not all(cells):
+                err(f"{rel}: 字段行须为编号/字段/定义/分类/表头底色/数据格底色六列且非空")
+                continue
+            mid, field, definition, category, color, shading = cells
+            if mid != f"{page_no}-M{i:03}":
+                err(f"{rel}: 指标编号 {mid} 须按页面编号连续排列")
+            if field in fields:
+                err(f"{rel}: 字段 {field} 重复")
+            fields.add(field)
+            if category not in palette or color.upper() != palette[category]:
+                err(f"{rel}: 字段 {mid} 的分类或表头底色与分类表不一致")
+        continue
     cases = table_rows(section_body(text, "验收场景"), r"^\|\s*[^|\s]+-R\d+\s*\|")
     if not cases:
         err(f"{rel}: 验收场景缺少带需求编号的场景")
@@ -151,14 +189,6 @@ for f in pages:
     mentioned_ids = set(re.findall(id_boundary + re.escape(page_no) + r"-R\d+\b", body))
     for rid in mentioned_ids - listed_ids:
         err(f"{rel}: {rid} 没有对应验收场景")
-    if re.search(r"\*\*(触发条件|可输入数据|功能范围|处理逻辑|错误处理|测试案例)\*\*", body):
-        err(f"{rel}: 请将操作、异常和验收分别写入相应章节,不使用旧六栏详述")
-    if re.search(r"<页面编号>|<活动名称>|<页面名称>|<查询页面名>", body):
-        err(f"{rel}: 正文仍含模板占位符")
-    if re.search(r"^\s*\|\s*$|^输入信息：\|", body, re.M):
-        err(f"{rel}: 残留不完整表格,请改成完整表格或普通段落")
-    if EMOJI.search(body):
-        err(f"{rel}: 含emoji")
 
 
 # ─────────────────────── mermaid 结构检查 ───────────────────────
@@ -216,7 +246,7 @@ for d in directories:
 total = len(pages) + len(unstarted)
 print("校验范围: 当前文档" + (" + 历史归档(.artifacts)" if args.include_artifacts else "（排除根目录 .artifacts）"))
 print(f"页面 {total} 个(索引口径)· 已有文档 {len(pages)} · 仅登记 {len(unstarted)}")
-print("六部分结构: " + " · ".join(f"{name} {count}" for name, count in by_template.items()) + f" · 不符合 {len(pages) - sum(by_template.values())}")
+print("文档结构: " + " · ".join(f"{name} {count}" for name, count in by_template.items()) + f" · 不符合 {len(pages) - sum(by_template.values())}")
 if errors:
     print(f"\n❌ {len(errors)} 个错误\n")
     for e in errors:
