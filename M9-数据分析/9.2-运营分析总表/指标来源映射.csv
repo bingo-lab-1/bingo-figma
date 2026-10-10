@@ -1,0 +1,123 @@
+﻿指标编号,原网页分组,原网页名称,原网页字段,真实单位,原网页格式,热力方向,原始悬停说明,Wild公式表达式,Aigobet公式表达式
+9.2-M001,当日收支,今日消耗,today_spend,金额,dec,,,"""total_cost""","""total_cost"""
+9.2-M002,当日收支,今日充提差,today_net,金额,dec,,,"""net_profit""","""net_profit"""
+9.2-M003,当日收支,盈余率,profit_rate,比例,pct,,,"(""net_profit"", ""total_recharge"")","(""net_profit"", ""total_recharge"")"
+9.2-M004,当日收支,ROAS,roas,比例,pct,,,"(""total_recharge"", ""total_cost"")","(""total_recharge"", ""total_cost"")"
+9.2-M005,当日收支,一级首充ROAS,l1_first_roas,比例,pct,,,"(""first_deposit_l1_amount"", ""total_cost"")","(""first_deposit_l1_amount"", ""total_cost"")"
+9.2-M006,当日收支,一级新充ROAS,l1_new_roas,比例,pct,,wild：一级新付费金额（one_np_cash）/ 消耗。aigobet 上游无对应的一级新充金额字段，暂留空（—）。,"(""one_np_cash"", ""total_cost"")",无公式 → null
+9.2-M007,当日收支,ROI,roi,比例,pct,,,"(""net_profit"", ""total_cost"")","(""net_profit"", ""total_cost"")"
+9.2-M008,当日收支,首充ROAS,fd_roas,比例,pct,,,"(""first_deposit_amount"", ""total_cost"")","(""channel_first_recharge_all_amt"", ""total_cost"")"
+9.2-M009,总营收,历史总营收,hist_net_revenue,金额,dec,,,"lambda r: float(r.get(""hist_net"") or 0) - float(r.get(""hist_spend"") or 0)","lambda r: float(r[""hist_net""] or 0) - float(r[""hist_spend""] or 0)"
+9.2-M010,总营收,历史充提差,hist_net,金额,dec,,,"""hist_net""","""hist_net"""
+9.2-M011,总营收,历史消耗,hist_spend,金额,dec,,,"""hist_spend""","""hist_spend"""
+9.2-M012,总营收,历史盈利率,hist_profit_rate,比例,pct,,,"lambda r: _div(
+        float(r.get(""hist_net"") or 0) - float(r.get(""hist_spend"") or 0),
+        r.get(""hist_spend""),
+    )","lambda r: _div(
+        float(r[""hist_net""] or 0) - float(r[""hist_spend""] or 0),
+        r[""hist_spend""],
+    )"
+9.2-M013,当日新用户质量,注册人数,reg_count,人,int,,,"""reg_count""","""reg_count"""
+9.2-M014,当日新用户质量,注册成本,cpr,金额/人,dec,,,"(""total_cost"", ""reg_count"")","(""total_cost"", ""reg_count"")"
+9.2-M015,当日新用户质量,首充人数,fd_count,人,int,green,,"""first_deposit_count""","""first_deposit_count"""
+9.2-M016,当日新用户质量,首充总金额,fd_amount,金额,dec,green,,"""first_deposit_amount""","""first_deposit_amount"""
+9.2-M017,当日新用户质量,一级首充金额,fd_l1_amount,金额,dec,,,"""first_deposit_l1_amount""","""first_deposit_l1_amount"""
+9.2-M018,当日新用户质量,新充人数,new_rch_users,人,int,,,"""new_rch_users""","""new_reg_recharge_count"""
+9.2-M019,当日新用户质量,首充ARPPU,fd_arppu,金额/人,dec,,,"(""first_deposit_amount"", ""first_deposit_count"")","(""first_deposit_amount"", ""first_deposit_count"")"
+9.2-M020,当日新用户质量,新用户RTP,new_user_rtp,比例,pct,,,"(""new_win"", ""new_bet"")","(""new_user_win_amount"", ""new_user_bet_amount"")"
+9.2-M021,当日新用户质量,首充成本,fd_cost,金额/人,dec,red,,"(""total_cost"", ""first_deposit_count"")","(""total_cost"", ""first_deposit_count"")"
+9.2-M022,当日新用户质量,一级首充成本,fd_l1_cost,金额/人,dec,,,"(""total_cost"", ""first_deposit_l1_count"")","(""total_cost"", ""first_deposit_l1_count"")"
+9.2-M023,当日新用户质量,一级新充成本,l1_new_cost,金额/人,dec,,wild「一级新充」= one_np_user（one-tier 新付费用户）。aigobet「一级新充」= stair_first_recharge_count（阶梯首充）。业务定义不同。,"(""total_cost"", ""one_np_user"")","(""total_cost"", ""stair_first_recharge_count"")"
+9.2-M024,当日新用户质量,首充7日ARPPU,fd_arppu_d7,金额/人,dec,,,"(""cohort_7d_amount"", ""first_deposit_count"")","(""cohort_7d_amount"", ""first_deposit_count"")"
+9.2-M025,当日新用户质量,一级首充人数,fd_l1_count,人,int,,,"""first_deposit_l1_count""","""first_deposit_l1_count"""
+9.2-M026,当日新用户质量,一级新充人数,l1_new_count,人,int,,wild「一级新充」= one_np_user（one-tier 新付费用户）。aigobet「一级新充」= stair_first_recharge_count（阶梯首充）。业务定义不同。,"""one_np_user""","""stair_first_recharge_count"""
+9.2-M027,当日新用户质量,首充裂变率,fd_fission_rate,比例,pct,,wild：fission_fd_users / fd_count。aigobet：fission_recharge_count / channel_first_recharge_count。分子分母都不同。,"(""fission_fd_users"", ""first_deposit_count"")","(""fission_recharge_count"", ""channel_first_recharge_count"")"
+9.2-M028,当日资金流动,充值人数,rch_users,人（按来源）,int,green,,"""rch_users""","""channel_recharge_count"""
+9.2-M029,当日资金流动,充值金额,rch_amount,金额,dec,green,,"""total_recharge""","""channel_recharge_amount"""
+9.2-M030,当日资金流动,注充率,reg_to_rch_rate,比例,pct,,,"(""first_deposit_count"", ""reg_count"")","(""channel_new_first_recharge_count"", ""channel_new_user_count"")"
+9.2-M031,当日资金流动,提现率,wth_rate,比例,pct,,,"(""wth_amt"", ""total_recharge"")","lambda r: _sub_one(_div(r[""net_profit""], r[""total_recharge""]))"
+9.2-M032,当日资金流动,提现金额,wth_amount,金额,dec,,,"""wth_amt""","""channel_withdraw_amount"""
+9.2-M033,当日资金流动,提现人数,wth_users,人（按来源）,int,,,"""wth_users""","""channel_withdraw_count"""
+9.2-M034,当日资金流动,提现占比,wth_share,比例,pct,,,"(""wth_users"", ""rch_users"")","(""channel_withdraw_count"", ""channel_recharge_count"")"
+9.2-M035,当日资金流动,有效投注,bet_amount,金额,dec,,,"""bet""","""channel_bet_amount"""
+9.2-M036,当日资金流动,投注用户,bettor_count,人,int,,,"""bet_users""","""active_betting_users"""
+9.2-M037,当日资金流动,充投用户数,rch_bettor_count,人,int,,,"""rch_bet_users""","""recharge_bet_user_count"""
+9.2-M038,当日资金流动,打码倍数,bet_multiplier,倍,dec,,,"(""bet"", ""total_recharge"")","(""channel_bet_amount"", ""channel_recharge_amount"")"
+9.2-M039,当日资金流动,当日充值笔数,rch_orders,笔,int,,,"""rch_orders""","""daily_recharge_order_count"""
+9.2-M040,当日资金流动,人均充值笔数,avg_rch_orders,笔/人,dec,,,"(""rch_orders"", ""rch_users"")","(""daily_recharge_order_count"", ""channel_recharge_count"")"
+9.2-M041,当日资金流动,总ARPPU,arppu,金额/人,dec,,,"(""total_recharge"", ""rch_users"")","(""channel_recharge_amount"", ""channel_recharge_count"")"
+9.2-M042,当日资金流动,老用户充值金额,old_rch_amount,金额,dec,,,"""old_rch_amt""","lambda r: float(r[""channel_recharge_amount""] or 0)
+                                   - float(r[""channel_new_recharge_amount""] or 0)"
+9.2-M043,当日资金流动,老用户ARPPU,old_arppu,金额/人,dec,,,"(""old_rch_amt"", ""old_rch_users"")","lambda r: _div(
+        float(r[""channel_recharge_amount""] or 0) - float(r[""channel_new_recharge_amount""] or 0),
+        float(r[""channel_recharge_count""] or 0) - float(r[""channel_new_first_recharge_count""] or 0),
+    )"
+9.2-M044,当日资金流动,充值裂变率,rch_fission_rate,比例 / 倍率,pct,,"wild 家族：裂变充值人数 / 总充值人数（比例，∈[0,1]）。aigobet 家族：(总充值笔数 + 裂变充值数) / 总充值笔数（倍数，≥1）。公式不同；两边不可直接对比。","(""fission_rch_users"", ""rch_users"")","lambda r: _div(
+        float(r[""channel_recharge_count""] or 0) + float(r[""fission_recharge_count""] or 0),
+        r[""channel_recharge_count""],
+    )"
+9.2-M045,当日资金流动,老用户付费率,old_pay_rate,比例,pct,,,"lambda r: _div(
+        r.get(""old_rch_users""),
+        r.get(""old_login_users"") if r.get(""old_login_users"") else r.get(""login_num""),
+    )","lambda r: _div(
+        float(r[""channel_recharge_count""] or 0) - float(r[""channel_new_first_recharge_count""] or 0),
+        float(r[""channel_login_num""] or 0) - float(r[""channel_new_login_num""] or 0),
+    )"
+9.2-M046,其他指标,新充值人数,new_rch_count,人,int,,,"""new_rch_users""","""new_reg_recharge_count"""
+9.2-M047,其他指标,首充充值总金额,fd_total_rch_amt,金额,dec,,,"""first_deposit_amount""","""channel_first_recharge_all_amt"""
+9.2-M048,其他指标,首充首笔总金额,fd_first_amt,金额,dec,,,"""fd_first_amt""","""channel_first_recharge_amt"""
+9.2-M049,其他指标,老用户充值人数,old_rch_user_count,人,int,,,"""old_rch_users""","lambda r: int((r[""channel_recharge_count""] or 0))
+                                   - int((r[""channel_new_first_recharge_count""] or 0))"
+9.2-M050,其他指标,游戏输赢,game_net,金额,dec,,,"lambda r: float(r.get(""bet"") or 0) - float(r.get(""win"") or 0)","lambda r: float(r[""channel_bet_amount""] or 0) - float(r[""channel_win_amount""] or 0)"
+9.2-M051,其他指标,已充值用户领取的总彩金,bonus_paid_total,金额,dec,,,"""bonus_paid""","""channel_recharge_bonus_amt"""
+9.2-M052,其他指标,未充值用户领取总彩金,bonus_free_total,金额,dec,,,"""bonus_free""","lambda r: float(r[""channel_send_bonus_amt""] or 0)
+                                   - float(r[""channel_recharge_bonus_amt""] or 0)
+                                   - float(r[""channel_commission_amt""] or 0)"
+9.2-M053,其他指标,代理总佣金,agent_commission_total,金额,dec,,wild 家族上游不返回代理佣金数据，恒为 0。,"(""const"", 0)","""channel_agency_commission_amt"""
+9.2-M054,其他指标,代理佣金,agent_commission,金额,dec,,wild 家族上游不返回代理佣金数据，恒为 0。,"(""const"", 0)","lambda r: float(r[""channel_agency_commission_amt""] or 0)
+                                   - float(r[""channel_chest_amt""] or 0)"
+9.2-M055,其他指标,代理宝箱,agent_chest,金额,dec,,wild 家族上游不返回代理佣金数据，恒为 0。,"(""const"", 0)","""channel_chest_amt"""
+9.2-M056,其他指标,首充转化率,fd_conversion_rate,比例,pct,,,"(""first_deposit_count"", ""reg_count"")","(""first_deposit_count"", ""reg_count"")"
+9.2-M057,其他指标,RTP,rtp,比例,pct,,,"(""win"", ""bet"")","(""channel_win_amount"", ""channel_bet_amount"")"
+9.2-M058,其他指标,老用户RTP,old_rtp,比例,pct,,,"lambda r: _div(
+        float(r.get(""win"") or 0) - float(r.get(""new_win"") or 0),
+        float(r.get(""bet"") or 0) - float(r.get(""new_bet"") or 0),
+    )","lambda r: _div(
+        float(r[""channel_win_amount""] or 0) - float(r[""new_user_win_amount""] or 0),
+        float(r[""channel_bet_amount""] or 0) - float(r[""new_user_bet_amount""] or 0),
+    )"
+9.2-M059,其他指标,总彩金,bonus_total,金额,dec,,wild：bonus_paid + bonus_free 求和。aigobet：channel_except_commission_amt（上游专列）。两边数值口径可能不同。,"""bonus_total""","""channel_except_commission_amt"""
+9.2-M060,其他指标,赠送充值比,bonus_to_rch,比例,pct,,,"(""bonus_total"", ""total_recharge"")","(""channel_except_commission_amt"", ""channel_recharge_amount"")"
+9.2-M061,其他指标,已充值用户彩金赠送充值比,bonus_paid_to_rch,比例,pct,,,"(""bonus_paid"", ""total_recharge"")","(""channel_recharge_bonus_amt"", ""channel_recharge_amount"")"
+9.2-M062,其他指标,佣金赠送充值比,commission_to_rch,比例,pct,,wild 家族上游不返回代理佣金数据，恒为 0。,"(""const"", 0)","(""channel_agency_commission_amt"", ""channel_recharge_amount"")"
+9.2-M063,其他指标,当日首充复充率,fd_same_day_repeat,比例,pct,,,"(""first_deposit_repeat_count"", ""first_deposit_count"")","(""first_deposit_repeat_count"", ""first_deposit_count"")"
+9.2-M064,其他指标,首充次日复充率,fd_next_day_repeat,比例,pct,,,"(""first_deposit_day2_count"", ""first_deposit_count"")","(""first_deposit_day2_count"", ""first_deposit_count"")"
+9.2-M065,其他指标,充值赢钱人数占比,rch_winner_rate,比例,pct,,,"(""rch_winners"", ""rch_users"")","(""recharge_winner_count"", ""daily_unique_recharge_users"")"
+9.2-M066,其他指标,首充赢钱人数占比,fd_winner_rate,比例,pct,,,"(""fd_winners"", ""first_deposit_count"")","(""first_deposit_winner_count"", ""first_deposit_count"")"
+9.2-M067,其他指标,首日LTV,ltv_d1,金额/首充人,dec,,,"(""ltv_d0"", ""first_deposit_count"")","(""ltv_d1_amount"", ""first_deposit_count"")"
+9.2-M068,其他指标,三日LTV,ltv_d3,金额/首充人,dec,,wild777 / 600pro 口径为 D+0..D+N（N+1 天）；lua365 / rabbit7 / tropa777 口径为 D+0..D+(N-1)（N 天）。差 1 天的累计 LTV。,"(""ltv_d3"", ""first_deposit_count"")","(""ltv_d3_amount"", ""first_deposit_count"")"
+9.2-M069,其他指标,七日LTV,ltv_d7,金额/首充人,dec,,wild777 / 600pro 口径为 D+0..D+N（N+1 天）；lua365 / rabbit7 / tropa777 口径为 D+0..D+(N-1)（N 天）。差 1 天的累计 LTV。,"(""ltv_d7"", ""first_deposit_count"")","(""ltv_d7_amount"", ""first_deposit_count"")"
+9.2-M070,其他指标,14日LTV,ltv_d14,金额/首充人,dec,,wild777 / 600pro 口径为 D+0..D+N（N+1 天）；lua365 / rabbit7 / tropa777 口径为 D+0..D+(N-1)（N 天）。差 1 天的累计 LTV。,"(""ltv_d14"", ""first_deposit_count"")","(""ltv_d14_amount"", ""first_deposit_count"")"
+9.2-M071,其他指标,21日LTV,ltv_d21,金额/首充人,dec,,wild777 / 600pro 口径为 D+0..D+N（N+1 天）；lua365 / rabbit7 / tropa777 口径为 D+0..D+(N-1)（N 天）。差 1 天的累计 LTV。,"(""ltv_d21"", ""first_deposit_count"")","(""ltv_d21_amount"", ""first_deposit_count"")"
+9.2-M072,其他指标,30日LTV,ltv_d30,金额/首充人,dec,,wild777 / 600pro 口径为 D+0..D+N（N+1 天）；lua365 / rabbit7 / tropa777 口径为 D+0..D+(N-1)（N 天）。差 1 天的累计 LTV。,"(""ltv_d30"", ""first_deposit_count"")","(""ltv_d30_amount"", ""first_deposit_count"")"
+9.2-M073,其他指标,首充活跃次留,fp_active_d1,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"lambda r: _div(
+        r.get(""fp_act_d2"") if r.get(""fp_act_d2"") else r.get(""fp_login_d2""),
+        r.get(""first_deposit_count""),
+    )","(""ret_t4_d1"", ""ret_t4_cohort"")"
+9.2-M074,其他指标,首充活跃3日留,fp_active_d3,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_act_d3"", ""first_deposit_count"")","(""ret_t4_d2"", ""ret_t4_cohort"")"
+9.2-M075,其他指标,首充活跃7日留,fp_active_d7,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_act_d7"", ""first_deposit_count"")","(""ret_t4_d6"", ""ret_t4_cohort"")"
+9.2-M076,其他指标,首充付费次留,fp_pay_d1,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"lambda r: _div(
+        r.get(""fp_pay_d2"") if r.get(""fp_pay_d2"") else r.get(""fp_repay_d2""),
+        r.get(""first_deposit_count""),
+    )","(""ret_t7_d1"", ""ret_t7_cohort"")"
+9.2-M077,其他指标,首充付费3日留,fp_pay_d3,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_pay_d3"", ""first_deposit_count"")","(""ret_t7_d2"", ""ret_t7_cohort"")"
+9.2-M078,其他指标,首充付费7日留,fp_pay_d7,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_pay_d7"", ""first_deposit_count"")","(""ret_t7_d6"", ""ret_t7_cohort"")"
+9.2-M079,其他指标,首充付费30日留,fp_pay_d30,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_pay_d30"", ""first_deposit_count"")","(""ret_t7_d29"", ""ret_t7_cohort"")"
+9.2-M080,其他指标,充值付费次留,rch_pay_d1,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""rch_pay_d2"", ""rch_users"")","(""ret_t9_d1"", ""ret_t9_cohort"")"
+9.2-M081,其他指标,充值付费3日留,rch_pay_d3,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""rch_pay_d3"", ""rch_users"")","(""ret_t9_d2"", ""ret_t9_cohort"")"
+9.2-M082,其他指标,充值付费7日留,rch_pay_d7,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""rch_pay_d7"", ""rch_users"")","(""ret_t9_d6"", ""ret_t9_cohort"")"
+9.2-M083,其他指标,首充下注次留,fp_bet_d1,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_bet_d2"", ""first_deposit_count"")","(""ret_t8_d1"", ""ret_t8_cohort"")"
+9.2-M084,其他指标,首充下注3日留,fp_bet_d3,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""fp_bet_d3"", ""first_deposit_count"")","(""ret_t8_d2"", ""ret_t8_cohort"")"
+9.2-M085,其他指标,下注次留,bet_keep_d1,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""bet_keep_d2"", ""reg_count"")","(""ret_t3_d1"", ""ret_t3_cohort"")"
+9.2-M086,其他指标,下注3日留,bet_keep_d3,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""bet_keep_d3"", ""reg_count"")","(""ret_t3_d2"", ""ret_t3_cohort"")"
+9.2-M087,其他指标,下注7日留,bet_keep_d7,比例,pct,,wild 家族从 recharge_orders + user_logins 等表自算；aigobet 家族从上游 /getRetentionList API 拿 retention_type enum。源不同；率值大方向一致，具体数字可能因上游 cohort 定义不同而有偏差。,"(""bet_keep_d7"", ""reg_count"")","(""ret_t3_d6"", ""ret_t3_cohort"")"
