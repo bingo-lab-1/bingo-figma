@@ -62,6 +62,20 @@ DEFECTS = {
     "conflict": ("<<<<<<< HEAD\n", "含未解决的合并冲突标记"),
 }
 
+VALID_FIELD_DICTIONARY = """# 1.1 · 测试字段字典
+
+## 1. 分类与底色
+| 分类 | 表头底色 |
+| --- | --- |
+| 收支 | `#4285F5` |
+
+## 2. 字段定义
+| 编号 | 字段 | 定义 | 分类 | 表头底色 | 数据格底色 |
+| --- | --- | --- | --- | --- | --- |
+| 1.1-M001 | 充值金额 | 当日成功充值本金合计。 | 收支 | `#4285F5` | 默认 |
+| 1.1-M002 | 提现金额 | 当日成功提现金额。 | 收支 | `#4285F5` | 默认 |
+"""
+
 
 class ValidationScopeTests(unittest.TestCase):
     def setUp(self):
@@ -143,6 +157,35 @@ class ValidationScopeTests(unittest.TestCase):
              "页面须直接从编号及名称标题开始"),
             (VALID_PAGE.replace("1.1-R1", "1.2-R1"),
              "需求编号 1.2-R1 与页面编号不符"),
+        )
+        for text, expected in examples:
+            with self.subTest(expected=expected):
+                self.page.write_text(text, encoding="utf-8")
+                code, output = self.run_validator("--strict")
+                self.assertEqual(code, 1, output)
+                self.assertIn(expected, output)
+
+    def test_field_dictionary_uses_two_sections_without_acceptance_cases(self):
+        self.page.write_text(VALID_FIELD_DICTIONARY, encoding="utf-8")
+        for arguments in ((), ("--strict",)):
+            with self.subTest(arguments=arguments):
+                code, output = self.run_validator(*arguments)
+                self.assertEqual(code, 0, output)
+                self.assertIn("字段字典 1", output)
+
+    def test_field_dictionary_rejects_incomplete_or_inconsistent_fields(self):
+        examples = (
+            (VALID_FIELD_DICTIONARY.replace("当日成功充值本金合计。", ""),
+             "字段行须为编号/字段/定义/分类/表头底色/数据格底色六列且非空"),
+            (VALID_FIELD_DICTIONARY.replace("| 收支 | `#4285F5` | 默认 |", "| 未登记 | `#4285F5` | 默认 |"),
+             "分类或表头底色与分类表不一致"),
+            (VALID_FIELD_DICTIONARY.replace("| 收支 | `#4285F5` | 默认 |", "| 收支 | `#FFFFFF` | 默认 |"),
+             "分类或表头底色与分类表不一致"),
+            (VALID_FIELD_DICTIONARY.replace("1.1-M002", "1.1-M003"),
+             "须按页面编号连续排列"),
+            (VALID_FIELD_DICTIONARY.replace("提现金额", "充值金额"), "字段 充值金额 重复"),
+            (VALID_FIELD_DICTIONARY.replace("## 2. 字段定义", "## 3. 字段定义"),
+             "字段字典必须恰有连续编号的两部分"),
         )
         for text, expected in examples:
             with self.subTest(expected=expected):
