@@ -21,13 +21,13 @@
 | 字段 | 含义 |
 |---|---|
 | 活动入口 | 排行榜、七日签到、每日签到三个链接，进入对应活动页 |
-| Bonus区域 | 累计奖金、存款奖励进度、结束时间等为固定展示内容，不代表玩家实际数据 |
+| Bonus区域 | 累计奖金、存款奖励进度、结束时间等为固定展示内容，不代表玩家实际数据；Details按钮没有操作 |
 | Deposit Now | 打开充值弹窗，包含Crypto deposit和Recharge offers两个页签 |
-| Bonus T&C | 打开存款奖励规则说明 |
-| VIP升级奖励 | 按等级列出奖励基础金额、全额领取条件、领取时间段、当前可领金额和状态 |
-| VIP等级区域 | 显示当前等级和累计投注相对下一等级投注门槛的进度；累计领取金额及周、月返现卡片为固定展示内容 |
+| Bonus T&C | 打开存款奖励规则说明，内容为固定展示，不随活动配置变化 |
+| VIP升级奖励 | 按奖励生成时间倒序，按等级列出奖励基础金额、全额领取条件、领取时间段、当前可领金额和状态；当前可领金额只在可领取状态显示 |
+| VIP等级区域 | 显示当前等级和累计投注相对下一等级投注门槛的进度，累计投注超过门槛时按门槛显示；没有下一等级或查询不到等级时进度显示0/0；累计领取金额及周、月返现卡片为固定展示内容，View Level Up Details和Available at按钮没有操作 |
 | Lucky spin | 进入幸运转盘 |
-| Daily Bonus | 打开每日奖励说明弹窗，弹窗内容为示例，不代表玩家签到记录，也不能领取 |
+| Daily Bonus | 卡片按钮显示Claim，点击打开每日奖励说明弹窗，弹窗内容为示例，不代表玩家签到记录，也不能领取；信息图标打开规则说明；Reach VIP 10为固定展示内容 |
 
 VIP升级奖励状态：
 
@@ -38,16 +38,16 @@ VIP升级奖励状态：
 | 已过期 | Expired |
 | 已暂停 | Paused |
 | 未开放 | Not open yet |
-| 计算金额为0 | No amount available |
+| 计算金额为0 | No amount available · deposit requirement not met or reward is zero |
 | 账号受限 | Account restricted |
 | 缺少参与标签 | Participation tags required |
 | 奖励币种不可用 | Reward currency unavailable |
 | 奖励钱包不可用 | Reward wallet unavailable |
-| 无法判断资格 | Eligibility unavailable |
+| 无法判断资格 | Eligibility unavailable · please retry |
 
 ## 4. 操作规则
 
-**领取VIP升级奖励。** 只有状态为可领取的奖励可以点击。领取时同一时间只处理一笔，成功后提示到账金额并刷新列表；刷新失败时提示奖励已到账、请刷新查看。领取失败时显示服务端原因并刷新列表。充值未达到全额门槛时按当前可领金额发放，之后不补差。升级、领取和金额规则见[VIP配置](../../M4-活动管理/4.6-VIP配置/README.md)。
+**领取VIP升级奖励。** 只有状态为可领取的奖励可以点击，列表加载中或加载失败时也不可点。领取时同一时间只处理一笔，成功后提示到账金额并刷新列表；刷新失败时提示奖励已到账、请刷新查看。领取失败时显示服务端原因并刷新列表。充值未达到全额门槛时按当前可领金额发放，之后不补差。升级、领取和金额规则见[VIP配置](../../M4-活动管理/4.6-VIP配置/README.md)。
 
 **充值。** Deposit Now打开的弹窗规则见[Account](../Account/README.md)和[Crypto入金](../../M5-财务管理/5.14-Crypto入金/README.md)。
 

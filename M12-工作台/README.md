@@ -69,8 +69,8 @@
 | 权限码 | 树节点路径 | 名称 | 页面 |
 |---|---|---|---|
 | `dashboard:view` | 首页 | 查看首页 | 12.1 |
-| `support:chat:view` | 客服管理/在线客服 | 查看客服会话 | 12.2 |
-| `support:chat:reply` | …/在线客服/回复 | 回复客服消息 | 12.2 |
+| `support:chat:view` | 客服工作台 | 查看客服会话 | 12.2 |
+| `support:chat:reply` | 客服工作台 | 回复客服消息 | 12.2 |
 
 回复同时需要 `support:chat:view` 和 `support:chat:reply`。
 

@@ -170,12 +170,12 @@
 
 | 权限码 | 树节点路径 | 名称 | 页面 | 现状 |
 |---|---|---|---|---|
-| `finance:withdraw:order:view` | 财务管理/提币审核 | 查看提币申请 | 5.1 | 已有 |
-| `finance:withdraw:order:review` | …/提币审核 | 通过、拒绝与重新放款 | 5.1 | 已有 |
-| `finance:withdraw:rules` | 财务管理/提现审核规则 | 页面访问 | 5.8 | 已有 |
-| `finance:withdraw:rules:edit` | …/提现审核规则 | 维护标签规则 | 5.8 | 已有 |
-| `finance:withdraw:rules:toggle` | …/提现审核规则 | 切换自动提现总开关 | 5.8 | 已有 |
-| `finance:recharge:product` | 财务管理/充值商品与赠送 | 页面访问 | 5.5 | 已有 |
+| `finance:withdraw:order:view` | 财务管理/提现管理/提现订单 | 查看提币申请 | 5.1 | 已有 |
+| `finance:withdraw:order:review` | …/提现订单 | 通过、拒绝与重新放款 | 5.1 | 已有 |
+| `finance:withdraw:rules` | 财务管理/提现管理/审核规则 | 页面访问 | 5.8 | 已有 |
+| `finance:withdraw:rules:edit` | …/审核规则 | 维护标签规则 | 5.8 | 已有 |
+| `finance:withdraw:rules:toggle` | …/审核规则 | 切换自动提现总开关 | 5.8 | 已有 |
+| `finance:recharge:product` | 财务管理/充值管理/充值商品与赠送 | 页面访问 | 5.5 | 已有 |
 | `finance:recharge:product:create` | …/充值商品与赠送 | 新增商品及模板 | 5.5 | 已有 |
 | `finance:recharge:product:edit` | …/充值商品与赠送 | 编辑商品 | 5.5 | 已有 |
 | `finance:recharge:product:delete` | …/充值商品与赠送 | 删除商品 | 5.5 | 已有 |
@@ -184,7 +184,7 @@
 | `finance:recharge:product:scheme-edit` | …/充值商品与赠送 | 维护赠送方案及恢复结算 | 5.5 | 已有 |
 | `finance:recharge:product:reward-record` | …/充值商品与赠送 | 查询奖励依据与结果 | 5.5 | 已有 |
 | `finance:recharge:product:manual-order` | …/充值商品与赠送 | 人工生成商品充值单 | 5.5 | 已有 |
-| `finance:combo` | 财务管理/充值套餐列表 | 页面访问 | 5.6 | 已有 |
+| `finance:combo` | 财务管理/充值管理/充值套餐列表 | 页面访问 | 5.6 | 已有 |
 | `finance:combo:create` | …/充值套餐列表 | 创建套餐 | 5.6 | 已有 |
 | `finance:combo:edit` | …/充值套餐列表 | 编辑套餐 | 5.6 | 已有 |
 | `finance:currency:view` | 财务管理/币种管理 | 页面访问 | 5.16 | 已有 |
@@ -192,8 +192,8 @@
 | `finance:currency:edit` | …/币种管理 | 编辑币种 | 5.16 | 已有 |
 | `finance:currency:delete` | …/币种管理 | 删除币种 | 5.16 | 已有 |
 | `finance:currency:set-default` | …/币种管理 | 设置默认币种 | 5.16 | 已有 |
-| `finance:recharge:crypto:view` | 财务管理/链上入金记录 | 查看链上入金记录 | 5.14 | 已有 |
-| `finance:recharge:crypto:supplement` | …/链上入金记录 | 强制补记链上入金 | 5.14 | 已有 |
+| `finance:recharge:crypto:view` | 财务管理/链上资产归集 | 查看链上入金记录 | 5.14 | 已有 |
+| `finance:recharge:crypto:supplement` | …/链上资产归集 | 强制补记链上入金 | 5.14 | 已有 |
 | `finance:recharge:crypto-config:view` | 财务管理/Crypto 配置中心 | 页面访问 | 5.15 | 已有 |
 | `finance:recharge:crypto-config:create-asset` | …/Crypto 配置中心 | 新增链上币种 | 5.15 | 已有 |
 | `finance:recharge:crypto-config:edit-network` | …/Crypto 配置中心 | 编辑币种网络 | 5.15 | 已有 |
@@ -201,7 +201,7 @@
 | `finance:recharge:crypto-config:wallet-pool-view` | …/Crypto 配置中心 | 查看钱包池地址 | 5.15 | 已有 |
 | `finance:recharge:crypto-config:wallet-pool-init` | …/Crypto 配置中心 | 初始化钱包池 | 5.15 | 已有 |
 
-链上资产归集和链上入金的审批、拒绝只对超级管理员开放,不设权限节点。
+权限树按侧边栏菜单归组,入金记录的两个节点显示在「链上资产归集」下,对应页面是 Crypto 配置中心的入金记录页签。链上资产归集和链上入金的审批、拒绝只对超级管理员开放,不设权限节点。
 
 **授权时一并勾选页面节点。** 只勾操作节点时账号看不到页面入口。
 判定一律在服务端做,不靠界面隐藏按钮。

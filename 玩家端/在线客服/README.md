@@ -4,7 +4,7 @@
 
 玩家通过在线客服向平台发送文字咨询并接收回复。客服侧处理规则见[客服工作台](../../M12-工作台/12.2-客服工作台/README.md)。
 
-入口有三处：首页快捷入口Support、Account快捷入口Support、登录弹窗的Contact support。手机端以底部抽屉打开，桌面端以弹窗打开。界面支持英文和繁体中文，消息内容按原文显示。
+入口有三处：首页快捷入口Support、Account快捷入口Support、登录弹窗的Contact Support。手机端以底部抽屉打开，桌面端以弹窗打开。界面支持英文和繁体中文，消息内容按原文显示。
 
 面板列出Live Chat、Telegram、Join Group、Complaint四个渠道，本版只有Live Chat可用。本版只支持纯文字，不提供附件、输入状态、已读回执、会话搜索、关单和消息删除，也不预填订单或记录信息。
 
@@ -15,17 +15,17 @@
 | 问候语 | 显示当前账号昵称，没有登录会话时显示通用称呼 |
 | 面板状态文字 | 固定显示在线及回复时效说明，不代表客服实际在线情况 |
 | Live Chat未读数 | 客服发来且玩家未读的消息数，大于0时显示在Live Chat按钮上 |
-| 连接状态 | 聊天页显示CONNECTED或RECONNECTING… |
-| 聊天记录 | 打开时取最新50条，Load earlier messages每次再取更早的50条，按发送顺序排列；区分You和Support |
+| 连接状态 | 聊天页显示CONNECTED或RECONNECTING…；没有登录会话时显示登录提示 |
+| 聊天记录 | 打开时取最新50条，Load earlier messages每次再取更早的50条，按发送顺序排列；玩家消息标注You，客服消息显示客服的后台账号名称，名称为空时显示Support；每条显示发送时分，使用玩家浏览器时间 |
 | 消息内容 | 必填，去首尾空格后1至2000字符，输入框显示已输入字数 |
 
 ## 3. 处理规则
 
 ### 开始会话
 
-每名玩家只有一条会话。打开面板或聊天页不创建会话，玩家第一次发送消息时创建。尚无消息时提示Send a message to start a conversation。
+每名玩家只有一条会话。打开面板或聊天页不创建会话，玩家第一次发送消息时创建。尚无消息时提示“Send a message to start a conversation. We will reply here.”。
 
-Live Chat需要登录会话。自动建号的游客有登录会话，可以直接使用；没有登录会话时，聊天页提示登录并提供Sign in。
+Live Chat需要登录会话。自动建号的游客有登录会话，可以直接使用；没有登录会话时，聊天页提示“Sign in to send a message to our support team.”并提供Sign in。
 
 ### 发送消息
 
@@ -33,11 +33,11 @@ Live Chat需要登录会话。自动建号的游客有登录会话，可以直�
 
 ### 接收消息
 
-打开面板后实时接收客服回复。实时连接之外，页面可见时每30秒、窗口恢复可见、连接重建时都补查一次，缺失的消息按序号补齐。
+打开面板后实时接收客服回复。实时连接之外，面板打开且页面可见时每30秒补查一次，窗口恢复可见、网络恢复、连接重建时也补查，缺失的消息按序号补齐。
 
 ### 已读
 
-玩家在聊天页且停留在消息底部时，已读进度推进到最新消息，未读数更新。已读进度只前进不后退。已读更新失败时提示Read status could not be updated，不影响查看和发送。
+玩家在聊天页且停留在消息底部时，已读进度推进到最新消息，未读数更新。已读进度只前进不后退。已读更新失败时提示“Read status could not be updated.”并提供Retry，不影响查看和发送。
 
 ### 账号变化
 
@@ -47,12 +47,12 @@ Live Chat需要登录会话。自动建号的游客有登录会话，可以直�
 
 | 情况 | 如何处理 |
 |---|---|
-| 点击Telegram、Join Group或Complaint | 提示对应渠道暂不可用，不跳转 |
-| 消息同步失败 | 提示Messages could not be refreshed，历史已保存，可重试 |
-| 更早消息加载失败 | 提示Earlier messages could not be loaded，可重试 |
+| 点击Telegram、Join Group或Complaint | 提示“{渠道名} is not available yet.”，不跳转 |
+| 消息同步失败 | 提示“Messages could not be refreshed. Your history is saved; retry to catch up.”，可Retry |
+| 更早消息加载失败 | 提示“Earlier messages could not be loaded. Please try again.”，可再次点Load earlier messages |
 | 实时通知中断 | 消息已保存时发送仍成功，页面通过补查恢复 |
-| 登录会话失效或账号被限制 | 停止实时接收，查询和发送被服务端拒绝 |
-| 登录弹窗内点击Contact support | 先关闭登录弹窗，再打开客服面板；登录提交中该入口不可用 |
+| 登录会话失效或账号被限制登录 | 停止实时接收，查询和发送被服务端拒绝 |
+| 登录弹窗内点击Contact Support | 先关闭登录弹窗，再打开客服面板；登录提交中该入口不可用 |
 
 ## 5. 验收场景
 

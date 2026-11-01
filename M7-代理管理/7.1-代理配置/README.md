@@ -110,7 +110,7 @@
 
 ### 有效投注折算(A12)
 
-本版不提供游戏折算比例,投注基数为本笔下注的 USD 标准金额。只有平台原创游戏(Crash、Roulette、Dice、Mines、Plinko、Blackjack、Limbo、Baccarat)的下注计佣,其余玩法(含第三方游戏)不产生投注返佣。下注扣款成功即计佣,不等输赢结果。
+本版不提供游戏折算比例,投注基数为本笔下注的 USD 标准金额。只有平台原创游戏(Crash、Roulette、Dice、Mines、Plinko、Blackjack、Limbo、Baccarat)的下注计佣,其余玩法(含第三方游戏和德州扑克)不产生投注返佣。下注扣款成功即计佣,不等输赢结果。
 
 配置或来源：系统规则。
 
