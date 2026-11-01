@@ -70,7 +70,7 @@
 
 **上面的 USDC 合约地址用于导入代币，不是用户充值地址。** 接收地址必须从当前测试用户的充值页面获取。同一用户在同一网络使用同一个充值地址。
 
-Crypto 入金只开放已配置的 ERC-20 代币，测试 ETH 不能入金。链上交易成功后，平台仍需达到弹窗显示的确认数（Required network confirmations）等入账条件，后台 Sepolia 模板默认 12 个确认。入账规则见 [Crypto 入金](../M5-财务管理/5.14-Crypto入金/README.md)，网络、代币合约及最小入金额等配置见 [Crypto 配置](../M5-财务管理/5.15-Crypto配置/README.md)。
+Crypto 入金只开放已配置的 ERC-20 代币，测试 ETH 不能入金。链上交易成功后，平台仍需达到弹窗显示的确认数（Required network confirmations）等入账条件，后台 Sepolia 模板默认 12 个确认。入账规则见 [Crypto 入金](../M5-财务管理/5.14-Crypto入金/README.md)，网络、代币合约及最小入金额等配置见 [Crypto 配置](../M5-财务管理/5.15-Crypto配置中心/README.md)。
 
 ## 5. 常见问题
 

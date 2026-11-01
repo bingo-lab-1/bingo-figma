@@ -85,4 +85,4 @@
 - 入口与关联页面:内容管理 > 通知管理。玩家端入口是顶部通知按钮。可填语言来自 [11.1](../11.1-多语言/README.md)。
 - 权限:查看 `cms:notification:view`,新增 `cms:notification:create`,编辑 `cms:notification:edit`,删除 `cms:notification:delete`。选择目标用户另需 `user:list:view`。
 - 数据与责任:通知内容归 M11,会员清单归 M2。
-- 共用规则:权限判定见[权限模型](../../M6-账号管理/6.2-角色列表/权限模型.md)。
+- 共用规则:权限判定见[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
