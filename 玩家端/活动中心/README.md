@@ -2,7 +2,7 @@
 
 ## 1. 用途
 
-底部导航Promotions和Account的Rewards进入本页，玩家在这里进入常用活动、打开充值弹窗并领取VIP升级奖励。本页不是全部活动的目录，各活动的资格、奖励和领取规则由[M4 活动管理](../../M4-活动管理/README.md)维护。
+底部导航Promotions和Account的Rewards进入本页，桌面端侧边栏的入口名为Bonus，玩家在这里进入常用活动、打开充值弹窗并领取VIP升级奖励。本页不是全部活动的目录，各活动的资格、奖励和领取规则由[M4 活动管理](../../M4-活动管理/README.md)维护。
 
 本页不需要登录即可打开。VIP升级奖励、充值和活动操作需要登录会话，自动建号的游客有登录会话。金额币种以活动配置为准，界面支持英文和繁体中文。
 
@@ -20,14 +20,14 @@
 
 | 字段 | 含义 |
 |---|---|
-| 活动入口 | 排行榜、七日签到、每日签到三个链接，进入对应活动页 |
-| Bonus区域 | 累计奖金、存款奖励进度、结束时间等为固定展示内容，不代表玩家实际数据；Details按钮没有操作 |
-| Deposit Now | 打开充值弹窗，包含Crypto deposit和Recharge offers两个页签 |
+| 活动入口 | Bet ranking、Seven-day check-in: view eligibility and rewards、Daily check-in: meet deposit and betting targets to earn streak rewards三个链接，分别进入排行榜、常规七日签到和每日签到活动页 |
+| Bonus区域 | Total Bonus Claimed(KRW)、Total VIP Bonus、Total General Bonus、Deposit Bonus的Up to金额、180%至360%的存款奖励进度和Bonus ends结束时间都是固定展示内容，不随账号、时间或活动配置变化，不代表玩家实际数据；Details按钮没有操作 |
+| Deposit Now | 打开标题为Wallet的充值弹窗，包含Crypto deposit和Recharge offers两个页签 |
 | Bonus T&C | 打开存款奖励规则说明，内容为固定展示，不随活动配置变化 |
-| VIP升级奖励 | 按奖励生成时间倒序，按等级列出奖励基础金额、全额领取条件、领取时间段、当前可领金额和状态；当前可领金额只在可领取状态显示 |
-| VIP等级区域 | 显示当前等级和累计投注相对下一等级投注门槛的进度，累计投注超过门槛时按门槛显示；没有下一等级或查询不到等级时进度显示0/0；累计领取金额及周、月返现卡片为固定展示内容，View Level Up Details和Available at按钮没有操作 |
-| Lucky spin | 进入幸运转盘 |
-| Daily Bonus | 卡片按钮显示Claim，点击打开每日奖励说明弹窗，弹窗内容为示例，不代表玩家签到记录，也不能领取；信息图标打开规则说明；Reach VIP 10为固定展示内容 |
+| VIP升级奖励 | 位于VIP Bonus区域，标题VIP upgrade rewards，按奖励生成时间倒序，按等级列出奖励基础金额（Base reward）、全额领取条件（Full reward requires…）、领取时间段、当前可领金额和状态；当前可领金额只在可领取状态显示 |
+| VIP等级区域 | 标题Current Level，显示当前等级和累计投注相对下一等级投注门槛的进度（当前值/门槛XP），累计投注超过门槛时按门槛显示；没有下一等级时进度显示0/0，查询不到等级时等级显示VIP0、进度显示0/0；Total VIP Bonus Claimed及Weekly cashback、Monthly cashback卡片为固定展示内容，View Level Up Details和Available at按钮没有操作 |
+| Lucky spin | 位于General Bonus区域，按钮Open Lucky Wheel和信息图标都进入幸运转盘 |
+| Daily Bonus | 位于General Bonus区域，卡片按钮显示Claim，点击打开每日奖励说明弹窗，弹窗内容为示例，不代表玩家签到记录，也不能领取；信息图标打开规则说明；VIP Spin和Reach VIP 10为固定展示内容，不按玩家等级判断 |
 
 VIP升级奖励状态：
 
@@ -62,12 +62,12 @@ VIP升级奖励状态：
 | 活动中心-R3 | 有一笔可领取的VIP升级奖励，点击领取 | 只到账一次，提示金额，列表更新为已领取 |
 | 活动中心-R4 | 连续点击领取，或领取失败 | 只提交一次；失败时显示原因并刷新状态 |
 | 活动中心-R5 | 奖励未开放、已过期或账号受限 | 按钮不可点，显示对应状态 |
-| 活动中心-R6 | 点击Deposit Now | 打开充值弹窗，默认Crypto deposit页签 |
+| 活动中心-R6 | 点击Deposit Now | 打开标题为Wallet的充值弹窗，默认Crypto deposit页签 |
 | 活动中心-R7 | 查看Bonus区域的累计奖金和Daily Bonus弹窗 | 内容与玩家实际账户无关，不提供领取 |
 
 ## 6. 相关资料
 
-- 入口：底部导航Promotions、Account快捷入口Rewards、邀请页Rewards页签、侧边栏。
+- 入口：底部导航Promotions、Account快捷入口Rewards、邀请页Rewards页签、桌面端侧边栏Bonus。
 - 权限：页面公开；领取和充值使用本人登录会话，不使用后台权限码。
 - 数据归属：VIP奖励归[VIP配置](../../M4-活动管理/4.6-VIP配置/README.md)，活动规则归M4，入账结果归M5。
 - Jira：见活动中心对应任务。
