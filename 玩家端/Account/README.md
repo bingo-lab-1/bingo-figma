@@ -10,8 +10,8 @@ Account是玩家的个人中心，用于查看余额、进入充值提现、查�
 
 | 范围 | 本版规则 |
 |---|---|
-| 终端与语言 | 游戏端Web,移动端优先并适配桌面;界面提供英文和繁体中文，语言由侧边栏选择器切换，只显示后台启用的语言。本文中文名称解释业务含义。桌面与移动端使用相同资金和资格规则 |
-| 币种 | 仅USD,金额显示如`$1,060.34`,两位小数;无币种切换、汇率、换汇和转账,无GC/SC双币模式。Account的Deposit、Withdraw不提供Crypto;Crypto入金在活动中心的Deposit Now弹窗及第三方游戏内的充值弹窗完成 |
+| 终端与语言 | 游戏端Web,移动端优先并适配桌面;界面提供英文和繁体中文，语言由桌面端侧边栏的选择器切换，只显示后台启用的语言；手机端没有侧边栏入口，不提供语言切换。本文中文名称解释业务含义。桌面与移动端使用相同资金和资格规则 |
+| 币种 | 仅USD,金额显示如`$1,060.34`,两位小数;History页的充提记录按记录原币种显示,非USD记录显示金额加币种代码,如`100.00 USDC`;无币种切换、汇率、换汇和转账,无GC/SC双币模式。Account的Deposit、Withdraw不提供Crypto;Crypto入金在活动中心的Deposit Now弹窗及第三方游戏内的充值弹窗完成 |
 | 钱包 | 本版只向玩家展示一个USD钱包。充值、彩金、游戏派彩和佣金都进入这个钱包，不另设奖金钱包或代理钱包 |
 | 时间 | 投注记录的日期筛选、分组和时间统一使用平台业务时区GMT−3；History记录时间按玩家设备时区显示 |
 | 业务规则 | Account展示玩家已有的资金、等级和佣金，不另算一套结果。后台仍可管理其他币种，但本期Account只使用USD，不把其他币种直接当作美元 |
@@ -34,15 +34,15 @@ Account是玩家的个人中心，用于查看余额、进入充值提现、查�
 
 | 首页内容 | 展示信息 | 点击后的目的地 |
 |---|---|---|
-| 身份与VIP | 头像或昵称首字母、昵称、可复制UID、VIP徽章和等级。系统生成的member昵称缩略显示，自定义昵称原样显示 | 头像和昵称进入Settings；VIP区域进入VIP Club |
+| 身份与VIP | 头像或昵称首字母、昵称、可复制UID、VIP徽章和等级。UID只显示前3位和后2位，中间显示`***`，复制时取完整UID。系统生成的member昵称缩略显示，自定义昵称原样显示 | 头像和昵称进入Settings；VIP区域进入VIP Club |
 | 余额 | BALANCE · USD、余额、Deposit和Withdraw按钮。金额查询失败时显示“—”和重试 | 两个按钮分别进入充值页和提现页 |
-| 快捷入口 | History、Rewards、Invite、Support | History进入Wallet history；Rewards进入活动中心；Invite进入邀请与佣金；Support打开客服面板 |
+| 快捷入口 | History、Rewards、Invite、Support | History进入History页；Rewards进入活动中心；Invite进入邀请与佣金；Support打开客服面板 |
 | 活动图 | 邀请好友、幸运转盘两张图片 | 分别进入邀请与佣金、幸运转盘 |
-| 提现审核提示 | 最近50笔Crypto提现中有审核中的订单时，显示Withdrawal in review和该笔金额；没有时不显示 | Wallet history |
+| 提现审核提示 | 最近50笔Crypto提现中有审核中的订单时，显示Withdrawal in review和该笔金额；没有时不显示 | History页 |
 | 功能列表 | Record、Statistics、Settings | 对应页面；没有登录会话时打开登录弹窗 |
 | 退出 | 游客显示Switch account，正式账号显示Log out | 对应操作 |
 
-底部导航依次为Home、Rankings、Spin、Promotions、Account。Promotions进入活动中心。邀请与佣金页顶部有Rewards、Invite & commission两个页签，Rewards返回活动中心；活动中心页面没有这两个页签。
+底部导航依次为Home、Rankings、Spin、Promotions、Account，Rankings进入排行榜活动，Spin进入幸运转盘，Promotions进入活动中心。邀请与佣金页顶部有Rewards、Invite & commission两个页签，Rewards返回活动中心；活动中心页面没有这两个页签。
 
 ### 关键字段
 
@@ -69,7 +69,7 @@ Account是玩家的个人中心，用于查看余额、进入充值提现、查�
 | 充值页 | Account-R5 | 未登录、档位加载中、加载失败、无可用档位、优惠加载中、有赠金、无赠金、支付未开放、提交中、下单失败、自定义金额不匹配档位 |
 | 提现页 | Account-R6 | 未登录、余额加载失败、资料校验失败、提交后提示当前方式不可用 |
 | Bet records | Account-R7 | 未登录、加载中、无记录、筛选无结果、未结算、已退款、加载失败、加载更多失败 |
-| Wallet history | Account-R7 | 充提与余额变动两个页签、未登录、加载中、无记录、部分来源失败、加载更多失败 |
+| History页 | Account-R7 | 充提与余额变动两个页签、未登录、加载中、无记录、部分来源失败、加载更多失败 |
 | Settings | Account-R8、Account-R9 | 未登录、游客不可用、未绑定显示Link、已绑定显示脱敏值、加载失败、保存中、保存失败 |
 | VIP Club | Account-R11 | 未登录、已登录 |
 | Invite & commission | Account-R13 | 未登录、加载失败、无直属、无历史、有可领取、领取中、领取失败 |
@@ -109,7 +109,7 @@ Account是玩家的个人中心，用于查看余额、进入充值提现、查�
 
 首页金额下方是Deposit、Withdraw两个按钮，各自直达对应页面。History通过快捷入口进入，充值页和提现页右上方也有History入口。首页不展开记录列表，不显示身份补资料、临期奖励、可领数量或佣金摘要。
 
-最近50笔Crypto提现中有审核中订单时，首页显示一条Withdrawal in review提示和该笔金额，点击进入Wallet history。多笔审核中时只显示最新一笔。
+最近50笔Crypto提现中有审核中订单时，首页显示一条Withdrawal in review提示和该笔金额，点击进入History页。多笔审核中时只显示最新一笔。
 
 ### Account-R3 · 钱包与提现条件
 
@@ -121,18 +121,18 @@ Account首页和页头金额显示钱包本金加彩金，包含提现占用，�
 
 ### Account-R4 · 打码任务明细
 
-本版玩家端不提供打码任务列表、任务详情和历史。打码任务的产生、抵扣、完成和免除仍在服务端执行，规则见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)。
+本版玩家端不提供打码任务列表、任务详情、历史和汇总进度，Account首页、充值页、提现页、记录页和Statistics都不显示打码进度。[注册送好礼](../../M4-活动管理/4.8-注册送好礼/README.md)页在奖励到账后显示该笔奖励的Remaining wagering requirement；其他活动页和Recharge offers只显示倍数或需完成的流水，不显示已完成进度。打码任务的产生、抵扣、完成和免除仍在服务端执行，规则见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)。
 
 ### Account-R5 · 充值
 
 本页只提供已配置档位的法币充值。Crypto入金见[Crypto入金](../../M5-财务管理/5.14-Crypto入金/README.md)。
 
-1. 档位。玩家渠道所属推广商的启用档位中，币种为USD且价格大于0的进入页面，按运营排序展示，同价多个档位只显示第一个。没有登录会话时提示登录后查看；无档位时提示No deposit options are available right now；账号未绑定推广商时查询失败，显示Deposit options could not be loaded和重试。默认选中运营标记为热门的档位，没有热门时选第一个。
-2. 优惠。每个档位各自显示角标：比例赠金“N% BONUS”，固定赠金“+金额 BONUS”，无赠金不显示角标。页面上方的大标题、说明行和You Pay/Bonus/You Get只描述当前选中的档位：比例赠金显示比例并标明“Deposit bonus #N · M left”，固定赠金显示固定金额，无赠金时说明当前金额没有赠金；未达当前门槛时提示再充至多少可享第几次、多少比例。说明列表写明“Bonus confirmed at settlement”。优惠查询失败时该档位不显示角标，三项金额显示“—”。
-3. 支付方式。页面展示Cash App、Google Pay两个选项，选择结果不随订单提交，也不影响档位。
+1. 档位。玩家渠道所属推广商的启用档位中，币种为USD且价格大于0的进入页面，按运营排序展示，同价多个档位只显示第一个。没有登录会话时提示登录后查看；无档位时提示No deposit options are available right now；账号未绑定推广商时查询失败，显示Deposit options could not be loaded.和Try again。默认选中运营标记为热门的档位，没有热门时选第一个。
+2. 优惠。每个档位各自显示角标：比例赠金“N% BONUS”，固定赠金“+金额 BONUS”，无赠金不显示角标。页面上方的大标题、说明行和You Pay/Bonus/You Get只描述当前选中的档位：比例赠金显示比例并标明“Deposit bonus #N · M left”，固定赠金显示固定金额，无赠金时说明当前金额没有赠金；未达当前门槛时提示再充至多少可享第几次、多少比例。说明列表写明“Bonus confirmed at settlement”。没有可描述的档位时，大标题显示Explore bonuses，说明列表显示Choose an amount to view available bonuses和Available offers will appear here.。优惠查询失败时该档位不显示角标，三项金额显示“—”。
+3. 支付方式。Deposit Methods区展示Cash App、Google Pay两个选项，默认选中Cash App，选择结果不随订单提交，也不影响档位。
 4. 自定义金额。Custom Amount可以输入任意金额，只有等于某个档位价格时才能下单；不匹配时点击Deposit提示This amount isn't available，小于等于0时提示Enter an amount greater than zero。
-5. 下单。支付通道未开放时按钮置灰显示Deposits are coming soon，不创建订单。通道开放时点击Deposit创建订单并跳转支付方；提交中防止重复操作，同一档位在收到服务端答复前重试使用同一请求，只创建一笔订单。下单失败提示The deposit could not be started，可重新点击。
-6. 返回。本页不查询原订单、不反馈支付结果，也不提供继续支付。玩家在Wallet history查看订单状态。
+5. 下单。支付通道未开放时按钮置灰显示Deposits are coming soon，不创建订单；档位查询失败时按钮置灰，文字仍为Deposit。通道开放时点击Deposit创建订单并跳转支付方；提交中防止重复操作，同一档位在收到服务端答复前重试使用同一请求，只创建一笔订单。下单失败提示The deposit could not be started，可重新点击。
+6. 返回。本页不查询原订单、不反馈支付结果，也不提供继续支付。玩家在History页查看订单状态。
 
 “固定赠金”和“按比例赠金”只能获得其中一种。优惠次数按方案在结算时确定：“第N次”指这个赠送方案第N次成功发放比例赠金，不是账号第N次充值；只获得固定赠金、没有赠金或金额计算后为0，都不消耗比例赠送次数。预览不占用次数，最终优惠以订单结算结果为准。计数、并发和失败恢复规则见[充值商品与赠送](../../M5-财务管理/5.5-充值商品与赠送/README.md)。
 
@@ -140,31 +140,31 @@ Account首页和页头金额显示钱包本金加彩金，包含提现占用，�
 
 首充补助活动的“翻倍充值”专用订单不发商品固定或比例赠金，也不使用比例赠送次数，普通充值订单创建后不能改成专用订单。专用订单的支付通道本版未接入，见[首充破产补助](../../M4-活动管理/4.15-首充破产补助/README.md)。
 
-Wallet history中的充值订单显示Awaiting payment、Settling和Credited三种状态。
+History页中的充值订单显示Awaiting payment、Settling和Credited三种状态。
 
 <a id="account-r6--提现与收款账户"></a>
 
 ### Account-R6 · 提现与收款资料
 
-本版提现页只有表单，不能提交真实提现。玩家选择Cash App、PayPal或Bank，填写对应收款账号（Cash App Tag、PayPal邮箱或银行账号，最多100字符），选择或输入金额后点击Withdraw。页面依次校验账号非空、PayPal邮箱格式、金额大于0，全部通过后提示Withdrawals with this method are not available yet，不创建订单，不占用余额。金额快捷项为10、30、50、100、200、300、500、1000，默认50。
+本版提现页只有表单，不能提交真实提现。玩家在Withdrawal Methods选择Cash App、PayPal或Bank（默认Cash App），填写对应收款账号（Cash App Tag、PayPal email address或Bank account number，最多100字符），选择或输入金额后点击Withdraw。页面依次校验账号非空、PayPal邮箱格式、金额大于0，全部通过后提示Withdrawals with this method are not available yet，不创建订单，不占用余额。金额快捷项为10、30、50、100、200、300、500、1000，默认50。
 
 没有登录会话时点击Withdraw打开登录弹窗。收款资料不保存，离开页面后清空。
 
-Crypto提现能力在服务端保留（地址、手续费、最低金额、打码和余额校验、审核），Wallet history可查询已有Crypto提现订单，但本版玩家端没有提交入口。提现状态显示为In review、Pending payout、Processing、Completed、Payout failed、Rejected、Cancelled，前三种标为处理中；每条显示订单号、手续费和预计到账，不显示拒绝原因。详细规则见[提现订单](../../M5-财务管理/5.1-提现订单/README.md)。
+Crypto提现能力在服务端保留（地址、手续费、最低金额、打码和余额校验、审核），History页可查询已有Crypto提现订单，但本版玩家端没有提交入口。提现状态显示为In review、Pending payout、Processing、Completed、Payout failed、Rejected、Cancelled，前三种标为处理中；每条显示订单号、手续费和预计到账，不显示拒绝原因。详细规则见[提现订单](../../M5-财务管理/5.1-提现订单/README.md)。
 
 ### Account-R7 · 投注记录、钱包记录
 
 记录只查本人数据。
 
-**Bet records。** 默认最近7个业务日，包含今天，日期按GMT−3解释。筛选弹窗可选起止日期、结算状态（All、Settled、Pending、Refunded）和游戏（全部或平台原创游戏），开始不得晚于结束，不得选择未来日期；Reset恢复默认。列表按时间倒序，按日分组显示Today、Yesterday或具体日期及当日笔数，每次加载20条，筛选在服务端分页前生效。每条显示游戏名和封面、投注时间、投注额、派彩额、净输赢和状态。第三方游戏回合只在“全部”游戏时出现。
+**Bet records。** 默认最近7个业务日，包含今天，日期按GMT−3解释。点Filters打开标题为Filter bets的筛选弹窗，可用Today、Last 7 days、Last 30 days快捷设置日期，也可选起止日期，并选结算状态（All statuses、Settled、Pending、Refunded）和游戏（All或平台原创游戏），开始不得晚于结束，不得选择未来日期；Reset恢复默认。列表按时间倒序，按日分组显示Today、Yesterday或具体日期及当日笔数，每次加载20条，筛选在服务端分页前生效。每条显示游戏名和封面、投注时间、投注额（Bet）、派彩额（Payout）、净输赢和状态。第三方游戏回合只在“全部”游戏时出现。
 
 投注净输赢使用游戏最终确认的结果。未结算时派彩和净输赢显示“—”，不以派彩0判输。历史Blackjack缺少完整下注依据时净输赢显示“—”，标记Initial bet。
 
-**Wallet history。** Deposits & withdrawals与Balance两个同级页签，默认前者，每次20条，加载更多沿用原来源，本页不提供筛选。
+**History页。** Deposits & withdrawals与Balance两个同级页签，默认前者，每次20条，加载更多沿用原来源，本页不提供筛选。
 
 | 页签 | 来源与列表 | 说明 |
 |---|---|---|
-| Deposits & withdrawals | 最近20笔支付充值订单、充值账变、Crypto提现订单，合并后按时间倒序 | 充值显示订单号、时间；到账后显示本金和赠金拆分；Settling时提示Payment received · Wallet updating。提现显示订单号、手续费和预计到账。部分来源失败时显示已取到的记录并提示重试 |
+| Deposits & withdrawals | 最近20笔支付充值订单、充值账变、Crypto提现订单，合并后按时间倒序 | 金额按记录原币种显示。充值显示订单号、时间；到账后显示本金和赠金拆分（Principal、Bonus）；Settling时提示Payment received · Wallet updating。提现显示订单号、手续费和预计到账（Fee、Est. receive）。部分来源失败时显示已取到的记录并提示重试 |
 | Balance | 本人钱包账变 | 发生时间、类型、带正负号的变动金额、变动后余额，状态固定Posted。人工调整只在本页出现 |
 
 充值和提现订单中能查到尚未到账的支付充值和审核中的提现。支付订单超过最近20笔时，只有已到账的旧订单通过充值账变继续可查。玩家只能查看，不能删除或修改资金记录。记录没有详情页，订单号不提供复制按钮。
@@ -175,7 +175,7 @@ Settings的ACCOUNT DETAILS显示UID、昵称、邮箱和手机号。UID可复制
 
 邮箱和手机号已绑定时显示隐藏部分字符的值，未绑定时显示Link，点击后在弹窗填写。页面不显示验证状态。游客的邮箱和手机号显示Unavailable，不可点击；需要联系方式登录的玩家在登录弹窗内注册正式账号，注册只校验美国`+1`手机号或邮箱的格式与唯一性，不发送验证码。已被占用时不合并账号，分别提示This phone number is already registered. Sign in or use another number.和This email is already registered. Sign in or use another email.。
 
-- 邮箱按登录邮箱修改：统一转小写，与原值相同时提示This email is already saved.。提交后重新读取资料，邮箱尚未变更时提示Your request was received. The email has not changed yet; it may require verification or be unavailable.。配置了邮件服务时须完成邮件链接确认后才生效；未配置时尚未验证的邮箱直接保存。目标邮箱已被其他账号占用时不修改，不合并账号。
+- 邮箱按登录邮箱修改：统一转小写，与原值相同时提示This email is already saved.。提交后重新读取资料，邮箱尚未变更时提示Your request was received. The email has not changed yet; it may require verification or be unavailable.。配置了邮件服务时须完成邮件链接确认后才生效；未配置时尚未验证的邮箱直接保存并提示Saved successfully.。目标邮箱已被其他账号占用时不修改，不合并账号，提示同样是Your request was received. The email has not changed yet; it may require verification or be unavailable.，不单独说明邮箱已被占用。
 - 手机号按联系号码保存：7至15位数字，可带开头的`+`，不要求美国号码，不校验唯一性，不发送验证码。它不改变登录手机号，登录手机号在注册时确定。注册时使用手机号且尚未填写联系号码时，页面显示登录手机号。
 
 本版不提供手机号或邮箱验证码。
@@ -184,7 +184,7 @@ Settings的ACCOUNT DETAILS显示UID、昵称、邮箱和手机号。UID可复制
 
 SECURITY组显示Login password和Withdrawal password。
 
-正式账号的Login password显示Change，游客显示Unavailable且不可点击，游客的登录密码不能设置。修改时输入当前密码，两次输入新密码，新密码8至128字符。修改成功后原密码立即失效，其他设备的登录状态全部失效，当前设备保持登录。
+正式账号的Login password显示Change，游客显示Unavailable且不可点击，游客的登录密码不能设置。修改时输入当前密码，两次输入新密码，新密码8至128字符。修改成功后提示Login password changed，原密码立即失效，其他设备的登录状态全部失效，当前设备保持登录。
 
 Withdrawal password显示Unavailable，点击后提示Withdrawal password setup is not available yet。本版不提供提款密码的设置、修改、错误次数和锁定。
 
@@ -196,7 +196,7 @@ Withdrawal password显示Unavailable，点击后提示Withdrawal password setup 
 
 ### Account-R11 · VIP中心
 
-首页VIP区域进入VIP Club。VIP Club未登录时显示俱乐部介绍和登录按钮，已登录时显示等级说明、权益卡片和常见问题。页面内容为固定文案，不读取玩家实际等级配置。
+首页VIP区域进入VIP Club。VIP Club未登录时显示俱乐部介绍和登录按钮，已登录时显示等级说明、权益卡片和常见问题。页面内容为固定文案，等级卡片上的等级和经验值也是固定展示，不读取玩家实际等级配置。
 
 玩家实际VIP进度在Statistics查看，见Account-R16。VIP升级奖励在活动中心领取，见[活动中心](../活动中心/README.md)。保级进度、每日提现额度、周奖、月奖和投注返现本版不在玩家端展示或领取；后台规则见[VIP配置](../../M4-活动管理/4.6-VIP配置/README.md)。
 
@@ -244,7 +244,7 @@ VIP进度分别显示累计充值和累计投注的当前值与下一等级目�
 |---|---|
 | 新用户没有余额、记录或佣金 | 如实显示No records found或空状态，不展示示例金额、虚假进度或待领数量 |
 | 网络错误，或某部分加载失败 | 只在对应位置显示失败与重试；查不到不等于余额为0或没有记录 |
-| 支付方通知成功，但平台还没确认到账 | Wallet history显示Settling和Payment received · Wallet updating；不要求重复支付，也不提前把钱加进余额 |
+| 支付方通知成功，但平台还没确认到账 | History页显示Settling和Payment received · Wallet updating；不要求重复支付，也不提前把钱加进余额 |
 | 重复提交充值或佣金领取 | 使用原请求，不再次扣钱或入账 |
 | 账户受限或登录过期 | 服务端拒绝对应操作；登录过期后回到无登录会话状态并清除个人展示 |
 | 赠送配置变化 | 尚未下单的档位重新显示最新优惠；已下单的订单条件不因新配置重算 |
@@ -260,14 +260,14 @@ VIP进度分别显示累计充值和累计投注的当前值与下一等级目�
 | Account-R1 | 没有登录会话时打开Account或投注记录，登录后再退出，换另一个账号 | 登录在弹窗内完成并留在当前页面，只显示当前玩家资料，不残留前一个账号的金额和记录 |
 | Account-R1 | 游客打开切换账号弹窗后取消、登录失败或刷新；登录提交中尝试关闭 | 未成功登录其他账号时保留有效游客会话、原UID和钱包；非提交状态可关闭，提交中不可关闭；登录成功才清理旧上下文并切换，正式账号仍真正退出 |
 | Account-R1 | 重复刷新充值页或记录页 | 只查询，不重复建单；个人数据只返回当前会话本人的记录 |
-| Account-R2 | 有审核中的Crypto提现 | 首页显示Withdrawal in review和金额，点击进入Wallet history；无审核中订单时不显示 |
+| Account-R2 | 有审核中的Crypto提现 | 首页显示Withdrawal in review和金额，点击进入History页；无审核中订单时不显示 |
 | Account-R2 | 当前不提供：点击余额进入独立Wallet records | 余额区域没有点击目的地，只有Deposit、Withdraw按钮；充提记录通过History进入 |
 | Account-R2 | 查看身份区并点击VIP区域 | 显示当前等级，点击进入VIP Club；头像和昵称进入Settings |
 | Account-R2 | 当前不提供：Promotions显示可领取数量 | Promotions与首页都不显示可领数量或佣金摘要 |
 | Account-R3 | 钱包有余额且有提现占用 | 首页显示本金加彩金合计，不减占用；提现页Cash Balance只显示本金，Withdrawable为$0.00 |
 | Account-R3 | 任务均完成但提现页仍显示$0.00 | Withdrawable固定为$0.00，不代表玩家没有余额，也不承诺可提金额 |
 | Account-R3 | 领取赠金但平台要求先真实充值才能投注 | 注册送好礼或签到奖励页面说明投注限制，Account余额照常显示已到账金额 |
-| Account-R4 | 当前不提供：查看打码任务总量与进度 | 玩家端没有任务列表和进度；服务端按规则继续计算 |
+| Account-R4 | 当前不提供：查看打码任务总量与进度 | 玩家端没有任务列表和汇总进度，只有注册送好礼页显示该笔奖励的剩余流水；服务端按规则继续计算 |
 | Account-R4 | 当前不提供：查看投注撤销或后台免除后的任务变化 | 玩家端不展示；提现受理时服务端按最新任务检查 |
 | Account-R4 | 当前不提供：从Withdraw直达打码并切换Active/History | 提现页没有打码入口 |
 | Account-R4 | 当前不提供：在Promotions切换Rewards与打码列表 | 活动中心没有打码列表；邀请页Rewards页签返回活动中心 |
@@ -275,7 +275,7 @@ VIP进度分别显示累计充值和累计投注的当前值与下一等级目�
 | Account-R5 | 支付通道未开放，或档位在下单前停用 | 前者按钮显示Deposits are coming soon且不可点；后者服务端拒绝，页面提示The deposit could not be started |
 | Account-R5 | 当前不提供：在充值页查看本金和赠金各自流水要求 | 充值页只显示You Pay、Bonus、You Get；Recharge offers弹窗分别显示本金与赠金打码要求 |
 | Account-R5 | 连续点击Deposit，或网络失败后重试 | 同一档位未收到答复前使用同一请求，只创建一笔订单 |
-| Account-R5 | 当前不提供：支付完成或关闭收银台后返回充值页查看结果 | 充值页不反馈订单结果，玩家到Wallet history查看Awaiting payment、Settling或Credited |
+| Account-R5 | 当前不提供：支付完成或关闭收银台后返回充值页查看结果 | 充值页不反馈订单结果，玩家到History页查看Awaiting payment、Settling或Credited |
 | Account-R5 | 同一赠送方案切换充值档位，或一笔只获得固定赠金 | 次数按方案共享；固定赠金不消耗比例赠送次数 |
 | Account-R5 | 已确定第几次优惠的订单结算失败，跨日后继续处理 | 不先增加成功次数；保留原优惠和计数周期，同周期后续订单等待，不重新分配优惠或改发固定赠金 |
 | Account-R5 | 当前不提供：从首充补助活动创建翻倍专用充值 | 专用订单的支付通道未接入，不能建单；已有专用订单结算时不发商品赠金且不占比例赠送次数 |
@@ -283,13 +283,13 @@ VIP进度分别显示累计充值和累计投注的当前值与下一等级目�
 | Account-R5 | 选择Cash App或Google Pay后下单 | 订单不记录所选方式，支付方式由支付方决定 |
 | Account-R6 | 当前不提供：有未完成打码任务时进入提现页查看剩余总量 | 提现页不显示打码信息 |
 | Account-R6 | 填写收款账号和金额后点击Withdraw | 校验通过后提示Withdrawals with this method are not available yet，不创建订单、不占用余额 |
-| Account-R6 | 当前不提供：提交后查看受理结果和订单号 | 没有提现申请产生，Wallet history不新增记录 |
+| Account-R6 | 当前不提供：提交后查看受理结果和订单号 | 没有提现申请产生，History页不新增记录 |
 | Account-R6 | 当前不提供：两笔提现并发超出日额度 | 玩家端不能提交提现，额度不被占用 |
-| Account-R6 | 当前不提供：昨天受理的提现今天确认未付款 | 玩家端不展示额度修正，订单状态在Wallet history更新 |
+| Account-R6 | 当前不提供：昨天受理的提现今天确认未付款 | 玩家端不展示额度修正，订单状态在History页更新 |
 | Account-R6 | 当前不提供：在途提现使用收款资料快照 | 提现页不提交资料，无快照 |
-| Account-R6 | 当前不提供：提现页显示手续费和预计到账 | 提现页不显示；Wallet history中的Crypto订单显示手续费和预计到账 |
+| Account-R6 | 当前不提供：提现页显示手续费和预计到账 | 提现页不显示；History页中的Crypto订单显示手续费和预计到账 |
 | Account-R6 | 收款账号为空、PayPal邮箱格式错误或金额小于等于0 | 分别提示对应错误，不进入下一步 |
-| Account-R7 | 从Record进入Bet records，从History进入Wallet history | Bet records只有下注；Wallet history有Deposits & withdrawals和Balance两个页签 |
+| Account-R7 | 从Record进入Bet records，从History进入History页 | Bet records只有下注；History页有Deposits & withdrawals和Balance两个页签 |
 | Account-R7 | 本人一笔充值含本金与赠金，另有审核中的提现 | Deposits & withdrawals各显示一条，已到账充值显示本金和赠金拆分；充值账变不重复成第二条 |
 | Account-R7 | 注单尚未结算或已退款 | 分别显示Pending、Refunded；未结算派彩和净输赢显示“—”，不算净亏损 |
 | Account-R7 | 更改日期和状态、加载更多 | 按GMT−3筛选，每次20条；空结果和取数失败明确区分；开始晚于结束或选择未来日期时不能应用 |
@@ -332,13 +332,13 @@ VIP进度分别显示累计充值和累计投注的当前值与下一等级目�
 | 提现页 | `3225:19529` |
 | Bet records | `3225:17584` |
 | 投注筛选弹窗 | `3225:17634` |
-| Wallet history | `3225:17731`、`3225:17781` |
+| History页 | `3225:17731`、`3225:17781` |
 | Invite & commission | `3225:19871` |
 | Settings | `3225:19950` |
 
 ### 页面衔接与跨模块边界
 
-Account子页面顶部提供返回按钮，优先回到上一页，没有上一页时回到Account。子页面隐藏底部导航。充值页和提现页的History进入Wallet history。
+Account子页面顶部提供返回按钮，优先回到上一页，没有上一页时回到Account。子页面隐藏底部导航。充值页和提现页的History进入History页。
 
 外部模块沿用既有产品职责：
 

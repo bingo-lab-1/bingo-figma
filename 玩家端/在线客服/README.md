@@ -4,7 +4,7 @@
 
 玩家通过在线客服向平台发送文字咨询并接收回复。客服侧处理规则见[客服工作台](../../M12-工作台/12.2-客服工作台/README.md)。
 
-入口有三处：首页快捷入口Support、Account快捷入口Support、登录弹窗的Contact Support。手机端以底部抽屉打开，桌面端以弹窗打开。界面支持英文和繁体中文，消息内容按原文显示。
+入口有三处：首页快捷入口Support、Account快捷入口Support、登录弹窗的Contact Support。桌面端侧边栏的Live Support没有操作，不打开客服面板。手机端以底部抽屉打开，桌面端以弹窗打开。界面支持英文和繁体中文，消息内容按原文显示。
 
 面板列出Live Chat、Telegram、Join Group、Complaint四个渠道，本版只有Live Chat可用。本版只支持纯文字，不提供附件、输入状态、已读回执、会话搜索、关单和消息删除，也不预填订单或记录信息。
 
