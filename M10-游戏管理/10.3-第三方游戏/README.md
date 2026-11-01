@@ -127,8 +127,8 @@
 
 ## 6. 相关资料
 
-- 入口与关联页面：游戏管理 → 第三方游戏。第三方注单查询见 [2.3 投注明细](../../M2-用户管理/2.3-投注明细/README.md)，资金流水见 [2.2 账变记录](../../M2-用户管理/2.2-账变记录/README.md)。
+- 入口与关联页面：游戏管理 → 第三方游戏。第三方注单查询见 [2.3 投注明细](../../M2-会员管理/2.3-投注明细/README.md)，资金流水见 [2.2 账变记录](../../M2-会员管理/2.2-账变记录/README.md)。
 - 权限：查看 `game:topgames:view`；启停供应商、设置、分类标签、上架下架、排序、封面图标 `game:topgames:edit`；同步目录 `game:topgames:import`。图片上传走后台通用上传，账号还须持有 `game:platform:create`、`game:platform:edit`、`game:type:create`、`game:type:edit`、`game:sub-game:create`、`game:sub-game:edit`、`cms:website:edit`、`cms:home-activity:edit` 之一，或同时持有 `activity:vip:edit` 与 `activity:vip-level:edit`。
 - 数据与责任：供应商和目录事实由 TopGames 提供，平台的启用清单、上架状态和素材归 M10。第三方局和回调交易不在本页读写。
-- 共用规则：[权限模型](../../M6-账号管理/6.2-角色列表/权限模型.md)、[资金模型](../../M2-用户管理/2.1-用户列表/资金模型.md)。
+- 共用规则：[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)、[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)。
 - Jira：[KAN-247](https://bingobox.atlassian.net/browse/KAN-247)。
