@@ -78,7 +78,8 @@ for f in documents:
 
 
 # ─────────────────────── 模块级检查 ───────────────────────
-modules = sorted(p for p in BASE.glob("M[0-9]-*") if p.is_dir())
+MODULE_DIR = re.compile(r"^M\d+-")
+modules = sorted(p for p in BASE.glob("M*-*") if p.is_dir() and MODULE_DIR.match(p.name))
 for mod in modules:
     readme = mod / "README.md"
     if not readme.exists():
@@ -103,7 +104,7 @@ for mod in modules:
 
 # ─────────────────────── 页面级检查 ───────────────────────
 pages = sorted([
-    *BASE.glob("M[0-9]-*/*/README.md"),
+    *(f for f in BASE.glob("M*-*/*/README.md") if MODULE_DIR.match(f.relative_to(BASE).parts[0])),
     *BASE.glob("玩家端/*/README.md"),
 ])
 by_template = {name: 0 for name in TEMPLATES}
@@ -233,7 +234,7 @@ for f in documents:
 # 空的页面目录是允许的:git 不跟踪空目录,所以它只存在于本地,
 # 是「这一页我要开工了」的个人标记,远端与 CI 都看不到。
 # 其余位置的空目录仍然报错 —— 那通常是误删或建错的残留。
-PAGE_DIR = re.compile(r"^M\d-[^/]+/\d+\.\d+-")
+PAGE_DIR = re.compile(r"^M\d+-[^/]+/\d+\.\d+-")
 for d in directories:
     rel = d.relative_to(BASE)
     if ".github" in rel.parts:
