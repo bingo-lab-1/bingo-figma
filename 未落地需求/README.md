@@ -285,7 +285,7 @@
 | Account | R14 | 帮助页常见问题 |
 | Account | R14 | 客服受理编号、从记录带编号咨询、发送前检查 |
 | Account | R14 | 暂停游戏、关闭账户申请 |
-| Account | R14 | 设置页条款隐私入口、单语言无切换器 |
+| Account | R14 | 设置页条款隐私入口 |
 | Account | R15 | 页面不放没有实际功能的按钮（支付方式、提现方式、客服渠道、OAuth 均为占位） |
 | Account | R15 | 误配其他币种的奖励保留原记录并说明 |
 | Account | 相关资料 | BingoX Account 原型 76 根画板、Wallet records 衔接、Promotions 容器、Figma 改稿要求全部移除，正文改指 BINGO-USUI |
