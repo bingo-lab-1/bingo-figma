@@ -55,7 +55,7 @@
 
 ### Player-facing English rules (A21)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Available once per account. Your account’s first real deposit must qualify for this offer.
 
@@ -71,7 +71,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | reliefBonusNotice | Before a chest exists: “The base bonus is {basePercentRange}% of your first deposit.” Use the configured range, or a single percentage if its endpoints are equal. After creation: “Your base bonus is {baseBonus} {rewardCurrency}.” Use the actual locked amount, not a new random draw. |
 | claimChoiceNotice | Normal-only: “Claim the base bonus once it becomes available.” Normal and boost: “Claim the base bonus, or complete one of the listed deposit offers for a boosted bonus.” Boost-only: “Complete one of the listed deposit offers to unlock the boosted bonus.” Show only available choices; do not promise a fixed doubling when the result is random or tiered. |
 | choiceDeadlineNotice | While choosing, show “Choose before {choiceDeadline}.” only if a deadline exists; otherwise “There is no choice deadline.” After an accepted boost payment succeeds, show “Claim your confirmed boosted bonus.” Do not expire that confirmed paid entitlement using the earlier choice deadline. |
-| wageringNotice | Use the selected normal or boosted reward multiplier, not the deposit principal’s wagering multiplier. A payment quote supplies the actual deposit price, bonus amount and multiplier; do not calculate the boosted amount from promotional prose. |
+| wageringNotice | Show the shared generic wagering reminder. Normal and boosted reward terms remain separate from deposit-principal terms. Use the actual payment quote for the deposit price and bonus amount; do not calculate either from promotional prose. |
 
 ### A15 · 真实首充与人群认定
 

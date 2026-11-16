@@ -100,7 +100,7 @@
 
 ### Player-facing English rules (A16)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Join a 30-day check-in cycle. Your daily bonus depends on your VIP level and cycle day.
 
@@ -118,7 +118,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | topUpNotice | Only for a positive partial daily reward: “If your deposits reach the target that same day, the difference is added automatically.” This is an automatic top-up of that day’s reward, not a second manual claim and not a VIP reward top-up. |
 | makeupThreshold, makeupLimit | Use the effective makeup deposit requirement and the player’s cycle quota. The server selects the earliest miss among the previous seven non-exempt days in the same cycle; do not allow arbitrary missed dates or state that the player can recover every miss. |
 | makeupRewardNotice | A positive historical free share: “Makeup pays only that day’s free portion.” A zero historical free share: “Makeup restores progress only; no bonus is paid.” Never promise the full historical daily bonus. |
-| wageringNotice | Use each awarded bonus’s own multiplier. Daily rewards, makeup, automatic top-ups and streak bonuses may belong to different rule versions. The fixed streak nodes are 7, 15, 20 and 30; their amounts come from the cycle. |
+| wageringNotice | Show the shared generic wagering reminder. Daily rewards, makeup, automatic top-ups and streak bonuses may belong to different rule versions. The fixed streak nodes are 7, 15, 20 and 30; their amounts come from the cycle. |
 
 ### 配置与周期(A1)
 

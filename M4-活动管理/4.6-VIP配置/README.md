@@ -77,7 +77,7 @@
 
 ### Player-facing English rules (A26)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Reach both the deposit and qualifying-wager targets to upgrade. Meet your level’s wagering target during the displayed retention period to keep it.
 
@@ -93,7 +93,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | Reward types and claim windows | Show only enabled/available weekly, monthly, cashback and upgrade rewards. Use each reward’s original claim window and currency; do not show a universal daily payout or silently transfer an expired upgrade entitlement to a new window. |
 | rewardDepositNotice | Render per reward. Positive threshold and a partial share: “Deposit at least {depositThreshold} USD {depositPeriod} for the full bonus; otherwise, {freePercent}% is available.” Zero free share: “Deposit at least {depositThreshold} USD {depositPeriod} to claim this bonus.” Zero threshold or a 100% free share: “The full bonus amount applies.” Eligibility and claim-window restrictions still apply. |
 | depositPeriod, cashbackNotice | Use the applicable reward policy: weekly/monthly/upgrade deposits normally use the business month; cashback uses its frozen deposit period. Cashback-only text: “Cashback is based on {cashbackRate}% of yesterday’s qualifying wagers.” Format the configured rate as a percentage, not a raw fraction. It is not a refund percentage of losses; any partial-share adjustment still applies. |
-| wageringNotice | Use the multiplier attached to the selected reward or original claim. VIP partial rewards cannot be topped up; do not reuse Sign-In Rewards’ same-day automatic top-up sentence. |
+| wageringNotice | Show the shared generic wagering reminder. VIP partial rewards cannot be topped up; do not reuse Sign-In Rewards’ same-day automatic top-up sentence. |
 
 ### 升级和保级(A10、A11、A17)
 

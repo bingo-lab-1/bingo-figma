@@ -50,7 +50,7 @@
 
 ### Player-facing English rules (A10)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Enter an active code to claim a bonus. Each code has its own eligibility, usage limits and expiry.
 

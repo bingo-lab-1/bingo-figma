@@ -76,7 +76,7 @@
 
 ### Player-facing English rules (A15)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Make one qualifying deposit of at least {minimumDeposit} USD to start a seven-day reward round.
 
@@ -91,7 +91,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | minimumDeposit | Use the active round’s single-deposit threshold; before activation, use the effective offer. Do not describe this as cumulative deposits or a deposit required every day. |
 | missedDayNotice | Use the round’s missed-day policy: end the round, skip that reward, or retain that reward. Text: “Missing a day ends this round.” / “Missed daily bonuses are skipped.” / “A missed bonus stays available for your next check-in.” Fully exempt service-outage days are not player misses. |
 | repeatNotice | If repeat participation is allowed: “After this round ends, a new qualifying deposit can start another round.” Otherwise: “After completing this round, you cannot start another.” An interrupted round is not a completed round. |
-| wageringNotice | Use the common multi-reward wording. Daily amounts and multipliers belong to the original round and can differ by day. |
+| wageringNotice | Show the shared generic wagering reminder. Daily reward terms belong to the original round and can differ by day. |
 
 ### 周期起点(A2)
 
