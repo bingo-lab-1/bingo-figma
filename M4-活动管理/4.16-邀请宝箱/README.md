@@ -57,19 +57,19 @@
 
 ### Player-facing English rules (A23)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Invite friends directly and earn {baseBonus} {rewardCurrency} for each friend who meets the listed requirements.
 
 > Up to {maxFriends} friends can qualify. Reach the listed friend-count milestones for extra bonuses.
 
-> Claim available bonuses on this page. {wageringNotice}
+> Claim available bonuses on the activity page. {wageringNotice}
 
 | Value or condition | Source and display rule |
 |---|---|
 | baseBonus, rewardCurrency, maxFriends | Use the effective invitation offer for new friends. Existing candidates and earned rewards retain their own amounts and multipliers; do not recalculate them from today’s offer. |
 | Friend requirements and milestones | Use the public child-qualification rules, preserving every condition and its AND/OR relationship. Show actual eligible counts and published milestone amounts. Device capacity and friend limits still apply; a raw signup is not a guaranteed qualifying friend. |
-| wageringNotice | Use the common multi-reward wording. Basic and milestone rewards can have different multipliers, and a batch claim does not merge their wagering terms. Do not add an expiry when the reward has no expiry rule. |
+| wageringNotice | Show the shared generic wagering reminder. Basic and milestone rewards retain their own wagering terms; a batch claim does not merge them. Do not add expiry when the reward has no expiry rule. |
 
 ### A10 · 接纳新邀请
 

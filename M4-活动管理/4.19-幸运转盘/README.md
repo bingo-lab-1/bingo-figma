@@ -71,7 +71,7 @@
 
 ### Player-facing English rules (A24)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > {dailyTicketNotice} Earn extra tickets by reaching the listed deposit targets this period.
 
@@ -86,7 +86,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | dailyTicketNotice | If the period grants free tickets: “Eligible players can collect {dailyTickets} free {basicTicketName} tickets each day.” Omit this sentence when the configured count is zero. Use the admitted period/member’s rules, not a newer offer. |
 | advancedTicketName | Use the English name of the advanced ticket pool. Ticket names must not leave Chinese text in English rules. |
 | Deposit targets, prizes and milestone amounts | Render the period’s actual deposit tiers, ticket quantities, prize probabilities and advanced-spin milestone rewards in the existing detail lists. Omit deposit/milestone sentences if that list is empty. Winning chances come from prize weights, including combined chances for equal-value prizes; do not invent a probability. |
-| Ticket expiry and wageringNotice | Ticket expiry comes from each ticket. Ticket expiry is not an earned-bonus claim deadline. Basic, advanced and milestone bonuses have separate multipliers; use the common multi-reward wording and the multiplier on each earned bonus. |
+| Ticket expiry and wageringNotice | Ticket expiry comes from each ticket. Ticket expiry is not an earned-bonus claim deadline. Basic, advanced and milestone bonuses retain their own wagering terms; show the shared generic wagering reminder without a numeric multiplier. |
 
 
 <a id="a15--参加与锁定本期规则"></a>

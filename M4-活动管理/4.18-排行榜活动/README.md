@@ -63,7 +63,7 @@
 
 ### Player-facing English rules (A17)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Play eligible games to join automatically. Your settled bets count towards daily and weekly rankings. {qualifyingBetNotice}
 
@@ -78,9 +78,9 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | qualifyingBetNotice | For a positive minimum: “Reach {minimumBet} USD in settled bets to qualify.” For a zero minimum: “A positive settled bet total is required.” Ranking uses original settled bets valued in USD, not game-weighted qualifying wagers. |
 | rewardedPlaces | Derive the rewarded range from the selected period’s published reward tiers. The current settlement rule requires tiers covering places 1–50, so the supported value is currently 50. A template variable does not make this an independently adjustable setting. |
 | rewardCurrency, rankingTieNotice, simulationNotice | Use the period’s reward currency and final results. Do not promise an uncapped pool or redistribution of empty/robot shares. On a real-player-only board: “Ties go to the player who reached the total first.” When simulation is enabled, omit the player-only tie sentence and show: “Labelled simulated entries also occupy ranking positions; their rewards are not paid out.” Keep those rows labelled. Omit the simulation notice when simulation is disabled. |
-| claimOpeningNotice | For a settled reward: “Rewards open at {claimOpenTime}.” Before settlement, use the selected board’s configured schedule: daily on the next day, weekly on the next Monday, with its business timezone, and append “Opening may be delayed until settlement is complete.” Never present a scheduled time as an already confirmed opening. |
+| claimOpeningNotice | For a settled reward: “Rewards open at {claimOpenTime}.” Before settlement, use the selected board’s configured schedule: daily on the next day, weekly on the next Monday, using its business calendar without a timezone label, and append “Opening may be delayed until settlement is complete.” Never present a scheduled time as an already confirmed opening. |
 | expiryNotice | Use the actual reward deadline: “Claim before {claimDeadline}; unclaimed rewards expire.” If the period specifies no expiry: “Rewards do not expire.” A limited deadline starts from actual opening and includes server-granted extensions. |
-| wageringNotice | Use the selected period/reward multiplier. Daily and weekly rules may differ, and historical rewards retain their own values. Missing rules must not silently become 100 USD, 12:00 or 5×. |
+| wageringNotice | Show the shared generic wagering reminder. Daily and weekly rules may differ, and historical rewards retain their own terms. Missing rules must not become sample limits or opening times. |
 
 ### A12 · 投注范围与期间归属
 

@@ -77,24 +77,22 @@
 
 ### Player-facing rule copy
 
-The English heading is **Activity Rules**. Use short paragraphs in this order: participation, reward, claiming and expiry, wagering, then essential exceptions. English is the authored baseline; the existing requirement for complete Chinese player copy remains. A translated page must not contain text from another language.
+Use **Rules** for the entry and page header, and **{activity} rules** for the reading-page title. Use short paragraphs in this order: participation, reward, claiming and expiry, wagering, then essential exceptions. English is the authored baseline; the existing requirement for complete Chinese player copy remains. A translated page must not contain text from another language.
 
 Use current implementation behavior and existing player-facing responses as the source of truth. Correct conflicting PRD statements, decisions, diagrams and acceptance scenarios together. This copy specification does not introduce participation conditions or require new API fields to support extra numeric wording.
 
 Runtime placeholders in braces below are display values, not sample defaults. Populate them from the same effective rule, personal round, session, issued card or reward used by the action. Preserve historical terms. A new offer must not rewrite an earned reward. Explicit zero values, empty optional lists and no-expiry settings have their own wording; they are not missing configuration.
 
-For daily rules, show the actual business timezone and reset time: “Daily limits reset at {resetTime} ({timeZone}).” Use the server’s time boundary, not the browser’s timezone. Show claim deadlines as a full date and time with timezone; do not invent a deadline where none exists. Scheduled openings and confirmed reward openings must be distinguished.
+Daily boundaries, opening times and deadlines follow the server’s business calendar. The current player presentation hides explicit timezone labels and wagering multipliers, as in frontend PR #257. Keep applicable reset/opening/deadline information without adding a timezone suffix. Do not invent a deadline where none exists; distinguish scheduled openings from confirmed reward openings.
 
 | Shared wording | Display rule |
 |---|---|
-| `wageringNotice` for one known bonus or a shared multiplier | “This bonus requires {wageringMultiplier}× wagering: bonus amount × wagering multiplier.” |
-| `wageringNotice` where rewards have different terms | “Wagering requirements are shown with each bonus.” Each reward must display its own actual multiplier and required amount. |
-| `wageringNotice` for an explicitly supported zero multiplier | “No wagering is required for this bonus.” This does not waive account, balance or withdrawal restrictions. |
-| Missing required rule data | “Rules are temporarily unavailable. Please try again.” Do not substitute examples, another activity’s rules, zero, an unlimited limit or a different language. Do not expose raw placeholders. An activity’s documented generic copy remains valid when its current response intentionally omits numeric terms. |
+| `wageringNotice` | “Credited bonuses carry their own wagering requirements.” Keep reward-specific terms attached to the original entitlement. Do not display a numeric multiplier, a formula or an inferred zero-multiplier exception in this Rules presentation. |
+| Rule loading and availability | Show loading while fetching, a retryable error on failure, “No current offer is available.” for an unavailable offer, and a sign-in prompt when personal terms require login. Do not substitute sample values, zero, an unlimited limit or another language. Generic copy remains valid when the response intentionally omits numeric terms. |
 
 | English term | Chinese term | Meaning |
 |---|---|---|
-| Activity Rules | 活动规则 | The common rules heading |
+| Rules | 活动规则 | The common entry and page header |
 | bonus | 彩金 | Promotional bonus funds; do not call them immediately withdrawable cash |
 | claim | 领取 | The player’s manual claim action |
 | credited automatically | 自动入账 | A successful action credits the reward without another claim |
@@ -103,11 +101,47 @@ For daily rules, show the actual business timezone and reset time: “Daily limi
 | settled bet total | 已结算投注额 | Original settled bets used for ranking; not the same as qualifying wagers |
 | claim deadline | 领取截止时间 | The last permitted time to submit a new claim |
 
-Keep amounts with their actual currency, percentages as `{percent}%` and multipliers as `{multiple}×`. Preserve monetary precision through the amount formatter; never round a qualification threshold down for display. Singular/plural forms follow the actual value. Do not mention database IDs, transaction recovery, evidence collection or internal budget machinery in player rules.
+Keep amounts with their actual currency and percentages as `{percent}%`; numeric wagering multipliers stay hidden in the current player presentation. Preserve monetary precision through the amount formatter; never round a qualification threshold down for display. Singular/plural forms follow the actual value. Do not mention database IDs, transaction recovery, evidence collection or internal budget machinery in player rules.
 
-Built-in rules own eligibility, configured amounts, winning places, timing, expiry and wagering. Operator-written **Activity Description / 活动说明** is optional supplementary context, stored separately in English and Chinese with one shared length limit. It must not override or repeat changeable rule values. Display numeric terms only when existing player-facing responses supply them; otherwise use the activity’s generic copy. Never read admin configuration directly from the player page. Layout follows the activity’s design and is outside this copy specification.
+Built-in rules own eligibility, configured amounts, winning places, timing, expiry and wagering. Rules use verified behavior and structured player responses or locked snapshots. Free-text activity descriptions are not copied into Rules: they can be stale, use another language or contradict reward handling. Promotional descriptions on activity home pages are separate. The existing admin requirement for **Activity Description / 活动说明**, separate English/Chinese values and one shared length limit remains separate work; this Rules implementation does not change admin forms. Display numeric terms only when existing player responses supply them; otherwise use generic copy. Never read admin configuration directly from the player page.
 
 Each activity owns its English paragraphs and value-binding instructions below. Conditional notices are complete sentences and appear only when their conditions apply; they are never printed as literal placeholder text.
+
+### Unified Rules interaction
+
+All 13 activities use the reading flow from `/sign-in-rewards`: a full-width **Rules** row with a right chevron opens a dedicated Rules page. Reuse the same header, Back behavior, typography, dividers and spacing. Use one centered column with a maximum width of 480 px on mobile and desktop, without the bottom tab bar. Remove former inline rule blocks and duplicate rule dialogs. Keep qualification progress, amounts, eligibility warnings and notices needed before payment or claiming on the activity page.
+
+| Activity | Rules page | Applicable terms |
+|---|---|---|
+| Sign-In Rewards | `/sign-in-rewards/rules` | Existing validated reward response and calendar |
+| Seven-Day Check-In | `/seven-day-sign-in/rules` | Personal round snapshot; current offer before activation |
+| Daily Check-In | `/daily-check-in/rules` | Active or review round; current offer before activation |
+| Betting Leaderboard | `/bet-ranking/rules` | Selected daily/weekly period; winning places from reward-tier boundaries |
+| Lucky Wheel | `/lucky-wheel/rules` | Selected pool and batch; historical rules stay locked |
+| Scratch Cards | `/scratch-card/rules` | Summary limits and eligible deposit tiers; individual card expiry stays with the card |
+| Redeem Code | `/redemption-code/rules` | Generic code-dependent terms; no public terms-preview API |
+| Red Packet Rain | `/red-packet-rain/rules` | Current/next session status, daily limit and applicable VIP base range |
+| VIP | `/vip-club/rules` | Verified eligibility, retention and claim behavior |
+| Invite & Spin | `/pdd-spin/rules` | Player’s personal-round rule |
+| Invite Chests | `/invite-chest/rules` | Overview amounts, rewarded-friend cap and milestones |
+| Welcome Gift | `/register-gift/rules` | Verified automatic crediting and wagering behavior |
+| First Deposit Relief | `/first-deposit-relief/rules` | Player’s member configuration |
+
+Reading Rules is read-only: it does not join an activity, consume a ticket, spin, claim, create an order or initiate payment. Direct entry returns to the corresponding activity. In-app Back preserves the activity’s selected tab or pool, historical batch and scroll position. Ranking daily/weekly rules and wheel historical rules must never silently use another selection’s current values. A public wheel visitor also retains the requested pool before a private player overview exists.
+
+Acceptance scenarios:
+
+1. Open Rules from each activity and by direct URL. The same reading layout appears; Back returns to that activity, including after a refresh.
+2. Open weekly ranking Rules and return. Weekly selection and the prior scroll position are retained. Repeat with an old wheel batch and Advanced pool; both remain selected.
+3. Read an old batch after the current offer changes. The old values remain. An inaccessible batch shows unavailable terms instead of current values.
+4. Exercise loading, failed reads and Retry, unavailable offers and signed-out personal reads. Each state is explicit; generic copy remains readable without fabricated numeric terms.
+5. Render large amounts, supported zero values, absent optional values and empty optional lists. Text wraps, precision is preserved, zero is not treated as missing, and absent values are not described as unlimited.
+6. Open the English page when an operator description is Chinese or contradicts crediting/expiry. Only verified English Rules copy and structured terms appear.
+7. Inspect the activity page before claiming or paying. Necessary amounts, qualification status and action warnings remain visible; the long Rules block has moved to the dedicated page.
+8. Inspect mobile and desktop layouts and the Chinese translation. The single column, headings, dividers and Back behavior remain consistent; opening Rules produces no activity mutation.
+
+Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bingo-frontend/pull/259). This defines the shared reading flow and presentation policy; it does not assert that every earlier admin or backend requirement has been implemented.
+
 
 ## 3. 依赖关系
 

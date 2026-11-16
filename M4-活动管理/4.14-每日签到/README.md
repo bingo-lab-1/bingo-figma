@@ -45,7 +45,7 @@
 
 ### Player-facing English rules (A17)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Each day, reach {minimumDeposit} USD in deposits and {minimumBet} USD in qualifying wagers to earn that day’s bonus.
 
@@ -59,7 +59,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 |---|---|
 | minimumDeposit, minimumBet, extraReward, rewardCurrency | Use the active round’s rules, or the effective offer before a round starts. Both daily thresholds must be met; seven days is a fixed cycle length, not an editable duration. |
 | claimTimingNotice | Same-day mode: “Daily bonuses open when that day’s targets are met.” Next-day mode: “Daily bonuses open the following day.” Show the server’s actual opening time and round deadline alongside the rewards; do not invent a 24-hour expiry for every bonus. |
-| wageringNotice | Use the round’s multiplier. A missed day expires unclaimed rewards at the end of that missed business day; completion deadlines differ between same-day and next-day modes. |
+| wageringNotice | Show the shared generic wagering reminder. A missed qualifying day expires unclaimed rewards at the end of that missed business day; completion deadlines differ between same-day and next-day modes. |
 
 ### A1、A4 · 达标自动开始,只算一个档位
 

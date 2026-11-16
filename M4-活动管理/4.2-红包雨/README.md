@@ -81,11 +81,11 @@
 
 ### Player-facing English rules (A21)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Eligible players can claim once per live session, up to {dailyClaimLimit} times per day.
 
-> Today’s sessions: {sessionTimes} ({timeZone}).
+> Today’s sessions: {sessionTimes}.
 
 > Your VIP level sets the base bonus. Today’s deposits or net losses may boost it; only the higher boost applies.
 
@@ -93,10 +93,10 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 | Value or condition | Source and display rule |
 |---|---|
-| dailyClaimLimit, sessionTimes, timeZone | Use the live session’s rules, or the next session when none is live. Use the actual business timezone and today’s effective schedule; do not rebuild an earlier session from a newly saved configuration. |
+| dailyClaimLimit, sessionTimes | Use the live session’s rules, or the next session when none is live. Use the actual business timezone and today’s effective schedule; do not rebuild an earlier session from a newly saved configuration. |
 | Reward amount and currency | Use the player’s applicable VIP tier and the first matching bonus group. Base reward ranges are not guaranteed final prizes. If displaying converted USD ranges, label them USD estimates; crediting still uses the session’s reward currency. |
 | Participation requirements | The activity has no separate same-day deposit requirement. A zero-deposit player can claim when all other checks pass. Target-tag eligibility still applies, including any deposit conditions within those tags. The deposited-today status is informational and must not become a separate blocking condition. |
-| wageringNotice | Use the session’s multiplier. Zero is supported and must display the common no-wagering sentence, not an invented minimum multiplier. |
+| wageringNotice | Show the shared generic wagering reminder. The session keeps its original wagering terms; do not infer or display a multiplier. |
 
 ### A3、A16、A19 · 用户什么时候可以领
 
@@ -239,7 +239,7 @@ flowchart TD
 |---|---|---|
 | 4.2-R7 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
 | 4.2-R7 | Show rules for a player with no deposit today. | No separate daily-deposit condition or deposit-to-unlock message appears. Target-tag eligibility and other claim checks still apply. |
-| 4.2-R7 | Load missing session rules or a session with a zero wagering multiplier. | Missing required data shows the unavailable state; zero shows the no-wagering sentence. No sample values, raw placeholders or unrelated rules appear. |
+| 4.2-R7 | Load missing session rules or a session with a zero wagering multiplier. | Failed reads offer Retry and unavailable offers show the unavailable state. Wagering multipliers stay hidden; no zero-multiplier exception is inferred. No sample values, raw placeholders or unrelated rules appear. |
 
 ## 6. 相关资料
 

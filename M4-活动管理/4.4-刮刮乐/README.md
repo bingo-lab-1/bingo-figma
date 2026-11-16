@@ -73,7 +73,7 @@
 
 ### Player-facing English rules (A27)
 
-Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy) and [unified Rules interaction](../README.md#unified-rules-interaction). **Rules** opens a dedicated reading page titled **{activity} rules**. Keep numeric wagering multipliers and explicit timezone labels hidden. The paragraphs below define applicable facts; use only terms available in the existing player response.
 
 > Make a qualifying deposit to receive one scratch card, subject to the {maxPendingCards}-card holding limit.
 
@@ -88,7 +88,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | Qualifying deposit | Use the matched deposit tier, including its lower/upper bounds and participation conditions. A minimum-deposit hint alone does not guarantee a card for every larger deposit. One deposit is matched to the first eligible tier. |
 | maxPendingCards, dailyScratchLimit | The holding cap applies when issuing a card; the daily scratch limit applies when scratching. Do not describe the daily scratch limit as a daily card-issuance limit. |
 | Card expiry and prize terms | Use each issued card’s expiry and locked prize currency/multiplier. Validity starts from the source deposit’s credited time. Do not reveal an unrevealed card’s preselected outcome, guarantee a win, or promise losses when a tier has a 100% win probability. |
-| wageringNotice | Use the individual winning bonus’s multiplier, including the supported zero branch. No separate manual prize claim is required. Scratching checks the activity’s current enabled state; do not promise that a closed activity still permits scratching. |
+| wageringNotice | Show the shared generic wagering reminder. No separate manual prize claim is required. Scratching checks the activity’s current enabled state; do not promise that a closed activity permits scratching. |
 
 ### A3、A5 · 充值到账后获得卡片
 
