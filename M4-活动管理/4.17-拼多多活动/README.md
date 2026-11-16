@@ -53,6 +53,25 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A75)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Start a {roundDays}-day round and build towards a {targetAmount} {rewardCurrency} bonus.
+
+> Use one free spin each day, plus extra spins from eligible new friends who register through your invitation.
+
+> When friends invited during this round reach all three targets—{depositingFriends} depositors, {inviteDeposit} USD in deposits and {inviteWager} USD in qualifying wagers—your next available spin completes the target.
+
+> Reach the target and claim before the displayed round deadline. Partial progress cannot be claimed, and unclaimed progress expires. {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| roundDays, targetAmount, rewardCurrency | Use the personal round’s locked duration, target and currency. The timer starts on its first spin; duration means elapsed days, not business-day resets. |
+| depositingFriends, inviteDeposit, inviteWager | Use all three acceleration targets from that round. Only its eligible new direct invitees count. Reaching targets does not create a spin chance; a remaining daily or invitation chance is still required. |
+| Daily and invitation chances | One daily free spin is a fixed rule. Eligible registrations are subject to the activity’s invitation/IP limit; do not promise a chance for every raw registration. The qualifying conditions and remaining chances must use the player’s actual result. |
+| Round deadline and wageringNotice | Use the server’s current round deadline, including any granted extension, and the round’s multiplier. Progress is not wallet balance. Do not describe each spin as an immediately paid cash prize. |
+
 ### A12 · 机会来源及使用
 
 机会分为每日免费机会和邀请机会,均不可提现或转让,不是彩金。玩家能看到今天免费机会是否可用、下一次刷新时间和未用邀请机会。
@@ -201,7 +220,16 @@ M7提供同运营商合法直属关系和稳定关系标识,M2提供真实注册
 | 4.17-R10 | 旧轮中改A/D/N/Y、标签普通变化、IP上限变动 | 旧轮数值不重算,新轮首抽检查新版本;既有IP占位与邀请机会不重复计算 |
 | 4.17-R11 | 后台四权限、数据隔离、玩家隐私、弹窗反复进入 | 权限及运营商/推广范围生效,只展示必要好友状态;不展示虚构真实记录,弹窗不重抽或重复送次 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.17-R12 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.17-R12 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 ### 入口、权限和查询
 

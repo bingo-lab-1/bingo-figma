@@ -53,6 +53,26 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A21)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Available once per account. Your account’s first real deposit must qualify for this offer.
+
+> Net game losses in the same currency must reach {lossPercent}% of that deposit. {observationNotice}
+
+> {reliefBonusNotice} {claimChoiceNotice}
+
+> {choiceDeadlineNotice} {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| lossPercent, observationNotice | Use the member’s first-deposit rules. A limited observation period: “Qualify within {observationHours} hours of your first deposit.” An unlimited observation period: “There is no time limit to meet this loss target.” Do not treat a later qualifying deposit as the account’s first deposit. |
+| reliefBonusNotice | Before a chest exists: “The base bonus is {basePercentRange}% of your first deposit.” Use the configured range, or a single percentage if its endpoints are equal. After creation: “Your base bonus is {baseBonus} {rewardCurrency}.” Use the actual locked amount, not a new random draw. |
+| claimChoiceNotice | Normal-only: “Claim the base bonus once it becomes available.” Normal and boost: “Claim the base bonus, or complete one of the listed deposit offers for a boosted bonus.” Boost-only: “Complete one of the listed deposit offers to unlock the boosted bonus.” Show only available choices; do not promise a fixed doubling when the result is random or tiered. |
+| choiceDeadlineNotice | While choosing, show “Choose before {choiceDeadline}.” only if a deadline exists; otherwise “There is no choice deadline.” After an accepted boost payment succeeds, show “Claim your confirmed boosted bonus.” Do not expire that confirmed paid entitlement using the earlier choice deadline. |
+| wageringNotice | Use the selected normal or boosted reward multiplier, not the deposit principal’s wagering multiplier. A payment quote supplies the actual deposit price, bonus amount and multiplier; do not calculate the boosted amount from promotional prose. |
+
 ### A15 · 真实首充与人群认定
 
 M5提供当前运营商内第一笔真实成功充值单。人工加款、无真实支付的人工生成订单、赠金和失败订单不构成首充;真实Crypto入金可以构成首充。测试账号和后台账号与普通玩家同样参与(D111)。并发首笔顺序由财务提供,不能以消息到达顺序各算一次。
@@ -169,7 +189,16 @@ B在首次形成宝箱时只生成一次并保存;同时保存抽中比例、版
 | 4.15-R9 | 查询活动记录及资金引用 | 可解释首次充值、净亏损、随机/档位、选择、实领和任务;权限及运营商范围生效 |
 | 4.15-R11 | 支付通道未接入时,玩家在固定或随机模式下选择翻倍 | 提示支付不可用且不建单、不占用宝箱;允许普通领取时仍可普通领取 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.15-R12 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.15-R12 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 ### 入口与权限
 

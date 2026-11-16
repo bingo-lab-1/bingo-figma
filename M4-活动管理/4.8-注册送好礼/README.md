@@ -103,6 +103,22 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A10)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Register while this offer is active to qualify for a {bonusAmount} {rewardCurrency} welcome bonus. Available once per account.
+
+> Claim the bonus to add it to your bonus balance.
+
+> {wageringNotice} {bettingNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| bonusAmount, rewardCurrency, wageringNotice | For a registered player, use the entitlement created at registration, including its amount, currency and multiplier. A new configuration must not rewrite that entitlement. Use the current offer only for a public pre-registration preview. |
+| bettingNotice | Show “A successful deposit is required before you can place bets.” only when the current platform betting policy requires a deposit and the player has not met it. Omit it in unrestricted mode or once the requirement is met. This is not a condition for claiming the gift. |
+| Expiry | No claim deadline is defined for the registration entitlement. Do not add a countdown, a same-day expiry or a deposit threshold from another activity. |
+
 ### 触发与次数(A2)
 
 注册成功时活动已开启且有可用发布版本,玩家获得一次发放资格。资格保存服务端注册成功时间、当时的版本、固定金额、币种和打码倍数;每运营商每玩家最多一份资格、一次成功发放,重开或换版本不重置。测试账号和后台账号与普通玩家同样取得资格(D111)。
@@ -323,7 +339,16 @@ flowchart TD
 <a id="11-涉及表与职责"></a>
 <a id="12-关联页面"></a>
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.8-R18 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.8-R18 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 > 平台基础设置拥有“充值投注限制 / 无限制投注”,本活动不另设同名开关。
 > 来源 Excel 的旧翻倍方案已不属于本期;执行结论见 [M4 决策清单](../README.md#7-决策清单) D66–D73。

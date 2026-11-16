@@ -2,9 +2,9 @@
 
 ## 1. 活动介绍
 
-红包雨在每天指定的时间开放。用户当天有过成功到账的充值,并符合参与人群要求,就可以在场次开放期间点击红包领取彩金。每场每人只能领取一次,一天还受总领取次数限制。
+红包雨在每天指定的时间开放。符合参与人群及其他领取条件的用户,可以在场次开放期间点击红包领取彩金;活动不另设当日充值门槛。每场每人只能领取一次,一天还受总领取次数限制。
 
-奖金先按用户领取时的VIP等级随机产生基础金额,再根据当天充值和亏损情况增加。充值加成和亏损加成取较高的一个,不叠加。奖金到账后产生打码要求。
+奖金先按用户领取时的VIP等级随机产生基础金额,再根据当天充值和亏损情况增加。充值加成和亏损加成取较高的一个,不叠加。打码倍数大于0时,奖金到账后产生对应打码要求。
 
 一个运营商只有一套红包雨配置。运营可以设置每天的场次、金额档位、加成、人群和说明,不用每次活动重新创建模板。本页包含后台配置与玩家领取规则,不规定玩家页面或红包动画的视觉设计。本版玩家端尚未接入红包雨入口,后台也不提供活动记录查询,领取规则由服务端执行。
 
@@ -79,16 +79,34 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A21)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Eligible players can claim once per live session, up to {dailyClaimLimit} times per day.
+
+> Today’s sessions: {sessionTimes} ({timeZone}).
+
+> Your VIP level sets the base bonus. Today’s deposits or net losses may boost it; only the higher boost applies.
+
+> Claim during the session to receive bonus funds. {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| dailyClaimLimit, sessionTimes, timeZone | Use the live session’s rules, or the next session when none is live. Use the actual business timezone and today’s effective schedule; do not rebuild an earlier session from a newly saved configuration. |
+| Reward amount and currency | Use the player’s applicable VIP tier and the first matching bonus group. Base reward ranges are not guaranteed final prizes. If displaying converted USD ranges, label them USD estimates; crediting still uses the session’s reward currency. |
+| Participation requirements | The activity has no separate same-day deposit requirement. A zero-deposit player can claim when all other checks pass. Target-tag eligibility still applies, including any deposit conditions within those tags. The deposited-today status is informational and must not become a separate blocking condition. |
+| wageringNotice | Use the session’s multiplier. Zero is supported and must display the common no-wagering sentence, not an invented minimum multiplier. |
+
 ### A3、A16、A19 · 用户什么时候可以领
 
 领取时必须同时满足:
 
 1. 活动已开启,当前正处于一个开放场次。
 2. 符合活动选择的人群标签;未选择标签时不限制人群。
-3. 当天已有至少一笔成功到账的充值,金额不限。
-4. 本场还没有领取过,当天领取次数也没有用完。
+3. 本场还没有领取过,当天领取次数也没有用完。
 
-每场每人最多成功领取1次。发起充值但尚未到账不算;如果用户先点红包被拒,之后在本场结束前充值到账,可以再点并重新判断资格。下一天的充值不能算作前一天的条件。
+每场每人最多成功领取1次。活动不另设当日充值门槛:当天未充值,只要其他条件通过,仍可领取。若所选人群标签本身包含充值条件,仍按标签判断,不能把“不另设当日充值门槛”理解为取消人群限制。
 
 活动人群标签和加成分组标签都按点击领取时的命中情况判断;同组选多个标签时满足任意一个即可。运营修改所选标签要等下一场生效,但用户自身标签变化按当前领取时判断。
 
@@ -103,13 +121,13 @@
 
 **示例**:基础金额随机为2.00 BRL,充值达到的加成为60%,亏损达到的加成为70%,则使用70%,最终奖金为3.40 BRL。如果打码倍数为3,打码要求为10.20 BRL。示例不是默认配置。
 
-当天有充值到账,但两个加成门槛都未达到,仍可以领取基础金额;“参与所需充值”与“加成所需充值”是两件事。
+两个加成门槛都未达到时,仍可领取基础金额;当天未充值也不因此失去领取资格。未充值但亏损达到加成档位时,亏损加成仍可参与计算。门槛为0的加成档仍按实际配置匹配,最终仍取充值与亏损系数中的较高值,不能把“未充值”直接视为“没有加成”。
 
 ### A11、A12 · 当天金额与小数
 
 “当天”按平台业务时区的自然日,从0点计算(D119)。今日充值为当天成功到账充值总和;今日亏损为当天投注扣款减去派彩及退款的差额,小于0时按0计,包括用彩金投注产生的输赢。
 
-按点击领取时的充值、亏损累计值计算,不提前固定用户的累计金额。计算最终奖金后向下保留两位小数,不四舍五入。充值资格本身必须在领取时判断,这点已由D51确定。
+按点击领取时的充值、亏损累计值计算,不提前固定用户的累计金额。计算最终奖金后向下保留两位小数,不四舍五入。红包雨读取的当日充值和亏损金额用于计算加成,不另作领取门槛(D51);尚未到账的充值不计入当日充值加成金额。
 
 ### A13 · 找不到VIP金额档位
 
@@ -127,7 +145,7 @@
 flowchart TD
     A[用户点击红包] --> B{活动开启且当前场次开放}
     B -->|否| X[说明未开放]
-    B -->|是| C{符合人群且今天有充值到账}
+    B -->|是| C{符合活动人群条件}
     C -->|否| Y[说明未满足参与条件]
     C -->|是| D{本场未领且今日还有次数}
     D -->|否| Z[说明领取次数已用完]
@@ -180,7 +198,7 @@ flowchart TD
 | E8 | 入账失败 | 全部回滚,不算成功领取,不扣次数,允许重试 |
 | E9 | 场内用户标签变化 | 按领取时标签判断,不回溯已领结果 |
 | E10 | 时段跨0点或两场重叠 | 拒绝保存并指出具体场次 |
-| E11 | 先点后充值 | 同场内充值到账后可重新申请,未到账或跨日充值不算原日条件 |
+| E11 | 当天未充值或充值尚未到账 | 不因此单独拒绝领取;人群、场次、次数等条件仍须满足,充值加成只计算已到账金额 |
 | E12 | 用户所在VIP被停用 | 继续按原等级匹配金额档;保存配置只检查启用等级的覆盖,停用等级没有适用档位时拒绝领取 |
 
 领取在同一事务内完成,本场一次与当日一次名额随成功记录产生,不存在处理中占用。充值和亏损门槛按奖励币种比较:当天充值和输赢按发生时的USD折算结果累计,再按领取时最新汇率换算为奖励币种,向下保留两位小数。奖励币种汇率缺失或超过2分钟未更新、或当天资金折算不完整时拒绝领取,不扣次数。基础奖金与实际入账使用活动奖励币种,不直接比较不同币种数值。每场包含开始时刻、不包含结束时刻;基础金额在配置上下限内按两位小数等概率抽取。
@@ -200,9 +218,11 @@ flowchart TD
 | 4.2-R2 | 修改场次数后保存未填完整的配置 | 时段要求重填,校验不通过不保存;完整配置从下一场生效 |
 | 4.2-R3 | 正在一场中关闭活动 | 立即停止新领取,已发奖金不收回 |
 | 4.2-R3 | 无权限启停 | 拒绝,原状态保持不变 |
-| 4.2-R4 | 当日充值已到账,两个加成都未达门槛 | 仍可领基础奖金 |
+| 4.2-R4 | 当日未充值,其他条件通过,基础金额大于0且两个加成都未达门槛 | 成功领取基础奖金,不要求先充值 |
+| 4.2-R4 | 当日未充值,其他条件通过且亏损达到加成门槛 | 按配置计算亏损加成,不因未充值拒绝 |
 | 4.2-R4 | 充值和亏损分别满足不同加成 | 各取最高满足档,最终只用较高系数,按正文示例计算 |
-| 4.2-R4 | 今日未充值被拒后,同场充值到账再点 | 再次符合全部条件即可领,发起但未到账不算 |
+| 4.2-R4 | 充值尚未到账,其他条件均通过 | 仍可领取,待到账金额不计入本次充值加成;已领后到账不补发 |
+| 4.2-R4 | 当日未充值且未命中所选人群标签 | 因人群不符拒绝,不取消标签自身的条件 |
 | 4.2-R4 | 时段外领取、本场已领或每日次数用完 | 拒绝并解释原因,不增加彩金 |
 | 4.2-R4 | VIP或标签在场内变化 | 按领取时情况判断;已领结果不回溯 |
 | 4.2-R4 | VIP无适用档或被停用 | 无适用档拒绝;停用等级继续按原等级匹配金额档 |
@@ -213,7 +233,18 @@ flowchart TD
 | 4.2-R5 | 分组无名称、无标签、表全为0或超过组数上限 | 拒绝保存并指出分组 |
 | 4.2-R6 | 在本页查找活动记录 | 当前不提供活动记录区;成功领取的依据由系统保存,后台暂无查询入口 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.2-R7 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.2-R7 | Show rules for a player with no deposit today. | No separate daily-deposit condition or deposit-to-unlock message appears. Target-tag eligibility and other claim checks still apply. |
+| 4.2-R7 | Load missing session rules or a session with a zero wagering multiplier. | Missing required data shows the unavailable state; zero shows the no-wagering sentence. No sample values, raw placeholders or unrelated rules appear. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
+- [Current claim behavior](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/services/activity/red-packet-rain.service.ts#L153) and [existing zero-deposit claim test](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/resolvers/activity/red-packet-rain.resolver.spec.ts#L418).
 
 **入口**:活动管理 → 充值活动配置 → 红包雨。
 

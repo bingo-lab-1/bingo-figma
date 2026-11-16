@@ -74,6 +74,25 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A15)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Make one qualifying deposit of at least {minimumDeposit} USD to start a seven-day reward round.
+
+> Claim one daily bonus when it opens. Amounts are shown for each reward day.
+
+> {missedDayNotice} {repeatNotice}
+
+> {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| minimumDeposit | Use the active round’s single-deposit threshold; before activation, use the effective offer. Do not describe this as cumulative deposits or a deposit required every day. |
+| missedDayNotice | Use the round’s missed-day policy: end the round, skip that reward, or retain that reward. Text: “Missing a day ends this round.” / “Missed daily bonuses are skipped.” / “A missed bonus stays available for your next check-in.” Fully exempt service-outage days are not player misses. |
+| repeatNotice | If repeat participation is allowed: “After this round ends, a new qualifying deposit can start another round.” Otherwise: “After completing this round, you cannot start another.” An interrupted round is not a completed round. |
+| wageringNotice | Use the common multi-reward wording. Daily amounts and multipliers belong to the original round and can differ by day. |
+
 ### 周期起点(A2)
 
 达标充值当天为第 1 天,本轮共 7 份日奖,当天即可领取。按平台业务时区计算业务日,每天 00:00 切日(D118),不提供滚动时长;临近午夜激活也归当天,参与前提示首日剩余领取时间。后台不提供修改业务时区的入口;有进行中轮次时不支持修改平台业务时区,已生成的业务日期保持原映射,不追溯重切。
@@ -266,7 +285,16 @@ stateDiagram-v2
 <a id="11-涉及表与职责"></a>
 <a id="12-关联页面"></a>
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.12-R5 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.12-R5 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 关联工单：[KAN-219](https://bingobox.atlassian.net/browse/KAN-219);签到相互独立及按平台业务时区计日见 [KAN-774](https://bingobox.atlassian.net/browse/KAN-774)。
 

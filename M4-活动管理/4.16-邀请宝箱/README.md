@@ -55,6 +55,22 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A23)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Invite friends directly and earn {baseBonus} {rewardCurrency} for each friend who meets the listed requirements.
+
+> Up to {maxFriends} friends can qualify. Reach the listed friend-count milestones for extra bonuses.
+
+> Claim available bonuses on this page. {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| baseBonus, rewardCurrency, maxFriends | Use the effective invitation offer for new friends. Existing candidates and earned rewards retain their own amounts and multipliers; do not recalculate them from today’s offer. |
+| Friend requirements and milestones | Use the public child-qualification rules, preserving every condition and its AND/OR relationship. Show actual eligible counts and published milestone amounts. Device capacity and friend limits still apply; a raw signup is not a guaranteed qualifying friend. |
+| wageringNotice | Use the common multi-reward wording. Basic and milestone rewards can have different multipliers, and a batch claim does not merge their wagering terms. Do not add an expiry when the reward has no expiry rule. |
+
 ### A10 · 接纳新邀请
 
 M7提供注册时形成的稳定直属关系标识、上级、下级、运营商及绑定业务时间T。注册时和绑定业务时间T活动都处于开启状态、双方属于本运营商、关系合法且上级满足A2,才接纳该下级为候选。下级是否达标另按A11判断。活动开启前或关闭期间形成的关系不因后来开启而补入,不能从普通直属人数汇总直接推导活动人数。
@@ -174,7 +190,16 @@ M7提供注册时形成的稳定直属关系标识、上级、下级、运营商
 | 4.16-R8 | 活动关闭、停币、账号限制或倍数缺失 | 按对应规则停止新接纳或暂停受影响操作;既有记录可恢复,不默认发钱或清零 |
 | 4.16-R9 | 无权限访问/修改、跨运营商查询、查玩家进度及内部记录 | 四权限和数据范围执行;后台可追依据,玩家只见必要好友状态,不泄露原始设备/IP及流水 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.16-R10 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.16-R10 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 ### 入口、权限和记录
 

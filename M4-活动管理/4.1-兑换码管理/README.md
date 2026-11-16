@@ -48,6 +48,22 @@
 
 ## 4. 操作规则
 
+### Player-facing English rules (A10)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Enter an active code to claim a bonus. Each code has its own eligibility, usage limits and expiry.
+
+> Redemption is available only while the code has rewards remaining. Successful redemptions credit the bonus automatically.
+
+> Wagering requirements depend on the code.
+
+| Value or condition | Source and display rule |
+|---|---|
+| Current player rules | Use the generic paragraphs above. The player API accepts a code and redeems it; it does not provide a pre-redemption terms query. Do not show a code-specific reward range, expiry, per-player limit or wagering multiplier. |
+| Successful redemption | Display the actual credited amount and currency returned by the successful redemption. The result also supplies the claim time; it does not return the code’s wagering multiplier or usage limits. A successful redemption credits the bonus without a second claim. |
+| Backend rules | Eligibility, expiry, total availability, per-player limits and wagering remain enforced by the backend for each code. A code can allow multiple redemptions per player. Use generic wording for these terms; this copy update does not add fields or a terms API. |
+
 ### A1、A5 · 一次生成多个码,每个码独立使用
 
 奖励固定为彩金,不提供奖励类型选项。一次可以生成多个互不相同的码,新码默认启用,也可选择以停用状态创建。每个码各自拥有奖励总金额、总领取次数和单人领取次数,相互不占用。
@@ -144,7 +160,18 @@
 | 4.1-R6 | 按码、批次ID、状态、创建时间筛选 | 分页返回匹配结果,兑换码按包含匹配,未选创建时间时不限范围 |
 | 4.1-R6 | 码在查看期间到期或领完 | 查询结果反映新状态,不能凭旧显示继续兑换 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.1-R7 | Open the page before redemption, including codes that allow more than one redemption per player. | Show the generic English paragraphs. No fixed prize, expiry, once-per-player claim, wagering multiplier or unsupported numeric placeholder appears. |
+| 4.1-R7 | Successfully redeem a code. | Show the returned credited amount and currency. No second claim is required, and no wagering multiplier is inferred from the amount. |
+| 4.1-R7 | Submit an unavailable, expired, ineligible or exhausted code. | Show the actual rejection; do not show a successful credit or invent the code’s terms. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
+- [Current player redemption result](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/libs/core/src/models/activity/redemption-code.model.ts#L264) and [per-code checks](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/services/activity/redemption-code.service.ts#L98).
 
 **入口**:活动管理 → 兑换码管理。新增生成码,详情查看只读配置与明细,每行可执行启停、删除。玩家端视觉设计和发码通道不由本页承载。
 
