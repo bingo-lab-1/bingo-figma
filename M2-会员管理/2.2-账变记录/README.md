@@ -123,3 +123,5 @@
 - 数据归属：M5 财务拥有钱包与账变流水，M2 负责只读查询。余额、来源构成和打码量统一引用[资金模型](../2.1-会员列表/资金模型.md)。
 - 标准计价：[原币金额、标准币金额与汇率依据](../2.1-会员列表/标准计价.md)。
 - 归档依据：[网站采集与核对记录](../../.artifacts/ledger-prd-2026-09-10/README.md)，记录实际页面、查询结果及本次核对范围。
+
+代码依据（2026-11-16）：[后端 · wallet-ledger-effect.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/wallet-ledger-effect.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/transactions/index.tsx)；[后端 · user.resolver.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/resolvers/user/user.resolver.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

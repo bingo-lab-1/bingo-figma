@@ -1,73 +1,47 @@
-# 活动中心 · Promotions页面
+# 活动中心 · Bonus 页面
 
 ## 1. 用途
 
-底部导航Promotions和Account的Rewards进入本页，桌面端侧边栏的入口名为Bonus，玩家在这里进入常用活动、打开充值弹窗并领取VIP升级奖励。本页不是全部活动的目录，各活动的资格、奖励和领取规则由[M4 活动管理](../../M4-活动管理/README.md)维护。
+当前玩家主分支活动汇总页是 `/bonus`，包含固定活动入口、Bonus 内容、VIP 升级奖励和 General bonus。主分支没有 `/promotions` 路由，也没有按后台 Promotions 卡片配置生成的活动中心。
 
-本页不需要登录即可打开。VIP升级奖励、充值和活动操作需要登录会话，自动建号的游客有登录会话。金额币种以活动配置为准，界面支持英文和简体中文。
-
-本版不提供个人奖励聚合列表、可领数量、跨活动一键领取和打码任务列表。
+玩家可进入独立活动页参与；本文不把宣传组件中的固定数字、倒计时或按钮外观当作已接入奖励。
 
 ## 2. 查询条件
 
-本页没有筛选条件。VIP升级奖励固定查询当前玩家本人的记录，页面打开期间每30秒刷新。
-
-| 条件 | 含义和填写规则 |
-|---|---|
-| 登录状态 | 没有登录会话时不显示VIP升级奖励区域 |
+无活动卡片筛选。页面查询 VIP 等级列表；有登录用户时读取本人 VIP 等级及升级奖励。UpgradeRewards 使用本人接口每 30 秒刷新，匿名访问时不展示该领奖区。
 
 ## 3. 结果字段
 
-| 字段 | 含义 |
+| 区域 | 实际来源和边界 |
 |---|---|
-| 活动入口 | Bet ranking、Seven-day check-in: view eligibility and rewards、Daily check-in: meet deposit and betting targets to earn streak rewards三个链接，分别进入排行榜、常规七日签到和每日签到活动页 |
-| Bonus区域 | Total Bonus Claimed(KRW)、Total VIP Bonus、Total General Bonus、Deposit Bonus的Up to金额、180%至360%的存款奖励进度和Bonus ends结束时间都是固定展示内容，不随账号、时间或活动配置变化，不代表玩家实际数据；Details按钮没有操作 |
-| Deposit Now | 打开标题为Wallet的充值弹窗，包含Crypto deposit和Recharge offers两个页签 |
-| Bonus T&C | 打开存款奖励规则说明，内容为固定展示，不随活动配置变化 |
-| VIP升级奖励 | 位于VIP Bonus区域，标题VIP upgrade rewards，按奖励生成时间倒序，按等级列出奖励基础金额（Base reward）、全额领取条件（Full reward requires…）、领取时间段、当前可领金额和状态；当前可领金额只在可领取状态显示 |
-| VIP等级区域 | 标题Current Level，显示当前等级和累计投注相对下一等级投注门槛的进度（当前值/门槛XP），累计投注超过门槛时按门槛显示；没有下一等级时进度显示0/0，查询不到等级时等级显示VIP0、进度显示0/0；Total VIP Bonus Claimed及Weekly cashback、Monthly cashback卡片为固定展示内容，View Level Up Details和Available at按钮没有操作 |
-| Lucky spin | 位于General Bonus区域，按钮Open Lucky Wheel和信息图标都进入幸运转盘 |
-| Daily Bonus | 位于General Bonus区域，卡片按钮显示Claim，点击打开每日奖励说明弹窗，弹窗内容为示例，不代表玩家签到记录，也不能领取；信息图标打开规则说明；VIP Spin和Reach VIP 10为固定展示内容，不按玩家等级判断 |
-
-VIP升级奖励状态：
-
-| 状态 | 按钮显示 |
-|---|---|
-| 可领取 | Claim |
-| 已领取 | Claimed |
-| 已过期 | Expired |
-| 已暂停 | Paused |
-| 未开放 | Not open yet |
-| 计算金额为0 | No amount available · deposit requirement not met or reward is zero |
-| 账号受限 | Account restricted |
-| 缺少参与标签 | Participation tags required |
-| 奖励币种不可用 | Reward currency unavailable |
-| 奖励钱包不可用 | Reward wallet unavailable |
-| 无法判断资格 | Eligibility unavailable · please retry |
+| 顶部活动链接 | 排行榜、常规七日签到、每日签到的固定链接 |
+| Bonus/General bonus | 前端固定内容及已有组件，不读取 CMS Promotions 列表 |
+| VIP 进度 | 查询等级及本人累计投注，按下一等级投注门槛展示；不是充值与有效投注双进度 |
+| 已领 VIP 金额 | 页面当前传入固定值 1000，不是已领金额统计接口 |
+| UpgradeRewards | 本人真实升级奖励，等级、基础额、门槛、窗口、当前可领金额与状态 |
 
 ## 4. 操作规则
 
-**领取VIP升级奖励。** 只有状态为可领取的奖励可以点击，列表加载中或加载失败时也不可点。领取时同一时间只处理一笔，成功后提示到账金额并刷新列表；刷新失败时提示奖励已到账、请刷新查看。领取失败时显示服务端原因并刷新列表。充值未达到全额门槛时按当前可领金额发放，之后不补差。升级、领取和金额规则见[VIP配置](../../M4-活动管理/4.6-VIP配置/README.md)。
+升级奖励仅在 available 状态可领。请求、查询异常或刚确认领取时禁用对应操作；成功后使用服务端返回的奖励快照提示并刷新。领取窗口使用浏览器本地时间显示。服务端仍执行当前资格校验，展示可领不代表后续请求一定成功。
 
-**充值。** Deposit Now打开的弹窗规则见[Account](../Account/README.md)和[Crypto入金](../../M5-财务管理/5.14-Crypto入金/README.md)。
-
-列表加载失败时提示Could not load rewards并提供重试；没有记录时提示No upgrade rewards yet。
+周奖励、月奖励和投注返现尚无主分支领取入口。VIP Club 还有静态等级表和进度，不是完整本人权益中心。后端 CMS 卡片、奖励历史与完整 VIP 概览已有能力，但当前 Bonus 不消费；没有跨活动一键领取。
 
 ## 5. 验收场景
 
 | 需求编号 | 场景与操作 | 预期结果 |
 |---|---|---|
-| 活动中心-R1 | 从底部Promotions或Account的Rewards进入 | 打开本页，显示活动入口、Bonus、VIP Bonus和General Bonus区域 |
-| 活动中心-R2 | 没有登录会话打开本页 | 页面可查看，不显示VIP升级奖励区域 |
-| 活动中心-R3 | 有一笔可领取的VIP升级奖励，点击领取 | 只到账一次，提示金额，列表更新为已领取 |
-| 活动中心-R4 | 连续点击领取，或领取失败 | 只提交一次；失败时显示原因并刷新状态 |
-| 活动中心-R5 | 奖励未开放、已过期或账号受限 | 按钮不可点，显示对应状态 |
-| 活动中心-R6 | 点击Deposit Now | 打开标题为Wallet的充值弹窗，默认Crypto deposit页签 |
-| 活动中心-R7 | 查看Bonus区域的累计奖金和Daily Bonus弹窗 | 内容与玩家实际账户无关，不提供领取 |
+| 活动中心-R1 | 从导航 Bonus 进入 | 打开 `/bonus` 的固定内容、活动链接和升级奖励区 |
+| 活动中心-R2 | 无会话打开页面 | 可以浏览公共内容，不查询本人升级奖励 |
+| 活动中心-R3 | 可领升级奖励并点击领取 | 调用真实领取接口，展示返回快照并刷新 |
+| 活动中心-R4 | 升级奖励查询失败 | 该区显示错误和重试，不能提交领取 |
+| 活动中心-R5 | 奖励已领、过期或资格受限 | 对应状态不可领取 |
+| 活动中心-R6 | 点击顶部三个活动入口 | 进入对应独立活动页，按各自规则参与 |
+| 活动中心-R7 | 后台更新 Promotions 卡片 | 当前主分支 Bonus 不读取该配置；固定已领金额不当作真实汇总 |
 
 ## 6. 相关资料
 
-- 入口：底部导航Promotions、Account快捷入口Rewards、邀请页Rewards页签、桌面端侧边栏Bonus。
-- 权限：页面公开；领取和充值使用本人登录会话，不使用后台权限码。
-- 数据归属：VIP奖励归[VIP配置](../../M4-活动管理/4.6-VIP配置/README.md)，活动规则归M4，入账结果归M5。
-- Jira：见活动中心对应任务。
+- 入口：导航 Bonus，路径 `/bonus`。
+- 规则：[VIP 配置](../../M4-活动管理/4.6-VIP配置/README.md)、[活动管理](../../M4-活动管理/README.md)。
+- 边界：[Account-R11](../Account/README.md#account-r11--vip中心)、[首页活动入口](../首页活动入口/README.md)。
+
+代码依据（2026-11-16）：[玩家 main · page.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/app/%5Blocale%5D/%28main%29/bonus/page.tsx)；[玩家 main · upgrade-rewards.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/app/%5Blocale%5D/%28main%29/bonus/_components/vip-bonus-section/upgrade-rewards.tsx)；[后端 · promotion-campaign.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/cms/promotion-campaign.service.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

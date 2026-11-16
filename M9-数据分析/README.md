@@ -97,3 +97,5 @@
 | D101 | 指标完整性 | 9.2 字段定义 | 保留 87 项及原编号、字段、顺序，五组数量为 8/4/15/18/42；同义列分别保留 |
 | D102 | 字段底色 | 9.2 分类与底色 | 分类与字段表头使用原总表色值；四个字段使用绿色热力，首充成本使用红色热力 |
 | D103 | 文档形式 | 9.2 | 目录只保留 README.md，字段定义、分类及底色在同一文件维护；使用中文字段名称和业务定义 |
+
+代码依据（2026-11-16）：[后台 · menu.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/constants/menu.tsx)；[后端 · permissions.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/prisma/seed/permissions.ts)。版本与核对边界见[代码核对基线](../00-公共约定/代码核对基线.md)。

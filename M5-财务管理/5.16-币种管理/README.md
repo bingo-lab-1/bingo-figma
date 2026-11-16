@@ -124,3 +124,5 @@
 - 权限:查看 `finance:currency:view`,新增 `finance:currency:create`,编辑 `finance:currency:edit`,删除 `finance:currency:delete`,设为默认 `finance:currency:set-default`。
 - 数据与责任:币种主数据归 M5,汇率由系统同步。
 - 共用规则:金额小数位在资金规则中的含义见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md) F4、F5、F15,玩家端显示见[Account](../../玩家端/Account/README.md),标准计价见[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)。决策见[M5决策D116](../README.md#7-决策清单)。
+
+代码依据（2026-11-16）：[后端 · currency.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/currency.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/currencies/index.tsx)；[后端 · standard-currency.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/libs/core/src/utils/standard-currency.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

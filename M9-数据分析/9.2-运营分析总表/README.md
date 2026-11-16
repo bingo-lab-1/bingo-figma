@@ -24,7 +24,7 @@
 
 D 是统计日，D0 是批次当日。首充指首次成功充值，新充指注册当日充值。一级指统计日结束时没有有效邀请绑定，绑定在当日结束前已解除的用户也算一级。按相除计算的比例，分母为 0 或空时显示“—”。
 
-成功充值与成功提现取有效账变：人工上分、赠金不算充值，已冲正的账变不计入。投注按下注时间归日，扣除取消和退款部分，已识别的测试投注不计入；派彩按最终结算时间归日。缺少 USD 计价时对应金额和比率留空，不按 0 计算，页面提示“存在缺少标准计价的业务记录，相关金额留空”；采用历史近似回填计价时提示“部分历史金额采用业务系统的近似回填计价”。
+成功充值取统一充值净额，包含链上、支付和计入充值的人工加款，普通调整与赠金不算；成功提现取有效账变，成功冲正按来源修正。投注按下注时间归日，扣除取消和退款部分，已识别的测试投注不计入；派彩按最终结算时间归日。缺少 USD 计价时对应金额和比率留空，不按 0 计算，页面提示“存在缺少标准计价的业务记录，相关金额留空”；采用历史近似回填计价时提示“部分历史金额采用业务系统的近似回填计价”。
 
 LTV 的分子为注册批次净充值，分母为当日首充人数，窗口未走完时只反映已经发生的数据。留存按指定目标日计算，未到目标日留空。活跃留存自活跃采集开始后才有数据，目标日早于采集起点时留空。
 
@@ -125,3 +125,5 @@ LTV 的分子为注册批次净充值，分母为当日首充人数，窗口未�
 | 9.2-M085 | 下注次留 | D 日注册用户在 D+1 下注的人数 ÷ D 日注册人数。 | 其他指标 | `#8C7AC2` | 默认 |
 | 9.2-M086 | 下注3日留 | D 日注册用户在 D+2 下注的人数 ÷ D 日注册人数。 | 其他指标 | `#8C7AC2` | 默认 |
 | 9.2-M087 | 下注7日留 | D 日注册用户在 D+6 下注的人数 ÷ D 日注册人数。 | 其他指标 | `#8C7AC2` | 默认 |
+
+代码依据（2026-11-16）：[后端 · platform-daily.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/reports/platform-daily.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/reports/index.tsx)；[后端 · collect.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/libs/platform-daily/src/collect.ts)；[后端 · rules.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/libs/platform-daily/src/rules.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

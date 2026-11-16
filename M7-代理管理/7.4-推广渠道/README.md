@@ -122,3 +122,5 @@
 - 数据与责任：推广商和渠道归 M7，域名归域名管理，会员绑定关系归 M2。功能权限与账号数据范围见[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
 - 共用规则：[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
 - Jira：[KAN-349](https://bingobox.atlassian.net/browse/KAN-349)。
+
+代码依据（2026-11-16）：[后端 · channel.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/promotion/channel.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/promotion/channel/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

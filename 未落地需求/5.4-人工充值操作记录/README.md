@@ -1,5 +1,8 @@
 # 5.4 · 人工充值操作记录
 
+> 历史候选设计，当前没有本页菜单或完整业务流程。以下字段、权限、批量操作和验收场景不能作为代码现状；当前可用能力见[未落地需求索引](../README.md)、[充值商品与赠送](../../M5-财务管理/5.5-充值商品与赠送/README.md)及[会员详情](../../M2-会员管理/2.1-会员列表/会员详情弹窗.md)。人工余额调整的 0 倍行为以资金模型为准，当前不创建任务。
+
+
 <a id="1-背景与目标"></a>
 
 ## 1. 用途
@@ -233,3 +236,5 @@
 |---|---|
 | 界面 | 打开玩家详情,保留当前筛选与滚动位置 |
 | 服务端 | 玩家详情的权限判定 |
+
+代码依据（2026-11-16）：[后台 · menu.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/constants/menu.tsx)；[后端 · permissions.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/prisma/seed/permissions.ts)；[后端 · services](https://github.com/bingo-lab-1/bingo-backend/tree/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

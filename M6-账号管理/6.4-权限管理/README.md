@@ -49,3 +49,5 @@
 - 入口:系统管理 > 权限管理。
 - 权限:查看 `permission:catalog:view`。
 - 数据归属:权限点归 M6,由系统按版本维护;结构和判定规则见[权限模型](../6.2-角色管理/权限模型.md)。
+
+代码依据（2026-11-16）：[后端 · permission.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/user/permission.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/system/permissions/index.tsx)；[后端 · permission.resolver.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/resolvers/user/permission.resolver.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

@@ -114,3 +114,5 @@
 |---|---|---|---|
 | D29 | 注册超限后的动作 | 8.1-R3 | 任一注册计数规则达到上限时拒绝注册,提示不暴露阈值,被拒绝的请求不计入成功注册人数。 |
 | D30 | 设备码口径 | 8.1 同设备两项 | 客户端提供按安装实例持久保存的设备标识,重复启动不得重建;Web按浏览器配置文件持久保存,清除存储视为新设备。服务端记录来源,不把该标识当不可伪造身份。缺码时跳过设备判定并留痕,IP及其他规则继续执行。M2保存注册和登录成功事件供计数。 |
+
+代码依据（2026-11-16）：[后台 · menu.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/constants/menu.tsx)；[后端 · permissions.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/prisma/seed/permissions.ts)。版本与核对边界见[代码核对基线](../00-公共约定/代码核对基线.md)。

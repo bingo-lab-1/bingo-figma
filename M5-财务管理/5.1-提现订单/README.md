@@ -435,3 +435,5 @@ sequenceDiagram
 |---|---|
 | 界面 | 自动打款失败时展示重新放款,结果如实提示 |
 | 服务端 | 权限判定、校验明确失败与资金仍占用、重置放款任务、写审核审计 |
+
+代码依据（2026-11-16）：[后端 · crypto-withdrawal.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/crypto-withdrawal.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/crypto-withdrawals/index.tsx)；[后端 · crypto-withdrawal.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/finance/crypto-withdrawal.service.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

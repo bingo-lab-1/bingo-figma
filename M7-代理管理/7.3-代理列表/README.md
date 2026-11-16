@@ -336,3 +336,5 @@ M7 为其提供同一运营方内稳定且唯一的关系标识、上下级、�
 |---|---|
 | 界面 | 无(注册流程属玩家端,**范围外**);后台在本页与邀请用户呈现绑定结果 |
 | 服务端 | 码校验、写关系与留痕;无码或码无效不阻断注册 |
+
+代码依据（2026-11-16）：[后端 · agent.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/agent/agent.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/agent/list/index.tsx)；[后端 · agent-relation-facts.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/libs/core/src/utils/agent-relation-facts.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

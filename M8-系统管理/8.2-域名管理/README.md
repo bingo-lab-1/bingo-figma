@@ -57,3 +57,5 @@
 - 权限:查看 `system:domain:view`,新增 `system:domain:create`,编辑 `system:domain:edit`,删除 `system:domain:delete`。
 - 数据与责任:域名台账归 M8。
 - 共用规则:权限判定见[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
+
+代码依据（2026-11-16）：[后端 · domain.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/common/domain.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/system/domain/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

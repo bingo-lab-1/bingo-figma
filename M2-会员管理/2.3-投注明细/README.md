@@ -128,3 +128,5 @@ clientSeed 和 serverSeed 有展示值时提供复制，复制的是当前显示
 - 数据归属：投注记录由玩法能力提供，M2 负责只读展示；资金流水由 M5 财务拥有，查询入口见[账变记录](../2.2-账变记录/README.md)。
 - 共用口径：本金、彩金、有效投注和打码义务引用[资金模型](../2.1-会员列表/资金模型.md)，本页不另建一套资金规则。
 - 归档依据：[网站采集与核对记录](../../.artifacts/bet-record-prd-2026-09-10/README.md)，包含页面观察、实际查询、已确认的查询缺陷及核对范围。
+
+代码依据（2026-11-16）：[后端 · bet-records.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/game-manage/bet-records.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/users/bet-record/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

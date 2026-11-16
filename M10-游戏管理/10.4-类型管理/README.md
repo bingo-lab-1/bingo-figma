@@ -67,3 +67,5 @@
 - 权限：查看 `game:type:view`，新增 `game:type:create`，编辑 `game:type:edit`，删除 `game:type:delete`。上传图标由新增、编辑权限带出。
 - 数据与责任：类型字典归 M10。
 - 共用规则：[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)；语言范围见 [M11 决策 D113](../../M11-内容管理/README.md#7-决策清单)。
+
+代码依据（2026-11-16）：[后端 · game-type.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/game-manage/game-type.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/games/type/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

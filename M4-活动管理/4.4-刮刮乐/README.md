@@ -92,7 +92,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 ### A3、A5 · 充值到账后获得卡片
 
-每笔玩家充值成功到账时,按当时生效的活动配置判断。加密货币充值和法币充值商品订单都算,后台人工加款不算:
+每笔玩家充值成功到账时,按当时生效的活动配置判断。加密货币充值、法币支付订单及新链路勾选计入充值的人工加款都可参与；普通人工调整、历史补录人工充值不发卡:
 
 1. 活动是否开启。
 2. 本笔标准计价金额和用户标签,是否符合某个启用档位。
@@ -157,7 +157,7 @@ flowchart TD
 
 活动关闭后立即停止新发卡,已有卡片也不能刮;重新开启后,仍在有效期内的卡可以继续刮,关闭期间不顺延有效期。关闭前已刮开的卡再次提交仍返回原结果。已入账彩金和打码任务不收回。已发卡保留原期限;新的每日刮奖次数保存后立即生效,当天已用次数不清零,新上限不高于已用次数时当天不能再刮。新的持卡上限立即影响新发卡,不删除已有卡片;超过新上限时停止发卡,直到持卡量回落。
 
-保存和充值同时发生时,以该笔充值到账时已生效的配置为依据,活动开关按发卡处理时的状态判断。业务日按平台业务时区计算,后台不提供修改入口;有效卡存续期间不支持修改平台业务时区(D119)。
+保存和充值同时发生时,以该笔充值到账时已生效的配置为依据,活动开关按发卡处理时的状态判断。业务日按平台业务时区计算,后台不提供修改入口;有效卡存续期间约定不修改平台业务时区，但代码没有阻止环境配置变更的校验（D119）。
 
 ### A19、A20 · 封禁、退款和异常充值
 
@@ -215,7 +215,7 @@ R1至R4保留既有需求主题,R4覆盖充值发卡与后续刮奖结算。
 | 4.4-R4 | 中奖入账失败,卡片随后过期 | 当前不提供过期后恢复:刮奖已回滚且未计次,卡片到期后不可再刮 |
 | 4.4-R3 | 无启用档位时打开活动 | 按至少启用一档校验,拒绝开启 |
 | 4.4-R3 | 关闭活动后发生新充值 | 不再新发卡;已入账彩金和打码不收回 |
-| 4.4-R4 | 加密货币充值、法币充值商品订单分别到账,另有一笔后台人工加款 | 两笔玩家充值各按档位判断发卡;人工加款不发卡 |
+| 4.4-R4 | 加密货币充值、法币充值商品订单分别到账,另有一笔后台人工加款 | 链上和支付充值各按档位判断；新登记且计入充值的人工加款也按档位判断，普通调整不发卡 |
 | 4.4-R4 | 一笔充值同时符合多个档位 | 只按第一个匹配档位发一张卡,发卡时不增加余额 |
 | 4.4-R4 | 概率为0的档位匹配且持卡未满 | 仍发卡;刮后未中奖且消耗一次次数,不尝试下一档 |
 | 4.4-R4 | 不同充值币种换算后落在同一档位 | 使用同一奖金范围和活动奖励币种 |
@@ -240,7 +240,7 @@ R1至R4保留既有需求主题,R4覆盖充值发卡与后续刮奖结算。
 
 - [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
-**入口**:活动管理 → 充值活动配置 → 刮刮乐。玩家端本版尚未挂载刮卡入口。
+**入口**:活动管理 → 充值活动配置 → 刮刮乐。玩家 main 的钱包弹窗 Scratch card 页签展示未开卡、当天次数、到期时间和最近刮奖结果，点击按钮调用刮奖接口；没有独立刮卡路由或统一 History 页面。
 
 | 操作 | 权限码 |
 |---|---|
@@ -257,3 +257,5 @@ R1至R4保留既有需求主题,R4覆盖充值发卡与后续刮奖结算。
 共用规则见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)、[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)、[用户标签](../../M2-会员管理/2.5-用户标签/README.md)及[公共能力与复用边界](../公共能力与复用边界.md)。[竞品实测](竞品实测.md)仅作历史研究依据,不能覆盖我方卡片规则。
 
 **Jira**:[KAN-215](https://bingobox.atlassian.net/browse/KAN-215);玩家端接口与页面见[KAN-676](https://bingobox.atlassian.net/browse/KAN-676)、[KAN-677](https://bingobox.atlassian.net/browse/KAN-677)。该票标题和描述仍是旧机制,与本文的差异已列入D85;开发进度只在Jira维护,本文不复制状态。
+
+代码依据（2026-11-16）：[后端 · scratch-card.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/activity/scratch-card.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/activity/recharge/scratch-card/index.tsx)；[后端 · scratch-card.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/activity/scratch-card.service.ts)；[玩家 main · scratch-cards.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/components/features/scratch-cards/scratch-cards.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。
