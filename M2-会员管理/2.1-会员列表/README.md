@@ -117,7 +117,7 @@
 
 翻页保留已应用的查询条件。改变每页条数回到第一页。列表底部显示当前记录范围、总记录数、每页条数、上一页、下一页和页码;无记录时不显示分页栏,没有输入页码跳转框。
 
-本页提供固定列和排序,没有列显隐、拖动重排、表头排序、多选或批量处理。
+本页提供固定列和排序,没有列显隐、拖动重排、表头排序、多选或批量处理。服务端已支持 `ids` 列表任一匹配，空列表匹配零人，与单个 ID 及其他筛选取交集；当前后台主列表仍提交单个 `id`，没有批量 ID 输入界面。
 
 ### 分享查询与在线人数入口
 
@@ -230,3 +230,5 @@ R6–R17 的场景与预期结果统一引用[资金模型](资金模型.md)对�
 - 页面依据:[网站采集与核对记录](../../.artifacts/user-list-prd-2026-09-11/README.md);详情依据及完整规格见[会员详情弹窗](会员详情弹窗.md)。
 
 跨币种统计的换算依据由[标准计价](标准计价.md)维护;标签的人群判定由[用户标签](../2.5-用户标签/README.md)维护。本页不复制这些规则的参数、权限表和流程图。
+
+代码依据（2026-11-16）：[后端 · user.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/user/user.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/users/list/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

@@ -106,3 +106,5 @@
 | 决策号 | 决策 | 结论 |
 |---|---|---|
 | D107 | 德州扑克的管理归属与开放状态 | **已定**(2026-11-02):德州扑克的游戏管理放在 bingo-saas-backend 后台。迁移完成前,在本模块用游戏开关关闭入口,玩家端页面按 404 处理,侧边栏不显示入口。 |
+
+代码依据（2026-11-16）：[后台 · menu.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/constants/menu.tsx)；[后端 · permissions.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/prisma/seed/permissions.ts)。版本与核对边界见[代码核对基线](../00-公共约定/代码核对基线.md)。

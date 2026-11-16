@@ -53,3 +53,5 @@
 - 权限：页面入口 `game:hot:view`；列表 `game:sub-game:view`；筛选项 `game:platform:view`、`game:type:view`。
 - 数据归属：热门标记属于子游戏，由 [10.2](../10.2-子游戏管理/README.md) 维护，本页只读。
 - 共用规则：语言范围见 [M11 决策 D113](../../M11-内容管理/README.md#7-决策清单)。
+
+代码依据（2026-11-16）：[后端 · sub-game.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/game-manage/sub-game.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/games/hot/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

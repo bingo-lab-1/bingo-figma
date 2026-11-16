@@ -95,3 +95,5 @@
 - 入口：一级菜单“首页”；明细见 [2.1](../../M2-会员管理/2.1-会员列表/README.md)、[2.2](../../M2-会员管理/2.2-账变记录/README.md)、[2.3](../../M2-会员管理/2.3-投注明细/README.md)。
 - 权限：页面和全部统计 `dashboard:view`。渠道下拉需要 `promotion:channel:view`、`promotion:channel:create`、`promotion:channel:edit` 之一。功能权限与账号数据范围见[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
 - 数据归属：注册归 M2，账变和换算归 M5，渠道归 [7.4](../../M7-代理管理/7.4-推广渠道/README.md)，自营投注记录归玩法。金额口径见[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)。
+
+代码依据（2026-11-16）：[后端 · dashboard.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/dashboard.service.ts)；[后台 · dashboard.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/dashboard.tsx)；[后端 · dashboard.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/worker/src/services/dashboard.service.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

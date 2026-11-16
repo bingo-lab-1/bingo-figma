@@ -4,7 +4,7 @@
 
 运营在这里维护子游戏：名称、归属平台与类型、玩家进入路径、开关、Banner 和氛围颜色。
 
-本页决定玩家端能看到哪些自营游戏。Casino 的自营游戏列表读取 Bingo 自营平台下游戏开关已开启的子游戏，玩家端首页不展示自营游戏列表；玩家打开游戏页时，系统按路径核对游戏开关。
+本页决定玩家端能看到哪些自营游戏。Casino 和玩家首页 Casino Games 均读取 Bingo 自营平台下游戏开关已开启的子游戏；玩家打开游戏页时，系统按路径核对游戏开关。
 
 页面面向桌面端，界面为简体中文。子游戏名称固定填写英文、中文两种，都必填；列表显示简体中文内容；按中文或英文名称都能查到；玩家端按当前界面语言显示。
 
@@ -84,3 +84,5 @@
 - 权限：查看 `game:sub-game:view`，新增 `game:sub-game:create`，编辑 `game:sub-game:edit`，删除 `game:sub-game:delete`。平台、类型下拉另需 `game:platform:view`、`game:type:view`。
 - 数据与责任：子游戏资料归 M10，游戏内容和结算归玩法（**本仓库范围外**）。
 - 共用规则：[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)；语言范围见 [M11 决策 D113](../../M11-内容管理/README.md#7-决策清单)。
+
+代码依据（2026-11-16）：[后端 · sub-game.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/game-manage/sub-game.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/games/sub-game/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

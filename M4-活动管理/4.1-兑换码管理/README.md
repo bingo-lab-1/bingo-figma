@@ -171,7 +171,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 ## 6. 相关资料
 
 - [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
-- [Current player redemption result](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/libs/core/src/models/activity/redemption-code.model.ts#L264) and [per-code checks](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/services/activity/redemption-code.service.ts#L98).
+- [Current player redemption result](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/libs/core/src/models/activity/redemption-code.model.ts#L264) and [per-code checks](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/activity/redemption-code.service.ts#L98).
 
 **入口**:活动管理 → 兑换码管理。新增生成码,详情查看只读配置与明细,每行可执行启停、删除。玩家端视觉设计和发码通道不由本页承载。
 
@@ -191,3 +191,5 @@ M4负责兑换码规则、具体码、资格判断和领取记录。M2提供用�
 - [活动模块决策](../README.md#7-决策清单):已定口径D37至D41,补充规则D86。
 
 参考截图展示旧列表字段,不作为布局要求:[列表左半](截图/列表-兑换码组-左半.png)、[列表右半](截图/列表-兑换码组-右半.png)。本需求同时保留配置预算与实际领取总额。
+
+代码依据（2026-11-16）：[后端 · redemption-code.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/activity/redemption-code.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/activity/redemption-code/index.tsx)；[后端 · redemption-code.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/activity/redemption-code.service.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

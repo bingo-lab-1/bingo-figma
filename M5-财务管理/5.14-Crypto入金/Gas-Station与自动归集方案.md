@@ -420,3 +420,5 @@ Token。
 - [Ethereum 交易结构](https://ethereum.org/developers/docs/transactions/)
 - [Solana Fee Sponsorship](https://solana.com/docs/payments/send-payments/payment-processing/fee-abstraction)
 - [TRON Stake 2.0 资源代理](https://developers.tron.network/docs/staking-on-tron-network)
+
+代码依据（2026-11-16）：[后端 · sweep](https://github.com/bingo-lab-1/bingo-backend/tree/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/worker/src/services/crypto/sweep)；[钱包服务 · internal](https://github.com/bingo-lab-1/bingo-saas/tree/8320bf5a6a43c88de66d14d7d68ea6bbfe9b371c/internal)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/crypto-sweep/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

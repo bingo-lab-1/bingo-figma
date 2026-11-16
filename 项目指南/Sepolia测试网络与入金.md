@@ -1,6 +1,6 @@
 # 项目指南：Sepolia 测试网络与入金
 
-供项目成员配置测试钱包、领取测试 ETH 和进行 Crypto 入金联调使用。本文以 MetaMask 为例。链 ID、合约信息和确认数已于 2026-11-02 对照 Sepolia 链上数据及 dev 后台、dev 玩家端核对。
+供项目成员配置测试钱包、领取测试 ETH 和进行 Crypto 入金联调使用。本文以 MetaMask 为例。链 ID、合约和当时确认数的现场核对日期为 2026-11-02；本轮仅按代码更新产品入口，没有重新核实外部水龙头或 dev 运行配置。
 
 操作顺序：切换 Sepolia 网络 → 领取测试 ETH → 添加测试 USDC → 使用测试 USDC 入金。
 
@@ -64,14 +64,14 @@
 
 ## 4. 使用测试 USDC 入金
 
-1. 登录测试环境玩家端，进入 Promotions，点击 Deposit Now，在弹窗的 Crypto deposit 页签选择 USDC 和 Sepolia 网络（名称以测试环境配置为准，dev 显示 `Ethereum Sepolia`），复制当前测试用户的充值地址或扫描二维码。Account 的 Deposit 页只有法币档位，没有 Crypto 入金。如果弹窗显示 Crypto deposit is not available yet，先向团队核实测试环境的网络、币种和入金钱包池是否已启用。
+1. 登录测试环境玩家端，点击顶部钱包，进入 Deposit > Crypto 页签选择 USDC 和 Sepolia 网络（名称以测试环境配置为准，dev 显示 `Ethereum Sepolia`），复制当前测试用户的充值地址或扫描二维码。此入口受玩家 Crypto 入金总开关控制。如果弹窗显示 Crypto deposit is not available yet，先向团队核实测试环境的网络、币种和入金钱包池是否已启用。
 2. 在外部测试钱包中确认持有上述合约的 USDC，以及足够支付手续费的 SepoliaETH。
 3. 选择 USDC 发起转账，接收地址填写产品充值页面提供的地址，金额按测试场景填写。验证正常入账时，金额需满足弹窗显示的最小入金额（Minimum deposit）。
-4. 确认转账后保存交易哈希，在 Sepolia Etherscan 查看交易状态。入账后玩家端弹出 Deposit credited 提示，可在 Account 的 History 查看记录；确认进度在后台入金记录核对。
+4. 确认转账后保存交易哈希，在 Sepolia Etherscan 查看交易状态。入账后玩家端弹出 Deposit credited 提示，可在 Profile > Transactions 查看已到账账变；确认进度在后台入金记录核对。
 
 **上面的 USDC 合约地址用于导入代币，不是用户充值地址。** 接收地址必须从当前测试用户的充值页面获取。同一用户在同一网络使用同一个充值地址。
 
-Crypto 入金只开放已配置的 ERC-20 代币，测试 ETH 不能入金。链上交易成功后，平台仍需达到弹窗显示的确认数（Required network confirmations）等入账条件。后台新增 Sepolia 网络时模板默认 12 个确认；dev 当前配置为 3 个确认、最小入金额 0，以弹窗显示为准。入账规则见 [Crypto 入金](../M5-财务管理/5.14-Crypto入金/README.md)，网络、代币合约及最小入金额等配置见 [Crypto 配置](../M5-财务管理/5.15-Crypto配置中心/README.md)。
+Crypto 入金只开放已配置的 ERC-20 代币，测试 ETH 不能入金。链上交易成功后，平台仍需达到弹窗显示的确认数（Required network confirmations）等入账条件。后台新增 Sepolia 网络时模板默认 12 个确认；2026-11-02 记录的 dev 配置为 3 个确认、最小入金额 0，不能作为当前环境保证，以弹窗显示为准。入账规则见 [Crypto 入金](../M5-财务管理/5.14-Crypto入金/README.md)，网络、代币合约及最小入金额等配置见 [Crypto 配置](../M5-财务管理/5.15-Crypto配置中心/README.md)。
 
 ## 5. 常见问题
 
@@ -85,3 +85,5 @@ Crypto 入金只开放已配置的 ERC-20 代币，测试 ETH 不能入金。链
 | 链上成功，平台还未入账 | 核对网络、代币合约、充值地址、最小入金额及确认进度，并将交易哈希与测试用户信息提供给开发排查 |
 
 返回[仓库首页](../README.md)。
+
+代码依据（2026-11-16）：[后端 · crypto-deposit.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/worker/src/services/crypto/crypto-deposit.service.ts)；[玩家 main · crypto-deposit.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/components/features/crypto-deposit/crypto-deposit.tsx)；[链索引 · internal](https://github.com/bingo-lab-1/bingo-chain-indexer/tree/679264450bd77477970c08deb9e30d1ee29b2502/internal)。版本与核对边界见[代码核对基线](../00-公共约定/代码核对基线.md)。

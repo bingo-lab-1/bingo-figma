@@ -225,3 +225,5 @@ stateDiagram-v2
 - 权限:页面和全部操作仅系统角色(超级管理员)可用,没有独立权限码,不能通过角色授权给其他账号。
 - 数据与责任:平台钱包、归集策略、归集任务和链上交易归 M5。入金事实和风控结果来自 5.14,汇率来自 [5.16](../5.16-币种管理/README.md)。私钥不离开钱包服务,页面不展示密钥材料。
 - 共用规则:设计背景见 [Gas Station 与自动归集方案](../5.14-Crypto入金/Gas-Station与自动归集方案.md);玩家余额语义见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)。
+
+代码依据（2026-11-16）：[后端 · crypto-sweep.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/crypto-sweep.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/crypto-sweep/index.tsx)；[后端 · sweep](https://github.com/bingo-lab-1/bingo-backend/tree/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/worker/src/services/crypto/sweep)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

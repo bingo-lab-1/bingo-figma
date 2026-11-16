@@ -44,6 +44,9 @@
 
 ## 2. 配置项
 
+页面提供玩家 Crypto 入金总开关，默认开启；关闭后玩家币种网络选项和地址申请不可用，已登记链上资金继续处理。总开关不替代每个链网络、币种网络及 Currency 的启用判定，具体影响见[Crypto 入金](../5.14-Crypto入金/README.md)。
+
+
 菜单名称为「Crypto 配置中心」,副标题「配置链上币种与平台 Currency 的入账关系、部署网络、RPC 节点，并处理需要人工审核的入金。」。分五个标签页:**链网络 · 币种与网络 · RPC 节点 · 钱包池 · 入金记录**。
 标签括号内显示数量:链网络、RPC 节点、入金记录为条数,币种与网络为币种数/网络映射数,钱包池为已初始化的链数/链总数。权限分别判定。入金记录归 [5.14](../5.14-Crypto入金/README.md)。
 新增入口分别为新增链网络、新增币种、新增网络映射、新增 RPC 节点。
@@ -445,6 +448,8 @@
 
 ### 权限
 
+全局充值入口开关使用 `finance:recharge:crypto-config:switch`，与网络编辑和页面查看权限独立。关闭后停止新地址入口，不停止已有入金处理。
+
 | 操作 | 权限或执行方 |
 |---|---|
 | 查看配置(5.15-R1) | `finance:recharge:crypto-config:view` |
@@ -563,3 +568,5 @@ sequenceDiagram
 |---|---|
 | 界面 | 提示生成根密钥材料,展示钱包池状态与地址 |
 | 服务端 | 校验链状态与唯一性,生成并加密保存根密钥,写操作日志 |
+
+代码依据（2026-11-16）：[后端 · crypto-config.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/crypto-config.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/crypto-config/index.tsx)；[后端 · crypto-config.resolver.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/resolvers/finance/crypto-config.resolver.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

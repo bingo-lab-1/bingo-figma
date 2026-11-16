@@ -278,3 +278,5 @@ flowchart TD
 |---|---|
 | 界面 | 无(系统需求);结果呈现在 5.1 的队列与「自动判定快照」列 |
 | 服务端 | 判定、快照留痕、幂等;判定不得明显放大提现时延 |
+
+代码依据（2026-11-16）：[后端 · withdrawal-review.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/withdrawal-review.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/withdrawal/review-rules/index.tsx)；[后端 · withdrawal-review-decision.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/finance/withdrawal-review-decision.service.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

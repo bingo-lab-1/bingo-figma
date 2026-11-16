@@ -86,3 +86,5 @@
 - 权限:查看 `system:coding-multiple:view`,新增 `system:coding-multiple:create`,编辑 `system:coding-multiple:edit`,删除 `system:coding-multiple:delete`。
 - 数据与责任:倍数配置归 M8,佣金结算归 M7。
 - 共用规则:打码任务与提现门槛的唯一定义见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)。
+
+代码依据（2026-11-16）：[后端 · coding-multiple.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/common/coding-multiple.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/system/coding-multiple/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

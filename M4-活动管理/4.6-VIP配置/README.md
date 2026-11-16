@@ -40,7 +40,7 @@
 |---|---|
 | 等级序号(A9) | 系统按历史最大序号加一产生正整数,不可手填、永不复用 |
 | 等级名称(A9) | 只用于显示,不影响排序;必填,去首尾空格、忽略大小写后不可重名,本版不限制最大长度 |
-| VIP 等级图标(A25) | 可不填;上传 PNG、JPEG 或 WebP 图片,2 MB 以内,支持非正方形徽章 |
+| VIP 等级图标(A25) | 可不填;上传 PNG、JPEG 或 WebP 图片,10 MB 以内，支持非正方形徽章；服务端要求静态图片、边长不超过 4096 px |
 | 累计充值门槛（USD）(A10) | 达到该级所需累计充值,非负数,最多两位小数 |
 | 累计有效投注门槛（USD）(A10) | 达到该级所需累计有效投注,非负数,最多两位小数;必须与充值同时达标 |
 | 个人周期保级流水（USD）(A11) | 每个个人保级周期需要完成的有效投注,非负数,最多两位小数,不要求逐级增加 |
@@ -245,7 +245,7 @@ VIP活动关闭时以上限制照常执行。等级配置缺失或换算失败�
 | 4.6-R7 | 上限3次100 USD,成功20 USD且另有30 USD处理中 | 剩余1次50 USD;本笔50通过,50.01拒绝 |
 | 4.6-R7 | 上限1次20 USD,两笔15 USD同时申请 | 最多一笔成功受理 |
 | 4.6-R7 | 出款资金归位、跨日完成或用户升降级 | 按原申请日记额度,下一笔使用最新规则,不清零当天已用 |
-| 4.6-R8 | 在本页打开 VIP 奖励记录,核查一笔奖励 | 能查玩家、奖励类型和所属期、采用等级、金额及计算依据、打码倍数、时间和关联账变;无查看权限或超出账号数据范围的查询被拒绝 |
+| 4.6-R8 | 在本页打开 VIP 奖励记录,核查一笔奖励 | 能查玩家、奖励类型和所属期、采用等级、金额及计算依据、打码倍数、时间和关联账变;无查看权限的查询被拒绝；当前记录查询不额外按运营商过滤 |
 
 ### English rule copy
 
@@ -253,6 +253,8 @@ VIP活动关闭时以上限制照常执行。等级配置缺失或换算失败�
 |---|---|---|
 | 4.6-R9 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
 | 4.6-R9 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
+玩家 main 的 Bonus 已接入真实升级奖励领取；VIP Club 仍有静态等级表和进度，周/月/返现领取、真实保级与提现额度概览尚未接入，不能把后端完整 VIP 接口当作已交付页面。边界见[Account-R11](../../玩家端/Account/README.md#account-r11--vip中心)。
 
 ## 6. 相关资料
 
@@ -275,7 +277,7 @@ VIP活动关闭时以上限制照常执行。等级配置缺失或换算失败�
 
 - M4拥有等级配置、用户等级、升降级与保级记录、四类奖励配置和发放依据。本页内提供“VIP 奖励记录”区,与VIP配置一起交付并验收。
 - 系统保存升降级及保级结算的周期起止、前后等级、累计充值、累计有效投注、本周期有效投注及原因,后台暂无独立查询入口。
-- 奖励记录必须查清用户、类型、所属奖励期、采用等级、基础奖金、入款统计周期（日／月）、业务日期与时区、统计起止时刻、实际入款、全额门槛、实际比例、奖金币种金额、打码倍数、发放时间、处理结果及触发的账变。记录区只读查询,服务端按查看权限、运营商及账号数据范围隔离结果。
+- 奖励记录必须查清用户、类型、所属奖励期、采用等级、基础奖金、入款统计周期（日／月）、业务日期与时区、统计起止时刻、实际入款、全额门槛、实际比例、奖金币种金额、打码倍数、发放时间、处理结果及触发的账变。记录区只读查询，服务端检查查看权限并应用显式筛选；当前查询没有按操作员运营商或推广商范围追加隔离。
 - M5拥有订单和出款额度,订单保存申请日、当时等级、两项上限、标准币金额、判定前用量和结果。只在申请受理前读取VIP限额,不能因此改变账变或放款金额。
 - M5提供充值与标准计价,M2提供标签与封禁,玩法提供有效投注(本仓库范围外)。渠道通过用户标签提供;VIP不直接查询渠道字典。没有本页直接调用的外部支付机构。
 
@@ -303,3 +305,5 @@ VIP活动关闭时以上限制照常执行。等级配置缺失或换算失败�
 - 后续返现配置编辑于下一业务日00:00生效；当日已开放窗口继续使用当前版本。尚未生效的次日配置可再次保存替换，保存过程保留操作日志；已生效版本及成功领取记录不可重算。总开关仍立即暂停，重新打开不补时。
 - 领取记录保存日／月统计周期、业务日期、时区、起止时间、实际入款、门槛、实际比例、采用等级、配置版本及返现规则 ID／生效时间，并与账变和打码任务关联。旧记录未保存的审计字段显示未保存，不用新规则猜测填充。
 - 验收覆盖：昨日大额入款／今日零入款、多笔恰好达标、处理中入款、业务日及月末切换、浏览器异时区、部分领取后不补差、100%零入款、旧窗口冻结与新版本切换、周／月／升级仍按月统计。
+
+代码依据（2026-11-16）：[后端 · vip-config.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/activity/vip-config.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/activity/vip-configuration/index.tsx)；[后端 · vip-reward.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/activity/vip-reward.service.ts)；[玩家 main · vip-club](https://github.com/bingo-lab-1/bingo-frontend/tree/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/app/%5Blocale%5D/%28main%29/vip-club)；[玩家 main · bonus](https://github.com/bingo-lab-1/bingo-frontend/tree/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/app/%5Blocale%5D/%28main%29/bonus)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。

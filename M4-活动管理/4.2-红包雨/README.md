@@ -6,7 +6,7 @@
 
 奖金先按用户领取时的VIP等级随机产生基础金额,再根据当天充值和亏损情况增加。充值加成和亏损加成取较高的一个,不叠加。打码倍数大于0时,奖金到账后产生对应打码要求。
 
-一个运营商只有一套红包雨配置。运营可以设置每天的场次、金额档位、加成、人群和说明,不用每次活动重新创建模板。本页包含后台配置与玩家领取规则,不规定玩家页面或红包动画的视觉设计。本版玩家端尚未接入红包雨入口,后台也不提供活动记录查询,领取规则由服务端执行。
+一个运营商只有一套红包雨配置。运营可以设置每天的场次、金额档位、加成、人群和说明,不用每次活动重新创建模板。本页包含后台配置与玩家领取规则,不规定玩家页面或红包动画的视觉设计。玩家 main 尚无 Cash Drop 路由或领取组件；场次与领取 API 已存在，统一奖励历史也只有后端能力。后台仍没有本活动记录查询区，领取规则由服务端执行。
 
 不增加多模板、活动循环、活动周期或冷却天数。Banner、悬浮窗及侧边栏的图片和展示开关由其他运营功能维护;本页只保留活动名称、简称和下一场倒计时的业务设置。签到、转盘等活动另行定义。
 
@@ -178,7 +178,7 @@ flowchart TD
 
 ### A17 · 倒计时和不可领取提示
 
-倒计时、未开启状态提示和参与说明由运营在本页保存,本版玩家端尚未接入展示。入口的图片和显示位置不由本页配置。
+玩家页展示服务端返回的场次、倒计时、参与条件及领取状态，Rules 进入独立说明页。入口的图片和显示位置不由本页配置。
 
 服务端对活动未开启、不在场次内、标签不符、本场已领、今日次数用完分别返回具体拒绝原因。
 
@@ -241,10 +241,12 @@ flowchart TD
 | 4.2-R7 | Show rules for a player with no deposit today. | No separate daily-deposit condition or deposit-to-unlock message appears. Target-tag eligibility and other claim checks still apply. |
 | 4.2-R7 | Load missing session rules or a session with a zero wagering multiplier. | Failed reads offer Retry and unavailable offers show the unavailable state. Wagering multipliers stay hidden; no zero-multiplier exception is inferred. No sample values, raw placeholders or unrelated rules appear. |
 
+领取重试使用首次请求时刻确定场次，事务重试跨场次边界也不切换场次。相同幂等键先返回原领取结果，再判断当前活动或场次状态；不能因活动关闭或场次结束重复发奖。
+
 ## 6. 相关资料
 
 - [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
-- [Current claim behavior](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/services/activity/red-packet-rain.service.ts#L153) and [existing zero-deposit claim test](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/resolvers/activity/red-packet-rain.resolver.spec.ts#L418).
+- [Current claim behavior](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/activity/red-packet-rain.service.ts#L78) and [existing zero-deposit claim test](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/resolvers/activity/red-packet-rain.resolver.spec.ts#L418).
 
 **入口**:活动管理 → 充值活动配置 → 红包雨。
 
@@ -266,3 +268,5 @@ flowchart TD
 参考截图用于辨认原有字段,不决定页面布局:[原配置页](截图/配置页-整页.png)、[说明内容](截图/配置页-活动说明弹窗.png)。截图中的模板、循环、周期、冷却及Banner展示配置均不收入本页,下一场倒计时保留。
 
 保存VIP金额档时,必须覆盖全部启用等级。停用等级不参与覆盖校验,其用户继续按原等级匹配,没有适用档时不能领奖,不会被降到最低档。
+
+代码依据（2026-11-16）：[后端 · red-packet-rain.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/activity/red-packet-rain.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/activity/recharge/rain/index.tsx)；[后端 · red-packet-rain.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/activity/red-packet-rain.service.ts)；[玩家 main · (main)](https://github.com/bingo-lab-1/bingo-frontend/tree/07ca7406f3b0241b0960a6d7e7282f618ec460c3/apps/web/app/%5Blocale%5D/%28main%29/)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。
