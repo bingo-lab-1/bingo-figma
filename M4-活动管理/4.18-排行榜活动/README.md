@@ -61,6 +61,27 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A17)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Play eligible games to join automatically. Your settled bets count towards daily and weekly rankings. {qualifyingBetNotice}
+
+> Rewards depend on your final position within the top {rewardedPlaces} and are paid as {rewardCurrency} bonuses. {rankingTieNotice} {simulationNotice}
+
+> {claimOpeningNotice} Claim each reward in My Rewards. {expiryNotice}
+
+> {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| qualifyingBetNotice | For a positive minimum: “Reach {minimumBet} USD in settled bets to qualify.” For a zero minimum: “A positive settled bet total is required.” Ranking uses original settled bets valued in USD, not game-weighted qualifying wagers. |
+| rewardedPlaces | Derive the rewarded range from the selected period’s published reward tiers. The current settlement rule requires tiers covering places 1–50, so the supported value is currently 50. A template variable does not make this an independently adjustable setting. |
+| rewardCurrency, rankingTieNotice, simulationNotice | Use the period’s reward currency and final results. Do not promise an uncapped pool or redistribution of empty/robot shares. On a real-player-only board: “Ties go to the player who reached the total first.” When simulation is enabled, omit the player-only tie sentence and show: “Labelled simulated entries also occupy ranking positions; their rewards are not paid out.” Keep those rows labelled. Omit the simulation notice when simulation is disabled. |
+| claimOpeningNotice | For a settled reward: “Rewards open at {claimOpenTime}.” Before settlement, use the selected board’s configured schedule: daily on the next day, weekly on the next Monday, with its business timezone, and append “Opening may be delayed until settlement is complete.” Never present a scheduled time as an already confirmed opening. |
+| expiryNotice | Use the actual reward deadline: “Claim before {claimDeadline}; unclaimed rewards expire.” If the period specifies no expiry: “Rewards do not expire.” A limited deadline starts from actual opening and includes server-granted extensions. |
+| wageringNotice | Use the selected period/reward multiplier. Daily and weekly rules may differ, and historical rewards retain their own values. Missing rules must not silently become 100 USD, 12:00 or 5×. |
+
 ### A12 · 投注范围与期间归属
 
 活动只采纳真实玩家在非排除游戏中、已最终结算且未作废的正原始下注金额。真钱和彩金支持的真实下注均按原始下注额计算;零金额免费局不凭空产生投注金额。派彩、净赢和游戏折算比例不改变排名金额;其他活动、打码及佣金仍使用各自有效投注规则。
@@ -190,7 +211,16 @@
 | 搜索耗尽、预算为0、非USD币种 | 明确搜索状态；最终真人合计按期末汇率封顶并向下取整，无单人上限 |
 | 期末、重启、事实迟到及重复结算 | 不倒填已结束期间模拟事件；保持快照和奖励幂等 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.18-R18 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.18-R18 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 - 入口:活动管理 → 排行榜活动;页内分活动配置、实时榜单、历史结算和领取记录,默认进入实时榜单。
 - 来源:桌面《排行榜.xlsx》的基础设置和奖励比例,以及本次运营补充的日/周、固定50名、业务时区、统一奖励币种等规则;其中奖励币种已改为活动内配置(D124)。原表500名是例子,“上一轮转彩金比例”不纳入本版。

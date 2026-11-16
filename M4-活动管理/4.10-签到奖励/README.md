@@ -98,6 +98,28 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A16)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Join a 30-day check-in cycle. Your daily bonus depends on your VIP level and cycle day.
+
+> {dailyBonusNotice} {topUpNotice}
+
+> Complete the listed check-in streaks to receive extra bonuses automatically.
+
+> Deposit at least {makeupThreshold} USD today to recover the eligible missed day shown. Limit: one makeup per day and {makeupLimit} per cycle. {makeupRewardNotice}
+
+> {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| dailyBonusNotice | Use today’s VIP/day reward and effective daily deposit threshold. Positive threshold and free share: “Deposit at least {dailyDeposit} USD today for the full {dailyBonus} {rewardCurrency} bonus; otherwise, claim {freePercent}%.” A zero free share becomes “Deposit at least {dailyDeposit} USD today to claim {dailyBonus} {rewardCurrency}.” A zero threshold becomes “Today’s bonus is {dailyBonus} {rewardCurrency}.” Do not treat an explicitly configured zero as a missing value. |
+| topUpNotice | Only for a positive partial daily reward: “If your deposits reach the target that same day, the difference is added automatically.” This is an automatic top-up of that day’s reward, not a second manual claim and not a VIP reward top-up. |
+| makeupThreshold, makeupLimit | Use the effective makeup deposit requirement and the player’s cycle quota. The server selects the earliest miss among the previous seven non-exempt days in the same cycle; do not allow arbitrary missed dates or state that the player can recover every miss. |
+| makeupRewardNotice | A positive historical free share: “Makeup pays only that day’s free portion.” A zero historical free share: “Makeup restores progress only; no bonus is paid.” Never promise the full historical daily bonus. |
+| wageringNotice | Use each awarded bonus’s own multiplier. Daily rewards, makeup, automatic top-ups and streak bonuses may belong to different rule versions. The fixed streak nodes are 7, 15, 20 and 30; their amounts come from the cycle. |
+
 ### 配置与周期(A1)
 
 每运营商一套;首次主动参与建立个人周期,当日为第 1 天,共 30 个计数日;自然日推进,结束后次日自动开始下一轮;活动停用期间不建立新周期,恢复后再建立,不靠重进页面重置。新老用户均可首次参与。
@@ -347,7 +369,16 @@
 <a id="11-涉及表与职责"></a>
 <a id="12-关联页面"></a>
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.10-R10 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.10-R10 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 > 名称映射:本页对应运营所称“VIP签到”,不是4.6的周/月/投注返现,也不是4.14的充值投注达标签到。开发工单:[KAN-218](https://bingobox.atlassian.net/browse/KAN-218)。
 

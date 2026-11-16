@@ -75,6 +75,38 @@
 
 **三类签到相互独立**(D117):VIP签到(4.10)、常规七日签到(4.12)和每日签到(4.14)各自开启或停用,启停一个活动只需该活动的启停权限,不改变另外两个活动的开关和进行中的轮次。同一玩家可以同时参加三类签到;同一笔充值可以既激活常规七日签到,又计入每日签到当天的累计充值。常规七日签到和每日签到停用后只停止新轮,已开始的轮次按原规则继续;VIP签到的停用按4.10执行。三类签到都按平台业务时区计算业务日和每天00:00的切日(D118)。
 
+### Player-facing rule copy
+
+The English heading is **Activity Rules**. Use short paragraphs in this order: participation, reward, claiming and expiry, wagering, then essential exceptions. English is the authored baseline; the existing requirement for complete Chinese player copy remains. A translated page must not contain text from another language.
+
+Runtime placeholders in braces below are display values, not sample defaults. Populate them from the same effective rule, personal round, session, issued card or reward used by the action. Preserve historical terms. A new offer must not rewrite an earned reward. Explicit zero values, empty optional lists and no-expiry settings have their own wording; they are not missing configuration.
+
+For daily rules, show the actual business timezone and reset time: “Daily limits reset at {resetTime} ({timeZone}).” Use the server’s time boundary, not the browser’s timezone. Show claim deadlines as a full date and time with timezone; do not invent a deadline where none exists. Scheduled openings and confirmed reward openings must be distinguished.
+
+| Shared wording | Display rule |
+|---|---|
+| `wageringNotice` for one known bonus or a shared multiplier | “This bonus requires {wageringMultiplier}× wagering: bonus amount × wagering multiplier.” |
+| `wageringNotice` where rewards have different terms | “Wagering requirements are shown with each bonus.” Each reward must display its own actual multiplier and required amount. |
+| `wageringNotice` for an explicitly supported zero multiplier | “No wagering is required for this bonus.” This does not waive account, balance or withdrawal restrictions. |
+| Missing rule data | “Rules are temporarily unavailable. Please try again.” Do not substitute examples, another activity’s rules, zero, an unlimited limit or a different language. Do not expose raw placeholders. |
+
+| English term | Chinese term | Meaning |
+|---|---|---|
+| Activity Rules | 活动规则 | The common rules heading |
+| bonus | 彩金 | Promotional bonus funds; do not call them immediately withdrawable cash |
+| claim | 领取 | The player’s manual claim action |
+| credited automatically | 自动入账 | A successful action credits the reward without another claim |
+| wagering requirement | 打码要求 | The bonus’s wagering obligation |
+| qualifying wagers | 有效投注 | Wagers after the applicable game contribution rules |
+| settled bet total | 已结算投注额 | Original settled bets used for ranking; not the same as qualifying wagers |
+| claim deadline | 领取截止时间 | The last permitted time to submit a new claim |
+
+Keep amounts with their actual currency, percentages as `{percent}%` and multipliers as `{multiple}×`. Preserve monetary precision through the amount formatter; never round a qualification threshold down for display. Singular/plural forms follow the actual value. Do not mention database IDs, transaction recovery, evidence collection or internal budget machinery in player rules.
+
+Built-in rules own eligibility, configured amounts, winning places, timing, expiry and wagering. Operator-written **Activity Description / 活动说明** is optional supplementary context, stored separately in English and Chinese with one shared length limit. It must not override or repeat changeable rule values. If an activity lacks the public rule fields needed for a sentence, add the correct player-facing data contract before showing it; never read admin configuration directly from the player page. Layout follows the activity’s design and is outside this copy specification.
+
+Each activity owns its English paragraphs and value-binding instructions below. Conditional notices are complete sentences and appear only when their conditions apply; they are never printed as literal placeholder text.
+
 ## 3. 依赖关系
 
 充值商品赠送由 5.5 定义资格、分次比例、固定与比例互斥及奖励依据,由充值赠送业务编排调用财务完成入账与独立打码任务;钱包和账务服务只接收金额、币种、倍数及来源,不得在账务链路上反向查询 M4 活动规则。真实充值的本金打码倍数 X 来自 5.5 运营商级通用配置,与彩金倍数分别锁定快照,不因合并管理入口混为同一倍数。

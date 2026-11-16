@@ -69,6 +69,26 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A24)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> {dailyTicketNotice} Earn extra tickets by reaching the listed deposit targets this period.
+
+> Use one ticket per spin. Prize amounts and winning chances are shown for each wheel.
+
+> Only {advancedTicketName} spins count towards the listed milestone bonuses.
+
+> Use tickets before their displayed expiry. Claim earned bonuses in My Rewards. {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| dailyTicketNotice | If the period grants free tickets: “Eligible players can collect {dailyTickets} free {basicTicketName} tickets each day.” Omit this sentence when the configured count is zero. Use the admitted period/member’s rules, not a newer offer. |
+| advancedTicketName | Use the English name of the advanced ticket pool. Ticket names must not leave Chinese text in English rules. |
+| Deposit targets, prizes and milestone amounts | Render the period’s actual deposit tiers, ticket quantities, prize probabilities and advanced-spin milestone rewards in the existing detail lists. Omit deposit/milestone sentences if that list is empty. Winning chances come from prize weights, including combined chances for equal-value prizes; do not invent a probability. |
+| Ticket expiry and wageringNotice | Ticket expiry comes from each ticket. Ticket expiry is not an earned-bonus claim deadline. Basic, advanced and milestone bonuses have separate multipliers; use the common multi-reward wording and the multiplier on each earned bonus. |
+
+
 <a id="a15--参加与锁定本期规则"></a>
 
 ### A15 · 自动参与与锁定本期规则
@@ -230,7 +250,16 @@
 | 4.19-R38 | 充值触发自动接纳但处理迟到；原资格不明、原已接纳及原已拒绝分别恢复 | 保留原事件时点和处理时间；未知核查、已接纳计原期本笔、已拒绝不因当前标签或容量变化重算；重复恢复不重复占名额或预算 |
 | 4.19-R38 | 原充值时已有本期资格，通知迟到时已摘标、停止接纳或跨期 | 原资格下计入原期有效充值，不重新检查普通标签或名额；不补未领取的历史基础券，券期限按A18处理 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.19-R39 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.19-R39 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 ### 入口、权限和内部记录
 

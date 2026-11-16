@@ -75,6 +75,26 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A26)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Reach both the deposit and qualifying-wager targets to upgrade. Meet your level’s wagering target during the displayed retention period to keep it.
+
+> Claim eligible bonuses during their displayed claim windows. Upgrade bonuses are available once per level.
+
+> {rewardDepositNotice} A partial claim cannot be topped up.
+
+> {cashbackNotice} {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| Upgrade and retention targets | Use the actual current/next level and the player’s retention period. Deposit and qualifying-wager targets are both required. Do not replace the personal retention period with a universal calendar-month end. |
+| Reward types and claim windows | Show only enabled/available weekly, monthly, cashback and upgrade rewards. Use each reward’s original claim window and currency; do not show a universal daily payout or silently transfer an expired upgrade entitlement to a new window. |
+| rewardDepositNotice | Render per reward. Positive threshold and a partial share: “Deposit at least {depositThreshold} USD {depositPeriod} for the full bonus; otherwise, {freePercent}% is available.” Zero free share: “Deposit at least {depositThreshold} USD {depositPeriod} to claim this bonus.” Zero threshold or a 100% free share: “The full bonus amount applies.” Eligibility and claim-window restrictions still apply. |
+| depositPeriod, cashbackNotice | Use the applicable reward policy: weekly/monthly/upgrade deposits normally use the business month; cashback uses its frozen deposit period. Cashback-only text: “Cashback is based on {cashbackRate}% of yesterday’s qualifying wagers.” Format the configured rate as a percentage, not a raw fraction. It is not a refund percentage of losses; any partial-share adjustment still applies. |
+| wageringNotice | Use the multiplier attached to the selected reward or original claim. VIP partial rewards cannot be topped up; do not reuse Sign-In Rewards’ same-day automatic top-up sentence. |
+
 ### 升级和保级(A10、A11、A17)
 
 每次充值到账或平台原创游戏投注结算后,根据累计充值和累计有效投注判断是否升级;第三方游戏的有效投注计入累计,在下一次判定时生效。发生过降级的用户按下文重新升级规则使用新增金额。两项都达到才升级,可以一次跨多级,只进入符合条件的启用等级,跳过停用等级。**不读取用户标签来决定等级。**
@@ -227,7 +247,16 @@ VIP活动关闭时以上限制照常执行。等级配置缺失或换算失败�
 | 4.6-R7 | 出款资金归位、跨日完成或用户升降级 | 按原申请日记额度,下一笔使用最新规则,不清零当天已用 |
 | 4.6-R8 | 在本页打开 VIP 奖励记录,核查一笔奖励 | 能查玩家、奖励类型和所属期、采用等级、金额及计算依据、打码倍数、时间和关联账变;无查看权限或超出账号数据范围的查询被拒绝 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.6-R9 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.6-R9 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 **入口**:会员管理 → VIP 配置。等级序列也供会员列表及标签引用;本页不增加单用户手工调级入口。
 

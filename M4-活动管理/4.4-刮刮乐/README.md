@@ -71,6 +71,25 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A27)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Make a qualifying deposit to receive one scratch card, subject to the {maxPendingCards}-card holding limit.
+
+> Scratch up to {dailyScratchLimit} cards per day while the activity is open. Use each card before its displayed expiry.
+
+> Scratch to reveal your result. Any winning bonus is credited automatically.
+
+> {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| Qualifying deposit | Use the matched deposit tier, including its lower/upper bounds and participation conditions. A minimum-deposit hint alone does not guarantee a card for every larger deposit. One deposit is matched to the first eligible tier. |
+| maxPendingCards, dailyScratchLimit | The holding cap applies when issuing a card; the daily scratch limit applies when scratching. Do not describe the daily scratch limit as a daily card-issuance limit. |
+| Card expiry and prize terms | Use each issued card’s expiry and locked prize currency/multiplier. Validity starts from the source deposit’s credited time. Do not reveal an unrevealed card’s preselected outcome, guarantee a win, or promise losses when a tier has a 100% win probability. |
+| wageringNotice | Use the individual winning bonus’s multiplier, including the supported zero branch. No separate manual prize claim is required. Scratching checks the activity’s current enabled state; do not promise that a closed activity still permits scratching. |
+
 ### A3、A5 · 充值到账后获得卡片
 
 每笔玩家充值成功到账时,按当时生效的活动配置判断。加密货币充值和法币充值商品订单都算,后台人工加款不算:
@@ -210,7 +229,16 @@ R1至R4保留既有需求主题,R4覆盖充值发卡与后续刮奖结算。
 | 4.4-R4 | 中奖入账失败 | 全部回滚,不消耗次数,卡片保持未刮;有效期内重试使用原锁定结果,不重抽、不重复发钱或计次 |
 | 4.4-R5 | 在本页查找活动记录 | 当前不提供活动记录区;发卡及刮奖依据由系统保存,后台暂无查询入口 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.4-R6 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.4-R6 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 **入口**:活动管理 → 充值活动配置 → 刮刮乐。玩家端本版尚未挂载刮卡入口。
 

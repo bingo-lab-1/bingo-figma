@@ -43,6 +43,24 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A17)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Each day, reach {minimumDeposit} USD in deposits and {minimumBet} USD in qualifying wagers to earn that day’s bonus.
+
+> Complete seven qualifying days in a row for an extra {extraReward} {rewardCurrency} bonus.
+
+> {claimTimingNotice} Claim available bonuses before the displayed deadline. Missing a qualifying day ends the round and expires its unclaimed bonuses.
+
+> {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| minimumDeposit, minimumBet, extraReward, rewardCurrency | Use the active round’s rules, or the effective offer before a round starts. Both daily thresholds must be met; seven days is a fixed cycle length, not an editable duration. |
+| claimTimingNotice | Same-day mode: “Daily bonuses open when that day’s targets are met.” Next-day mode: “Daily bonuses open the following day.” Show the server’s actual opening time and round deadline alongside the rewards; do not invent a 24-hour expiry for every bonus. |
+| wageringNotice | Use the round’s multiplier. A missed day expires unclaimed rewards at the end of that missed business day; completion deadlines differ between same-day and next-day modes. |
+
 ### A1、A4 · 达标自动开始,只算一个档位
 
 活动允许新参与、用户也符合平台参与要求时,当天充值和有效投注都达标,自动记为本轮第1天。每轮固定连续7天。用户同时参加常规七日签到或签到奖励,不影响本活动开始和推进(D117)。
@@ -192,7 +210,16 @@
 | 4.14-R5 | 已过期后新增领奖,或被限制发奖后等待解除 | 不重开窗口、不延长截止;已有合法申请继续核查 |
 | 4.14-R6 | 在“记录”页签核查日奖及额外奖 | 能查用户、轮次、原任务日、领取期限、达标依据、奖励与资金结果;不出现档位筛选或跨档汇总;无查看权限或超出账号数据范围的查询被拒绝 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.14-R7 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.14-R7 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 **入口**:活动管理 → 每日签到。后台编辑、保存、预览发布及启停;玩家端按上述规则展示进度与领取结果。
 

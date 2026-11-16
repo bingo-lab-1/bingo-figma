@@ -79,6 +79,25 @@
 
 ## 3. 参与和领奖规则
 
+### Player-facing English rules (A21)
+
+Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-copy). Display **Activity Rules** as the title.
+
+> Eligible players can claim once per live session, up to {dailyClaimLimit} times per day.
+
+> Today’s sessions: {sessionTimes} ({timeZone}).
+
+> Your bonus depends on your VIP level and the applicable deposit or net-loss boost. Only the higher boost applies.
+
+> Claim during the session to receive bonus funds. {wageringNotice}
+
+| Value or condition | Source and display rule |
+|---|---|
+| dailyClaimLimit, sessionTimes, timeZone | Use the live session’s rules, or the next session when none is live. Use the actual business timezone and today’s effective schedule; do not rebuild an earlier session from a newly saved configuration. |
+| Reward amount and currency | Use the player’s applicable VIP tier and the first matching bonus group. Base reward ranges are not guaranteed final prizes. If displaying converted USD ranges, label them USD estimates; crediting still uses the session’s reward currency. |
+| Participation requirements | Eligibility prose must agree with the claim-time checks. A “deposited today” display flag alone does not establish an enforced deposit gate. Do not copy a mandatory same-day deposit sentence from older prose without checking and aligning the claim path; this copy does not introduce or remove a participation gate. |
+| wageringNotice | Use the session’s multiplier. Zero is supported and must display the common no-wagering sentence, not an invented minimum multiplier. |
+
 ### A3、A16、A19 · 用户什么时候可以领
 
 领取时必须同时满足:
@@ -213,7 +232,16 @@ flowchart TD
 | 4.2-R5 | 分组无名称、无标签、表全为0或超过组数上限 | 拒绝保存并指出分组 |
 | 4.2-R6 | 在本页查找活动记录 | 当前不提供活动记录区;成功领取的依据由系统保存,后台暂无查询入口 |
 
+### English rule copy
+
+| Requirement | Scenario | Expected result |
+|---|---|---|
+| 4.2-R7 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
+| 4.2-R7 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+
 ## 6. 相关资料
+
+- [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 **入口**:活动管理 → 充值活动配置 → 红包雨。
 
