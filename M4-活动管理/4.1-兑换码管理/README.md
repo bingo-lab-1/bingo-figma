@@ -56,13 +56,13 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 > Redemption is available only while the code has rewards remaining. Successful redemptions credit the bonus automatically.
 
-> Any wagering requirement applies to the bonus you receive.
+> Wagering requirements depend on the code.
 
 | Value or condition | Source and display rule |
 |---|---|
-| Code-specific values | Do not show a universal minimum deposit, prize amount, expiry, wagering multiplier or once-per-player rule before the code is known. A code may allow more than one redemption per player. |
-| Optional verified code terms | Only after an authorized player-facing terms response is available, show “Redeem up to {userRewardLimit} times before {codeExpiry}.” and the code’s reward range, currency and wagering notice. Read the selected code’s terms; never expose the admin code inventory or guess from another code. |
-| Claim result and wagering | Use the actual credited amount and currency from the successful claim. The current claim result does not return the code’s multiplier or usage limits; displaying those values requires an appropriate public terms/result contract. Do not invent them or require a second claim action. |
+| Current player rules | Use the generic paragraphs above. The player API accepts a code and redeems it; it does not provide a pre-redemption terms query. Do not show a code-specific reward range, expiry, per-player limit or wagering multiplier. |
+| Successful redemption | Display the actual credited amount and currency returned by the successful redemption. The result also supplies the claim time; it does not return the code’s wagering multiplier or usage limits. A successful redemption credits the bonus without a second claim. |
+| Backend rules | Eligibility, expiry, total availability, per-player limits and wagering remain enforced by the backend for each code. A code can allow multiple redemptions per player. Use generic wording for these terms; this copy update does not add fields or a terms API. |
 
 ### A1、A5 · 一次生成多个码,每个码独立使用
 
@@ -164,12 +164,14 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 | Requirement | Scenario | Expected result |
 |---|---|---|
-| 4.1-R7 | Render the applicable rule, then change its configurable values or select a historical reward. | English paragraphs above use the correct values and conditional notices; historical rewards retain their own terms. Fixed gameplay limits are not presented as editable settings. |
-| 4.1-R7 | Load missing rule data, an unavailable option, or any supported zero/no-expiry setting. | No sample numbers, raw placeholders or unrelated rules appear. Only the applicable branch is shown. Amounts, timing, eligibility and wagering match the action’s actual rules. |
+| 4.1-R7 | Open the page before redemption, including codes that allow more than one redemption per player. | Show the generic English paragraphs. No fixed prize, expiry, once-per-player claim, wagering multiplier or unsupported numeric placeholder appears. |
+| 4.1-R7 | Successfully redeem a code. | Show the returned credited amount and currency. No second claim is required, and no wagering multiplier is inferred from the amount. |
+| 4.1-R7 | Submit an unavailable, expired, ineligible or exhausted code. | Show the actual rejection; do not show a successful credit or invent the code’s terms. |
 
 ## 6. 相关资料
 
 - [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
+- [Current player redemption result](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/libs/core/src/models/activity/redemption-code.model.ts#L264) and [per-code checks](https://github.com/bingo-lab-1/bingo-backend/blob/e4ea77d292cc0654f37bdc2a26b1c66946c6226f/apps/web-api/src/services/activity/redemption-code.service.ts#L98).
 
 **入口**:活动管理 → 兑换码管理。新增生成码,详情查看只读配置与明细,每行可执行启停、删除。玩家端视觉设计和发码通道不由本页承载。
 

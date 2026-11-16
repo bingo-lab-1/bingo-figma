@@ -60,7 +60,7 @@
 | 领取门槛 | 领取前需要满足的条件;人群定向复用标签(D39/D63),本笔充值、签到金额与补签等活动规则按D53/D80/D83的具体边界定义 | — |
 | 核销 | 玩家领成功一次,记一条记录并触发加钱 | redeem_code_log |
 | 打码倍数 | 领到的钱要玩够几倍流水才能提,细节见 `资金模型.md` | coding_multiple |
-| 红包雨 | 每天固定几个时段自动下红包,当天充过值的在线玩家点了就能领一笔随机彩金;详见 4.2 | red_packet_rain |
+| 红包雨 | 符合人群及其他领取条件的玩家在每天指定时段领取随机彩金,活动不另设当日充值门槛;详见 4.2 | red_packet_rain |
 | 场次 | 某一天的第 N 场红包雨,对应一个当天内的时段;每场每人只能领 1 次 | — |
 | 刮刮乐 | 每笔成功到账的玩家充值（加密货币或法币，人工加款不算）按标准计价金额命中档位后发 1 张卡，刮开即结算；详见4.4正文 | scratch_card |
 | 卡 | 一张刮刮乐；发卡时锁定中奖结果、彩金、打码倍数和有效期，可同时持有多张未刮卡 | scratch_card_ticket |
@@ -79,6 +79,8 @@
 
 The English heading is **Activity Rules**. Use short paragraphs in this order: participation, reward, claiming and expiry, wagering, then essential exceptions. English is the authored baseline; the existing requirement for complete Chinese player copy remains. A translated page must not contain text from another language.
 
+Use current implementation behavior and existing player-facing responses as the source of truth. Correct conflicting PRD statements, decisions, diagrams and acceptance scenarios together. This copy specification does not introduce participation conditions or require new API fields to support extra numeric wording.
+
 Runtime placeholders in braces below are display values, not sample defaults. Populate them from the same effective rule, personal round, session, issued card or reward used by the action. Preserve historical terms. A new offer must not rewrite an earned reward. Explicit zero values, empty optional lists and no-expiry settings have their own wording; they are not missing configuration.
 
 For daily rules, show the actual business timezone and reset time: “Daily limits reset at {resetTime} ({timeZone}).” Use the server’s time boundary, not the browser’s timezone. Show claim deadlines as a full date and time with timezone; do not invent a deadline where none exists. Scheduled openings and confirmed reward openings must be distinguished.
@@ -88,7 +90,7 @@ For daily rules, show the actual business timezone and reset time: “Daily limi
 | `wageringNotice` for one known bonus or a shared multiplier | “This bonus requires {wageringMultiplier}× wagering: bonus amount × wagering multiplier.” |
 | `wageringNotice` where rewards have different terms | “Wagering requirements are shown with each bonus.” Each reward must display its own actual multiplier and required amount. |
 | `wageringNotice` for an explicitly supported zero multiplier | “No wagering is required for this bonus.” This does not waive account, balance or withdrawal restrictions. |
-| Missing rule data | “Rules are temporarily unavailable. Please try again.” Do not substitute examples, another activity’s rules, zero, an unlimited limit or a different language. Do not expose raw placeholders. |
+| Missing required rule data | “Rules are temporarily unavailable. Please try again.” Do not substitute examples, another activity’s rules, zero, an unlimited limit or a different language. Do not expose raw placeholders. An activity’s documented generic copy remains valid when its current response intentionally omits numeric terms. |
 
 | English term | Chinese term | Meaning |
 |---|---|---|
@@ -103,7 +105,7 @@ For daily rules, show the actual business timezone and reset time: “Daily limi
 
 Keep amounts with their actual currency, percentages as `{percent}%` and multipliers as `{multiple}×`. Preserve monetary precision through the amount formatter; never round a qualification threshold down for display. Singular/plural forms follow the actual value. Do not mention database IDs, transaction recovery, evidence collection or internal budget machinery in player rules.
 
-Built-in rules own eligibility, configured amounts, winning places, timing, expiry and wagering. Operator-written **Activity Description / 活动说明** is optional supplementary context, stored separately in English and Chinese with one shared length limit. It must not override or repeat changeable rule values. If an activity lacks the public rule fields needed for a sentence, add the correct player-facing data contract before showing it; never read admin configuration directly from the player page. Layout follows the activity’s design and is outside this copy specification.
+Built-in rules own eligibility, configured amounts, winning places, timing, expiry and wagering. Operator-written **Activity Description / 活动说明** is optional supplementary context, stored separately in English and Chinese with one shared length limit. It must not override or repeat changeable rule values. Display numeric terms only when existing player-facing responses supply them; otherwise use the activity’s generic copy. Never read admin configuration directly from the player page. Layout follows the activity’s design and is outside this copy specification.
 
 Each activity owns its English paragraphs and value-binding instructions below. Conditional notices are complete sentences and appear only when their conditions apply; they are never printed as literal placeholder text.
 
@@ -375,7 +377,7 @@ Each activity owns its English paragraphs and value-binding instructions below. 
 | D48 | 持卡数量和档位选择 | 4.4-A5/A25 | **部分规则保留**:取首个匹配档位且不向后补抽;旧单张持卡限制已替代为可配置的未刮卡总上限。当前规则见4.4正文,满额不发卡且不补卡,见D85 |
 | D49 | 修改配置及关闭活动对旧奖励的影响 | 4.4-A9/A13/A14 | **部分规则保留**:新配置影响后续充值,发卡时确定的奖金、币种和倍数不再改变。关闭后旧卡的处理已由D110改为不能刮,其余配置变更规则见D85 |
 | D50 | 跨账号去重与参与渠道 | 4.4-A22 · 4.4 字段清单 | **已定**(2026-08-28,2026-09-03 补充):首版不做跨账号去重,活动页面也不各自增加渠道字段。单玩家条件由用户标签承担;跨账号共用 IP / 设备指标以后需要时在 2.5 单独立项。**渠道定向不再等于不支持**:2026-09-03 已按 D63 将「渠道来源」加入 2.5 属性条件,各活动通过选择用户标签复用该能力,活动页不直读渠道字典。4.4 竞品样本中各渠道待遇相同,因此刮刮乐当前无需配置渠道标签,但不限制其他活动使用。**4.16补充边界见D91**:邀请宝箱单独拥有运营商本活动的跨账号注册设备有效名额,M2只提供注册设备事实;不将该计数放进标签,也不改变4.4不做跨账号去重的范围。**4.17补充边界见D92**:拼多多活动独立维护同邀请人本活动累计注册IP容量,并保留独立渠道选择;渠道仍从M2受控选项及注册事实读取,不另建字典,不改变4.4与4.6原范围 |
-| D51 | 红包雨是否要求当日充值 | 4.2-A19 · 4.2-R4 · 4.2-E11 | **已定**(2026-08-31 业务确认):领取门槛为**当日至少一笔成功到账的充值**,金额不限;不充值不可领。时段内充值到账后同场即可领,以点领取那一刻判断(与 A12 同口径),发起未到账不算。修订 2026-08-28 版"在线即领、零门槛"的口径。理由:红包雨同时承担拉动当日充值 |
+| D51 | 红包雨是否要求当日充值 | 4.2-A19 · 4.2-R4 · 4.2-E11 | **已定**(2026-11-16,KAN-820,按当前代码):红包雨**不另设当日充值门槛**。当天未充值的玩家,只要人群、场次、次数、奖金和资金检查通过,仍可领取。所选人群标签自身的条件继续执行;当日充值和亏损金额用于奖金加成,充值状态本身不作为独立拦截条件。正文、流程图和验收均按此口径执行。 |
 | D52 | 刮刮乐发放机制 | 4.4-A3/A11/A12 | **历史直接入账方案已被仓库卡片修订替代**:现行为充值到账发卡、刮开结算。原论证保留于Git历史;Jira KAN-215仍为旧描述,来源差异见D85 |
 | D54 | 刮刮乐每日次数限制 | 4.4-A10/A25 | **历史口径已替代**:限制每日刮奖次数,发卡不扣次数;另配置未刮卡上限。旧每日发奖上限及默认值不作为现行规则,当前边界见D85 |
 | D55 | 充值档位与奖励币种 | 4.4-A4/A8/A16/A23/A24 | **币种规则保留**:充值按到账时标准计价金额判档,奖励按活动选择的币种入账,不做等值换算;更换奖励币种需确认数值不自动换算,已发卡仍使用原币种。标准币缺失的充值不发卡、事后不补发,见D85 |
