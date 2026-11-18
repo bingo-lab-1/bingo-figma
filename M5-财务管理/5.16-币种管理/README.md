@@ -56,7 +56,7 @@
 
 ### 新增与编辑
 
-保存后立即生效。已有币种的全部表单字段都可以修改,包括货币代码。
+保存后立即生效。已有币种的全部表单字段都可以修改,包括货币代码。USD 例外:它是平台标准币种,所有活动都用它发奖,不能禁用,也不能修改货币代码,见 D127。
 
 保存时勾选“设为默认”,其他币种自动取消默认。
 
@@ -114,15 +114,16 @@
 | 5.16-R10 | 账号有查看权限但没有 `finance:currency:delete`,提交删除 | 服务端拒绝,记录保留 |
 | 5.16-R11 | 新增或编辑币种,金额小数位留空,或填 9、-1、2.5 | 提示须填写 0 至 8 的整数,不保存 |
 | 5.16-R11 | 查看列表和编辑表单,随后系统重启 | 只有金额小数位,没有价格最小变动单位和数量最小变动单位;重启后金额小数位保持运营填写的值 |
-| 5.16-R12 | USDT 金额小数位设为 2,在活动配置中把 USDT 奖励金额填为 1.005 | 小数位超限,不保存;填 1.01 可以保存 |
+| 5.16-R12 | USD 金额小数位设为 2,在活动配置中把 USD 奖励金额填为 1.005 | 小数位超限,不保存;填 1.01 可以保存 |
 | 5.16-R12 | 金额小数位为 2 的币种,按比例算出的奖励为 1.239 | 发放 1.23,向下舍入 |
 | 5.16-R12 | 金额小数位为 2 的币种,自研游戏中彩金与真金混合下注后派彩 | 彩金部分按比例四舍五入到 2 位小数,真金部分取派彩减彩金,两部分之和等于派彩额 |
+| 5.16-R13 | 编辑 USD,把状态改为禁用,或把货币代码改为其他值后保存 | 不保存;USD 保持正常状态和原货币代码 |
 
 ## 6. 相关资料
 
 - 入口与关联页面:财务管理 > 币种管理。链和合约配置见 [5.15 Crypto配置中心](../5.15-Crypto配置中心/README.md)。
 - 权限:查看 `finance:currency:view`,新增 `finance:currency:create`,编辑 `finance:currency:edit`,删除 `finance:currency:delete`,设为默认 `finance:currency:set-default`。
 - 数据与责任:币种主数据归 M5,汇率由系统同步。
-- 共用规则:金额小数位在资金规则中的含义见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md) F4、F5、F15,玩家端显示见[Account](../../玩家端/Account/README.md),标准计价见[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)。决策见[M5决策D116](../README.md#7-决策清单)。
+- 共用规则:金额小数位在资金规则中的含义见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md) F4、F5、F15,玩家端显示见[Account](../../玩家端/Account/README.md),标准计价见[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)。决策见[M5决策D116](../README.md#7-决策清单)、[M4决策D127](../../M4-活动管理/README.md#7-决策清单)。
 
 代码依据（2026-11-16）：[后端 · currency.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/finance/currency.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/finance/currencies/index.tsx)；[后端 · standard-currency.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/libs/core/src/utils/standard-currency.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。
