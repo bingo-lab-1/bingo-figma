@@ -10,7 +10,7 @@
 |---|---|
 | 榜单 | 仅日榜、周榜;独立开关、配置、奖池和结算。同一玩家可以同时获奖,同一笔合格投注可同时计入两个榜单 |
 | 参与人群 | 全平台所有真实玩家,测试账号和后台账号同样参与(D111);无需报名,不设置参与标签、渠道或VIP等级门槛 |
-| 获奖范围 | 固定前50名,运营不可调整;还须满足最低上榜投注金额。实际人数不足时保留空缺 |
+| 获奖范围 | 日榜和周榜各自按最后一个奖励区间的结束名次确定获奖名额，还须满足最低上榜投注金额。实际人数不足时保留空缺 |
 | 排名金额 | 原始下注金额,按现有USD标准计价统一汇总;不乘游戏有效投注折算比例,不按净输赢排名 |
 | 时间 | 复用平台业务时区,不是查看者浏览器时区。日榜为每日00:00至次日00:00;周榜为周一00:00至下周一00:00 |
 | 奖励 | 使用本活动配置中的真实奖励币种,日榜、周榜共用,首次配置默认USD(D124),第一版只开放USD、暂不可更改(D127);每笔奖励手动领取后入彩金并建立独立打码任务;不根据玩家投注币种切换奖励币种 |
@@ -22,7 +22,7 @@
 
 ### 配置字段
 
-全平台一套活动,不按运营商拆分配置、榜单或奖池,后台不选择运营商;日榜和周榜分别配置A5～A11;A1、A3、A4共用。固定50名属于产品规则,页面与服务端均不可改为其他数量。
+全平台一套活动,不按运营商拆分配置、榜单或奖池,后台不选择运营商;日榜和周榜分别配置A5～A11;A1、A3、A4共用。运营可分别调整两榜的奖励区间，新名额从各榜下一完整期间生效。进行中和历史期间按发布时的奖档结算和展示。
 
 | 编号 | 配置项 | 填写与执行规则 |
 |---|---|---|
@@ -35,8 +35,8 @@
 | A7 | 投注转入奖池比例（%）p | 0～100%,最多4位小数,必填无默认;B与p不能同时为0。原表1%仅为示例,不是固定值 |
 | A7a | 彩金金额上限U（USD） | 放在投注转入奖池比例之后,日榜和周榜分别设置。选填非负USD金额,最多8位小数;留空表示不限,0表示奖池上限为0。限制基础彩金与投注转入部分合计的整个奖池,不是只限制投注转入部分;非USD奖励币种按本期奖池汇率换算后封顶 |
 | A7b | 真人奖金预算（USD） | 日榜、周榜分别设置。非负，最多8位小数；留空不限，0为不分配真人奖金；启用机器人时已配置榜单必填。预算约束奖励资格合计，不按领取先后抢占；超额时全部真人奖金同比缩减并按奖励币种精度向下取整，尾差不重分。不是单用户上限 |
-| A7c | 机器人配置 | 两榜共用人数0～50，0为关闭；启用时必填全部机器人每日模拟投注上限（正数USD，最多8位小数）。按业务日控制模拟增量，同一事件按时间及冻结人数进入对应日榜和周榜。规则版本不同时采用在运行配置中更小的人数和每日上限生成新增事件 |
-| A8 | 奖励区间 | 名次固定1～50。每行填写开始名次、结束名次和区间总比例（%）,页面计算名额数和每个名次比例。允许配置连续整数区间,须完整覆盖1～50且无重叠、无空档;每区间的奖池比例为正数,最多4位小数,全部合计100%。区间内按配置名额数平均分配 |
+| A7c | 机器人配置 | 两榜共用一组机器人，人数可填0至已配置榜单中最少的获奖名额。只配置一榜时取该榜名额，均未配置时上限为0。填0关闭；启用时必填全部机器人每日模拟投注上限（正数USD，最多8位小数）。按业务日控制模拟增量，同一事件按时间及冻结人数进入对应日榜和周榜。规则版本不同时采用在运行配置中更小的人数和每日上限生成新增事件 |
+| A8 | 奖励区间 | 每榜的最后一个结束名次即该榜的获奖名额。每行填写开始名次、结束名次和区间总比例（%）,页面计算名额数和每个名次比例。允许配置连续整数区间,须从第1名起连续覆盖至末档，区间无重叠、无空档;每区间的奖池比例为正数,最多4位小数,全部合计100%。区间内按配置名额数平均分配 |
 | A9 | 彩金打码倍数 Y | 正数,最多2位小数,必填无默认;领取金额W形成W×Y的独立打码任务,不得复用充值本金的X倍配置 |
 | A10 | 开放领取时间 | HH:mm,必填。日榜为该期结束当天的指定时刻,即投注日的次日;周榜为该期结束的下周一指定时刻。时间以A3为准,不是自动入账时间 |
 | A11 | 领取有效期 | 必选“限时领取”或“不过期”,不默认替运营选择。限时填写1～365整数天,从实际开放领取起连续N×24小时;不过期不设置截止时刻 |
@@ -76,7 +76,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | Value or condition | Source and display rule |
 |---|---|
 | qualifyingBetNotice | For a positive minimum: “Reach {minimumBet} USD in settled bets to qualify.” For a zero minimum: “A positive settled bet total is required.” Ranking uses original settled bets valued in USD, not game-weighted qualifying wagers. |
-| rewardedPlaces | Derive the rewarded range from the selected period’s published reward tiers. The current settlement rule requires tiers covering places 1–50, so the supported value is currently 50. A template variable does not make this an independently adjustable setting. |
+| rewardedPlaces | Use the last rank in the selected period’s published reward tiers. Daily and weekly boards may have different values. |
 | rewardCurrency, rankingTieNotice, simulationNotice | Use the period’s reward currency and final results. Do not promise an uncapped pool or redistribution of empty/robot shares. On a real-player-only board: “Ties go to the player who reached the total first.” When simulation is enabled, omit the player-only tie sentence and show: “Labelled simulated entries also occupy ranking positions; their rewards are not paid out.” Keep those rows labelled. Omit the simulation notice when simulation is disabled. |
 | claimOpeningNotice | For a settled reward: “Rewards open at {claimOpenTime}.” Before settlement, use the selected board’s configured schedule: daily on the next day, weekly on the next Monday, using its business calendar without a timezone label, and append “Opening may be delayed until settlement is complete.” Never present a scheduled time as an already confirmed opening. |
 | expiryNotice | Use the actual reward deadline: “Claim before {claimDeadline}; unclaimed rewards expire.” If the period specifies no expiry: “Rewards do not expire.” A limited deadline starts from actual opening and includes server-granted extensions. |
@@ -98,9 +98,9 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 各笔投注使用资金域已保存的USD标准金额,保留8位小数汇总,排序不使用页面四舍五入后的显示值。汇率时点沿用原始账变入账时间,归期使用最终结算时间,二者分别保存;不得因本活动按结算时间归期而按结算日汇率重算旧投注。
 
-合计投注额>0且≥S的真实玩家按金额从高到低排序,前50名产生获奖资格。金额相同时,先达到该最终累计金额的玩家排前:按组成该累计额的有效投注中最后一笔最终结算时间比较;时刻仍相同则按稳定用户ID升序。迟到通知按原业务时刻重算,不得以接口先后到达决定胜负。
+合计投注额>0且≥S的真实玩家按金额从高到低排序,在当期奖档覆盖名次内的合格真人产生获奖资格。金额相同时,先达到该最终累计金额的玩家排前:按组成该累计额的有效投注中最后一笔最终结算时间比较;时刻仍相同则按稳定用户ID升序。迟到通知按原业务时刻重算,不得以接口先后到达决定胜负。
 
-取消修正后按剩余有效事实重新计算金额和达到时刻。最低门槛未达到的玩家不占获奖名次,页面展示其个人投注额及未达标提示;合格但超过50名的玩家显示个人实际名次及无本期奖励。
+取消修正后按剩余有效事实重新计算金额和达到时刻。最低门槛未达到的玩家不占获奖名次,页面展示其个人投注额及未达标提示;合格但排在当期获奖范围外的玩家显示个人实际名次及无本期奖励。
 
 ### A14 · 奖池与分奖
 
@@ -144,7 +144,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 ### 玩家展示与后台记录
 
-玩家可切换日榜和周榜及最近20个已开始的期间,查看本期起止、时区、奖池、前50名、个人投注及名次、奖励规则和历史领取入口;未登录也可查看榜单,个人数据和领取须登录。未满50名时只展示合格真人及已记录的机器人，保留空缺说明；机器人须明确标识，不伪装为真人。榜单不展示昵称或完整用户ID:其他玩家统一展示为“****”加用户ID后4位,ID不超过4个字符时只显示“****”,并展示其头像,未设置头像时按匿名头像展示;遮挡不用于暗示虚假参与者是真人。
+玩家可切换日榜和周榜及最近20个已开始的期间,查看本期起止、时区、奖池、当期获奖范围内的排名、个人投注及名次、奖励规则和历史领取入口;未登录也可查看榜单,个人数据和领取须登录。合格人数少于当期名额时只展示合格真人及已记录的机器人，保留空缺说明；机器人须明确标识，不伪装为真人。榜单不展示昵称或完整用户ID:其他玩家统一展示为“****”加用户ID后4位,ID不超过4个字符时只显示“****”,并展示其头像,未设置头像时按匿名头像展示;遮挡不用于暗示虚假参与者是真人。
 
 实时数据齐备后5分钟内更新并标注时间;结算中的排名和奖金继续标为非最终结果。已结算榜展示冻结结果。不能将未领取奖金展示为钱包余额,领奖按钮不能称为“提现”。
 
@@ -177,8 +177,8 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 
 | 需求编号 | 场景与操作 | 预期结果 |
 |---|---|---|
-| 4.18-R1 | 分别开启日榜、周榜,尝试创建月榜或修改50名 | 两榜独立,只从下一完整期间开始;不提供月榜或运营调整获奖人数的能力 |
-| 4.18-R2 | 配置重叠/缺漏区间、比例不等于100%、非法金额或B=p=0 | 保存失败并定位字段;合法区间完整覆盖1～50,未保存的修改不生效 |
+| 4.18-R1 | 单配日榜1～80名，或同时配置周榜1～35名，再调整两榜开关 | 单榜最多配80个机器人，两榜共配最多35个，超限无法保存。新规则从各榜下一完整期间生效，历史期间保留原名额 |
+| 4.18-R2 | 配置重叠/缺漏区间、比例不等于100%、非法金额或B=p=0 | 保存失败并定位字段;合法区间从第1名起连续覆盖至最后一个结束名次,未保存的修改不生效 |
 | 4.18-R3 | 正常玩家、测试账号、后台账号及不同标签的玩家分别在普通和排除游戏投注,之后取消其中一个测试账号的测试标记 | 标签和测试标记不限制参与;测试账号和后台账号在普通游戏的投注计入排名和奖池并可获奖;排除游戏不进入排名和奖池;取消测试标记不改变已计入的投注 |
 | 4.18-R4 | 相同下注额使用不同游戏折算比例,一人赢钱一人输钱 | 按原始下注额排名,不乘折算比例、不减派彩;完整作废不计,部分取消只计保留部分 |
 | 4.18-R5 | 多币种投注,下注后汇率变化再结算 | 用原账变USD标准金额统一排名;最终奖池按期末汇率折成本期锁定的奖励币种,领取时不重估 |
@@ -186,7 +186,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 | 4.18-R7 | 重复结算消息、多次派彩、先后达到相同累计额 | 同笔投注每榜只计一次;金额同分先达到者排前,完全同时再按用户ID排序 |
 | 4.18-R8 | 同一笔投注参与两榜,玩家日榜周榜均获奖 | 两个Q各增加原金额,奖池不拆分;产生独立资格、彩金账变及任务,可分别领取 |
 | 4.18-R9 | 按1000 USD奖池配置11～20名共10%,仅3人占这些名次 | 每人10 USD,该区间分配30 USD;空缺70 USD不重分、不滚存、不由虚构账号领取 |
-| 4.18-R10 | 玩家低于S,全榜不足50人,或全榜无人达标 | 低于S的合格投注仍贡献Q;只真实合格玩家获奖,空榜实际发放0,0金额不建任务 |
+| 4.18-R10 | 玩家低于S,全榜人数不足当期获奖名额,或全榜无人达标 | 低于S的合格投注仍贡献Q;只真实合格玩家获奖,空榜实际发放0,0金额不建任务 |
 | 4.18-R11 | 进行中改参数(含奖励币种)、关闭日榜,再变更平台时区 | 当期和历史奖励保留原规则与币种;新期按生效规则启用,周榜开关不受日榜影响,无半期追补 |
 | 4.18-R12 | 到开放时间仍缺少事实或汇率,补齐后结算 | 缺失期间不当0定榜;实际开放延后,限时领取从实际开放起计时 |
 | 4.18-R13 | 手动领取、跨设备重试、更换请求编号及资金结果未知 | 只有一次奖励入账和W×Y任务;未知保持处理中,不重复发奖或按新配置重算 |
@@ -227,7 +227,7 @@ Use the [shared copy and runtime-value rules](../README.md#player-facing-rule-co
 - [KAN-820: Standardize activity rule copy](https://bingobox.atlassian.net/browse/KAN-820).
 
 - 入口:活动管理 → 排行榜活动;页内分活动配置、实时榜单、历史结算和领取记录,默认进入实时榜单。
-- 来源:桌面《排行榜.xlsx》的基础设置和奖励比例,以及本次运营补充的日/周、固定50名、业务时区、统一奖励币种等规则;其中奖励币种已改为活动内配置(D124)。原表500名是例子,“上一轮转彩金比例”不纳入本版。
+- 来源:桌面《排行榜.xlsx》的基础设置和奖励比例,以及本次运营补充的日/周、可配置获奖区间、业务时区、统一奖励币种等规则;其中奖励币种已改为活动内配置(D124)。原表500名是例子,“上一轮转彩金比例”不纳入本版。
 - 原表截图仅供理解字段和布局,其中旧名次范围、旧配置项不覆盖正文:[活动信息配置](截图/原表-活动信息配置.png)、[奖励比例配置](截图/原表-奖励比例配置.png)。
 - 活动归属、权限及D93:[M4活动管理](../README.md);来源映射:[活动清单](../活动清单.md);复用约束:[公共能力与复用边界](../公共能力与复用边界.md)。
 - 时间与玩家身份:[M2会员管理](../../M2-会员管理/README.md)、[业务时区约定](../../M2-会员管理/2.5-用户标签/条件模型.md)。投注域提供原始下注、最终结算、作废修正和事实齐备依据;活动拥有归期、排序、奖池与奖励资格。
