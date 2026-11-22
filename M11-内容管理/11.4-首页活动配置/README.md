@@ -17,11 +17,31 @@
 
 标识长度 1～50，只能使用小写字母、数字及夹在它们之间的中划线，同一区域内不能重复。英文和中文名称各 1～30 字符，去首尾空格后都必填。上传图片支持 PNG、JPEG、WebP，后台上传大小不超过 10 MB，服务端验证可解码静态图片并生成优化后的发布图；保存的远程地址必须为不带账号密码的 HTTPS 地址，最长 3000 字符。轮播建议 343:140、活动卡片建议 343:114、图标建议 1:1。
 
-跳转目标从活动目录选择，不接受任意站内路径或外部 URL。活动入口和卡片支持 VIP 签到、首充破产补助、拼多多、幸运转盘、每日签到、常规七日签到、排行榜、邀请宝箱、注册送好礼、兑换码、红包雨、刮刮乐；浮窗区另支持 VIP Club。四个快捷位默认分别为每日签到、常规七日签到、幸运转盘、VIP，并使用内置图标。
+跳转目标从活动目录选择，不接受任意站内路径或外部 URL。目录中每个活动有一个后台名称和一个玩家端页面的英文名称，两者一一对应（M11-D132）：
+
+| 后台名称 | 玩家端英文名称 | 可用区域 |
+|---|---|---|
+| 签到奖励 | Daily Check-in | 浮窗区、活动入口、Promotions 活动页 |
+| 首充破产补助 | Deposit Aid | 同上 |
+| 拼多多活动 | Spin & Invite | 同上 |
+| 幸运转盘 | Lucky Wheel | 同上 |
+| 每日挑战 | Daily Challenge | 同上 |
+| 七日奖励 | 7-Day Rewards | 同上 |
+| 排行榜活动 | Leaderboard | 同上 |
+| 邀请宝箱 | Invite & Earn | 同上 |
+| 注册送好礼 | Welcome Gift | 同上 |
+| 兑换码 | Redeem Code | 同上 |
+| 红包雨 | Cash Drop | 同上 |
+| 刮刮乐 | Scratch & Win | 同上 |
+| VIP 会员 | VIP Club | 浮窗区 |
+
+「跳转活动」下拉和各列表的跳转活动一栏都显示为「后台名称（玩家端英文名称）」，例如「每日挑战（Daily Challenge）」。四个快捷位默认分别为每日挑战、七日奖励、幸运转盘、VIP 会员，并使用内置图标。
 
 ## 3. 操作规则
 
 新增或编辑通过弹窗保存；启用开关、删除确认和拖动排序各自直接提交所属区域的整份列表，不需要再点击页面总保存。未提交的弹窗内容不会生效。切换页签保留已挂载区域，当前页签记录在地址中。
+
+在浮窗区、活动入口和 Promotions 活动页的弹窗中选择或更换跳转活动时，名称按语言分别处理：某种语言的名称为空，或仍是上一个所选活动带入的名称，就填入新活动的名称（英文填玩家端英文名称，中文填后台名称）；运营已经输入的名称保持不变。带入的名称可以继续修改，保存时仍按名称的长度和必填规则校验。
 
 服务端完整校验内容和版本后整份替换、版本加一，并记录操作人和修改前后配置。保存成功后重新读取服务端结果。不同区域的版本相互独立；同一区域并发保存时，旧版本被拒绝，须重新载入。
 
@@ -60,12 +80,16 @@
 | 11.4-R14 | 关闭快捷位二、三 | 接口结果按启用状态和固定顺序返回；不因活动关闭额外过滤，main 尚无对应布局 |
 | 11.4-R15 | 运营商 A 开启、B 关闭同一活动 | 活动入口与 Promotions 按访问者运营商过滤，不暴露 B 的关闭活动 |
 | 11.4-R16 | 卡片达到二十张、拖动或关闭其中一张 | 超限拒绝；顺序和开关立即保存，API 再次查询时更新 |
+| 11.4-R17 | 新增活动入口，名称留空，跳转活动选择「每日挑战（Daily Challenge）」 | 英文名称填入 Daily Challenge，中文名称填入每日挑战；保存后列表的跳转活动显示「每日挑战（Daily Challenge）」 |
+| 11.4-R18 | 接上一场景，把跳转活动改为「七日奖励（7-Day Rewards）」 | 两种名称随之改为 7-Day Rewards 和七日奖励 |
+| 11.4-R19 | 英文名称已手动改为其他文字，中文名称仍是带入的名称，再更换跳转活动 | 英文名称保持手动输入的文字，中文名称改为新活动的后台名称 |
 
 ## 6. 相关资料
 
 - 入口：内容管理 > 首页活动配置；四个页签共用查看 `cms:home-activity:view`、修改及上传 `cms:home-activity:edit` 权限。
 - 玩家表现：[首页活动入口](../../玩家端/首页活动入口/README.md)、[活动中心](../../玩家端/活动中心/README.md)。
 - 活动开关及规则：[M4 活动管理](../../M4-活动管理/README.md)。
+- 活动名称与玩家端语言：[M11 决策 D131、D132](../README.md#7-决策清单)。
 - 保存记录：[操作日志](../../M6-账号管理/6.3-操作日志/README.md)。
 
 代码依据（2026-11-16）：[后端 · home-quick-action.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/cms/home-quick-action.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/cms/home-activities/index.tsx)；[后端 · home-banner.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/cms/home-banner.service.ts)；[后端 · promotion-campaign.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/web-api/src/services/cms/promotion-campaign.service.ts)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。
