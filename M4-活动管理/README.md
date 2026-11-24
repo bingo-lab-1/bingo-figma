@@ -7,7 +7,7 @@
 
 ## 1. 定位与边界
 
-**做什么**:拥有运营活动的配置、参与资格、奖励依据及记录。本文档收录兑换码、红包雨、刮刮乐、VIP配置、注册送好礼、VIP签到(4.10)、常规七日签到(4.12)、每日签到(4.14)、首充破产补助(4.15)、邀请宝箱(4.16)、拼多多活动(4.17)、排行榜活动(4.18)和幸运转盘(4.19);代理返佣在 M7。每种活动的记录归入对应活动内部,不单独登记记录页面或设置记录侧栏入口。
+**做什么**:拥有运营活动的配置、参与资格、奖励依据及记录。本文档收录兑换码、红包雨、刮刮乐、VIP配置、注册送好礼、VIP签到(4.10)、常规七日签到(4.12)、每日签到(4.14)、首充破产补助(4.15)、邀请宝箱(4.16)、拼多多活动(4.17)、排行榜活动(4.18)、幸运转盘(4.19)和账号绑定奖励(4.20);代理返佣在 M7。每种活动的记录归入对应活动内部,不单独登记记录页面或设置记录侧栏入口。
 
 原「账号首充 / 首充奖励」并入 M5 的[5.5 充值商品与赠送](../M5-财务管理/5.5-充值商品与赠送/README.md),正式定义为可按次数配置不同百分比的限次充值赠送。商品、共享赠送方案及赠送记录在财务入口统一维护,M4 不另建首充配置页面;本金打码通用配置也由 5.5 拥有,不纳入 VIP 或其他活动的配置。归属与自动结算边界见 D89。
 
@@ -20,6 +20,8 @@
 **排行榜活动独立归入4.18**:真实玩家日榜、周榜独立奖池,各榜按运营配置的奖励区间确定获奖名额,测试账号和后台账号同样参与(D111),不设标签门槛。原始下注额统一按USD排名、按最终结算时间归期;基础彩金与投注比例形成奖池,以活动配置的奖励币种(第一版只开放USD,D127)手动领奖并独立建码。空缺不补造参与者、不分奖、不滚存;2026-11-12补充明确标识机器人：模拟投注参与奖池与正式排名，占用奖金不发放；真人合计受预算约束，无单用户上限。详见4.18新增规则。与M2/2.7运营查询排行榜的统计区别及范围见D93和4.18正文。
 
 **幸运转盘独立归入[4.19](4.19-幸运转盘/README.md)**:符合条件自动参与,不设报名按钮;基础与进阶双彩金奖池,每日免费券、真实充值阶梯赠券和进阶抽奖里程碑分别计奖,全部奖励手动领取。自定义金额、权重与概率披露、旧券履约和版本边界见正文及D94。
+
+**账号绑定奖励独立归入[4.20](4.20-账号绑定奖励/README.md)**:玩家补全邮箱、手机号和登录密码各领一份彩金,三项分别配置开关、金额和打码倍数;注册时已有的项目直接领取,游客绑定邮箱后可设置首个登录密码原地转为会员。范围见D142～D144。
 
 **另外还承载 VIP 等级体系**(2026-09-01,M2-D1):VIP 不是一个活动,是**跨活动的玩家分层** ——
 红包雨按等级分金额档、VIP 奖励按等级发、签到按等级配奖,消费方几乎全在活动侧,
@@ -72,6 +74,7 @@
 | 拼多多活动 | 每轮首抽约95%,后续旋转逐份推进或邀请质量达标后下一抽补齐;单目标、个人限时、手动领取并循环,详见4.17 | pdd_spin |
 | 排行榜活动 | 原始下注按结算时间计入真实玩家日榜和周榜,各榜获奖范围内的名次按区间比例分享各自奖池并手动领取彩金,详见4.18 | bet_ranking |
 | 幸运转盘 | 基础与进阶券分别抽取彩金,充值阶梯赠进阶券,成功消耗进阶券另计固定里程碑奖,详见4.19 | lucky_wheel |
+| 账号绑定奖励 | 补全邮箱、手机号、登录密码各领一份彩金,每个账号每项终身一次,详见4.20 | account_bonus |
 
 **三类签到相互独立**(D117):VIP签到(4.10)、常规七日签到(4.12)和每日签到(4.14)各自开启或停用,启停一个活动只需该活动的启停权限,不改变另外两个活动的开关和进行中的轮次。同一玩家可以同时参加三类签到;同一笔充值可以既激活常规七日签到,又计入每日签到当天的累计充值。常规七日签到和每日签到停用后只停止新轮,已开始的轮次按原规则继续;VIP签到的停用按4.10执行。三类签到都按平台业务时区计算业务日和每天00:00的切日(D118)。
 
@@ -109,7 +112,7 @@ Each activity owns its English paragraphs and value-binding instructions below. 
 
 ### Unified Rules interaction
 
-All 13 activities use the reading flow from `/sign-in-rewards`: a full-width **Rules** row with a right chevron opens a dedicated Rules page. Reuse the same header, Back behavior, typography, dividers and spacing. Use one centered column with a maximum width of 480 px on mobile and desktop, without the bottom tab bar. Remove former inline rule blocks and duplicate rule dialogs. Keep qualification progress, amounts, eligibility warnings and notices needed before payment or claiming on the activity page.
+All 14 activities use the reading flow from `/sign-in-rewards`: a full-width **Rules** row with a right chevron opens a dedicated Rules page. Reuse the same header, Back behavior, typography, dividers and spacing. Use one centered column with a maximum width of 480 px on mobile and desktop, without the bottom tab bar. Remove former inline rule blocks and duplicate rule dialogs. Keep qualification progress, amounts, eligibility warnings and notices needed before payment or claiming on the activity page.
 
 | Activity | Rules page | Applicable terms |
 |---|---|---|
@@ -125,6 +128,7 @@ All 13 activities use the reading flow from `/sign-in-rewards`: a full-width **R
 | Invite & Spin | `/pdd-spin/rules` | Player’s personal-round rule |
 | Invite Chests | `/invite-chest/rules` | Overview amounts, rewarded-friend cap and milestones |
 | Welcome Gift | `/register-gift/rules` | Verified automatic crediting and wagering behavior |
+| Account Bonus | `/account/settings/rules` | Amounts of the items switched on now |
 | First Deposit Relief | `/first-deposit-relief/rules` | Player’s member configuration; only a player with a chest can open it, others get the not-found page (D128) |
 
 Reading Rules is read-only: it does not join an activity, consume a ticket, spin, claim, create an order or initiate payment. Direct entry returns to the corresponding activity. In-app Back preserves the activity’s selected tab or pool, historical batch and scroll position. Ranking daily/weekly rules and wheel historical rules must never silently use another selection’s current values. A public wheel visitor also retains the requested pool before a private player overview exists.
@@ -156,6 +160,8 @@ Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bing
 排行榜活动4.18读取M2账号归属及账户限制,不读取测试标记(D111),玩法原始下注、最终结算、取消修正和期间事实齐备依据,资金域原投注USD标准金额及期末奖励币种汇率。M4拥有日/周归期、真实玩家排序、奖池预算和结算快照;手动领取时只向财务提交确定的金额、币种、Y和来源。USD排名使用原入账时汇率,期末汇率只用于奖池预算换算,两者不能互换。M2/2.7的查询不承担本活动计算或派奖。
 
 幸运转盘4.19读取M2参与时的标签判定、账号事实及账户限制,M5真实充值、修正、原业务时点及原入账USD标准金额。渠道通过标签定向,不另建渠道字段。M4拥有参与版本、周期、券、中奖及里程碑奖励依据;手动领取时提交已确定的彩金与倍数,财务不反查奖池。本金X与5.5赠送保持原规则,具体叠加、归期和恢复见4.19。
+
+账号绑定奖励4.20读取玩家账号的邮箱、手机号和登录密码事实及账户限制,验证邮件依赖平台发信配置。M4拥有配置、资格判定和发放依据;领取时向财务提交确定的彩金与倍数,入账和打码任务按M5执行。
 
 注册送好礼依赖平台注册成功事实形成发放资格,系统自动发放时才请求M5彩金入账及绑定打码任务;入账前不产生资金或打码义务。充值翻倍延后,本期不依赖关联充值或跨活动赠送互斥。
 平台基础设置拥有投注模式,游戏/投注侧读取该模式与财务充值事实执行,4.8 只读展示。
@@ -200,6 +206,7 @@ Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bing
 | 排行榜配置与期间结算 | 日/周版本、业务时区、奖励币种、游戏排除范围、真实投注采纳依据、USD累计及同分时点、奖池与汇率、真实名次和分奖快照;原始投注事实仍归上游 | 4.18 配置、实时榜单和历史结算 |
 | 排行榜奖励与领取记录 | 期间及玩家唯一奖励、开放与期限、彩金与Y、领取状态、修正依据、成功资金及任务引用;奖池预算与实际发放分别统计 | 4.18 内部领取记录 |
 | 幸运转盘参与、券与奖励 | 参与版本及标签依据、周期充值采纳、基础/进阶券及消耗、中奖与里程碑资格、期限、手动领取及资金任务引用;原始充值与账变仍归M5 | 4.19 配置与内部活动记录 |
+| 账号绑定奖励配置与发放 | 总开关、三项开关、金额与倍数及配置版本;每个账号每项唯一的发放记录,含金额、倍数、配置版本、资金流水及打码任务引用;邮箱、手机号和密码事实仍归玩家账号 | 4.20 配置与发放记录 |
 | 拼多多配置与个人轮次 | 单目标金额、规则快照、参与标签及渠道依据、首次旋转和截止、首抽及剩余份数进度、加速条件及本轮好友事实汇总;原始注册、邀请、充值与投注事实仍归上游 | 4.17 配置与内部活动记录 |
 | 拼多多次数与领取记录 | 每日免费机会、全活动邀请赠次去重、跨轮邀请次数、同邀请人累计注册IP占位、旋转消耗及结果、满额资格与手动领取、到期和恢复、奖励及资金任务引用 | 4.17 内部活动记录区 |
 | 邀请宝箱配置与有效下级 | 活动版本、上下级标签规则快照、注册绑定采纳依据、基础奖快照、用户与注册设备去重、每上级容量及累计有效人数;关系、标签和注册设备原始事实仍归M7/M2 | 4.16 配置与内部活动记录 |
@@ -249,6 +256,7 @@ Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bing
    ├─ 拼多多活动        → 4.17（含轮次、旋转及领取记录）
    ├─ 排行榜活动        → 4.18（含日/周榜、结算及领取记录）
    ├─ 幸运转盘          → 4.19（含赠券、抽奖、里程碑及领取记录）
+   ├─ 账号绑定奖励      → 4.20（含发放记录）
    └─ 充值活动配置
       ├─ 红包雨         → 4.2（后台暂无记录查询）
       ├─ 刮刮乐         → 4.4（后台暂无记录查询）
@@ -280,6 +288,7 @@ Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bing
 | 4.17 | 拼多多活动 | [阅读需求](4.17-拼多多活动/README.md) | 个人轮次、次数来源和消耗、邀请及IP依据、金额进度、加速与领取记录 |
 | 4.18 | 排行榜活动 | [阅读需求](4.18-排行榜活动/README.md) | 真实玩家日/周榜、投注依据、奖池与结算、奖励及领取记录 |
 | 4.19 | 幸运转盘 | [阅读需求](4.19-幸运转盘/README.md) | 参与版本、充值阶梯、券及抽奖结果、里程碑、领取与资金记录 |
+| 4.20 | 账号绑定奖励 | [阅读需求](4.20-账号绑定奖励/README.md) | 每个账号每项的发放记录 |
 
 记录查询随对应活动维护,原有来源依据、配置快照、奖励结果、异常原因、资金引用和验收要求全部保留。界面入口合并不改变数据拥有方,也不增加修改历史记录或重新发钱的权限。
 
@@ -287,6 +296,9 @@ Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bing
 
 | 权限码 | 树节点路径 | 名称 | 页面 |
 |---|---|---|---|
+| `activity:account-bonus:view` | 活动管理/账号绑定奖励/查看 | 查看配置与发放记录 | 4.20 |
+| `activity:account-bonus:edit` | 活动管理/账号绑定奖励/编辑 | 保存完整配置 | 4.20 |
+| `activity:account-bonus:switch` | 活动管理/账号绑定奖励/启停 | 启用和停用活动 | 4.20 |
 | `activity:lucky-wheel:view` | 活动管理/幸运转盘/查看 | 查看活动配置与版本 | 4.19 |
 | `activity:lucky-wheel:edit` | 活动管理/幸运转盘/编辑 | 编辑完整配置，与 publish 权限共同保存 | 4.19 |
 | `activity:lucky-wheel:publish` | 活动管理/幸运转盘/发布 | 完整保存生成版本，须同时持有 edit 权限,不自动启用;含增加本期容量和故障登记 | 4.19 |
@@ -357,6 +369,9 @@ Implementation reference: [frontend PR #259](https://github.com/bingo-lab-1/bing
 
 | # | 规则主题 | 涉及范围 | 执行结论 |
 |---|---|---|---|
+| D144 | 手机绑定等短信验证码接入 | 4.20活动介绍、A1、E11 | **已定**(2026-11-24,KAN-907):接入短信验证码前,没有手机号的账号不能绑定手机,手机项只对手机号注册的玩家开放直接领取。接入后,绑定的手机号同时作为登录手机号,领取规则不变。 |
+| D143 | 游客在Settings原地转为会员 | 4.20-A4、E7、E8及4.20-R7;玩家端Account游客边界 | **已定**(2026-11-24,KAN-907):游客绑定邮箱后可在Settings设置首个登录密码,不需要当前密码;设置后原地转为会员,UID、余额、订单和活动记录不变,之后可用该邮箱和密码登录。只在游客已有已验证的真实邮箱时开放。普通注册仍创建新UID,不合并其他账号(玩家端D106不变)。 |
+| D142 | 账号绑定奖励的三项与领取方式 | 4.20活动介绍、运营配置、A1～A3、E2、E11及4.20-R3～R6 | **已定**(2026-11-24,KAN-907):奖励对象由Jira原文的Facebook、Telegram绑定改为补全邮箱、手机号和登录密码三项。每项单独设置开关、彩金金额和打码倍数;总开关关闭或三项都关闭时,玩家端不显示任何提示。邮箱或手机号注册的玩家,注册时已有的项目在Settings对应行直接领取,不再验证;没有真实邮箱的账号用发到邮箱的6位验证码绑定后领取。每个账号每项终身一次,更换邮箱或手机号不再发奖。 |
 | D141 | 排行榜其他玩家展示打码昵称 | 4.18玩家展示与后台记录、4.18-R16;玩家端D140 | **已定**(2026-11-24,KAN-1102):其他玩家由“****”加用户ID后4位改为打码昵称:保留首尾各一个可见字符、中间固定为“***”,只有一至两个可见字符时只留第一个,没有可见字符时只显示“***”;不再展示用户ID尾号。昵称取当前值,已结算期间也一样。后台账号改用由账号ID生成的化名打码展示,不展示后台填写的姓名。机器人仍明确标识,不跟随打码。替代原“榜单不展示昵称”。 |
 | D139 | 拼多多活动首抽比例后台可配并按钟形曲线随机 | 4.17-A20、A4、A6、A11、A13、A15、E9及4.17-R3、R11 | **已定**(2026-11-23,KAN-896):首抽由固定floor(目标×95%)改为在后台配置的比例下限和上限之间按钟形曲线随机,峰值和集中程度(标准差)可调,精确到1个最小币种单位;每一轮的第一次旋转都重新抽取,包括上一轮过期后开始的新轮,结果在首抽时随轮次保存。上下限相同即为固定比例;已保存的配置保持固定95%,运营修改后才开始随机。替代原“本版不另外随机选择首抽百分比”(4.17-A13)。 |
 | D136 | 邀请宝箱名额已满即不计奖 | 4.16-A12、E6、E10及4.16-R4;M4-D91 | **已定**(2026-11-23):好友达标时人数N、设备K或同注册IP名额已满,该好友显示“达标未计奖”,为终态:之后提高上限、改版或重新开启都不为它补计,提高后的名额只给之后达标的好友;它不占名额,也不阻塞同一上级或同一注册设备的其他好友。替代原“提高上限后按认定顺序恢复”。 |
