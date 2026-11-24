@@ -261,5 +261,6 @@
 | 文档 | 当前情况 | 现有替代入口 |
 |---|---|---|
 | [7.4 广告回传](7.4-广告回传/README.md) | 后台没有回传配置和回传记录，注册和首充不回传广告平台 | 无 |
+| [安装到桌面](安装到桌面/README.md) | 玩家端不能安装到桌面，没有安装页；后台没有桌面名称、应用图标、PWA 链接和安装统计 | [7.4 推广渠道](../M7-代理管理/7.4-推广渠道/README.md)的 H5 推广链接 |
 
 代码依据（2026-11-16）：[后台 · menu.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/constants/menu.tsx)；[后端 · permissions.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/prisma/seed/permissions.ts)；[后端 · services](https://github.com/bingo-lab-1/bingo-backend/tree/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/)。版本与核对边界见[代码核对基线](../00-公共约定/代码核对基线.md)。
