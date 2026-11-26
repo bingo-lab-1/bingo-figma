@@ -6,7 +6,7 @@
 
 桌面上显示的名称是[网站管理](../../M11-内容管理/11.3-网站管理/README.md)里的网站名称，图标是那里上传的应用图标，两项都配置后才提供安装。运营在[推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)取得每个渠道的 PWA 链接并查看安装统计。安装绑定域名：在哪个域名安装，桌面图标就打开哪个域名，各环境互不影响。
 
-安卓提供一键安装，iPhone 引导玩家手动添加到主屏幕，电脑和 iPad 只显示二维码。安装页使用平台自己的名称、图标和页面样式，不模仿应用商店页面，不显示虚构的评分和评论。安装不回传广告平台，只在后台按渠道统计。本版不提供消息推送、离线使用和电脑端的安装引导，也不提供按渠道配置不同的名称和图标。
+安卓提供一键安装，iPhone 引导玩家手动添加到主屏幕，电脑和 iPad 只显示二维码。安装页使用平台自己的名称、图标和页面样式，不模仿应用商店页面，不显示虚构的评分和评论。安装不回传广告平台，只在后台按渠道统计。本版不提供消息推送、离线使用和电脑端的安装引导，也不提供按渠道配置不同的名称和图标。在[合作方 App](../合作方App/README.md) 内打开网站时不提供安装。
 
 玩家端以手机为主，语言规则与玩家端其他页面相同。统计的自然日按平台业务时区。
 
@@ -45,6 +45,7 @@
 | iPhone 上应用自带的浏览器 | 打开即显示“先在 Safari 中打开”层 |
 | 电脑、iPad 和其他设备 | 当前链接的二维码和“Play in browser” |
 | 已安装的桌面应用 | 不显示安装页，直接进入游戏首页 |
+| 合作方 App 内 | 不显示安装页和安装提示，直接进入游戏首页 |
 
 ### 上报的统计
 
@@ -64,7 +65,7 @@
 flowchart TD
     open["打开 PWA 链接"] --> ready{"已配置网站名称和应用图标"}
     ready -- 否 --> game["直接进入游戏首页"]
-    ready -- 是 --> standalone{"在已安装的桌面应用中打开"}
+    ready -- 是 --> standalone{"在已安装的桌面应用或合作方 App 中打开"}
     standalone -- 是 --> game
     standalone -- 否 --> device{"设备"}
     device -- 电脑或 iPad --> desktop["显示二维码和 Play in browser"]
@@ -133,6 +134,10 @@ iPhone 没有一键安装。玩家点“Add to Home Screen”后显示三步教�
 
 从桌面图标打开时全屏显示，不显示浏览器地址栏，直接进入游戏首页。在已安装的应用里打开 PWA 链接，同样进入游戏首页，不显示安装页。
 
+### 在合作方 App 内打开
+
+合作方 App 不能安装到桌面。在 App 内打开 PWA 链接时，页面直接进入游戏首页，链接上的参数保持不变，不显示安装页和安装提示，也不上报打开安装页。iPhone 上的合作方 App 不算从桌面图标打开，不上报安装成功。手机浏览器打开过 APP 链接的，之后同样按 App 内处理，直到清除网站数据，见[合作方 App](../合作方App/README.md)。
+
 ### 渠道与广告点击信息的延续
 
 从安装页安装时，链接里的渠道参数和广告点击标识写入应用的启动地址。玩家从桌面图标首次打开并注册时，账号归属 PWA 链接的渠道，广告点击标识随注册提交，规则与[推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)的广告回传相同。
@@ -172,6 +177,8 @@ iPhone 没有一键安装。玩家点“Add to Home Screen”后显示三步教�
 | 链接里的渠道不存在 | 安装页照常显示，上报不计入统计；注册按推广渠道的规则拒绝 |
 | 玩家端上报失败 | 不影响安装和游戏，这次访问不计入统计 |
 | 更换域名 | 已安装的图标仍打开原域名，原域名需保持可访问 |
+| 在合作方 App 内打开 PWA 链接 | 直接进入游戏首页，链接参数保留，不计入打开安装页人数 |
+| 手机浏览器打开过 APP 链接后再打开 PWA 链接 | 按合作方 App 内处理，直接进入游戏首页，不计入打开安装页人数，直到清除网站数据 |
 
 ## 5. 验收场景
 
@@ -197,13 +204,17 @@ iPhone 没有一键安装。玩家点“Add to Home Screen”后显示三步教�
 | 安装到桌面-R16 | 安装后在后台修改网站名称和应用图标，约一分钟后另一台手机新安装 | 新安装的手机显示新的名称和图标 |
 | 安装到桌面-R17 | 在测试环境和正式环境的域名各安装一次 | 桌面出现两个图标，分别打开各自的域名 |
 | 安装到桌面-R18 | 只有 `cms:website:view` 的账号上传并保存应用图标；权限规则见 11.3-R5 | 服务端拒绝，原配置不变，玩家端是否提供安装不变 |
+| 安装到桌面-R19 | 网站管理已配置网站名称和应用图标，在合作方 App 内打开某渠道的 PWA 链接 | 直接进入游戏首页，链接参数保留；不显示安装页和安装提示，该渠道当天的打开安装页人数不增加 |
+| 安装到桌面-R20 | 在 iPhone 的合作方 App 内第一次打开网站 | 不计入安装成功数 |
 
 ## 6. 相关资料
 
-- 入口与关联页面：玩家从 PWA 链接进入安装页。运营在[11.3 网站管理](../../M11-内容管理/11.3-网站管理/README.md)维护网站名称和应用图标，在[7.4 推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)取得 PWA 链接、查看安装统计。
+- 入口与关联页面：玩家从 PWA 链接进入安装页。运营在[11.3 网站管理](../../M11-内容管理/11.3-网站管理/README.md)维护网站名称和应用图标，在[7.4 推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)取得 PWA 链接、查看安装统计。在合作方 App 内的表现见[合作方 App](../合作方App/README.md)。
 - 权限：安装页和安装上报不需要登录。后台的权限码见 11.3 和 7.4。
 - 数据与责任：网站名称和应用图标归 M11，PWA 链接和安装统计归 M7，安装页和上报由玩家端负责。渠道归属规则归 7.4，安装不产生资金和活动权益。
 - 共用规则：渠道参数与注册归属、广告点击标识和回传见[7.4 推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)；范围决策见[玩家端决策 D148](../README.md#7-决策清单)。页面样式由设计稿表达，设计稿链接在 Jira。与当前实现不同的候选见[未落地需求](../../未落地需求/README.md)。
 - Jira：[KAN-1134](https://bingobox.atlassian.net/browse/KAN-1134)。
 
 代码依据（2026-11-26）：[玩家 feat/us-ui-dev · install](https://github.com/bingo-lab-1/bingo-frontend/tree/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/app/%5Blocale%5D/install)；[玩家 feat/us-ui-dev · web-app-manifest.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/app/%5Blocale%5D/_lib/web-app-manifest.ts)；[玩家 feat/us-ui-dev · installed-app-launch.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/app/%5Blocale%5D/_components/installed-app-launch.tsx)；[后端 · install](https://github.com/bingo-lab-1/bingo-backend/tree/0743e267f5ddcb20f13a5012d32dd2a4bb04bfe6/libs/install/src)。
+
+合作方 App 内不提供安装的代码依据（2026-11-27）：[玩家 feat/app-shell · use-install.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/app/%5Blocale%5D/install/_hooks/use-install.ts)；[玩家 feat/app-shell · installed-app-launch.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/app/%5Blocale%5D/_components/installed-app-launch.tsx)；[玩家 feat/app-shell · app-shell.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/lib/app-shell.ts)。
