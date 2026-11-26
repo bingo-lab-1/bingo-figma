@@ -4,7 +4,7 @@
 
 合作方 App（俗称马甲包、上架包）是合作方开发并上架的安卓或 iOS App：App 内用网页打开本网站，并装有 Adjust 或 AppsFlyer 的统计工具。投放方投放 App 的广告，安装来自哪条广告由 Adjust 或 AppsFlyer 判断。运营在[推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)为每个 App 建一个渠道，投放平台选该 App 使用的 Adjust 或 AppsFlyer，把渠道的 APP 链接交给合作方配置为 App 打开的首页地址。
 
-玩家在 App 内和在浏览器中一样创建游客、注册、登录、充值和游戏，账号归属 APP 链接上的渠道。App 内只有一个页面、不能另开窗口，所以网站在 App 内有五处表现不同：安卓 App 的启动页、离开网站的链接、服务条款和隐私政策、安装到桌面，以及幸运转盘的收银台。网站还读取 App 提供的设备标识，随创建游客、注册和登录提交，服务端据此把注册和充值回传给 Adjust 或 AppsFlyer。
+玩家在 App 内和在浏览器中一样创建游客、注册、登录、充值和游戏，账号归属 APP 链接上的渠道。App 内只有一个页面、不能另开窗口，所以网站在 App 内有五处表现不同：安卓 App 的启动页、在新标签页打开的链接、服务条款和隐私政策、安装到桌面，以及幸运转盘的收银台。网站还读取 App 提供的设备标识，随创建游客、注册和登录提交，之后才出现或有变化的单独提交，服务端据此把注册和充值回传给 Adjust 或 AppsFlyer。
 
 本版不提供 App 专用的页面和功能，也不调用 App 自己的事件上报。合作方要做到的对接见推广渠道的“复制 APP 链接”。
 
@@ -25,9 +25,10 @@
 | 场景 | 浏览器中 | App 内 |
 |---|---|---|
 | 安卓 App 的启动页 | 没有 | 页面第一次显示后关闭，不等登录完成 |
-| 页脚里在新标签页打开的链接 | 新标签页打开 | 交给 App 用外部浏览器打开，网站页面不变 |
+| 页脚里通往其他网站的链接 | 新标签页打开 | 交给 App 用外部浏览器打开，网站页面不变 |
+| 页脚里通往本站的链接，如本站主域名 | 新标签页打开 | 在当前页面打开 |
 | 文档里的邮箱地址 | 打开邮件应用 | 交给 App 打开邮件应用 |
-| 注册弹窗里的服务条款、隐私政策 | 新标签页打开，弹窗保留 | 在当前页面打开，并关闭注册弹窗 |
+| 注册弹窗里的服务条款、隐私政策 | 新标签页打开，弹窗和已填写的内容保留 | 在当前页面打开，并关闭注册弹窗，已填写的内容不保留 |
 | 安装到桌面 | 见[安装到桌面](../安装到桌面/README.md) | 不提供：安装页直接进入游戏首页 |
 | 幸运转盘充值弹窗里的付款 | 收银台在新窗口打开，转盘页面保留 | 收银台在当前页面打开，付款后回到网站，与充值页相同 |
 
@@ -37,13 +38,13 @@
 
 安卓 App 打开网站时先显示自己的启动页。网站在页面第一次显示后通知 App 关闭启动页，每个页面只通知一次，不等登录或创建游客完成，出错提示和重试按钮因此不会被启动页挡住。整站出错时显示的页面同样通知。App 没有提供这个方法时，启动页由 App 自己的超时关闭。
 
-### 离开网站的链接
+### 在新标签页打开的链接
 
-页脚里在新标签页打开的链接，包括外部网站和本站主域名，在 App 内交给 App 用外部浏览器打开；文档里的邮箱地址交给 App 打开邮件应用。网站页面保持不变。App 不接手时，按浏览器的方式打开。在浏览器中照常新标签页打开，或打开邮件应用。
+页脚里的链接在浏览器中都在新标签页打开。在 App 内按去向处理：通往其他网站的，交给 App 用外部浏览器打开，网站页面保持不变；通往本站的，即与当前页面同一主机（带不带 www 都算），在当前页面打开。文档里的邮箱地址交给 App 打开邮件应用。App 不接手时，按浏览器的方式打开。在浏览器中照常新标签页打开，或打开邮件应用。
 
 ### 服务条款与隐私政策
 
-注册弹窗里的服务条款和隐私政策，在 App 内于当前页面打开，并关闭注册弹窗，以免弹窗挡住文档。在浏览器中新标签页打开，注册弹窗保留。
+注册弹窗里的服务条款和隐私政策，在 App 内于当前页面打开，并关闭注册弹窗，以免弹窗挡住文档；弹窗里已填写的内容不保留，玩家看完文档后要重新填写。在浏览器中新标签页打开，注册弹窗和已填写的内容保留。
 
 ### 安装到桌面
 
@@ -55,30 +56,37 @@
 
 ### 设备标识
 
-在 App 内打开时，网站每次打开页面都读取 App 提供的设备标识，并保存在浏览器里供之后的页面使用；创建游客、注册和登录时随请求提交。读取的内容、服务端的保存规则和用途见[推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)的“记录 App 设备”。
+在 App 内打开时，网站每次打开页面都读取 App 提供的设备标识，并保存在浏览器里供之后的页面使用。装有 AppsFlyer 的 App 把设备 ID 放在打开地址的 `adid` 参数里，网站保存后把它从地址中去掉，`ch`、`mApp` 等其他参数保留。
+
+设备标识随创建游客、注册和登录提交。账号已登录时，网站还会检查 App 是否有了新的或不同的设备标识：知道账号后马上检查，每个页面打开后的第一分钟内每 5 秒检查一次，页面回到前台时再检查；与上次为该账号提交的不同就单独提交一次。读取的内容、提交和保存规则以及用途见[推广渠道](../../M7-代理管理/7.4-推广渠道/README.md)的“记录 App 设备”。
 
 ## 4. 特殊情况
 
 | 情况 | 如何处理 |
 |---|---|
-| 在手机浏览器里打开过 APP 链接 | 该浏览器之后也按 App 内处理服务条款、安装页和转盘收银台：条款在当前页面打开，安装页直接进入游戏首页，收银台在当前页面打开，直到清除网站数据。离开网站的链接没有 App 接手，仍按浏览器打开 |
+| 在手机浏览器里打开过 APP 链接 | 该浏览器之后也按 App 内处理服务条款、安装页、转盘收银台和通往本站的链接：条款、收银台和本站链接在当前页面打开，安装页直接进入游戏首页，直到清除网站数据。通往其他网站的链接没有 App 接手，仍按浏览器打开 |
 | App 没有提供用外部浏览器打开链接的方法，或调用失败 | 链接按浏览器的方式打开 |
 | 安卓 App 没有提供关闭启动页的方法，或调用失败 | 启动页由 App 自己的超时关闭 |
-| iPhone 的 App 在页面显示之后才提供设备数据 | 之后打开的页面和提交的请求重新读取；创建游客时还没有数据的，在之后的注册或登录时提交 |
+| iPhone 的 App 在页面显示之后才提供设备数据 | 创建游客时还没有数据的，数据出现后网站单独提交：页面打开后第一分钟内每 5 秒检查一次；一分钟后才出现的，在下一个页面、页面回到前台或下一次注册登录时提交 |
 | App 提供的数据有一部分格式不对 | 只舍去格式不对的部分，不影响页面、创建游客、注册和登录 |
-| 玩家保持登录状态再次打开 App | 照常进入游戏，这次不提交设备标识 |
+| 玩家保持登录状态再次打开 App | 照常进入游戏；设备标识与上次为该账号提交的相同时不提交，有变化时单独提交 |
+| 单独提交设备标识失败 | 不提示玩家；本页不再按时检查，下一个页面或页面回到前台时再试 |
+| 服务端认为提交的设备标识不可用 | 不提示玩家，同样的标识不再重复提交 |
+| 玩家在注册弹窗填了一部分，去看服务条款或隐私政策 | 注册弹窗关闭，已填写的内容不保留，看完文档后要重新打开弹窗填写 |
 
 ## 5. 验收场景
 
 | 需求编号 | 场景与操作 | 预期结果 |
 |---|---|---|
 | 合作方App-R1 | 在安卓合作方 App 内打开 APP 链接；再在 App 内进入一个整站出错的页面 | 页面第一次显示后启动页关闭，不等登录完成；出错页同样关闭启动页 |
-| 合作方App-R2 | 在 App 内点页脚的外部网站链接和本站主域名链接，在服务条款里点邮箱地址；在手机浏览器里做同样操作 | App 内分别用外部浏览器打开网页、用邮件应用打开邮箱，网站页面不变；浏览器中新标签页打开网页，邮箱打开邮件应用 |
-| 合作方App-R3 | 在 App 内打开注册弹窗，点服务条款和隐私政策；在手机浏览器里做同样操作 | App 内在当前页面打开文档，注册弹窗关闭；浏览器中新标签页打开，注册弹窗保留 |
+| 合作方App-R2 | 在 App 内点页脚的外部网站链接和本站主域名链接，在服务条款里点邮箱地址；在手机浏览器里做同样操作 | App 内外部网站用外部浏览器打开、网站页面不变，本站主域名在当前页面打开，邮箱用邮件应用打开；浏览器中两个链接都在新标签页打开，邮箱打开邮件应用 |
+| 合作方App-R3 | 在 App 内打开注册弹窗，填好邮箱后点服务条款和隐私政策；在手机浏览器里做同样操作 | App 内在当前页面打开文档，注册弹窗关闭，返回后已填的邮箱不在；浏览器中新标签页打开，注册弹窗和已填的邮箱保留 |
 | 合作方App-R4 | 在 App 内的幸运转盘充值弹窗选择商品并点付款，完成付款；在手机浏览器里做同样操作 | App 内收银台在当前页面打开，付款后回到网站；浏览器中收银台在新窗口打开，转盘页面保留 |
 | 合作方App-R5 | 在 App 内打开某渠道的 PWA 链接 | 直接进入游戏首页，不显示安装页，见安装到桌面-R19 |
 | 合作方App-R6 | 网站管理已配置网站名称和应用图标；在手机浏览器里打开 APP 链接，再打开注册弹窗点服务条款，并打开 PWA 链接；之后清除网站数据重复 | 清除前条款在当前页面打开，PWA 链接直接进入游戏首页；清除后条款新标签页打开，PWA 链接显示安装页 |
-| 合作方App-R7 | 在装有 Adjust 的安卓和 iPhone App、装有 AppsFlyer 的 App 内分别创建游客、注册和登录 | 每次请求都提交 App 已提供的设备标识（iPhone 的 App 晚于创建游客才提供的，见特殊情况）；该渠道之后的回传记录广告点击信息为有，回传规则见 7.4-R51 至 R56 |
+| 合作方App-R7 | 在装有 Adjust 的安卓和 iPhone App、装有 AppsFlyer 的 App 内分别创建游客、注册和登录 | 每次请求都提交 App 已提供的设备标识，晚于创建游客才提供的见合作方App-R8；该渠道之后的回传记录 App 设备为有，回传规则见 7.4-R51 至 R59 |
+| 合作方App-R8 | 在 iPhone 上装有 Adjust 的 App 内第一次打开，App 在创建游客之后才提供设备数据；之后再打开几个页面 | 数据出现后一分钟内网站单独提交一次设备标识；之后的页面里设备标识没有变化，不再提交；回传见 7.4-R58 |
+| 合作方App-R9 | 在装有 AppsFlyer 的 App 内打开带 `adid` 的 APP 链接，再用邮箱注册 | 页面打开后地址里不再有 `adid`，`ch` 和 `mApp` 仍在；注册照常提交 AppsFlyer 设备 ID，该渠道的记录 App 设备为有 |
 
 ## 6. 相关资料
 
@@ -87,4 +95,4 @@
 - 数据与责任：App 渠道、账号的 App 设备和回传归 M7；网站在 App 内的表现和设备标识的读取由玩家端负责；启动页、用外部浏览器打开链接的方法、设备数据、网页本地存储和 Cookie 由合作方 App 提供。
 - 共用规则：App 渠道由服务端回传 Adjust、AppsFlyer 见 [M7 决策 D153](../../M7-代理管理/README.md#7-决策清单)，App 设备与渠道归属见 [M7 决策 D154](../../M7-代理管理/README.md#7-决策清单)。与真实 App 联调的前提见[未落地需求](../../未落地需求/README.md)。
 
-代码依据（2026-11-27）：[玩家 feat/app-shell · app-shell.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/lib/app-shell.ts)；[玩家 feat/app-shell · app-splash.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/app/%5Blocale%5D/_components/app-splash.tsx)；[玩家 feat/app-shell · document-link.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/components/features/site/document-link.tsx)；[玩家 feat/app-shell · site-text.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/components/features/site/site-text.tsx)；[玩家 feat/app-shell · recharge-products.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/components/features/recharge/recharge-products.tsx)；[玩家 feat/app-shell · use-install.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/edf7121e4b5162c6291c3a143772cba1eb24ce14/apps/web/app/%5Blocale%5D/install/_hooks/use-install.ts)。
+代码依据（2026-11-27）：[玩家 feat/app-shell · app-shell.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/lib/app-shell.ts)；[玩家 feat/app-shell · app-splash.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/app/%5Blocale%5D/_components/app-splash.tsx)；[玩家 feat/app-shell · app-device-report.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/app/%5Blocale%5D/_components/app-device-report.tsx)；[玩家 feat/app-shell · document-link.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/components/features/site/document-link.tsx)；[玩家 feat/app-shell · site-text.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/components/features/site/site-text.tsx)；[玩家 feat/app-shell · recharge-products.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/components/features/recharge/recharge-products.tsx)；[玩家 feat/app-shell · use-install.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/9d993cc929fcd8bfee44402c35e1dafbbf82201f/apps/web/app/%5Blocale%5D/install/_hooks/use-install.ts)。
