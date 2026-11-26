@@ -92,7 +92,7 @@
 | 筛选：日期 | 起止日期，打开时默认近 7 天，含平台今天；可以快捷选择近 7 天、近 30 天、近 90 天。一次最多 90 天，结束日期不能晚于平台今天。点“查询”生效 |
 | 日期 | 平台业务时区的自然日 |
 | 打开安装页人数 | 当天打开过该渠道安装页的浏览器数，同一浏览器一天计一次 |
-| 安装成功数 | 当天完成安装的次数，每次安装计一次。安卓以浏览器通知安装页安装完成为准；iPhone 无法得知添加是否完成，以第一次从桌面图标打开为准 |
+| 安装成功数 | 当天安装的次数，每次安装计一次。安卓以浏览器告知安装页已安装为准，玩家确认安装后即计入，系统此时可能还在安装；iPhone 无法得知添加是否完成，以第一次从桌面图标打开为准 |
 | 选择网页玩人数 | 当天在该渠道安装页点击网页入口（如“Play in browser”）的浏览器数，同一浏览器一天计一次 |
 
 数据来自玩家端上报，按渠道和自然日汇总，没有数据的日期显示 0。
@@ -136,7 +136,7 @@
 
 两条链接都带同一个渠道参数，点各自的复制按钮复制。玩家打开 PWA 链接看到什么取决于[11.3 网站管理](../../M11-内容管理/11.3-网站管理/README.md)：网站名称和应用图标都已配置时显示安装页；缺任意一项时直接进入游戏首页，链接上的参数原样保留，之后的注册仍归属该渠道。
 
-没有配置应用图标时，列表在每条 PWA 链接下方提示“未配置应用图标，链接将直接进入游戏”。提示随每次列表查询重新读取，上传应用图标并保存后点“查询”即消失。
+没有配置应用图标时，列表在每条 PWA 链接下方提示“未配置应用图标，链接将直接进入游戏”。提示随每次列表查询重新读取，上传应用图标并保存后点“查询”即消失；玩家端在保存后约一分钟内才跟随新配置。
 
 安装页不创建游客账号；玩家进入游戏后才创建，见[安装到桌面](../../玩家端/安装到桌面/README.md)。
 
@@ -296,16 +296,17 @@
 | 7.4-R36 | 同一浏览器同一天两次打开某渠道的安装页并安装一次，另一浏览器打开后点“Play in browser”，然后查看该渠道的安装统计 | 当天打开安装页人数为 2，安装成功数为 1，选择网页玩人数为 1 |
 | 7.4-R36 | 打开没有任何安装数据的渠道的安装统计 | 默认近 7 天，每天一行，最近的日期在前，三项都是 0 |
 | 7.4-R37 | 在安装统计选择超过 90 天的范围，或结束日期晚于平台今天 | 不查询，提示原因 |
-| 7.4-R38 | 删除产生过回传记录或安装统计的渠道 | 拒绝，提示“推广渠道已有业务配置或历史记录，请停用渠道”，渠道保留 |
+| 7.4-R38 | 删除没有会员、但有人打开过其安装页的渠道 | 拒绝，提示“推广渠道已有业务配置或历史记录，请停用渠道”，渠道保留 |
+| 7.4-R38 | 产生过回传记录的渠道，会员都改绑到其他渠道后删除 | 同样拒绝，渠道保留 |
 
 ## 6. 相关资料
 
 - 入口与关联页面：一级菜单“推广渠道”→“推广渠道”。新增或编辑渠道时配置广告回传，渠道行“回传记录”“安装统计”查看结果。会员改绑见[会员详情弹窗](../../M2-会员管理/2.1-会员列表/会员详情弹窗.md)，同期群见 [9.1](../../M9-数据分析/9.1-同期群分析/README.md)，首页渠道筛选见 [12.1](../../M12-工作台/12.1-首页看板/README.md)。安装页见[安装到桌面](../../玩家端/安装到桌面/README.md)，网站名称和应用图标见 [11.3](../../M11-内容管理/11.3-网站管理/README.md)。
 - 权限：查看 `promotion:channel:view`，含回传状态、回传记录和安装统计；新增推广商 `promotion:promoter:create`，新增渠道 `promotion:channel:create`，编辑和启停 `promotion:channel:edit`，删除渠道 `promotion:channel:delete`；删除推广商只限系统角色。保存广告回传配置随新增或编辑渠道，不另设权限。域名下拉另需 `system:domain:view`；“同期群分析”需要系统角色，或同时持有 `analytics:cohort:view` 和 `analytics:cohort:platform`。PWA 链接下方的提示读取网站配置，读取权限见 [11.3](../../M11-内容管理/11.3-网站管理/README.md)。
-- 数据与责任：推广商、渠道、回传配置、回传记录和安装统计归 M7，域名归域名管理，会员绑定关系归 M2。充值事实和美元折算归 M5，见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)和[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)；注册事实和测试账号标记归 M2；网站名称和应用图标归 M11。广告点击标识的采集、像素加载和安装事件上报由玩家端负责，这部分在玩家仓库 `feat/us-ui-dev` 分支，已部署到 dev 环境，玩家 `main` 尚未合入：使用 `main` 的站点不记录广告点击、不加载像素，也没有安装页，注册和首充仍由服务端回传。功能权限与账号数据范围见[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
+- 数据与责任：推广商、渠道、回传配置、回传记录和安装统计归 M7，域名归域名管理，会员绑定关系归 M2。充值事实和美元折算归 M5，见[资金模型](../../M2-会员管理/2.1-会员列表/资金模型.md)和[标准计价](../../M2-会员管理/2.1-会员列表/标准计价.md)；注册事实和测试账号标记归 M2；网站名称和应用图标归 M11。广告点击标识的采集、像素加载和安装事件上报由玩家端负责，按玩家仓库 `feat/us-ui-dev` 分支描述；玩家 `main` 不记录广告点击、不加载像素，也没有安装页，在使用 `main` 的站点上注册和首充照常由服务端回传，广告点击信息为无。功能权限与账号数据范围见[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。
 - 共用规则：[权限模型](../../M6-账号管理/6.2-角色管理/权限模型.md)。回传范围和首充口径见 [M7 决策 D146、D147](../README.md#7-决策清单)，安装到桌面的范围见[玩家端决策 D148](../../玩家端/README.md#7-决策清单)。
 - Jira：[KAN-349](https://bingobox.atlassian.net/browse/KAN-349)、[KAN-1022](https://bingobox.atlassian.net/browse/KAN-1022)、[KAN-1129](https://bingobox.atlassian.net/browse/KAN-1129)、[KAN-1134](https://bingobox.atlassian.net/browse/KAN-1134)。
 
 代码依据（2026-11-16）：[后端 · channel.service.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/promotion/channel.service.ts)；[后台 · index.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/routes/admin/promotion/channel/index.tsx)。版本与核对边界见[代码核对基线](../../00-公共约定/代码核对基线.md)。
 
-广告回传、PWA 链接和安装统计的代码依据（2026-11-26）：[后端 · ad-postback](https://github.com/bingo-lab-1/bingo-backend/tree/0743e267f5ddcb20f13a5012d32dd2a4bb04bfe6/libs/ad-postback/src)；[后端 · install](https://github.com/bingo-lab-1/bingo-backend/tree/0743e267f5ddcb20f13a5012d32dd2a4bb04bfe6/libs/install/src)；[后台 · channel](https://github.com/bingo-lab-1/bingo-saas-frontend/tree/8cedfe6b8ac1141fc6072fe0b7947a4f192bb68a/apps/web/src/routes/admin/promotion/channel)；[玩家 feat/us-ui-dev · ad-pixel.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/app/%5Blocale%5D/_components/ad-pixel.tsx)；[玩家 feat/us-ui-dev · guest-storage.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/lib/auth/guest-storage.ts)。
+广告回传、PWA 链接和安装统计的代码依据（2026-11-26）：[后端 · ad-postback](https://github.com/bingo-lab-1/bingo-backend/tree/0743e267f5ddcb20f13a5012d32dd2a4bb04bfe6/libs/ad-postback/src)；[后端 · install](https://github.com/bingo-lab-1/bingo-backend/tree/0743e267f5ddcb20f13a5012d32dd2a4bb04bfe6/libs/install/src)；[后台 · channel](https://github.com/bingo-lab-1/bingo-saas-frontend/tree/a43190ef41199c281699c5c15e6d31b8dd1bf271/apps/web/src/routes/admin/promotion/channel)；[玩家 feat/us-ui-dev · ad-pixel.tsx](https://github.com/bingo-lab-1/bingo-frontend/blob/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/app/%5Blocale%5D/_components/ad-pixel.tsx)；[玩家 feat/us-ui-dev · guest-storage.ts](https://github.com/bingo-lab-1/bingo-frontend/blob/8f16f0027d59c068501a5c543f83eeff88109ddd/apps/web/lib/auth/guest-storage.ts)。
