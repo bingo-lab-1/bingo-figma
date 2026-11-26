@@ -111,7 +111,7 @@ Facebook、Instagram 等应用自带的浏览器不能安装。此时按钮下�
 
 ### 安卓：不能一键安装
 
-浏览器不支持一键安装，或玩家点安装后 3 秒内浏览器没有给出安装确认框时，显示三步：打开浏览器菜单，选择“Add to Home screen”或“Install app”，点“Install”确认。玩家可以点“Got it”关闭，或选择“Play in browser”。
+浏览器不支持一键安装，或玩家点安装后 3 秒内浏览器还没有给出一键安装时，显示三步：打开浏览器菜单，选择“Add to Home screen”或“Install app”，点“Install”确认。玩家可以点“Got it”关闭，或选择“Play in browser”。
 
 ### iPhone：添加到主屏幕
 
