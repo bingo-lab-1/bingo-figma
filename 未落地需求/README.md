@@ -249,6 +249,8 @@
 | 安装到桌面 | D148 / R1–R17 | 安装页、各页面的安装入口、桌面应用和安装上报；规则按 `feat/us-ui-dev` 分支写在[安装到桌面](../玩家端/安装到桌面/README.md) |
 | 安装到桌面 | D148 / R8、R10 | iPhone 三步教程层也提供网页入口（D148 的“每一屏保留网页入口”），电脑页也显示年龄提示和条款链接的页脚（原安装页内容要求）；现有两处按设计稿，教程层只有“Got it”，电脑页没有页脚 |
 | 广告回传 | 7.4-R30 / 7.4-R31 | 记录广告点击、加载渠道像素并上报浏览；规则按 `feat/us-ui-dev` 分支写在[7.4 推广渠道](../M7-代理管理/7.4-推广渠道/README.md)。使用主分支的站点上注册和充值照常由服务端回传，广告点击信息为无 |
+| 广告回传 | 7.4-R55、R56、R58 | 在合作方 App 内读取并提交 App 设备，之后才出现的设备标识单独提交；规则按 `feat/us-ui-dev` 分支写在[7.4 推广渠道](../M7-代理管理/7.4-推广渠道/README.md)。使用主分支的站点不提交 App 设备，App 渠道的记录一直重试中，满 7 天过期 |
+| 合作方 App | 合作方App-R1–R9 | 网站在合作方 App 内的启动页、在新标签页打开的链接、服务条款、安装和幸运转盘收银台的表现，以及设备标识的单独提交；规则按 `feat/us-ui-dev` 分支写在[合作方 App](../玩家端/合作方App/README.md) |
 
 ### M12 工作台
 
@@ -261,5 +263,6 @@
 | 文档 | 当前情况 | 验收前置 |
 |---|---|---|
 | [点控策略与执行记录](../M2-会员管理/点控策略.md) | 平台配置、队列与记录已实现，供应商实际执行默认关闭 | RTP生效边界、单用户恢复、超时和结算归属验证 |
+| [7.4 推广渠道](../M7-代理管理/7.4-推广渠道/README.md)的 App 渠道回传、[合作方 App](../玩家端/合作方App/README.md) | 服务端回传 Adjust 和 AppsFlyer、读取 App 设备和网站在 App 内的表现已实现，按对接约定和两家的公开文档编写，没有在真实的合作方 App 和 Adjust、AppsFlyer 账号上运行 | 合作方的测试包打开测试环境渠道的 APP 链接，在 Adjust 测试控制台和 AppsFlyer 原始数据中看到完成注册、首充和充值三种事件；核对只带 Adjust 设备 ID 能否对应到设备、Adjust 拒收时的回答、iPhone 设备数据到达的时机、App 能否打开邮箱地址和启动页关闭的时机 |
 
 代码依据（2026-11-16）：[后台 · menu.tsx](https://github.com/bingo-lab-1/bingo-saas-frontend/blob/30aaad66ae5d9c8875735b1448f7cc277708ac5c/apps/web/src/constants/menu.tsx)；[后端 · permissions.ts](https://github.com/bingo-lab-1/bingo-backend/blob/9ec8c3000e21a8fcb68753baf548559b409d3e93/prisma/seed/permissions.ts)；[后端 · services](https://github.com/bingo-lab-1/bingo-backend/tree/9ec8c3000e21a8fcb68753baf548559b409d3e93/apps/admin-api/src/services/)。版本与核对边界见[代码核对基线](../00-公共约定/代码核对基线.md)。
